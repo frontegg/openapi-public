@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Authenticate with env credentials",
+    "description": "",
+    "version": ""
+  },
+  "servers": [
+    {
+      "url": "https://api.frontegg.com/auth/vendor",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/auth/vendor",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/auth/vendor",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/auth/vendor",
+      "description": "AU Region",
+      "variables": {
+        "domain": {
+          "default": "app-xxxx"
+        }
+      }
+    }
+  ],
+  "components": {
+    "schemas": {
+      "VendorAuthenticationRequest": {
+        "type": "object",
+        "required": [
+          "clientId",
+          "secret"
+        ],
+        "properties": {
+          "clientId": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string"
+          }
+        }
+      },
+      "VendorAuthenticationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "expiresIn": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/": {
+      "post": {
+        "operationId": "authenticate_vendor",
+        "summary": "Authenticate with env credentials",
+        "description": "Authenticate your environment to get a management token for your environment using the `clientId` and `API key`.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorAuthenticationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authentication succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorAuthenticationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid authentication"
+          }
+        }
+      }
+    }
+  }
+}

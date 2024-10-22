@@ -1,0 +1,1140 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/resources/sso/v1/saml/configurations/vendor-config": {
+      "get": {
+        "operationId": "SamlControllerV1_getVendorSamlConfig",
+        "summary": "Get vendor's SAML config",
+        "description": "Get vendor's SAML config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorSamlConfigurationResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SAML Configurations Details"
+        ]
+      }
+    },
+    "/resources/sso/v1/saml/configurations/sp-certificate": {
+      "get": {
+        "operationId": "SamlControllerV1_getSpCertificate",
+        "summary": "Get service provider certificate",
+        "description": "Get service provider certificate",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SAML Configurations Details"
+        ]
+      }
+    },
+    "/resources/sso/v1/saml/configurations/sp-metadata": {
+      "get": {
+        "operationId": "SamlControllerV1_getSpMetadata",
+        "summary": "Get service provider metadata",
+        "description": "Get service provider metadata",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations": {
+      "post": {
+        "operationId": "SsoConfigurationControllerV1_createSsoConfiguration",
+        "summary": "Create SSO configuration",
+        "description": "Create SSO configuration",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSSOConfigurationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      },
+      "get": {
+        "operationId": "SsoConfigurationControllerV1_getSsoConfigurations",
+        "summary": "Get SSO configurations",
+        "description": "Get SSO configurations",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}": {
+      "delete": {
+        "operationId": "SsoConfigurationControllerV1_deleteSsoConfiguration",
+        "summary": "Delete SSO configuration",
+        "description": "Delete SSO configuration",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/metadata": {
+      "post": {
+        "operationId": "SsoConfigurationControllerV1_createSsoConfigurationByMetadata",
+        "summary": "Create SSO configuration using metadata",
+        "description": "Create SSO configuration using metadata",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSSOConfigurationByMetadataRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/metadata": {
+      "put": {
+        "operationId": "SsoConfigurationControllerV1_updateSsoConfigurationByMetadata",
+        "summary": "Update SSO configuration using metadata",
+        "description": "Update SSO configuration using metadata",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSSOConfigurationByMetadataRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/domains": {
+      "post": {
+        "operationId": "SsoDomainControllerV1_createSsoDomain",
+        "summary": "Create SSO domain",
+        "description": "Create SSO domain",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSSODomainRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/domains/{domainId}": {
+      "delete": {
+        "operationId": "SsoDomainControllerV1_deleteSsoDomain",
+        "summary": "Delete SSO domain",
+        "description": "Delete SSO domain",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domainId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/domains/{domainId}/validate/email": {
+      "put": {
+        "operationId": "SsoDomainControllerV1_validateSsoDomainByEmail",
+        "summary": "Validate SSO domain by email",
+        "description": "Validate SSO using user's email domain",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domainId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v2/configurations/{configurationId}/domains/{domainId}/validate": {
+      "put": {
+        "operationId": "SsoDomainControllerV2_validateSsoDomain",
+        "summary": "Validate SSO domain",
+        "description": "Validate SSO domain",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domainId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/roles": {
+      "put": {
+        "operationId": "SsoRolesControllerV1_setSsoDefaultRoles",
+        "summary": "Set SSO default roles",
+        "description": "Set SSO default roles",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetSSODefaultRoles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      },
+      "get": {
+        "operationId": "SsoRolesControllerV1_getSsoDefaultRoles",
+        "summary": "Get SSO default roles",
+        "description": "Get SSO default roles",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/groups": {
+      "post": {
+        "operationId": "SsoGroupsControllerV1_createSsoGroup",
+        "summary": "Create an SSO group",
+        "description": "Create an SSO group",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSSOGroupRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      },
+      "get": {
+        "operationId": "SsoGroupsControllerV1_getSsoGroup",
+        "summary": "Get SSO group",
+        "description": "Get SSO group",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/{configurationId}/groups/{groupId}": {
+      "patch": {
+        "operationId": "SsoGroupsControllerV1_updateSsoGroup",
+        "summary": "Update SSO group",
+        "description": "Update SSO group",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSSOGroupRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      },
+      "delete": {
+        "operationId": "SsoGroupsControllerV1_deleteSsoGroup",
+        "summary": "Delete SSO group",
+        "description": "Delete SSO group",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/excluded-emails": {
+      "post": {
+        "operationId": "ExcludeEmailsFromSSOV1_excludeSSOEmail",
+        "summary": "Exclude email from SSO",
+        "description": "Exclude email from SSO",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExcludeEmailFromSSORequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      },
+      "get": {
+        "operationId": "ExcludeEmailsFromSSOV1_getSSOExcludedEmails",
+        "summary": "Get SSO excluded emails",
+        "description": "Get SSO excluded emails",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/excluded-emails/{email}": {
+      "delete": {
+        "operationId": "ExcludeEmailsFromSSOV1_deleteSSOExcludedEmail",
+        "summary": "Delete SSO excluded email",
+        "description": "Delete SSO excluded email",
+        "parameters": [
+          {
+            "name": "email",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/domains/{domain}/force-validate": {
+      "put": {
+        "operationId": "VendorOnlySsoConfigurationControllerV1_forceSsoDomainValidation",
+        "summary": "Vendor only - Force SSO domain validation",
+        "description": "Vendor only - Force SSO domain validation",
+        "parameters": [
+          {
+            "name": "domain",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForceValidateDomainRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/multiple-sso-per-domain": {
+      "get": {
+        "operationId": "SsoPerTenantControllerV1_getSSOPerTenantConfig",
+        "summary": "Get SSO per tenant configuration",
+        "description": "Get SSO per tenant configuration",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      },
+      "put": {
+        "operationId": "SsoPerTenantControllerV1_createOrUpdateSSOPerTenantConfig",
+        "summary": "Create or update SSO per tenant configuration",
+        "description": "Create or update SSO per tenant configuration",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSSOPerTenantConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      }
+    },
+    "/resources/sso/v1/configurations/domains": {
+      "put": {
+        "operationId": "SSODomainsConfigurationControllerV1_createOrUpdateSSODomainsConfiguration",
+        "summary": "Create or update SSO domains configuration",
+        "description": "Create or update SSO domains configuration",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSSODomainConfigurationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      },
+      "get": {
+        "operationId": "SSODomainsConfigurationControllerV1_getSSODomainsConfiguration",
+        "summary": "Get SSO domains configuration",
+        "description": "Get SSO domains configuration",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Configurations"
+        ]
+      }
+    },
+    "/resources/sso/v1/oidc/configurations": {
+      "get": {
+        "operationId": "OidcControllerV1_getOidcConifguration",
+        "summary": "Get OIDC configuration",
+        "description": "Get OIDC configuration",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigureOidcResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "OIDC Configurations Details"
+        ]
+      },
+      "post": {
+        "operationId": "OidcControllerV1_configureOidc",
+        "summary": "Configure OIDC",
+        "description": "Configure OIDC",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigureOidcRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO Settings"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Single Sign-On Service",
+    "description": "SSO descriptions",
+    "version": ""
+  },
+  "servers": [
+    {
+      "url": "https://api.frontegg.com/team",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/team",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/team",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/team",
+      "description": "AU Region"
+    },
+    {
+      "url": "https://{domain}.frontegg.com/team",
+      "description": "Frontegg sub-domain for use with user tokens",
+      "variables": {
+        "domain": {
+          "default": "app-xxx"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "VendorSamlConfigurationResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateSSOConfigurationRequestDto": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "ssoEndpoint": {
+            "type": "string"
+          },
+          "publicCertificate": {
+            "type": "string"
+          },
+          "signRequest": {
+            "type": "boolean"
+          },
+          "acsUrl": {
+            "type": "string"
+          },
+          "spEntityId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "oidcClientId": {
+            "type": "string"
+          },
+          "oidcSecret": {
+            "type": "string"
+          },
+          "configMetadata": {
+            "type": "object"
+          },
+          "overrideActiveTenant": {
+            "type": "boolean"
+          },
+          "subAccountAccessLimit": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "enabled",
+          "ssoEndpoint",
+          "publicCertificate",
+          "signRequest",
+          "acsUrl",
+          "spEntityId",
+          "type",
+          "oidcClientId",
+          "oidcSecret",
+          "configMetadata",
+          "overrideActiveTenant",
+          "subAccountAccessLimit"
+        ]
+      },
+      "UpdateSSOConfigurationByMetadataRequestDto": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "CreateSSODomainRequestDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "SetSSODefaultRoles": {
+        "type": "object",
+        "properties": {
+          "roleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "roleIds"
+        ]
+      },
+      "CreateSSOGroupRequestDto": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "roleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "group",
+          "roleIds"
+        ]
+      },
+      "UpdateSSOGroupRequestDto": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          },
+          "roleIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "group",
+          "roleIds"
+        ]
+      },
+      "ExcludeEmailFromSSORequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "ForceValidateDomainRequestDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateSSOPerTenantConfigRequest": {
+        "type": "object",
+        "properties": {
+          "unspecifiedTenantStrategy": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "useActiveTenant": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "unspecifiedTenantStrategy",
+          "active",
+          "useActiveTenant"
+        ]
+      },
+      "CreateSSODomainConfigurationRequest": {
+        "type": "object",
+        "properties": {
+          "allowVerifiedUsersToAddDomains": {
+            "type": "boolean"
+          },
+          "skipDomainVerification": {
+            "type": "boolean"
+          },
+          "bypassDomainCrossValidation": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "allowVerifiedUsersToAddDomains",
+          "skipDomainVerification",
+          "bypassDomainCrossValidation"
+        ]
+      },
+      "ConfigureOidcResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "ConfigureOidcRequest": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "redirectUri": {
+            "type": "string",
+            "description": "Redirect URI that the user will be redirected. Should match the redirect URI you set on your application. Leave it empty if you didn't change it on your application"
+          }
+        },
+        "required": [
+          "active"
+        ]
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "Management",
+      "tags": [
+        "SSO Settings"
+      ]
+    },
+    {
+      "name": "Self-Service",
+      "tags": [
+        "SAML Configurations Details",
+        "OIDC Configurations Details",
+        "SSO Configurations"
+      ]
+    }
+  ]
+}

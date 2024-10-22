@@ -1,0 +1,291 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v1/data/e10s/features/is_entitled_to_input_feature": {
+      "post": {
+        "operationId": "OpenApiPDPController_isEntitledToFeature",
+        "summary": "Is Entitled To Feature",
+        "description": "Check whether a given tenant or user is entitled to the requested feature",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "input": {
+                    "properties": {
+                      "subjectContext": {
+                        "$ref": "#/components/schemas/SubjectContext"
+                      },
+                      "requestContext": {
+                        "$ref": "#/components/schemas/IsEntitledToFeatureDto"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDPResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Entitlements Check"
+        ]
+      }
+    },
+    "/v1/data/e10s/permissions/is_entitled_to_input_permission": {
+      "post": {
+        "operationId": "OpenApiPDPController_isEntitledToPermission",
+        "summary": "Is Entitled To Permission",
+        "description": "Check whether a given user is entitled to the requested permission",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "input": {
+                    "properties": {
+                      "subjectContext": {
+                        "$ref": "#/components/schemas/SubjectContext"
+                      },
+                      "requestContext": {
+                        "$ref": "#/components/schemas/IsEntitledToPermissionDto"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDPResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Entitlements Check"
+        ]
+      }
+    },
+    "/v1/data/e10s/routes/is_entitled_to_input_route": {
+      "post": {
+        "operationId": "OpenApiPDPController_isEntitledToRoute",
+        "summary": "Is Entitled To Route",
+        "description": "Check whether a given tenant or user is entitled to the requested route",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "input": {
+                    "properties": {
+                      "subjectContext": {
+                        "$ref": "#/components/schemas/SubjectContext"
+                      },
+                      "requestContext": {
+                        "$ref": "#/components/schemas/IsEntitledToRouteDto"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDPResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Entitlements Check"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Entitlements Agent (PDP)",
+    "description": "",
+    "version": "",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "http://{host}:{port}",
+      "variables": {
+        "host": {
+          "default": "localhost"
+        },
+        "port": {
+          "default": "8181"
+        }
+      }
+    }
+  ],
+  "components": {
+    "schemas": {
+      "IsEntitledToFeatureDto": {
+        "type": "object",
+        "properties": {
+          "featureKey": {
+            "type": "string",
+            "example": "example-feature-key"
+          }
+        },
+        "required": [
+          "featureKey"
+        ]
+      },
+      "SubjectContext": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "6c2ce177-66cd-4163-a012-b7833255a490"
+          },
+          "tenantId": {
+            "type": "string",
+            "example": "f21ca66c-d23b-496f-b805-121ed37eb46a"
+          },
+          "permissions": {
+            "example": [
+              "example.permission.read",
+              "example.permission.write"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "example": {
+              "exampleAttribute": "example-value"
+            }
+          }
+        },
+        "required": [
+          "tenantId"
+        ]
+      },
+      "EntitlementsResult": {
+        "type": "object",
+        "properties": {
+          "justification": {
+            "type": "string",
+            "enum": [
+              "MISSING_FEATURE",
+              "MISSING_PERMISSION",
+              "PLAN_EXPIRED",
+              "MISSING_ROUTE",
+              "ROUTE_DENIED"
+            ],
+            "example": "MISSING_FEATURE"
+          },
+          "monitoring": {
+            "type": "boolean"
+          },
+          "result": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "result"
+        ]
+      },
+      "PDPResponse": {
+        "type": "object",
+        "properties": {
+          "decision_id": {
+            "type": "string",
+            "example": "df5dae62-be02-4333-bbe1-f7220e13c6c3"
+          },
+          "metrics": {
+            "type": "object"
+          },
+          "result": {
+            "$ref": "#/components/schemas/EntitlementsResult"
+          }
+        },
+        "required": [
+          "decision_id",
+          "metrics",
+          "result"
+        ]
+      },
+      "IsEntitledToPermissionDto": {
+        "type": "object",
+        "properties": {
+          "permissionKey": {
+            "type": "string",
+            "example": "example.permission.read"
+          }
+        },
+        "required": [
+          "permissionKey"
+        ]
+      },
+      "IsEntitledToRouteDto": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE",
+              "*"
+            ],
+            "example": "GET"
+          },
+          "path": {
+            "type": "string",
+            "example": "/example"
+          }
+        },
+        "required": [
+          "method",
+          "path"
+        ]
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}

@@ -1,0 +1,369 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/resources/v1/configurations/scim2": {
+      "get": {
+        "operationId": "Scim2ConnectionConfigController_fetchAll",
+        "summary": "Get all SCIM configurations",
+        "description": "Get all provisiong (SCIM) configurations for an environment.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "connectionName",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of SCIM configurations. Vendor only endpoint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Scim2ConnectionConfigResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SCIM Configurations"
+        ]
+      },
+      "post": {
+        "operationId": "Scim2ConnectionConfigController_create",
+        "summary": "Create a SCIM configuration",
+        "description": "Create a provisioning (SCIM) configuration for an account (tenant).",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Scim2CreateConnectionConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scim2CreateConnectionConfigResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SCIM Setup"
+        ]
+      }
+    },
+    "/resources/v1/configurations/scim2/{id}": {
+      "get": {
+        "operationId": "Scim2ConnectionConfigController_fetchById",
+        "summary": "Get a SCIM configuration by ID",
+        "description": "Get a provisioning (SCIM) configuration by its ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scim2ConnectionConfigResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SCIM Setup"
+        ]
+      },
+      "patch": {
+        "operationId": "Scim2ConnectionConfigController_partialUpdate",
+        "summary": "Update a SCIM configuration",
+        "description": "Create a provisioning (SCIM) configuration for an account (tenant).",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Scim2PatchConnectionConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SCIM Setup"
+        ]
+      },
+      "delete": {
+        "operationId": "Scim2ConnectionConfigController_deleteById",
+        "summary": "Delete a SCIM configuration",
+        "description": "Create a provisioning (SCIM) configuration for an account (tenant).",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SCIM Setup"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Provisioning (SCIM) Service",
+    "description": "",
+    "version": ""
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "https://api.frontegg.com/directory",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/directory",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/directory",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/directory",
+      "description": "AU Region"
+    },
+    {
+      "url": "https://{domain}.frontegg.com/directory",
+      "description": "Frontegg sub-domain for use with user tokens",
+      "variables": {
+        "domain": {
+          "default": "app-xxx"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "Scim2ConnectionConfigResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "string"
+          },
+          "connectionName": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "syncToUserManagement": {
+            "type": "boolean"
+          },
+          "lastSync": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "connectionName",
+          "source",
+          "syncToUserManagement",
+          "lastSync",
+          "createdAt"
+        ]
+      },
+      "Scim2CreateConnectionConfigRequest": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "frontegg",
+              "okta",
+              "azure-ad",
+              "other"
+            ]
+          },
+          "connectionName": {
+            "type": "string"
+          },
+          "syncToUserManagement": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "Scim2CreateConnectionConfigResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "connectionName": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "connectionName",
+          "token"
+        ]
+      },
+      "Scim2PatchConnectionConfigRequest": {
+        "type": "object",
+        "properties": {
+          "syncToUserManagement": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "syncToUserManagement"
+        ]
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "Management",
+      "tags": [
+        "SCIM Configurations"
+      ]
+    },
+    {
+      "name": "Self-Service",
+      "tags": [
+        "SCIM Setup"
+      ]
+    }
+  ]
+}

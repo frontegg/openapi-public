@@ -1,0 +1,886 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/resources/tenants/v1/{tenantId}": {
+      "get": {
+        "operationId": "TenantControllerV1_getTenant",
+        "summary": "Get tenant by ID",
+        "description": "Use the V2 route for **Get Tenant**. This route is no longer relevant.",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "description": "The tenant ID to get.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "When the tenant ID does not pass the validation."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      },
+      "put": {
+        "operationId": "TenantControllerV1_updateTenant",
+        "summary": "Update Tenant",
+        "description": "Use the V2 route for **Update Tenant**. This route is no longer relevant.",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When body doesn't contain any property to change."
+          },
+          "404": {
+            "description": "When given tenant doesn't exist."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      },
+      "delete": {
+        "operationId": "TenantControllerV1_deleteTenant",
+        "summary": "Delete tenant (account)",
+        "description": "Removes a tenant and all users of that tenant.If tenant is a part of the hierarchy, then all of its sub-tenants are assigned to deleted tenant's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "When the given tenant doesn't exist."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      }
+    },
+    "/resources/tenants/v1": {
+      "post": {
+        "operationId": "TenantControllerV1_createTenant",
+        "summary": "Create tenant (account)",
+        "description": "Create a new tenant. If tenant with given ID had existed before and was removed, then this action will reactivate that tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When the tenant ID does not pass the validation."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      },
+      "delete": {
+        "operationId": "TenantControllerV1_deleteCurrentTenant",
+        "summary": "Delete current tenant",
+        "description": "Removes current tenant and all users of that tenant. Only users that have the Frontegg Delete Account permission **fe.account-settings.delete.account** would be able to perform this action. A user token is required for this route. A user token can be obtained after user authentication.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "When current tenant has been removed."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      }
+    },
+    "/resources/tenants/v1/{tenantId}/metadata": {
+      "post": {
+        "operationId": "TenantControllerV1_addTenantMetadata",
+        "summary": "Add tenant metadata",
+        "description": "Add metadata to a tenant. If given metadata key already exists, its value is overwritten. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTenantMetadataRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When the given metadata is neither a JSON, nor JSON-string."
+          },
+          "404": {
+            "description": "When the given tenant doesn't exist."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      }
+    },
+    "/resources/tenants/v1/{tenantId}/metadata/{key}": {
+      "delete": {
+        "operationId": "TenantControllerV1_deleteTenantMetadata",
+        "summary": "Delete tenant metadata",
+        "description": "Remove a key/value from a tenant's metadata. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "When the provided tenant doesn't exist."
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      }
+    },
+    "/resources/tenants/v2": {
+      "get": {
+        "operationId": "TenantControllerV2_getTenants",
+        "summary": "Get tenants",
+        "description": "This route returns all roles for all tenants. To get a role for a specific tenant, send the tenant id in the **`frontegg-tenant-id`** header. Each role is an object containing the name, permissions, and other defining information.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      }
+    },
+    "/resources/tenants/v2/{tenantId}": {
+      "get": {
+        "operationId": "TenantControllerV2_getTenant",
+        "summary": "Get tenant",
+        "description": "Get a tenant by identifier. When tenant cannot be found, empty array is returned. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      },
+      "put": {
+        "operationId": "TenantControllerV2_updateTenant",
+        "summary": "Update tenant",
+        "description": "Update the given tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantRequestV2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tenants (Accounts)"
+        ]
+      }
+    },
+    "/resources/sub-tenants/v1": {
+      "post": {
+        "operationId": "SubTenantControllerV1_createSubTenant",
+        "summary": "Create sub-tenant",
+        "description": "Create a new sub tenant. If tenant with given ID had existed before and was removed, then this action will reactivate that tenant. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When tenant ID does not pass validation."
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      }
+    },
+    "/resources/sub-tenants/v1/{tenantId}/management": {
+      "put": {
+        "operationId": "SubTenantControllerV1_updateSubTenantManagement",
+        "summary": "Update sub-tenant management",
+        "description": "Enable sub-tenants to give child accounts multi-seller management capabilities. Send isReseller: true to update sub-tenants with this capability",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubTenantManagementRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      }
+    },
+    "/resources/sub-tenants/v1/{tenantId}/hierarchy-settings": {
+      "put": {
+        "operationId": "SubTenantControllerV1_updateSubTenantHierarchySettings",
+        "summary": "Update sub tenant hierarchy settings",
+        "description": "Set the default behavior of sub-account access in a tenant. Set subAccountAccessType to defaultOff or defaultOn to allow sub-account access to be changed, or alwaysOn to force sub-account access on all users.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubTenantHierarchySettingsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      }
+    },
+    "/resources/sub-tenants/v1/{tenantId}": {
+      "delete": {
+        "operationId": "SubTenantControllerV1_deleteSubTenant",
+        "summary": "Delete sub-tenant by ID",
+        "description": "Delete a sub tenant. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "When the given tenant doesn't exist."
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      }
+    },
+    "/resources/account-settings/v1": {
+      "get": {
+        "operationId": "AccountSettingsControllerV1_getSettings",
+        "summary": "Get settings",
+        "description": "Get account settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "When tenant with given ID does not exist."
+          }
+        },
+        "tags": [
+          "Accounts Settings"
+        ]
+      },
+      "put": {
+        "operationId": "AccountSettingsControllerV1_updateSettings",
+        "summary": "Update settings",
+        "description": "Update account settings of a tenant. There has to be at least one setting passed on the body. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountSettingsUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When: a) given parameters do not pass validation b) empty object is passed in request content"
+          },
+          "404": {
+            "description": "When tenant with given ID does not exist."
+          }
+        },
+        "tags": [
+          "Accounts Settings"
+        ]
+      }
+    },
+    "/resources/account-settings/v1/public": {
+      "get": {
+        "operationId": "AccountSettingsControllerV1_getPublicSettings",
+        "summary": "Get public settings",
+        "description": "Get account public settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "When tenant with given ID does not exist."
+          }
+        },
+        "tags": [
+          "Accounts Settings"
+        ]
+      }
+    },
+    "/resources/migrations/v1/tenants": {
+      "post": {
+        "operationId": "MigrationControllerV1_migrateTenants",
+        "summary": "Migrate tenants",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MigrateTenantsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tenants migration"
+        ]
+      }
+    },
+    "/resources/migrations/v1/tenants/status/{migrationId}": {
+      "get": {
+        "operationId": "MigrationControllerV1_getMigrateTenantsStatus",
+        "summary": "Tenant migration status",
+        "parameters": [
+          {
+            "name": "migrationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Tenants migration"
+        ]
+      }
+    },
+    "/resources/hierarchy/v1": {
+      "get": {
+        "operationId": "TenantHierarchyControllerV1_getSubTenants",
+        "summary": "Get sub-tenants",
+        "description": "Get all sub-tenants from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      },
+      "post": {
+        "operationId": "TenantHierarchyControllerV1_createSubTenants",
+        "summary": "Create sub-tenant",
+        "description": "Assign an existing tenant to the hierarchy as a sub-tenant of a given parent tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubTenantRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When:a) given parameters do not pass validationb) or parent and child tenant are equalc) or child tenant is already a subtenant in other organization's hierarchy"
+          }
+        },
+        "tags": [
+          "Account Hierarchy"
+        ]
+      },
+      "delete": {
+        "operationId": "TenantHierarchyControllerV1_deleteSubTenant",
+        "summary": "Delete sub-tenant",
+        "description": "Delete given sub-tenant from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteSubTenantRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "When provided parameters do not pass validation."
+          },
+          "404": {
+            "description": "When given tenants are not in parent-child relation."
+          }
+        },
+        "tags": [
+          "Account Hierarchy"
+        ]
+      }
+    },
+    "/resources/hierarchy/v1/parents": {
+      "get": {
+        "operationId": "TenantHierarchyControllerV1_getParentTenants",
+        "summary": "Get parent tenants",
+        "description": "Get all parent tenants from the hierarchy. Tenant ID header is required. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      }
+    },
+    "/resources/hierarchy/v1/tree": {
+      "get": {
+        "operationId": "TenantHierarchyControllerV1_getSubTenantsTree",
+        "summary": "Get sub-tenants hierarchy tree",
+        "description": "Get all tenants hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "When circular dependency is detected in the hierarchy"
+          }
+        },
+        "tags": [
+          "Sub-Accounts"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Account Management Service",
+    "description": "",
+    "version": ""
+  },
+  "servers": [
+    {
+      "url": "https://api.frontegg.com/tenants",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/tenants",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/tenants",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/tenants",
+      "description": "AU Region"
+    },
+    {
+      "url": "https://{domain}.frontegg.com/tenants",
+      "description": "Frontegg sub-domain for use with user tokens",
+      "variables": {
+        "domain": {
+          "default": "app-xxxx"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateTenantRequest": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "description": "Send your own unique tenantId or Frontegg will auto-generate a UUID"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "This field can be used for custom logic, it is not enforced in Frontegg flows"
+          },
+          "website": {
+            "type": "string"
+          },
+          "applicationUrl": {
+            "type": "string"
+          },
+          "logo": {
+            "type": "string",
+            "description": "Base64-encoded image to use as logo."
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "creatorName": {
+            "type": "string"
+          },
+          "creatorEmail": {
+            "type": "string"
+          },
+          "isReseller": {
+            "type": "boolean"
+          },
+          "parentTenantId": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateTenantRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "AddTenantMetadataRequest": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "oneOf": [
+              {
+                "type": "object",
+                "example": {
+                  "maximumUsers": 50
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "UpdateTenantRequestV2": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateSubTenantRequest": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parentTenantId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "This field can be used for custom logic, it is not enforced in Frontegg flows"
+          },
+          "logo": {
+            "type": "string",
+            "description": "Base64-encoded image to use as logo."
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "creatorName": {
+            "type": "string"
+          },
+          "creatorEmail": {
+            "type": "string"
+          },
+          "isReseller": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "tenantId",
+          "name",
+          "parentTenantId"
+        ]
+      },
+      "UpdateSubTenantManagementRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateSubTenantHierarchySettingsRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "AccountSettingsUpdateRequest": {
+        "type": "object",
+        "properties": {}
+      },
+      "MigrateTenantsRequest": {
+        "type": "object",
+        "properties": {
+          "tenants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "tenants"
+        ]
+      },
+      "CreateSubTenantRequestDto": {
+        "type": "object",
+        "properties": {
+          "parentTenantId": {
+            "type": "string"
+          },
+          "childTenantId": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteSubTenantRequestDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Management",
+      "tags": [
+        "Tenants (Accounts)",
+        "Tenants Migration",
+        "Account Hierarchy"
+      ]
+    },
+    {
+      "name": "Self-Service",
+      "tags": [
+        "Sub-Accounts",
+        "Accounts Settings"
+      ]
+    }
+  ]
+}
