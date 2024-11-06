@@ -17,7 +17,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "updated",
             "content": {
               "application/json": {
                 "schema": {
