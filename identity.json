@@ -1608,6 +1608,209 @@
         ]
       }
     },
+    "/resources/users/phone-numbers/v1": {
+      "get": {
+        "operationId": "UserPhoneNumbersControllerV1_getAllPhoneNumbers",
+        "summary": "Get all phone numbers",
+        "description": "This route returns all user phone numbers.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Authentication | SMS"
+        ]
+      },
+      "post": {
+        "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumber",
+        "summary": "Set phone number for a user",
+        "description": "This route creates new user phone number. By default verification code will be sent to the user. To create phone number without verification code, send **`verify`** as part of the request with value **`false`**.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserPhoneNumberRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPhoneNumberCreatedResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Authentication | SMS"
+        ]
+      }
+    },
+    "/resources/users/phone-numbers/v1/preverify": {
+      "post": {
+        "operationId": "UserPhoneNumbersControllerV1_preVerifyUserPhoneNumber",
+        "summary": "Pre-verify user's phone number",
+        "description": "This route sends OTC to users phone number for verification.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreVerifyUserPhoneNumberRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPhoneNumberCreatedResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Authentication | SMS"
+        ]
+      }
+    },
+    "/resources/users/phone-numbers/v1/verify": {
+      "post": {
+        "operationId": "UserPhoneNumbersControllerV1_verifyCreateUserPhoneNumber",
+        "summary": "Verify creation of phone number for user",
+        "description": "This route verifies user phone number using OTC code that was sent to the user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPhoneNumberOTCRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentication | SMS"
+        ]
+      }
+    },
+    "/resources/users/phone-numbers/v1/{id}": {
+      "delete": {
+        "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumber",
+        "summary": "Delete user's phone number",
+        "description": "This route starts delete process for user phone number. Verification code will be sent to the user. Phone number wont be deleted until delete verification.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPhoneNumberDeleteCodeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Authentication | SMS"
+        ]
+      }
+    },
+    "/resources/users/phone-numbers/v1/{id}/delete/verify": {
+      "post": {
+        "operationId": "UserPhoneNumbersControllerV1_verifyDeleteUserPhoneNumber",
+        "summary": "Verify delete user's phone number",
+        "description": "This route verifies delete of user phone number using OTC code that was sent to the user and deletes phone number.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPhoneNumberOTCRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentication | SMS"
+        ]
+      }
+    },
     "/resources/tenants/invites/v1": {
       "post": {
         "operationId": "TenantInvitesController_createTenantInvite",
@@ -7573,6 +7776,113 @@
         ]
       }
     },
+    "/resources/users/phone-numbers/v1/vendor/{userId}": {
+      "post": {
+        "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
+        "summary": "Create user phone number verified by default",
+        "description": "This route creates new user phone number, phone numbers added by vendor will be automatically verified.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreVerifyUserPhoneNumberRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Self-service | User management"
+        ]
+      }
+    },
+    "/resources/users/phone-numbers/v1/vendor/{userId}/{phoneId}": {
+      "delete": {
+        "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumberVendor",
+        "summary": "Delete user phone number by vendor",
+        "description": "This route deletes user phone number without verification.",
+        "parameters": [
+          {
+            "name": "phoneId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Self-service | User management"
+        ]
+      }
+    },
+    "/resources/sub-tenants/users/v1/{userId}/access": {
+      "put": {
+        "operationId": "UsersControllerV1_setUserRolesFromSubTenants",
+        "summary": "Set sub-account access for a user",
+        "description": "This route sets sub-account access for users as true or false",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubAccountAccessRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Self-service | User management"
+        ]
+      }
+    },
     "/resources/users/v1/activate/reset": {
       "post": {
         "operationId": "UsersActivationControllerV1_resetActivationToken",
@@ -8103,7 +8413,7 @@
       "post": {
         "operationId": "UsersControllerV1_addRolesToUser",
         "summary": "Assign roles to user",
-        "description": "This route associates roles to a specific user for a specific tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
+        "description": "This route associates roles to a specific user for a specific tenant. Send the tenant’s ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -8153,7 +8463,7 @@
       "delete": {
         "operationId": "UsersControllerV1_deleteRolesFromUser",
         "summary": "Unassign roles from user",
-        "description": "This route disassociates roles from a specific user for a specific tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
+        "description": "This route disassociates roles from a specific user for a specific tenant. Send the tenant’s ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -8870,282 +9180,6 @@
         },
         "tags": [
           "Self-service | User sessions"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1": {
-      "get": {
-        "operationId": "UserPhoneNumbersControllerV1_getAllPhoneNumbers",
-        "summary": "Get all phone numbers",
-        "description": "This route returns all user phone numbers.",
-        "parameters": [
-          {
-            "name": "_limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "type": "number"
-            },
-            "description": ""
-          },
-          {
-            "name": "_offset",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 0,
-              "type": "number"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User Phone Numbers"
-        ]
-      },
-      "post": {
-        "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumber",
-        "summary": "Create user phone number",
-        "description": "This route creates new user phone number. By default verification code will be sent to the user. To create phone number without verification code, send **`verify`** as part of the request with value **`false`**.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserPhoneNumberRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserPhoneNumberCreatedResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User Phone Numbers"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1/preverify": {
-      "post": {
-        "operationId": "UserPhoneNumbersControllerV1_preVerifyUserPhoneNumber",
-        "summary": "Pre Verify User Phone Number",
-        "description": "This route sends OTC to users phone number for verification.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PreVerifyUserPhoneNumberRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserPhoneNumberCreatedResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User Phone Numbers"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1/verify": {
-      "post": {
-        "operationId": "UserPhoneNumbersControllerV1_verifyCreateUserPhoneNumber",
-        "summary": "Verify create user phone number",
-        "description": "This route verifies user phone number using OTC code that was sent to the user.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VerifyPhoneNumberOTCRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User Phone Numbers"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1/{id}": {
-      "delete": {
-        "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumber",
-        "summary": "Delete user phone number",
-        "description": "This route starts delete process for user phone number. Verification code will be sent to the user. Phone number wont be deleted until delete verification.",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserPhoneNumberDeleteCodeResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User Phone Numbers"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1/{id}/delete/verify": {
-      "post": {
-        "operationId": "UserPhoneNumbersControllerV1_verifyDeleteUserPhoneNumber",
-        "summary": "Verify delete dser phone number",
-        "description": "This route verifies delete of user phone number using OTC code that was sent to the user and deletes phone number.",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VerifyPhoneNumberOTCRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User Phone Numbers"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1/vendor/{userId}": {
-      "post": {
-        "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
-        "summary": "Create user phone number by vendor",
-        "description": "This route creates new user phone number, phone numbers added by vendor will be automatically verified.",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PreVerifyUserPhoneNumberRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User Phone Numbers",
-          "Vendor-only user management"
-        ]
-      }
-    },
-    "/resources/users/phone-numbers/v1/vendor/{userId}/{phoneId}": {
-      "delete": {
-        "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumberVendor",
-        "summary": "Delete user phone number by vendor",
-        "description": "This route deletes user phone number without verification.",
-        "parameters": [
-          {
-            "name": "phoneId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User Phone Numbers",
-          "Vendor-only user management"
         ]
       }
     }
@@ -12465,6 +12499,18 @@
         "type": "object",
         "properties": {}
       },
+      "UpdateSubAccountAccessRequestDto": {
+        "type": "object",
+        "properties": {
+          "allowAccess": {
+            "type": "boolean",
+            "description": ""
+          }
+        },
+        "required": [
+          "allowAccess"
+        ]
+      },
       "ResetPasswordDto": {
         "type": "object",
         "properties": {
@@ -14559,6 +14605,11 @@
       "CreateOrUpdateActivationStrategyRequest": {
         "type": "object",
         "properties": {
+          "codeExpiration": {
+            "type": "number",
+            "minimum": 60,
+            "description": ""
+          },
           "strategy": {
             "type": "string",
             "enum": [
@@ -14591,18 +14642,11 @@
       "CreateOrUpdateInvitationStrategyRequest": {
         "type": "object",
         "properties": {
-          "strategy": {
-            "type": "string",
-            "enum": [
-              "code",
-              "link"
-            ],
+          "codeExpiration": {
+            "type": "number",
             "description": ""
           }
-        },
-        "required": [
-          "strategy"
-        ]
+        }
       },
       "CreateOrUpdateIpRestrictionConfigDto": {
         "type": "object",
