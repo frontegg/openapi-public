@@ -1,0 +1,2301 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "post": {
+        "operationId": "VendorConfigController_createVendor",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "get": {
+        "operationId": "VendorConfigController_getVendor",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "put": {
+        "operationId": "VendorConfigController_updateVendor",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "delete": {
+        "operationId": "VendorConfigController_deleteVendor",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/api-key/regenerate": {
+      "post": {
+        "operationId": "VendorConfigController_regenerateApiKey",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/public": {
+      "get": {
+        "operationId": "VendorConfigController_getVendorPublicInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorPublicInfoResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/all": {
+      "get": {
+        "operationId": "VendorConfigController_findVendor",
+        "parameters": [
+          {
+            "name": "host",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VendorResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/host/validate": {
+      "post": {
+        "operationId": "VendorConfigController_validateHost",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateHostDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/api-key": {
+      "get": {
+        "operationId": "VendorConfigController_getApiKey",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/create/callback": {
+      "post": {
+        "operationId": "VendorConfigController_handleNewVendorCreated",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorCreateCallbackDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/delete/callback": {
+      "post": {
+        "operationId": "VendorConfigController_handleVendorDeleted",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VendorDeleteCallbackDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/onboarding-status/start": {
+      "post": {
+        "operationId": "VendorConfigController_startOnboarding",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/onboarding-status/finish": {
+      "post": {
+        "operationId": "VendorConfigController_finishOnboarding",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/integration/start": {
+      "post": {
+        "operationId": "VendorConfigController_startIntegration",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/integration/finish": {
+      "post": {
+        "operationId": "VendorConfigController_finishIntegration",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/whitelabel-mode": {
+      "put": {
+        "operationId": "VendorConfigController_updateWhitelabelMode",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWhitelabelModeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/base-url": {
+      "get": {
+        "operationId": "VendorConfigController_getBaseURL",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/environments/v1/duplicate": {
+      "post": {
+        "operationId": "EnvironmentsControllerV1_generateNewEnvironment",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopyConfigurationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/environments/v1": {
+      "post": {
+        "operationId": "EnvironmentsControllerV1_createEnvironmentForAccount",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEnvironmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "get": {
+        "operationId": "EnvironmentsControllerV1_getEnvironments",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/environments/v1/{id}": {
+      "delete": {
+        "operationId": "EnvironmentsControllerV1_deleteEnvironment",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "get": {
+        "operationId": "EnvironmentsControllerV1_getEnvironmetById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/environments/v1/environment": {
+      "put": {
+        "operationId": "EnvironmentsControllerV1_updateEnvironmentType",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnvironmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/environments/v1/account": {
+      "put": {
+        "operationId": "EnvironmentsControllerV1_updateEnvironmentAccountId",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEnvironmentAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/accounts/v1": {
+      "get": {
+        "operationId": "AccountsControllerV1_getOrCreateAccount",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/accounts/v1/all": {
+      "get": {
+        "operationId": "AccountsControllerV1_getAllAccounts",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/accounts/v1/{id}": {
+      "get": {
+        "operationId": "AccountsControllerV1_getAccountById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/frontegg/prehooks/v1/jwt-generation": {
+      "post": {
+        "operationId": "PrehooksControllerV1_jwtGenerationPrehook",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/auth": {
+      "post": {
+        "operationId": "AuthenticationController_authenticateVendor",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/auth/token": {
+      "post": {
+        "operationId": "AuthenticationController_authenticateUsingApiKey",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/auth/vendor": {
+      "post": {
+        "operationId": "AuthenticationController_vendorAuthenticationLegacy",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/status/auth": {
+      "get": {
+        "operationId": "VendorStatusController_getAuthStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/workspaces/v1": {
+      "post": {
+        "operationId": "WorkspacesController_createWorkspace",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateWorkspaceResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/resources/associated-domains/v1/ios": {
+      "post": {
+        "operationId": "AssociatedDomainController_addIosAssociatedDomain",
+        "summary": "Add iOS associated domain configuration",
+        "description": "This route adds the iOS application's associated domain configuration for a vendor. Send values in the POST body for params that you want to add or update. See the dropdown for available values for each param.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IosAssociatedDomainRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IosAssociatedDomainResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Associated domain configuration"
+        ]
+      },
+      "get": {
+        "operationId": "AssociatedDomainController_getIosAssociatedDomains",
+        "summary": "Get iOS associated domain configurations",
+        "description": "This route gets the iOS application's associated domain configuration for a vendor.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IosAssociatedDomainResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Associated domain configuration"
+        ]
+      }
+    },
+    "/resources/associated-domains/v1/ios/{id}": {
+      "delete": {
+        "operationId": "AssociatedDomainController_deleteIosAssociatedDomain",
+        "summary": "Delete iOS associated domain configuration",
+        "description": "This route deletes the iOS application's associated domain configuration for a vendor. Send values in the POST body for params that you want to add or update. See the dropdown for available values for each param.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Associated domain configuration"
+        ]
+      }
+    },
+    "/resources/associated-domains/v1/android": {
+      "post": {
+        "operationId": "AssociatedDomainController_addAndroidAssociatedDomain",
+        "summary": "Add Android associated domain configuration",
+        "description": "This route adds the Android application's associated domain configuration for a vendor. Send values in the POST body for params that you want to add or update. See the dropdown for available values for each param.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AndroidAssociatedDomainRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AndroidAssociatedDomainResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Associated domain configuration"
+        ]
+      },
+      "get": {
+        "operationId": "AssociatedDomainController_getAndroidAssociatedDomain",
+        "summary": "Get Android associated domain configurations",
+        "description": "This route gets the Android application's associated domain configuration for a vendor.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AndroidAssociatedDomainResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Associated domain configuration"
+        ]
+      }
+    },
+    "/resources/associated-domains/v1/android/{id}": {
+      "delete": {
+        "operationId": "AssociatedDomainController_deleteAndroidAssociatedDomain",
+        "summary": "Delete Android associated domain configuration",
+        "description": "This route deletes the Android application's associated domain configuration for a vendor. Send values in the POST body for params that you want to add or update. See the dropdown for available values for each param.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Associated domain configuration"
+        ]
+      }
+    },
+    "/custom-domains": {
+      "get": {
+        "operationId": "CustomDomainController_getCustomDomain",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomDomainResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "post": {
+        "operationId": "CustomDomainController_updateCustomDomain",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCustomDomain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "delete": {
+        "operationId": "CustomDomainController_deleteCustomDomain",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/custom-domains/verify": {
+      "post": {
+        "operationId": "CustomDomainController_verifyCustomDomain",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateCustomDomainResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/custom-domains/status": {
+      "get": {
+        "operationId": "CustomDomainController_getCustomDomainStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomDomainStatusResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/custom-domains/v2": {
+      "get": {
+        "operationId": "CustomDomainControllerV2_getCustomDomain",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCustomDomainsResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      },
+      "post": {
+        "operationId": "CustomDomainControllerV2_createCustomDomainResources",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomDomain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCustomDomainResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/custom-domains/v2/internal": {
+      "get": {
+        "operationId": "CustomDomainControllerV2_getCustomDomainInternal",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalCustomDomainsResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/custom-domains/v2/verify": {
+      "post": {
+        "operationId": "CustomDomainControllerV2_createCustomDomain",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCustomDomain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/custom-domains/v2/{id}": {
+      "delete": {
+        "operationId": "CustomDomainControllerV2_deleteCustomDomain",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    },
+    "/assets": {
+      "post": {
+        "operationId": "AssetsController_uploadAsset",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadAssetDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "",
+        "summary": ""
+      }
+    }
+  },
+  "info": {
+    "title": "Emails",
+    "description": "",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "policy",
+      "description": ""
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://api.frontegg.com/emails",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/emails",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/emails",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/emails",
+      "description": "AU Region"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateVendorDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "host": {
+            "type": "string",
+            "description": ""
+          },
+          "environment": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "environmentName": {
+            "type": "string",
+            "description": ""
+          },
+          "accountId": {
+            "type": "string",
+            "description": ""
+          },
+          "environmentAvailability": {
+            "type": "string",
+            "enum": [
+              "FAILED",
+              "IN_PROGRESS",
+              "READY"
+            ],
+            "description": ""
+          },
+          "deploymentOrder": {
+            "type": "number",
+            "description": ""
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "country": {
+            "type": "string",
+            "description": ""
+          },
+          "state": {
+            "type": "string",
+            "description": ""
+          },
+          "apiKey": {
+            "type": "string",
+            "description": ""
+          },
+          "backendStack": {
+            "type": "object",
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "object",
+            "description": ""
+          },
+          "typeDB": {
+            "type": "string",
+            "description": ""
+          },
+          "logo": {
+            "type": "string",
+            "description": ""
+          },
+          "icon": {
+            "type": "string",
+            "description": ""
+          },
+          "dateFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "startWeekDay": {
+            "type": "string",
+            "description": ""
+          },
+          "timeFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "timezone": {
+            "type": "string",
+            "description": ""
+          },
+          "currency": {
+            "type": "string",
+            "description": ""
+          },
+          "openSaaSInstalled": {
+            "type": "boolean",
+            "description": ""
+          },
+          "whiteLabelMode": {
+            "type": "boolean",
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "allowedOrigins": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "name",
+          "environment",
+          "environmentName",
+          "accountId",
+          "createdAt",
+          "country",
+          "state",
+          "apiKey",
+          "backendStack",
+          "frontendStack",
+          "typeDB",
+          "logo",
+          "icon",
+          "dateFormat",
+          "startWeekDay",
+          "timeFormat",
+          "timezone",
+          "currency"
+        ]
+      },
+      "AccountDto": {
+        "type": "object",
+        "properties": {
+          "integrationStartedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "integrationFinishedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "accountTenantId": {
+            "type": "string",
+            "description": ""
+          }
+        }
+      },
+      "VendorResponseDto": {
+        "type": "object",
+        "properties": {
+          "allowedOriginsPattern": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "country": {
+            "type": "string",
+            "description": ""
+          },
+          "state": {
+            "type": "string",
+            "description": ""
+          },
+          "backendStack": {
+            "type": "string",
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "string",
+            "description": ""
+          },
+          "typeDB": {
+            "type": "string",
+            "description": ""
+          },
+          "logo": {
+            "type": "string",
+            "description": ""
+          },
+          "icon": {
+            "type": "string",
+            "description": ""
+          },
+          "dateFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "startWeekDay": {
+            "type": "string",
+            "description": ""
+          },
+          "timeFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "timezone": {
+            "type": "string",
+            "description": ""
+          },
+          "currency": {
+            "type": "string",
+            "description": ""
+          },
+          "openSaaSInstalled": {
+            "type": "boolean",
+            "description": ""
+          },
+          "accountId": {
+            "type": "string",
+            "description": ""
+          },
+          "environment": {
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          "environmentAvailability": {
+            "enum": [
+              "FAILED",
+              "IN_PROGRESS",
+              "READY"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          "environmentName": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "deploymentOrder": {
+            "type": "number",
+            "description": ""
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "host": {
+            "type": "string",
+            "description": ""
+          },
+          "allowedOrigins": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "customDomain": {
+            "type": "string",
+            "description": ""
+          },
+          "customDomainVerified": {
+            "type": "boolean",
+            "description": ""
+          },
+          "whiteLabelMode": {
+            "type": "boolean",
+            "description": ""
+          },
+          "account": {
+            "$ref": "#/components/schemas/AccountDto",
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "integrationFinishedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "country",
+          "state",
+          "backendStack",
+          "frontendStack",
+          "typeDB",
+          "logo",
+          "icon",
+          "dateFormat",
+          "startWeekDay",
+          "timeFormat",
+          "timezone",
+          "currency",
+          "openSaaSInstalled",
+          "accountId",
+          "environment",
+          "environmentAvailability",
+          "environmentName",
+          "loginURL",
+          "deploymentOrder"
+        ]
+      },
+      "VendorPublicInfoResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "ValidateHostDto": {
+        "type": "object",
+        "properties": {
+          "host": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "host"
+        ]
+      },
+      "UpdateVendorDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "host": {
+            "type": "string",
+            "description": ""
+          },
+          "country": {
+            "type": "string",
+            "description": ""
+          },
+          "state": {
+            "type": "string",
+            "description": ""
+          },
+          "environment": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "environmentName": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "backendStack": {
+            "type": "object",
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "object",
+            "description": ""
+          },
+          "typeDB": {
+            "type": "string",
+            "description": ""
+          },
+          "logo": {
+            "type": "string",
+            "description": ""
+          },
+          "icon": {
+            "type": "string",
+            "description": ""
+          },
+          "dateFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "startWeekDay": {
+            "type": "string",
+            "description": ""
+          },
+          "timeFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "timezone": {
+            "type": "string",
+            "description": ""
+          },
+          "currency": {
+            "type": "string",
+            "description": ""
+          },
+          "openSaaSInstalled": {
+            "type": "boolean",
+            "description": ""
+          },
+          "allowedOrigins": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "environmentAvailability": {
+            "type": "string",
+            "enum": [
+              "FAILED",
+              "IN_PROGRESS",
+              "READY"
+            ],
+            "description": ""
+          },
+          "accountId": {
+            "type": "string",
+            "description": ""
+          }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "EventContext": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": ""
+          },
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId"
+        ]
+      },
+      "VendorCreateCallbackDto": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserResponse",
+            "description": ""
+          },
+          "eventContext": {
+            "$ref": "#/components/schemas/EventContext",
+            "description": ""
+          }
+        },
+        "required": [
+          "user",
+          "eventContext"
+        ]
+      },
+      "VendorDeleteCallbackDto": {
+        "type": "object",
+        "properties": {
+          "eventContext": {
+            "$ref": "#/components/schemas/EventContext",
+            "description": ""
+          }
+        },
+        "required": [
+          "eventContext"
+        ]
+      },
+      "UpdateWhitelabelModeRequestDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CopyConfigurationRequest": {
+        "type": "object",
+        "properties": {
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "environmentType": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "environmentName": {
+            "type": "string",
+            "description": ""
+          },
+          "deploymentOrder": {
+            "type": "number",
+            "minimum": 1,
+            "description": ""
+          }
+        },
+        "required": [
+          "appURL",
+          "environmentType"
+        ]
+      },
+      "CreateEnvironmentRequest": {
+        "type": "object",
+        "properties": {
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "environmentName": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "deploymentOrder": {
+            "type": "number",
+            "minimum": 1,
+            "description": ""
+          }
+        },
+        "required": [
+          "appURL"
+        ]
+      },
+      "UpdateEnvironmentRequest": {
+        "type": "object",
+        "properties": {
+          "environmentName": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "environment": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "environmentId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "environmentName",
+          "environment",
+          "environmentId"
+        ]
+      },
+      "UpdateEnvironmentAccountRequest": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "description": ""
+          },
+          "accountId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "environmentId",
+          "accountId"
+        ]
+      },
+      "AllowedOriginEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "vendorId": {
+            "type": "string",
+            "description": ""
+          },
+          "origin": {
+            "type": "string",
+            "description": ""
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/VendorEntity",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "vendorId",
+          "origin",
+          "vendor"
+        ]
+      },
+      "AccountEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "accountOwnerId": {
+            "type": "string",
+            "description": ""
+          },
+          "accountTenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "vendors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorEntity"
+            },
+            "description": ""
+          },
+          "integrationStartedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "integrationFinishedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "accountTenantId",
+          "vendors"
+        ]
+      },
+      "VendorEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "accountId": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "apiKey": {
+            "type": "string",
+            "description": ""
+          },
+          "host": {
+            "type": "string",
+            "description": ""
+          },
+          "environment": {
+            "type": "string",
+            "enum": [
+              "development",
+              "staging",
+              "qa",
+              "production"
+            ],
+            "description": ""
+          },
+          "environmentName": {
+            "type": "string",
+            "description": ""
+          },
+          "environmentAvailability": {
+            "type": "string",
+            "enum": [
+              "FAILED",
+              "IN_PROGRESS",
+              "READY"
+            ],
+            "description": ""
+          },
+          "deploymentOrder": {
+            "type": "number",
+            "description": ""
+          },
+          "customDomain": {
+            "type": "string",
+            "description": ""
+          },
+          "customDomainId": {
+            "type": "string",
+            "description": ""
+          },
+          "pageRuleId": {
+            "type": "string",
+            "description": ""
+          },
+          "originRuleId": {
+            "type": "string",
+            "description": ""
+          },
+          "transformRuleId": {
+            "type": "string",
+            "description": ""
+          },
+          "customDomainVerified": {
+            "type": "boolean",
+            "description": ""
+          },
+          "country": {
+            "type": "string",
+            "description": ""
+          },
+          "state": {
+            "type": "string",
+            "description": ""
+          },
+          "backendStack": {
+            "type": "object",
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "object",
+            "description": ""
+          },
+          "typeDB": {
+            "type": "string",
+            "description": ""
+          },
+          "logo": {
+            "type": "string",
+            "description": ""
+          },
+          "icon": {
+            "type": "string",
+            "description": ""
+          },
+          "dateFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "startWeekDay": {
+            "type": "string",
+            "description": ""
+          },
+          "timeFormat": {
+            "type": "string",
+            "description": ""
+          },
+          "openSaaSInstalled": {
+            "type": "boolean",
+            "description": ""
+          },
+          "timezone": {
+            "type": "string",
+            "description": ""
+          },
+          "currency": {
+            "type": "string",
+            "description": ""
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "whiteLabelMode": {
+            "type": "boolean",
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "allowedOriginsEntities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AllowedOriginEntity"
+            },
+            "description": ""
+          },
+          "allowedOrigins": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "account": {
+            "$ref": "#/components/schemas/AccountEntity",
+            "description": ""
+          },
+          "integrationFinishedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "accountId",
+          "name",
+          "apiKey",
+          "environment",
+          "environmentName",
+          "environmentAvailability",
+          "country",
+          "backendStack",
+          "frontendStack",
+          "loginURL",
+          "allowedOrigins",
+          "account"
+        ]
+      },
+      "AccountResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "accountOwnerId": {
+            "type": "string",
+            "description": ""
+          },
+          "accountTenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "integrationStartedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "integrationFinishedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "vendors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorEntity"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "accountTenantId",
+          "createdAt",
+          "updatedAt",
+          "vendors"
+        ]
+      },
+      "AuthVendorDto": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "string",
+            "description": ""
+          },
+          "secret": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "clientId",
+          "secret"
+        ]
+      },
+      "CreateWorkspaceResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "IosAssociatedDomainRequest": {
+        "type": "object",
+        "properties": {
+          "appId": {
+            "type": "string",
+            "description": ""
+          },
+          "appLinks": {
+            "type": "boolean",
+            "description": ""
+          },
+          "webCredentials": {
+            "type": "boolean",
+            "description": ""
+          }
+        },
+        "required": [
+          "appId"
+        ]
+      },
+      "IosAssociatedDomainResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "vendorId": {
+            "type": "string",
+            "description": ""
+          },
+          "appId": {
+            "type": "string",
+            "description": ""
+          },
+          "appLinks": {
+            "type": "boolean",
+            "description": ""
+          },
+          "webCredentials": {
+            "type": "boolean",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "vendorId",
+          "appId",
+          "appLinks",
+          "webCredentials"
+        ]
+      },
+      "AndroidAssociatedDomainRequest": {
+        "type": "object",
+        "properties": {
+          "packageName": {
+            "type": "string",
+            "description": ""
+          },
+          "sha256CertFingerprints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "packageName",
+          "sha256CertFingerprints"
+        ]
+      },
+      "AndroidAssociatedDomainResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "vendorId": {
+            "type": "string",
+            "description": ""
+          },
+          "packageName": {
+            "type": "string",
+            "description": ""
+          },
+          "sha256CertFingerprints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "vendorId",
+          "packageName",
+          "sha256CertFingerprints"
+        ]
+      },
+      "GetCustomDomainResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateCustomDomain": {
+        "type": "object",
+        "properties": {
+          "customDomain": {
+            "type": "string",
+            "pattern": "domainRegexp",
+            "description": ""
+          }
+        },
+        "required": [
+          "customDomain"
+        ]
+      },
+      "ValidateCustomDomainResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "CustomDomainStatusResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "GetCustomDomainsResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "GetInternalCustomDomainsResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateCustomDomain": {
+        "type": "object",
+        "properties": {
+          "customDomain": {
+            "type": "string",
+            "pattern": "domainRegexp",
+            "description": ""
+          }
+        },
+        "required": [
+          "customDomain"
+        ]
+      },
+      "CreateCustomDomainResponse": {
+        "type": "object",
+        "properties": {}
+      },
+      "UploadAssetDto": {
+        "type": "object",
+        "properties": {
+          "assetName": {
+            "type": "string",
+            "description": ""
+          },
+          "asset": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "assetName",
+          "asset"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "x-tagGroups": []
+}
