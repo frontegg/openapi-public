@@ -1,11 +1,147 @@
 {
   "openapi": "3.0.0",
   "paths": {
+    "/resources/plans/v1/tenant/{tenantId}": {
+      "get": {
+        "operationId": "PlansControllerV1_getTenantPlans",
+        "x-tag": "Plans (Formerly Bundles)",
+        "summary": "Get Tenant Plans",
+        "description": "Retrieve a paginated list of plans belongs to the tenant, with the abillity to search, order and filter by related entities",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "Page offset of the results to return",
+            "example": "0",
+            "schema": {
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results per page",
+            "example": "10",
+            "schema": {
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "in": "query",
+            "description": "Search input, searchable by `name`",
+            "example": "search-text",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)",
+            "example": "name",
+            "schema": {
+              "enum": [
+                "name",
+                "createdAt"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortType",
+            "required": false,
+            "in": "query",
+            "description": "Sort type, ASC for ascending, DESC for descending",
+            "example": "DESC",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludeNonEntitledPlans",
+            "required": false,
+            "in": "query",
+            "description": "Boolean value to include related entities in the response",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/PlanDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/PlanDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Plans (Formerly Bundles)"
+        ]
+      }
+    },
     "/resources/plans/v1": {
       "get": {
         "operationId": "PlansControllerV1_getPlans",
         "x-tag": "Plans (Formerly Bundles)",
-        "summary": "Get Plan",
+        "summary": "Get Plans",
         "description": "Retrieve a paginated list of plans, with the abillity to search, order and filter by related entities",
         "parameters": [
           {
@@ -106,15 +242,6 @@
                 "type": "string"
               }
             }
-          },
-          {
-            "name": "includeTenantEntitlements",
-            "required": false,
-            "in": "query",
-            "description": "The tenant id to get the related entitlements for",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -124,6 +251,22 @@
               "application/json": {
                 "schema": {
                   "allOf": [
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/PlanDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
+                    },
                     {
                       "$ref": "#/components/schemas/PageDto"
                     },
@@ -196,7 +339,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -227,7 +371,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -268,7 +413,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -294,7 +440,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "offset",
@@ -421,6 +568,22 @@
                           "type": "boolean"
                         }
                       }
+                    },
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/PlanFeatureDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
                     }
                   ]
                 }
@@ -446,7 +609,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -482,7 +646,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -577,7 +742,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -608,7 +774,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -632,7 +799,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -692,7 +860,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -913,6 +1082,22 @@
                           "type": "boolean"
                         }
                       }
+                    },
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/FeatureDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
                     }
                   ]
                 }
@@ -970,7 +1155,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -1004,7 +1190,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -1064,7 +1251,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -1237,6 +1425,22 @@
                           "type": "boolean"
                         }
                       }
+                    },
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/EntitlementDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
                     }
                   ]
                 }
@@ -1382,7 +1586,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -1413,7 +1618,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -1454,7 +1660,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -1553,6 +1760,22 @@
                           "type": "boolean"
                         }
                       }
+                    },
+                    {
+                      "$ref": "#/components/schemas/PageDto"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/FeatureFlagDto"
+                          }
+                        },
+                        "hasNext": {
+                          "type": "boolean"
+                        }
+                      }
                     }
                   ]
                 }
@@ -1610,7 +1833,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -1641,7 +1865,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -1682,7 +1907,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -1698,18 +1924,32 @@
   },
   "info": {
     "title": "Entitlements Service",
-    "description": "Description",
-    "version": "",
+    "description": "",
+    "version": "1.0",
     "contact": {}
   },
+  "tags": [
+    {
+      "name": "Entitlements Service",
+      "description": ""
+    }
+  ],
   "servers": [
     {
-      "url": "https://{domain}.frontegg.com/entitlements",
-      "variables": {
-        "domain": {
-          "default": "api"
-        }
-      }
+      "url": "https://api.frontegg.com/entitlements",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/entitlements",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/entitlements",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/entitlements",
+      "description": "AU Region"
     }
   ],
   "components": {
@@ -2089,12 +2329,14 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
+            "description": ""
           },
           "routeId": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
+            "description": ""
           },
           "type": {
             "type": "string",
@@ -2103,12 +2345,14 @@
             "enum": [
               "feature",
               "permission"
-            ]
+            ],
+            "description": ""
           },
           "value": {
             "type": "string",
             "readOnly": true,
-            "example": "my-feature-key"
+            "example": "my-feature-key",
+            "description": ""
           }
         },
         "required": [
@@ -2124,7 +2368,8 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
+            "description": ""
           },
           "method": {
             "type": "string",
@@ -2137,22 +2382,26 @@
               "PATCH",
               "DELETE",
               "*"
-            ]
+            ],
+            "description": ""
           },
           "path": {
             "type": "string",
             "readOnly": true,
-            "example": "/users"
+            "example": "/users",
+            "description": ""
           },
           "priority": {
             "type": "number",
             "readOnly": true,
-            "example": 100
+            "example": 100,
+            "description": ""
           },
           "description": {
             "type": "string",
             "readOnly": true,
-            "example": "This is an example route"
+            "example": "This is an example route",
+            "description": ""
           },
           "policyType": {
             "type": "string",
@@ -2162,14 +2411,16 @@
               "allow",
               "deny",
               "ruleBased"
-            ]
+            ],
+            "description": ""
           },
           "rules": {
             "readOnly": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RouteRuleDto"
-            }
+            },
+            "description": ""
           }
         },
         "required": [
@@ -2314,12 +2565,14 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
+            "description": ""
           },
           "vendorId": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
+            "description": ""
           },
           "accessControlMode": {
             "type": "string",
@@ -2328,7 +2581,8 @@
             "enum": [
               "guard",
               "monitor"
-            ]
+            ],
+            "description": ""
           }
         },
         "required": [
@@ -3061,21 +3315,5 @@
       "bearer": []
     }
   ],
-  "x-readme": {
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  },
-  "x-tagGroups": [
-    {
-      "name": "Management",
-      "tags": [
-        "Plans (Formerly Bundles)",
-        "API Access Control",
-        "API Access Control Configs",
-        "Features",
-        "Entitlements",
-        "Feature Flags"
-      ]
-    }
-  ]
+  "x-tagGroups": []
 }
