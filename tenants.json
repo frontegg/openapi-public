@@ -756,6 +756,15 @@
     {
       "url": "https://api.au.frontegg.com/tenants",
       "description": "AU Region"
+    },
+    {
+      "url": "https://{domain}.frontegg.com/audits/tenants",
+      "description": "Frontegg sub-domain for use with user tokens",
+      "variables": {
+        "domain": {
+          "default": "app-xxx"
+        }
+      }
     }
   ],
   "components": {
