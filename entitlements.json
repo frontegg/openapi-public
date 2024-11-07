@@ -1925,15 +1925,10 @@
   "info": {
     "title": "Entitlements Service",
     "description": "",
-    "version": "1.0",
+    "version": "",
     "contact": {}
   },
-  "tags": [
-    {
-      "name": "Entitlements Service",
-      "description": ""
-    }
-  ],
+  "tags": [],
   "servers": [
     {
       "url": "https://api.frontegg.com/entitlements",

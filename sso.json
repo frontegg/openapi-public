@@ -904,15 +904,10 @@
   "info": {
     "title": "Team Management",
     "description": "",
-    "version": "1.0",
+    "version": "",
     "contact": {}
   },
-  "tags": [
-    {
-      "name": "Team Management",
-      "description": ""
-    }
-  ],
+  "tags": [],
   "servers": [
     {
       "url": "https://api.frontegg.com/team",

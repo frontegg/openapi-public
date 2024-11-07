@@ -208,8 +208,66 @@
       "get": {
         "operationId": "TenantControllerV2_getTenants",
         "summary": "Get tenants",
-        "description": "This route returns all roles for all tenants. To get a role for a specific tenant, send the tenant id in the **`frontegg-tenant-id`** header. Each role is an object containing the name, permissions, and other defining information.",
-        "parameters": [],
+        "description": "This route returns all accounts (tenants) for and environment.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "description": "The default limit is 50 tenants per request, the maximum is 200",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_filter",
+            "required": false,
+            "in": "query",
+            "description": "This param allows filtering the request using an account's name or tenantId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "description": "This param allows sorting the results via createdAt, name, tenantId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "description": "This param can be used together with sortBy and define the order as ACS or DESC",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tenantIds",
+            "required": false,
+            "in": "query",
+            "description": "This param allows passing specific tenantIds and getting only these tenants data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": ""
@@ -678,7 +736,7 @@
   "info": {
     "title": "Tenants",
     "description": "",
-    "version": "1.0",
+    "version": "",
     "contact": {}
   },
   "tags": [],

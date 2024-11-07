@@ -137,15 +137,10 @@
   "info": {
     "title": "Entitlements Agent (PDP)",
     "description": "",
-    "version": "1.0",
+    "version": "",
     "contact": {}
   },
-  "tags": [
-    {
-      "name": "Entitlements Agent (PDP)",
-      "description": ""
-    }
-  ],
+  "tags": [],
   "servers": [
     {
       "url": "http://{host}:{port}",
@@ -306,3 +301,4 @@
   },
   "x-tagGroups": []
 }
+
