@@ -786,7 +786,7 @@
       "description": "AU Region"
     },
     {
-      "url": "https://{domain}.frontegg.com/audits/audits",
+      "url": "https://{domain}.frontegg.com/audits",
       "description": "Frontegg sub-domain for use with user tokens",
       "variables": {
         "domain": {
@@ -909,6 +909,5 @@
         "Main"
       ]
     }
-  ],
-  "tags": []
+  ]
 }

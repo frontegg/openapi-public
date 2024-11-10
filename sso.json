@@ -904,10 +904,8 @@
   "info": {
     "title": "Team Management",
     "description": "",
-    "version": "",
-    "contact": {}
+    "version": ""
   },
-  "tags": [],
   "servers": [
     {
       "url": "https://api.frontegg.com/team",
@@ -926,7 +924,7 @@
       "description": "AU Region"
     },
     {
-      "url": "https://{domain}.frontegg.com/audits/team",
+      "url": "https://{domain}.frontegg.com/team",
       "description": "Frontegg sub-domain for use with user tokens",
       "variables": {
         "domain": {

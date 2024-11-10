@@ -227,10 +227,8 @@
   "info": {
     "title": "Directory",
     "description": "",
-    "version": "",
-    "contact": {}
+    "version": ""
   },
-  "tags": [],
   "servers": [
     {
       "url": "https://api.frontegg.com/directory",
@@ -249,7 +247,7 @@
       "description": "AU Region"
     },
     {
-      "url": "https://{domain}.frontegg.com/audits/directory",
+      "url": "https://{domain}.frontegg.com/directory",
       "description": "Frontegg sub-domain for use with user tokens",
       "variables": {
         "domain": {

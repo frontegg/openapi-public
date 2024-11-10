@@ -109,22 +109,6 @@
                           "type": "boolean"
                         }
                       }
-                    },
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/PlanDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
                     }
                   ]
                 }
@@ -251,22 +235,6 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/PlanDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
-                    },
                     {
                       "$ref": "#/components/schemas/PageDto"
                     },
@@ -553,22 +521,6 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/PlanFeatureDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
-                    },
                     {
                       "$ref": "#/components/schemas/PageDto"
                     },
@@ -1082,22 +1034,6 @@
                           "type": "boolean"
                         }
                       }
-                    },
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/FeatureDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
                     }
                   ]
                 }
@@ -1410,22 +1346,6 @@
               "application/json": {
                 "schema": {
                   "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/EntitlementDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
-                    },
                     {
                       "$ref": "#/components/schemas/PageDto"
                     },
@@ -1760,22 +1680,6 @@
                           "type": "boolean"
                         }
                       }
-                    },
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/FeatureFlagDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
                     }
                   ]
                 }
@@ -1925,10 +1829,8 @@
   "info": {
     "title": "Entitlements Service",
     "description": "",
-    "version": "",
-    "contact": {}
+    "version": ""
   },
-  "tags": [],
   "servers": [
     {
       "url": "https://api.frontegg.com/entitlements",
@@ -1947,7 +1849,7 @@
       "description": "AU Region"
     },
     {
-      "url": "https://{domain}.frontegg.com/audits/entitlements",
+      "url": "https://{domain}.frontegg.com/entitlements",
       "description": "Frontegg sub-domain for use with user tokens",
       "variables": {
         "domain": {
