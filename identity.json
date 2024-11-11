@@ -15819,5 +15819,62 @@
       "bearer": []
     }
   ],
-  "x-tagGroups": []
+  "x-tagGroups": [
+    {
+      "name": "Authentication",
+      "tags": [
+        "API token",
+        "General",
+        "MFA",
+        "Passwordless",
+        "SMS"
+      ]
+    },
+    {
+      "name": "Management",
+      "tags": [
+        "Account invitations settings",
+        "Core settings",
+        "Custom social OAuth provider",
+        "Data migration",
+        "Delegation",
+        "Email configuration",
+        "Email templates",
+        "M2M tokens",
+        "MFA configuration",
+        "Permissions categories",
+        "Permissions",
+        "Roles",
+        "SMS configuration",
+        "SMS templates",
+        "Sessions configuration",
+        "User sources (pools)",
+        "Users"
+      ]
+    },
+    {
+      "name": "Self-Service",
+      "tags": [
+        "Account invitations",
+        "Account roles",
+        "API (tenant) tokens",
+        "Domain restrictions",
+        "IP restrictions",
+        "Lockout policy",
+        "MFA settings",
+        "Password settings",
+        "Personal tokens",
+        "Sessions management",
+        "User groups",
+        "User management",
+        "User sessions"
+      ]
+    },
+    {
+      "name": "Applications",
+      "tags": [
+        "User management (multi-app)"
+      ]
+    }
+  ]
 }
