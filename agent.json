@@ -3,7 +3,6 @@
   "paths": {
     "/v1/data/e10s/features/is_entitled_to_input_feature": {
       "post": {
-        "deprecated": true,
         "operationId": "OpenApiPDPController_isEntitledToFeature",
         "summary": "Is Entitled To Feature",
         "description": "Check whether a given tenant or user is entitled to the requested feature",
@@ -41,7 +40,9 @@
             }
           }
         },
-        "tags": ["Entitlements Check"]
+        "tags": [
+          "Entitlements Check"
+        ]
       }
     },
     "/v1/data/e10s/permissions/is_entitled_to_input_permission": {
@@ -83,7 +84,9 @@
             }
           }
         },
-        "tags": ["Entitlements Check"]
+        "tags": [
+          "Entitlements Check"
+        ]
       }
     },
     "/v1/data/e10s/routes/is_entitled_to_input_route": {
@@ -125,7 +128,9 @@
             }
           }
         },
-        "tags": ["Entitlements Check"]
+        "tags": [
+          "Entitlements Check"
+        ]
       }
     }
   },
@@ -158,7 +163,9 @@
             "example": "example-feature-key"
           }
         },
-        "required": ["featureKey"]
+        "required": [
+          "featureKey"
+        ]
       },
       "SubjectContext": {
         "type": "object",
@@ -172,7 +179,10 @@
             "example": "f21ca66c-d23b-496f-b805-121ed37eb46a"
           },
           "permissions": {
-            "example": ["example.permission.read", "example.permission.write"],
+            "example": [
+              "example.permission.read",
+              "example.permission.write"
+            ],
             "type": "array",
             "items": {
               "type": "string"
@@ -185,14 +195,22 @@
             }
           }
         },
-        "required": ["tenantId"]
+        "required": [
+          "tenantId"
+        ]
       },
       "EntitlementsResult": {
         "type": "object",
         "properties": {
           "justification": {
             "type": "string",
-            "enum": ["MISSING_FEATURE", "MISSING_PERMISSION", "PLAN_EXPIRED", "MISSING_ROUTE", "ROUTE_DENIED"],
+            "enum": [
+              "MISSING_FEATURE",
+              "MISSING_PERMISSION",
+              "PLAN_EXPIRED",
+              "MISSING_ROUTE",
+              "ROUTE_DENIED"
+            ],
             "example": "MISSING_FEATURE"
           },
           "monitoring": {
@@ -203,7 +221,9 @@
             "example": false
           }
         },
-        "required": ["result"]
+        "required": [
+          "result"
+        ]
       },
       "PDPResponse": {
         "type": "object",
@@ -219,7 +239,11 @@
             "$ref": "#/components/schemas/EntitlementsResult"
           }
         },
-        "required": ["decision_id", "metrics", "result"]
+        "required": [
+          "decision_id",
+          "metrics",
+          "result"
+        ]
       },
       "IsEntitledToPermissionDto": {
         "type": "object",
@@ -229,14 +253,23 @@
             "example": "example.permission.read"
           }
         },
-        "required": ["permissionKey"]
+        "required": [
+          "permissionKey"
+        ]
       },
       "IsEntitledToRouteDto": {
         "type": "object",
         "properties": {
           "method": {
             "type": "string",
-            "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "*"],
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE",
+              "*"
+            ],
             "example": "GET"
           },
           "path": {
@@ -244,7 +277,10 @@
             "example": "/example"
           }
         },
-        "required": ["method", "path"]
+        "required": [
+          "method",
+          "path"
+        ]
       }
     }
   },
