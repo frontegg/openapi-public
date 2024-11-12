@@ -55,7 +55,7 @@ async function cloneAndCheckoutLatestTag() {
     fs.mkdirSync(latestTagDirectory, {recursive: true});
   } catch (e) {}
   execSync(`git clone https://${GH_USER}:${GH_TOKEN}@github.com/frontegg/${repoName}.git ${latestTagDirectory}`);
-  const latestTag = execSync('git describe --tags --abbrev=0').toString().trim();
+  const latestTag = execSync('git describe --tags --abbrev=0', {cwd: latestTagDirectory}).toString().trim();
   execSync(`git checkout ${latestTag}`, {cwd: latestTagDirectory});
   return latestTag;
 }
