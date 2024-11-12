@@ -38,9 +38,9 @@ runs:
       working-directory: current
       run: echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > .npmrc
       shell: bash
-    - name: Install node dependencies
+    - name: NPM Init
       working-directory: current
-      run: npm install
+      run: npm init -y
       shell: bash
     - name: Install NPM Dependencies
       run: npm install @octokit/core@5.1.0 semver handlebars
