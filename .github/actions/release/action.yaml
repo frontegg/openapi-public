@@ -1,0 +1,53 @@
+name: Create Release
+inputs:
+  npm_token:
+    description: 'Npm Token'
+    required: true
+  GH_ACCESS_TOKEN:
+    description: 'Github access token'
+    required: true
+  GH_USERNAME:
+    description: 'Github username'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        path: current
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Cache node modules
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - name: Setup npmrc
+      working-directory: current
+      run: echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > .npmrc
+      shell: bash
+    - name: Install node dependencies
+      working-directory: current
+      run: npm install
+      shell: bash
+    - name: Install NPM Dependencies
+      run: npm install @octokit/core@5.1.0 semver handlebars
+      shell: bash
+    - name: Create Release
+      run: node ci/release.js "${GH_ACCESS_TOKEN}" "${GH_USERNAME}"
+      shell: bash
+      env:
+        GH_ACCESS_TOKEN: ${{ inputs.GH_ACCESS_TOKEN }}
+        GH_USERNAME: ${{ inputs.GH_USERNAME }}

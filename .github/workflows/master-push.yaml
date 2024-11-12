@@ -1,0 +1,21 @@
+name: Main Pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+env:
+  CI: true
+jobs:
+  release:
+    name: Create Release 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v3
+      - name: Create Release
+        uses: ./.github/actions/release
+        with:
+          npm_token: ${{ secrets.NPM_TOKEN }}
+          GH_ACCESS_TOKEN: ${{ secrets.GH_REPOSITORY_ADMIN_TOKEN }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
