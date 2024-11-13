@@ -628,7 +628,6 @@
         "x-tag": "API Access Control",
         "summary": "Get Routes",
         "description": "Retrieve all routes",
-        "deprecated": true,
         "parameters": [],
         "responses": {
           "200": {
@@ -776,6 +775,23 @@
                 }
               }
             }
+          }
+        },
+        "tags": [
+          "API Access Control"
+        ]
+      }
+    },
+    "/resources/routes/v1/import-open-api": {
+      "post": {
+        "operationId": "RoutesControllerV1_importOpenApi",
+        "x-tag": "API Access Control",
+        "summary": "Import Open API",
+        "description": "Imports an Open API specifications in JSON format",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
           }
         },
         "tags": [
@@ -1576,22 +1592,6 @@
         "tags": [
           "Entitlements"
         ]
-      }
-    },
-    "/resources/entitlements/v2/dummy": {
-      "get": {
-        "operationId": "EntitlementsControllerV2_dummyFunction",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Entitlements"
-        ],
-        "description": "Dummy desc",
-        "summary": "Dummy summary"
       }
     },
     "/resources/feature-flags/v1": {
