@@ -16,6 +16,5 @@ jobs:
       - name: Create Release
         uses: ./.github/actions/release
         with:
-          npm_token: ${{ secrets.NPM_TOKEN }}
-          GH_ACCESS_TOKEN: ${{ secrets.GH_REPOSITORY_ADMIN_TOKEN }}
+          GH_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_USERNAME: ${{ secrets.GH_USERNAME }}

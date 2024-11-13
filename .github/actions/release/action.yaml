@@ -1,8 +1,5 @@
 name: Create Release
 inputs:
-  npm_token:
-    description: 'Npm Token'
-    required: true
   GH_ACCESS_TOKEN:
     description: 'Github access token'
     required: true
@@ -33,11 +30,6 @@ runs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-
-    - name: Setup npmrc
-      working-directory: current
-      run: echo "//registry.npmjs.org/:_authToken=${{ inputs.npm_token }}" > .npmrc
-      shell: bash
     - name: NPM Init
       working-directory: current
       run: npm init -y
