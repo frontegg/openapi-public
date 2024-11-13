@@ -13,8 +13,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "source",
@@ -22,8 +21,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "connectionName",
@@ -31,8 +29,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "id",
@@ -40,8 +37,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -60,7 +56,7 @@
           }
         },
         "tags": [
-          "Management | SCIM"
+          "SCIM Configurations"
         ]
       },
       "post": {
@@ -101,7 +97,7 @@
           }
         },
         "tags": [
-          "Self-service | SCIM configurations"
+          "SCIM Setup"
         ]
       }
     },
@@ -117,8 +113,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -143,7 +138,7 @@
           }
         },
         "tags": [
-          "Self-service | SCIM configurations"
+          "SCIM Setup"
         ]
       },
       "patch": {
@@ -157,8 +152,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -186,7 +180,7 @@
           }
         },
         "tags": [
-          "Self-service | SCIM configurations"
+          "SCIM Setup"
         ]
       },
       "delete": {
@@ -200,8 +194,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -219,16 +212,17 @@
           }
         },
         "tags": [
-          "Self-service | SCIM configurations"
+          "SCIM Setup"
         ]
       }
     }
   },
   "info": {
-    "title": "Directory",
+    "title": "Provisioning (SCIM) Service",
     "description": "",
     "version": ""
   },
+  "tags": [],
   "servers": [
     {
       "url": "https://api.frontegg.com/directory",
@@ -269,35 +263,28 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "connectionName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "source": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "syncToUserManagement": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "lastSync": {
             "format": "date-time",
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -320,16 +307,13 @@
               "okta",
               "azure-ad",
               "other"
-            ],
-            "description": ""
+            ]
           },
           "connectionName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "syncToUserManagement": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -340,16 +324,13 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "connectionName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -362,8 +343,7 @@
         "type": "object",
         "properties": {
           "syncToUserManagement": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -372,5 +352,18 @@
       }
     }
   },
-  "x-tagGroups": []
+  "x-tagGroups": [
+    {
+      "name": "Management",
+      "tags": [
+        "SCIM Configurations"
+      ]
+    },
+    {
+      "name": "Self-Service",
+      "tags": [
+        "SCIM Setup"
+      ]
+    }
+  ]
 }

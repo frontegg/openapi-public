@@ -1,131 +1,11 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/resources/plans/v1/tenant/{tenantId}": {
-      "get": {
-        "operationId": "PlansControllerV1_getTenantPlans",
-        "x-tag": "Plans (Formerly Bundles)",
-        "summary": "Get Tenant Plans",
-        "description": "Retrieve a paginated list of plans belongs to the tenant, with the abillity to search, order and filter by related entities",
-        "parameters": [
-          {
-            "name": "tenantId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "description": "Page offset of the results to return",
-            "example": "0",
-            "schema": {
-              "default": 0,
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Number of results per page",
-            "example": "10",
-            "schema": {
-              "default": 10,
-              "type": "number"
-            }
-          },
-          {
-            "name": "filter",
-            "required": false,
-            "in": "query",
-            "description": "Search input, searchable by `name`",
-            "example": "search-text",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "required": false,
-            "in": "query",
-            "description": "Field to order results by create date (`createdAt`) or expiration date (`expirationDate`)",
-            "example": "name",
-            "schema": {
-              "enum": [
-                "name",
-                "createdAt"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "sortType",
-            "required": false,
-            "in": "query",
-            "description": "Sort type, ASC for ascending, DESC for descending",
-            "example": "DESC",
-            "schema": {
-              "enum": [
-                "ASC",
-                "DESC"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "excludeNonEntitledPlans",
-            "required": false,
-            "in": "query",
-            "description": "Boolean value to include related entities in the response",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/PageDto"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/PlanDto"
-                          }
-                        },
-                        "hasNext": {
-                          "type": "boolean"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Plans (Formerly Bundles)"
-        ]
-      }
-    },
     "/resources/plans/v1": {
       "get": {
         "operationId": "PlansControllerV1_getPlans",
         "x-tag": "Plans (Formerly Bundles)",
-        "summary": "Get Plans",
+        "summary": "Get Plan",
         "description": "Retrieve a paginated list of plans, with the abillity to search, order and filter by related entities",
         "parameters": [
           {
@@ -226,6 +106,15 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "name": "includeTenantEntitlements",
+            "required": false,
+            "in": "query",
+            "description": "The tenant id to get the related entitlements for",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -307,8 +196,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -339,8 +227,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -381,8 +268,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -408,8 +294,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "offset",
@@ -561,8 +446,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -598,8 +482,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -628,7 +511,6 @@
         "x-tag": "API Access Control",
         "summary": "Get Routes",
         "description": "Retrieve all routes",
-        "deprecated": true,
         "parameters": [],
         "responses": {
           "200": {
@@ -695,8 +577,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -727,8 +608,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -752,8 +632,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -783,6 +662,23 @@
         ]
       }
     },
+    "/resources/routes/v1/import-open-api": {
+      "post": {
+        "operationId": "RoutesControllerV1_importOpenApi",
+        "x-tag": "API Access Control",
+        "summary": "Import Open API",
+        "description": "Imports an Open API specifications in JSON format",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "API Access Control"
+        ]
+      }
+    },
     "/resources/routes/v1/{id}/rules": {
       "put": {
         "operationId": "RoutesControllerV1_replaceRules",
@@ -796,8 +692,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1075,8 +970,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1110,8 +1004,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1171,8 +1064,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1490,8 +1382,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1522,8 +1413,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1564,8 +1454,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1576,22 +1465,6 @@
         "tags": [
           "Entitlements"
         ]
-      }
-    },
-    "/resources/entitlements/v2/dummy": {
-      "get": {
-        "operationId": "EntitlementsControllerV2_dummyFunction",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Entitlements"
-        ],
-        "description": "Dummy desc",
-        "summary": "Dummy summary"
       }
     },
     "/resources/feature-flags/v1": {
@@ -1737,8 +1610,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1769,8 +1641,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1811,8 +1682,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1828,32 +1698,16 @@
   },
   "info": {
     "title": "Entitlements Service",
-    "description": "",
-    "version": ""
+    "description": "Description",
+    "version": "",
+    "contact": {}
   },
   "servers": [
     {
-      "url": "https://api.frontegg.com/entitlements",
-      "description": "EU Region"
-    },
-    {
-      "url": "https://api.us.frontegg.com/entitlements",
-      "description": "US Region"
-    },
-    {
-      "url": "https://api.ca.frontegg.com/entitlements",
-      "description": "CA Region"
-    },
-    {
-      "url": "https://api.au.frontegg.com/entitlements",
-      "description": "AU Region"
-    },
-    {
       "url": "https://{domain}.frontegg.com/entitlements",
-      "description": "Frontegg sub-domain for use with user tokens",
       "variables": {
         "domain": {
-          "default": "app-xxx"
+          "default": "api"
         }
       }
     }
@@ -2235,14 +2089,12 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "routeId": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "type": {
             "type": "string",
@@ -2251,14 +2103,12 @@
             "enum": [
               "feature",
               "permission"
-            ],
-            "description": ""
+            ]
           },
           "value": {
             "type": "string",
             "readOnly": true,
-            "example": "my-feature-key",
-            "description": ""
+            "example": "my-feature-key"
           }
         },
         "required": [
@@ -2274,8 +2124,7 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "method": {
             "type": "string",
@@ -2288,26 +2137,22 @@
               "PATCH",
               "DELETE",
               "*"
-            ],
-            "description": ""
+            ]
           },
           "path": {
             "type": "string",
             "readOnly": true,
-            "example": "/users",
-            "description": ""
+            "example": "/users"
           },
           "priority": {
             "type": "number",
             "readOnly": true,
-            "example": 100,
-            "description": ""
+            "example": 100
           },
           "description": {
             "type": "string",
             "readOnly": true,
-            "example": "This is an example route",
-            "description": ""
+            "example": "This is an example route"
           },
           "policyType": {
             "type": "string",
@@ -2317,16 +2162,14 @@
               "allow",
               "deny",
               "ruleBased"
-            ],
-            "description": ""
+            ]
           },
           "rules": {
             "readOnly": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RouteRuleDto"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -2471,14 +2314,12 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "vendorId": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "accessControlMode": {
             "type": "string",
@@ -2487,8 +2328,7 @@
             "enum": [
               "guard",
               "monitor"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -3221,5 +3061,21 @@
       "bearer": []
     }
   ],
-  "x-tagGroups": []
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  },
+  "x-tagGroups": [
+    {
+      "name": "Management",
+      "tags": [
+        "Plans (Formerly Bundles)",
+        "API Access Control",
+        "API Access Control Configs",
+        "Features",
+        "Entitlements",
+        "Feature Flags"
+      ]
+    }
+  ]
 }
