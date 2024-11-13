@@ -1,0 +1,20 @@
+{{#if newEndpoints.length}}
+## New Endpoints
+{{#each newEndpoints}}
+	 {{method}} {{pathUrl}}
+{{/each}}
+{{/if}}
+
+{{#if deprecatedEndpoints.length}}
+## Deprecated Endpoints
+{{#each deprecatedEndpoints}}
+	 {{method}} {{pathUrl}}
+{{/each}}
+{{/if}}
+
+{{#if missingEndpoints.length}}
+## Removed Endpoints
+{{#each missingEndpoints}}
+	 {{method}} {{pathUrl}}
+{{/each}}
+{{/if}}

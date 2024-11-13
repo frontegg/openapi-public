@@ -4,42 +4,42 @@ const fs = require('fs');
 const semver = require('semver');
 const {Octokit} = require('@octokit/core');
 const Handlebars = require('handlebars');
+const gitHelpers = require('./git.helpers');
 
 const GH_TOKEN = process.argv[2] ? process.argv[2] : process.env.GH_ACCESS_TOKEN;
 const GH_USER = process.argv[3] ? process.argv[3] : 'x-access-token';
+const repoName = 'openapi-public';
+const repoUrl = `https://${GH_USER}:${GH_TOKEN}@github.com/frontegg/${repoName}.git`;
 
 const githubApi = new Octokit({auth: GH_TOKEN});
-const repoName = 'openapi-public';
-const latestTagDirectory = path.join(__dirname, '../', 'temp', repoName);
 const tempDirectory = path.join(__dirname, '../', 'temp');
+const latestTagDirectory = path.join(tempDirectory, repoName);
 const openapisFolder = path.join('/');
-const latestOpenAPIsFolder = path.join(__dirname, '../', openapisFolder);
 
 async function release() {
-  console.log('Checking out latest version tag');
-  const latestTag = await cloneAndCheckoutLatestTag();
-  console.log('Latest version tag:', latestTag);
+  console.log('Create latest-tag directory');
+  createDirectory(latestTagDirectory);
+
+  console.log('Clone openapi-public');
+  gitHelpers.cloneToDirectory(repoUrl, latestTagDirectory);
+
+  console.log('Getting latest tag');
+  const latestTag = gitHelpers.getLatestTag(latestTagDirectory);
+
+  console.log('Checkout latest tag', latestTag);
+  gitHelpers.checkoutTag(latestTag, latestTagDirectory);
+
   console.log('Running diffs between current `master` OpenAPIs and latest version tag');
   const {newEndpoints, missingEndpoints, deprecatedEndpoints} = await createDiffs();
+
   if (newEndpoints.length || missingEndpoints.length || deprecatedEndpoints.length) {
-    const releaseType = determineReleaseType(missingEndpoints, deprecatedEndpoints);
-    const newVersion = increaseVersion(latestTag, releaseType);
-    console.log('Changes found, will create a new release', releaseType, newVersion);
+    const releaseType = missingEndpoints.length ? 'major' : deprecatedEndpoints.length ? 'minor' : 'patch';
+    const newVersion = `v${semver.inc(latestTag, releaseType)}`;
     const releaseBody = generateReleaseDescription(newEndpoints, missingEndpoints, deprecatedEndpoints);
-    await githubApi.request('POST /repos/{owner}/{repo}/releases', {
-      owner: 'frontegg',
-      repo: repoName,
-      tag_name: newVersion,
-      target_commitish: 'master',
-      name: newVersion,
-      body: releaseBody,
-      draft: false,
-      prerelease: false,
-      generate_release_notes: false,
-      headers: {
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-    });
+
+    console.log('Creating release', releaseType, newVersion);
+    await createRelease(newVersion, releaseBody);
+
     console.log('Release created successfully!');
   } else {
     console.log('No changes found, will skip release');
@@ -47,45 +47,40 @@ async function release() {
   await clean();
 }
 
-async function cloneAndCheckoutLatestTag() {
-  try {
-    fs.rmdirSync(latestTagDirectory, {recursive: true});
-  } catch (e) {}
-  try {
-    fs.mkdirSync(latestTagDirectory, {recursive: true});
-  } catch (e) {}
-  execSync(`git clone https://${GH_USER}:${GH_TOKEN}@github.com/frontegg/${repoName}.git ${latestTagDirectory}`);
-  const latestTag = execSync('git describe --tags --abbrev=0', {cwd: latestTagDirectory}).toString().trim();
-  execSync(`git checkout ${latestTag}`, {cwd: latestTagDirectory});
-  return latestTag;
+async function createRelease(tag, body) {
+  await githubApi.request('POST /repos/{owner}/{repo}/releases', {
+    owner: 'frontegg',
+    repo: repoName,
+    tag_name: tag,
+    target_commitish: 'master',
+    name: tag,
+    body: body,
+    draft: false,
+    prerelease: false,
+    generate_release_notes: false,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
 }
 
-async function listOpenAPIs() {
-  return ['agent.json', 'entitlements.json', 'identity.json', 'scim.json', 'sso.json', 'tenants.json'];
+function createDirectory(path) {
+  fs.mkdirSync(path, {recursive: true});
 }
 
 async function createDiffs() {
-  const latestOpenAPIs = await listOpenAPIs(latestOpenAPIsFolder);
-  try {
-    fs.mkdirSync(path.join(tempDirectory, 'diffs'), {recursive: true});
-  } catch (e) {}
+  const tempDiffsPath = path.join(tempDirectory, 'diffs');
+  createDirectory(tempDiffsPath);
+
   const totalNewEndpoints = [];
   const totalMissingEndpoints = [];
   const totalDeprecatedEndpoints = [];
-  for (const openapi of latestOpenAPIs) {
-    const execCommand = `docker run -d \
-                -v ${path.join(__dirname, '../')}:/specs \
-                openapitools/openapi-diff:latest ${path.join(
-                  '/specs',
-                  'temp',
-                  repoName,
-                  openapisFolder,
-                  openapi,
-                )}  ${path.join('/specs', openapisFolder, openapi)} --json /specs/temp/diffs/${openapi}`;
-    execSync(execCommand);
-    const diffFilePath = path.join(__dirname, '../', 'temp/diffs', openapi);
+
+  for (const openapi of listOpenAPIs()) {
+    runOpenApiDiffDocker(openapi);
+    const diffFilePath = path.join(tempDiffsPath, openapi);
     await waitForDiffFileToGenerate(diffFilePath);
-    const {newEndpoints, missingEndpoints, deprecatedEndpoints} = JSON.parse(fs.readFileSync(diffFilePath).toString());
+    const {newEndpoints, missingEndpoints, deprecatedEndpoints} = readJsonFile(diffFilePath);
     totalNewEndpoints.push(...newEndpoints);
     totalMissingEndpoints.push(...missingEndpoints);
     totalDeprecatedEndpoints.push(...deprecatedEndpoints);
@@ -98,28 +93,13 @@ async function createDiffs() {
   };
 }
 
-async function clean() {
-  fs.rmdirSync(tempDirectory, {recursive: true});
-}
-
-function determineReleaseType(missingEndpoints, deprecatedEndpoints) {
-  if (missingEndpoints.length) {
-    return 'major';
-  }
-
-  if (deprecatedEndpoints.length) {
-    return 'minor';
-  }
-
-  return 'patch';
-}
-
-function increaseVersion(latestVersion, releaseType) {
-  return `v${semver.inc(latestVersion, releaseType)}`;
+function listOpenAPIs() {
+  return ['agent.json', 'entitlements.json', 'identity.json', 'scim.json', 'sso.json', 'tenants.json'];
 }
 
 function generateReleaseDescription(newEndpoints, missingEndpoints, deprecatedEndpoints) {
-  return Handlebars.compile(hbReleaseTemplate)({newEndpoints, missingEndpoints, deprecatedEndpoints});
+  const releaseTemplate = fs.readFileSync(path.join(__dirname, 'release-template.hbs')).toString();
+  return Handlebars.compile(releaseTemplate)({newEndpoints, missingEndpoints, deprecatedEndpoints});
 }
 
 async function waitForDiffFileToGenerate(path) {
@@ -128,7 +108,7 @@ async function waitForDiffFileToGenerate(path) {
       const exist = fs.existsSync(path);
       if (exist) {
         try {
-          JSON.parse(fs.readFileSync(path).toString());
+          readJsonFile(path);
           resolve();
           clearInterval(interval);
         } catch (e) {}
@@ -139,27 +119,25 @@ async function waitForDiffFileToGenerate(path) {
   await promise;
 }
 
+function readJsonFile(path) {
+  return JSON.parse(fs.readFileSync(path).toString());
+}
+
+async function clean() {
+  fs.rmdirSync(tempDirectory, {recursive: true});
+}
+
+function runOpenApiDiffDocker(openapi) {
+  const lastTagOpenApiPath = path.join('/specs', 'temp', repoName, openapisFolder);
+  const currentOpenApiPath = path.join('/specs', openapisFolder);
+  const diffsPath = path.join('/specs/temp/diffs');
+  const execCommand = `docker run -d \
+    -v ${path.join(__dirname, '../')}:/specs \
+    openapitools/openapi-diff:latest ${path.join(lastTagOpenApiPath, openapi)}  ${path.join(
+    currentOpenApiPath,
+    openapi,
+  )} --json ${path.join(diffsPath, openapi)}`;
+  execSync(execCommand);
+}
+
 release();
-
-const hbReleaseTemplate = `
-{{#if newEndpoints.length}}
-## New Endpoints
-{{#each newEndpoints}}
-	 {{method}} {{pathUrl}}
-{{/each}}
-{{/if}}
-
-{{#if deprecatedEndpoints.length}}
-## Deprecated Endpoints
-{{#each deprecatedEndpoints}}
-	 {{method}} {{pathUrl}}
-{{/each}}
-{{/if}}
-
-{{#if missingEndpoints.length}}
-## Removed Endpoints
-{{#each missingEndpoints}}
-	 {{method}} {{pathUrl}}
-{{/each}}
-{{/if}}
-`;
