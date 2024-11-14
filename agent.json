@@ -1,53 +1,8 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/v2/data/e10s/features/is_entitled_to_input_feature": {
-      "post": {
-        "operationId": "OpenApiPDPController_isEntitledToFeature",
-        "summary": "Is Entitled To Feature",
-        "description": "Check whether a given tenant or user is entitled to the requested feature",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "input": {
-                    "properties": {
-                      "subjectContext": {
-                        "$ref": "#/components/schemas/SubjectContext"
-                      },
-                      "requestContext": {
-                        "$ref": "#/components/schemas/IsEntitledToFeatureDto"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PDPResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Entitlements Check"
-        ]
-      }
-    },
     "/v1/data/e10s/features/is_entitled_to_input_feature": {
       "post": {
-        "deprecated": true,
         "operationId": "OpenApiPDPController_isEntitledToFeature",
         "summary": "Is Entitled To Feature",
         "description": "Check whether a given tenant or user is entitled to the requested feature",
@@ -109,6 +64,50 @@
                       },
                       "requestContext": {
                         "$ref": "#/components/schemas/IsEntitledToPermissionDto"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PDPResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Entitlements Check"
+        ]
+      }
+    },
+    "/v1/data/e10s/routes/is_entitled_to_input_route": {
+      "post": {
+        "operationId": "OpenApiPDPController_isEntitledToRoute",
+        "summary": "Is Entitled To Route",
+        "description": "Check whether a given tenant or user is entitled to the requested route",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "input": {
+                    "properties": {
+                      "subjectContext": {
+                        "$ref": "#/components/schemas/SubjectContext"
+                      },
+                      "requestContext": {
+                        "$ref": "#/components/schemas/IsEntitledToRouteDto"
                       }
                     }
                   }
