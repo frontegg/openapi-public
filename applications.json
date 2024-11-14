@@ -1,0 +1,771 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/resources/applications/v1": {
+      "get": {
+        "operationId": "getApplications",
+        "summary": "Get all applications for an environment",
+        "description": "Get all applications for an environment",
+        "parameters": [
+          {
+            "name": "_accessType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "FREE_ACCESS",
+                "MANAGED_ACCESS"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_isDefault",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": ""
+          },
+          {
+            "name": "_isActive",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": ""
+          },
+          {
+            "name": "ids",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationsResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      },
+      "post": {
+        "operationId": "createApplication",
+        "summary": "Create application",
+        "description": "Create application",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/v1/default": {
+      "get": {
+        "operationId": "getDefaultApplication",
+        "summary": "Get the default application for an environment",
+        "description": "Get the default application for an environment",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/v1/{id}": {
+      "get": {
+        "operationId": "getApplicationById",
+        "summary": "Get application by ID",
+        "description": "Get application by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      },
+      "patch": {
+        "operationId": "updateApplication",
+        "summary": "Update an application",
+        "description": "Update an application",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateApplicationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteApplication",
+        "summary": "Delete an application",
+        "description": "Delete an application",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/tenant-assignments/v1": {
+      "get": {
+        "operationId": "getApplicationsTenantsAssignments",
+        "summary": "Get application to tenants assignments",
+        "description": "Get application to tenants assignments",
+        "parameters": [
+          {
+            "name": "appIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "tenantIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationsTenantAssignmentResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/tenant-assignments/v1/{appId}": {
+      "get": {
+        "operationId": "getApplicationTenantsAssignmentsByAppId",
+        "summary": "Get tenants assignments for an application",
+        "description": "Get tenants assignments for an application",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationTenantsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      },
+      "post": {
+        "operationId": "createApplicationTenantAssignment",
+        "summary": "Create application to tenant assignment",
+        "description": "Create application to tenant assignment",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationsTenantAssignmentResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/tenant-assignments/v1/{appId}/{tenantId}": {
+      "delete": {
+        "operationId": "deleteApplicationTenantAssignment",
+        "summary": "Delete application to tenant assignment",
+        "description": "Delete application to tenant assignment",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/v1/credentials/{appId}": {
+      "get": {
+        "operationId": "getApplicationClientCredentials",
+        "summary": "Get application client credentials",
+        "description": "Get application client credentials",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationsClientCredentialsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/v1/credentials/regenerate": {
+      "post": {
+        "operationId": "regenerateApplicationClientCredentials",
+        "summary": "Regenerate application client credentials",
+        "description": "Regenerate application client credentials",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegenerateApplicationClientCredentialsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Applications",
+    "description": "",
+    "version": ""
+  },
+  "servers": [
+    {
+      "url": "https://api.frontegg.com/applications",
+      "description": "EU Region"
+    },
+    {
+      "url": "https://api.us.frontegg.com/applications",
+      "description": "US Region"
+    },
+    {
+      "url": "https://api.ca.frontegg.com/applications",
+      "description": "CA Region"
+    },
+    {
+      "url": "https://api.au.frontegg.com/applications",
+      "description": "AU Region"
+    },
+    {
+      "url": "https://{domain}.frontegg.com/applications",
+      "description": "Frontegg sub-domain for use with user tokens",
+      "variables": {
+        "domain": {
+          "default": "app-xxx"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "ApplicationsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": ""
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "logoURL": {
+            "type": "string",
+            "description": ""
+          },
+          "createdAt": {
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": ""
+          },
+          "type": {
+            "type": "string",
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "string",
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "description": ""
+          },
+          "integrationFinishedAt": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "accessType",
+          "appURL",
+          "loginURL",
+          "isDefault",
+          "isActive",
+          "name",
+          "logoURL",
+          "createdAt",
+          "updatedAt",
+          "type",
+          "frontendStack",
+          "description",
+          "integrationFinishedAt"
+        ]
+      },
+      "CreateApplicationRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "logoURL": {
+            "type": "string",
+            "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          },
+          "isDefault": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "isActive": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "type": {
+            "type": "string",
+            "default": "web",
+            "enum": [
+              "web",
+              "mobile-ios",
+              "mobile-android",
+              "other"
+            ],
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "string",
+            "default": "react",
+            "enum": [
+              "react",
+              "vue",
+              "angular",
+              "next.js",
+              "vanilla.js",
+              "ionic",
+              "flutter",
+              "react-native",
+              "kotlin",
+              "swift"
+            ],
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "name",
+          "appURL",
+          "loginURL"
+        ]
+      },
+      "UpdateApplicationRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "appURL": {
+            "type": "string",
+            "description": ""
+          },
+          "loginURL": {
+            "type": "string",
+            "description": ""
+          },
+          "logoURL": {
+            "type": "string",
+            "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          },
+          "isDefault": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
+          },
+          "isActive": {
+            "type": "boolean",
+            "default": true,
+            "description": ""
+          },
+          "type": {
+            "type": "string",
+            "default": "web",
+            "description": ""
+          },
+          "frontendStack": {
+            "type": "string",
+            "default": "react",
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "description": ""
+          }
+        }
+      },
+      "ApplicationsTenantAssignmentResponse": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "appIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId",
+          "appIds"
+        ]
+      },
+      "ApplicationTenantsResponse": {
+        "type": "object",
+        "properties": {
+          "tenantIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantIds"
+        ]
+      },
+      "CreateApplicationTenantRequest": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId"
+        ]
+      },
+      "ApplicationsClientCredentialsResponse": {
+        "type": "object",
+        "properties": {
+          "clientSecret": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "clientSecret"
+        ]
+      },
+      "RegenerateApplicationClientCredentialsRequest": {
+        "type": "object",
+        "properties": {
+          "appId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "appId"
+        ]
+      }
+    }
+  },
+  "x-tagGroups": [
+    {
+      "name": "Management",
+      "tags": [
+        "Applications"
+      ]
+    }
+  ]
+}
