@@ -8904,6 +8904,84 @@
         ]
       }
     },
+    "/resources/applications/v1/users-apps": {
+      "get": {
+        "operationId": "ApplicationsControllerV1_getApplicationsForMultipleUsers",
+        "summary": "Get applications for multiple users",
+        "description": "This route gets applications for multiple users.",
+        "parameters": [
+          {
+            "name": "userIds",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserApplicationsResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users-applications management"
+        ]
+      }
+    },
+    "/resources/applications/v1/apps-users": {
+      "get": {
+        "operationId": "ApplicationsControllerV1_getUsersForMultipleApplications",
+        "summary": "Get users for multiple applications",
+        "description": "This route gets users for multiple applications.",
+        "parameters": [
+          {
+            "name": "appIds",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationUsersResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users-applications management"
+        ]
+      }
+    },
     "/resources/applications/v1": {
       "post": {
         "operationId": "ApplicationsControllerV1_assignUsersToApplication",
@@ -8950,6 +9028,68 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UnassignUsersFromAppRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users-applications management"
+        ]
+      }
+    },
+    "/resources/applications/v1/apps-user": {
+      "post": {
+        "operationId": "ApplicationsControllerV1_assignUserToMultipleApplications",
+        "summary": "Assign user to multiple applications",
+        "description": "This route assigns user to multiple applications.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignUserToMultipleApplicationsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationUserTenantsResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users-applications management"
+        ]
+      }
+    },
+    "/resources/applications/v1/user-apps": {
+      "delete": {
+        "operationId": "ApplicationsControllerV1_unassignUserFromMultipleApplications",
+        "summary": "Unassign user from multiple applications",
+        "description": "This route unassigns user from multiple applications.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnassignUserFromMultipleAppsRequestDto"
               }
             }
           }
@@ -12551,6 +12691,46 @@
           }
         }
       },
+      "UserApplicationsResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": ""
+          },
+          "appIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "userId",
+          "appIds"
+        ]
+      },
+      "ApplicationUsersResponseDto": {
+        "type": "object",
+        "properties": {
+          "appId": {
+            "type": "string",
+            "description": ""
+          },
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "appId",
+          "userIds"
+        ]
+      },
       "AssignUsersToAppRequestDto": {
         "type": "object",
         "properties": {
@@ -12599,6 +12779,31 @@
           "createdAt"
         ]
       },
+      "AssignUserToMultipleApplicationsRequestDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": ""
+          },
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "appIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "userId",
+          "tenantId",
+          "appIds"
+        ]
+      },
       "UnassignUsersFromAppRequestDto": {
         "type": "object",
         "properties": {
@@ -12622,6 +12827,31 @@
           "appId",
           "tenantId",
           "userIds"
+        ]
+      },
+      "UnassignUserFromMultipleAppsRequestDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": ""
+          },
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "appIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "userId",
+          "tenantId",
+          "appIds"
         ]
       },
       "UserApplicationActiveTenantResponse": {
