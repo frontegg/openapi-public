@@ -6,7 +6,6 @@
         "operationId": "OpenApiPDPController_isEntitledToFeature",
         "summary": "Is Entitled To Feature",
         "description": "Check whether a given tenant or user is entitled to the requested feature",
-        "deprecated": true,
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -90,11 +89,11 @@
         ]
       }
     },
-    "/v1/data/e10s/routes/is_entitled_to_input_resource": {
+    "/v1/data/e10s/routes/is_entitled_to_input_route": {
       "post": {
-        "operationId": "OpenApiPDPController_isEntitledToResource",
-        "summary": "Is Entitled To Resource",
-        "description": "Check whether a given tenant or user is entitled to the requested resource",
+        "operationId": "OpenApiPDPController_isEntitledToRoute",
+        "summary": "Is Entitled To Route",
+        "description": "Check whether a given tenant or user is entitled to the requested route",
         "parameters": [],
         "requestBody": {
           "required": true,
