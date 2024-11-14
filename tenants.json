@@ -24,7 +24,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       },
       "put": {
@@ -39,7 +39,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -61,13 +62,13 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       },
       "delete": {
         "operationId": "TenantControllerV1_deleteTenant",
         "summary": "Delete tenant (account)",
-        "description": "Removes a tenant and all users of that tenant.If tenant is a part of the hierarchy, then all of its sub-tenants are assigned to deleted tenant's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Removes a tenant and all users of that tenant. If a tenant is part of the hierarchy, then all of its sub-tenants are assigned to a deleted tenant's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -75,7 +76,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -84,7 +86,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       }
     },
@@ -110,7 +112,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       },
       "delete": {
@@ -124,7 +126,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       }
     },
@@ -140,7 +142,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -162,7 +165,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       }
     },
@@ -178,7 +181,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "key",
@@ -186,7 +190,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -195,7 +200,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       }
     },
@@ -203,15 +208,73 @@
       "get": {
         "operationId": "TenantControllerV2_getTenants",
         "summary": "Get tenants",
-        "description": "This route returns all roles for all tenants. To get a role for a specific tenant, send the tenant id in the **`frontegg-tenant-id`** header. Each role is an object containing the name, permissions, and other defining information.",
-        "parameters": [],
+        "description": "This route returns all accounts (tenants) for and environment.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "description": "The default limit is 50 tenants per request, the maximum is 200",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_filter",
+            "required": false,
+            "in": "query",
+            "description": "This param allows filtering the request using an account's name or tenantId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "description": "This param allows sorting the results via createdAt, name, tenantId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "description": "This param can be used together with sortBy and define the order as ACS or DESC",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_tenantIds",
+            "required": false,
+            "in": "query",
+            "description": "This param allows passing specific tenantIds and getting only these tenants data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": ""
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       }
     },
@@ -227,7 +290,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -236,7 +300,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       },
       "put": {
@@ -250,7 +314,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -269,7 +334,7 @@
           }
         },
         "tags": [
-          "Tenants (Accounts)"
+          "Accounts"
         ]
       }
     },
@@ -295,7 +360,7 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       }
     },
@@ -311,7 +376,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -330,7 +396,7 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       }
     },
@@ -346,7 +412,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -365,7 +432,7 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       }
     },
@@ -381,7 +448,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -390,7 +458,7 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       }
     },
@@ -416,7 +484,7 @@
           }
         },
         "tags": [
-          "Accounts Settings"
+          "Account settings"
         ]
       },
       "put": {
@@ -453,7 +521,7 @@
           }
         },
         "tags": [
-          "Accounts Settings"
+          "Account settings"
         ]
       }
     },
@@ -479,7 +547,7 @@
           }
         },
         "tags": [
-          "Accounts Settings"
+          "Account settings"
         ]
       }
     },
@@ -504,8 +572,9 @@
           }
         },
         "tags": [
-          "Tenants migration"
-        ]
+          "Account migration"
+        ],
+        "description": ""
       }
     },
     "/resources/migrations/v1/tenants/status/{migrationId}": {
@@ -519,7 +588,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -528,8 +598,9 @@
           }
         },
         "tags": [
-          "Tenants migration"
-        ]
+          "Account migration"
+        ],
+        "description": ""
       }
     },
     "/resources/hierarchy/v1": {
@@ -554,7 +625,7 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       },
       "post": {
@@ -578,7 +649,7 @@
           }
         },
         "tags": [
-          "Account Hierarchy"
+          "Sub-accounts and hierarchy"
         ]
       },
       "delete": {
@@ -605,7 +676,7 @@
           }
         },
         "tags": [
-          "Account Hierarchy"
+          "Sub-accounts and hierarchy"
         ]
       }
     },
@@ -631,7 +702,7 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       }
     },
@@ -657,13 +728,13 @@
           }
         },
         "tags": [
-          "Sub-Accounts"
+          "Sub-accounts"
         ]
       }
     }
   },
   "info": {
-    "title": "Account Management Service",
+    "title": "Tenants",
     "description": "",
     "version": ""
   },
@@ -689,7 +760,7 @@
       "description": "Frontegg sub-domain for use with user tokens",
       "variables": {
         "domain": {
-          "default": "app-xxxx"
+          "default": "app-xxx"
         }
       }
     }
@@ -711,45 +782,56 @@
             "description": "Send your own unique tenantId or Frontegg will auto-generate a UUID"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "status": {
             "type": "string",
             "description": "This field can be used for custom logic, it is not enforced in Frontegg flows"
           },
           "website": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "applicationUrl": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "logo": {
             "type": "string",
             "description": "Base64-encoded image to use as logo."
           },
           "logoUrl": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "address": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "timezone": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "currency": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "creatorName": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "creatorEmail": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "isReseller": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "parentTenantId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           }
         }
       },
@@ -768,7 +850,8 @@
                   "maximumUsers": 50
                 }
               }
-            ]
+            ],
+            "description": ""
           }
         },
         "required": [
@@ -783,13 +866,16 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "parentTenantId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "status": {
             "type": "string",
@@ -800,16 +886,20 @@
             "description": "Base64-encoded image to use as logo."
           },
           "logoUrl": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "creatorName": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "creatorEmail": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "isReseller": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           }
         },
         "required": [
@@ -837,7 +927,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         },
         "required": [
@@ -848,10 +939,12 @@
         "type": "object",
         "properties": {
           "parentTenantId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "childTenantId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           }
         }
       },
@@ -870,16 +963,16 @@
     {
       "name": "Management",
       "tags": [
-        "Tenants (Accounts)",
-        "Tenants Migration",
-        "Account Hierarchy"
+        "Accounts",
+        "Sub-accounts and hierarchy",
+        "Account migration"
       ]
     },
     {
       "name": "Self-Service",
       "tags": [
-        "Sub-Accounts",
-        "Accounts Settings"
+        "Account settings",
+        "Sub-accounts"
       ]
     }
   ]

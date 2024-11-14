@@ -20,7 +20,7 @@
           }
         },
         "tags": [
-          "SAML Configurations Details"
+          "SAML configurations"
         ]
       }
     },
@@ -36,7 +36,7 @@
           }
         },
         "tags": [
-          "SAML Configurations Details"
+          "SAML configurations"
         ]
       }
     },
@@ -62,7 +62,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       }
     },
@@ -98,7 +98,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       },
       "get": {
@@ -122,7 +122,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -147,7 +147,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -156,7 +157,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -192,7 +193,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -217,7 +218,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -236,7 +238,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -261,7 +263,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -280,7 +283,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -305,7 +308,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "domainId",
@@ -313,7 +317,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -322,7 +327,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -347,7 +352,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "domainId",
@@ -355,7 +361,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -364,7 +371,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -389,7 +396,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "domainId",
@@ -397,7 +405,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -406,7 +415,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -431,7 +440,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -450,7 +460,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       },
       "get": {
@@ -473,7 +483,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -482,7 +493,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -507,7 +518,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -526,7 +538,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       },
       "get": {
@@ -549,7 +561,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -558,7 +571,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -583,7 +596,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "groupId",
@@ -591,7 +605,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -610,7 +625,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       },
       "delete": {
@@ -633,7 +648,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           {
             "name": "groupId",
@@ -641,7 +657,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -650,7 +667,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -676,7 +693,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       },
       "get": {
@@ -690,7 +707,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       }
     },
@@ -706,7 +723,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -715,7 +733,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       }
     },
@@ -731,7 +749,8 @@
             "in": "path",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         ],
         "requestBody": {
@@ -750,7 +769,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       }
     },
@@ -766,7 +785,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       },
       "put": {
@@ -790,7 +809,7 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       }
     },
@@ -816,7 +835,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       },
       "get": {
@@ -830,7 +849,7 @@
           }
         },
         "tags": [
-          "SSO Configurations"
+          "SSO configurations"
         ]
       }
     },
@@ -853,7 +872,7 @@
           }
         },
         "tags": [
-          "OIDC Configurations Details"
+          "OIDC configurations"
         ]
       },
       "post": {
@@ -877,14 +896,14 @@
           }
         },
         "tags": [
-          "SSO Settings"
+          "SSO settings"
         ]
       }
     }
   },
   "info": {
-    "title": "Single Sign-On Service",
-    "description": "SSO descriptions",
+    "title": "Team Management",
+    "description": "",
     "version": ""
   },
   "servers": [
@@ -931,40 +950,52 @@
         "type": "object",
         "properties": {
           "enabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "ssoEndpoint": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "publicCertificate": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "signRequest": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "acsUrl": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "spEntityId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "oidcClientId": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "oidcSecret": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "configMetadata": {
-            "type": "object"
+            "type": "object",
+            "description": ""
           },
           "overrideActiveTenant": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "subAccountAccessLimit": {
-            "type": "number"
+            "type": "number",
+            "description": ""
           }
         },
         "required": [
@@ -986,7 +1017,8 @@
         "type": "object",
         "properties": {
           "metadata": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           }
         },
         "required": [
@@ -1004,7 +1036,8 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         },
         "required": [
@@ -1015,13 +1048,15 @@
         "type": "object",
         "properties": {
           "group": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         },
         "required": [
@@ -1033,13 +1068,15 @@
         "type": "object",
         "properties": {
           "group": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": ""
           }
         },
         "required": [
@@ -1051,7 +1088,8 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           }
         },
         "required": [
@@ -1066,13 +1104,16 @@
         "type": "object",
         "properties": {
           "unspecifiedTenantStrategy": {
-            "type": "string"
+            "type": "string",
+            "description": ""
           },
           "active": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "useActiveTenant": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           }
         },
         "required": [
@@ -1085,13 +1126,16 @@
         "type": "object",
         "properties": {
           "allowVerifiedUsersToAddDomains": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "skipDomainVerification": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "bypassDomainCrossValidation": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           }
         },
         "required": [
@@ -1108,7 +1152,8 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "redirectUri": {
             "type": "string",
@@ -1125,15 +1170,15 @@
     {
       "name": "Management",
       "tags": [
-        "SSO Settings"
+        "SSO settings"
       ]
     },
     {
       "name": "Self-Service",
       "tags": [
-        "SAML Configurations Details",
-        "OIDC Configurations Details",
-        "SSO Configurations"
+        "SAML configurations",
+        "OIDC configurations",
+        "SSO configurations"
       ]
     }
   ]

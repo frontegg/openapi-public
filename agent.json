@@ -137,8 +137,7 @@
   "info": {
     "title": "Entitlements Agent (PDP)",
     "description": "",
-    "version": "",
-    "contact": {}
+    "version": ""
   },
   "servers": [
     {
@@ -160,7 +159,8 @@
         "properties": {
           "featureKey": {
             "type": "string",
-            "example": "example-feature-key"
+            "example": "example-feature-key",
+            "description": ""
           }
         },
         "required": [
@@ -172,11 +172,13 @@
         "properties": {
           "userId": {
             "type": "string",
-            "example": "6c2ce177-66cd-4163-a012-b7833255a490"
+            "example": "6c2ce177-66cd-4163-a012-b7833255a490",
+            "description": ""
           },
           "tenantId": {
             "type": "string",
-            "example": "f21ca66c-d23b-496f-b805-121ed37eb46a"
+            "example": "f21ca66c-d23b-496f-b805-121ed37eb46a",
+            "description": ""
           },
           "permissions": {
             "example": [
@@ -186,13 +188,15 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "description": ""
           },
           "attributes": {
             "type": "object",
             "example": {
               "exampleAttribute": "example-value"
-            }
+            },
+            "description": ""
           }
         },
         "required": [
@@ -211,14 +215,17 @@
               "MISSING_ROUTE",
               "ROUTE_DENIED"
             ],
-            "example": "MISSING_FEATURE"
+            "example": "MISSING_FEATURE",
+            "description": ""
           },
           "monitoring": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": ""
           },
           "result": {
             "type": "boolean",
-            "example": false
+            "example": false,
+            "description": ""
           }
         },
         "required": [
@@ -230,13 +237,16 @@
         "properties": {
           "decision_id": {
             "type": "string",
-            "example": "df5dae62-be02-4333-bbe1-f7220e13c6c3"
+            "example": "df5dae62-be02-4333-bbe1-f7220e13c6c3",
+            "description": ""
           },
           "metrics": {
-            "type": "object"
+            "type": "object",
+            "description": ""
           },
           "result": {
-            "$ref": "#/components/schemas/EntitlementsResult"
+            "$ref": "#/components/schemas/EntitlementsResult",
+            "description": ""
           }
         },
         "required": [
@@ -250,7 +260,8 @@
         "properties": {
           "permissionKey": {
             "type": "string",
-            "example": "example.permission.read"
+            "example": "example.permission.read",
+            "description": ""
           }
         },
         "required": [
@@ -270,11 +281,13 @@
               "DELETE",
               "*"
             ],
-            "example": "GET"
+            "example": "GET",
+            "description": ""
           },
           "path": {
             "type": "string",
-            "example": "/example"
+            "example": "/example",
+            "description": ""
           }
         },
         "required": [
@@ -284,8 +297,5 @@
       }
     }
   },
-  "x-readme": {
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  }
+  "x-tagGroups": []
 }
