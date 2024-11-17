@@ -77,13 +77,27 @@ async function createDiffs() {
   const totalDeprecatedEndpoints = [];
 
   for (const openapi of listOpenAPIs()) {
+    const openapiJson = readJsonFile(path.join(__dirname, '../', openapisFolder, openapi));
+    const serviceEndpointsPrefix = openapi === 'agent.json' ? '/' : new URL(openapiJson.servers[0].url).pathname;
+    const serviceTitle = openapiJson.info.title;
     runOpenApiDiffDocker(openapi);
     const diffFilePath = path.join(tempDiffsPath, openapi);
     await waitForDiffFileToGenerate(diffFilePath);
     const {newEndpoints, missingEndpoints, deprecatedEndpoints} = readJsonFile(diffFilePath);
-    totalNewEndpoints.push(...newEndpoints);
-    totalMissingEndpoints.push(...missingEndpoints);
-    totalDeprecatedEndpoints.push(...deprecatedEndpoints);
+    if (newEndpoints.length) {
+      totalNewEndpoints.push({serviceTitle, endpoints: mapEndpoints(newEndpoints, serviceEndpointsPrefix)});
+    }
+
+    if (missingEndpoints.length) {
+      totalMissingEndpoints.push({serviceTitle, endpoints: mapEndpoints(missingEndpoints, serviceEndpointsPrefix)});
+    }
+
+    if (deprecatedEndpoints.length) {
+      totalDeprecatedEndpoints.push({
+        serviceTitle,
+        endpoints: mapEndpoints(deprecatedEndpoints, serviceEndpointsPrefix),
+      });
+    }
   }
 
   return {
@@ -91,6 +105,13 @@ async function createDiffs() {
     missingEndpoints: totalMissingEndpoints,
     deprecatedEndpoints: totalDeprecatedEndpoints,
   };
+}
+
+function mapEndpoints(endpoints, serviceEndpointPrefix) {
+  return endpoints.map(({method, pathUrl}) => ({
+    method,
+    pathUrl: path.join(serviceEndpointPrefix, pathUrl),
+  }));
 }
 
 function listOpenAPIs() {
