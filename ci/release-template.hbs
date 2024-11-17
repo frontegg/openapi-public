@@ -1,20 +1,29 @@
 {{#if newEndpoints.length}}
 ## New Endpoints
 {{#each newEndpoints}}
+#### {{serviceTitle}}
+{{#each endpoints}}
 	 {{method}} {{pathUrl}}
+{{/each}}
 {{/each}}
 {{/if}}
 
 {{#if deprecatedEndpoints.length}}
 ## Deprecated Endpoints
 {{#each deprecatedEndpoints}}
+#### {{serviceTitle}}
+{{#each endpoints}}
 	 {{method}} {{pathUrl}}
+{{/each}}
 {{/each}}
 {{/if}}
 
 {{#if missingEndpoints.length}}
 ## Removed Endpoints
 {{#each missingEndpoints}}
+#### {{serviceTitle}}
+{{#each endpoints}}
 	 {{method}} {{pathUrl}}
+{{/each}}
 {{/each}}
 {{/if}}
