@@ -159,6 +159,49 @@
         "tags": [
           "SSO configurations"
         ]
+      },
+      "patch": {
+        "operationId": "SsoConfigurationControllerV1_updateSsoConfiguration",
+        "summary": "Update SSO configuration",
+        "description": "Update SSO configuration",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configurationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSSOConfigurationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SSO configurations"
+        ]
       }
     },
     "/resources/sso/v1/configurations/metadata": {
