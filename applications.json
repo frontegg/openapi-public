@@ -437,8 +437,10 @@
     }
   },
   "info": {
-    "title": "Applications",
-    "description": "",
+    "title": "Multi-Apps Overview",
+    "description": {
+      "$ref": "descriptions/multi-apps.md"
+    },
     "version": ""
   },
   "servers": [

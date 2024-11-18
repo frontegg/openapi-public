@@ -1827,8 +1827,10 @@
     }
   },
   "info": {
-    "title": "Entitlements Service",
-    "description": "",
+    "title": "Entitlements Overview",
+    "description": {
+      "$ref": "descriptions/entitlements.md"
+    },
     "version": ""
   },
   "servers": [

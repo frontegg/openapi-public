@@ -225,8 +225,10 @@
     }
   },
   "info": {
-    "title": "Directory",
-    "description": "",
+    "title": "SCIM Provisioning Overview",
+    "description": {
+      "$ref": "descriptions/scim.md"
+    },
     "version": ""
   },
   "servers": [

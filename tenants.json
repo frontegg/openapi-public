@@ -734,8 +734,10 @@
     }
   },
   "info": {
-    "title": "Tenants",
-    "description": "",
+    "title": "Account Management Overview",
+    "description": {
+      "$ref": "descriptions/tenants.md"
+    },
     "version": ""
   },
   "servers": [

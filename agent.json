@@ -136,7 +136,9 @@
   },
   "info": {
     "title": "Entitlements Agent (PDP)",
-    "description": "",
+    "description": {
+      "$ref": "descriptions/entitlements-agent.md"
+    },
     "version": ""
   },
   "servers": [

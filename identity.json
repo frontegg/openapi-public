@@ -1401,7 +1401,7 @@
         "operationId": "DelegationConfigurationControllerV1_getDelegationConfiguration",
         "x-vendor-only": "true",
         "summary": "Get delegation configuration",
-        "description": "Get information about the delegation configuration (if enabled). A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "Get information about the delegation configuration (if enabled). An environment token is required for this route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1423,7 +1423,7 @@
         "operationId": "DelegationConfigurationControllerV1_createOrUpdateDelegationConfiguration",
         "x-vendor-only": "true",
         "summary": "Create or update delegation configuration",
-        "description": "Enable or disable the ability to use delegation in a token exchange flow. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "Enable or disable the ability to use delegation in a token exchange flow. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7456,7 +7456,7 @@
       "get": {
         "operationId": "UserSourcesControllerV1_getUserSources",
         "summary": "Get vendor user sources",
-        "description": "This route gets all vendor's user sources. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route gets all vendor's user sources. An environment token is required for this route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -7482,7 +7482,7 @@
       "get": {
         "operationId": "UserSourcesControllerV1_getUserSource",
         "summary": "Get vendor user source",
-        "description": "This route gets a user source by id. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route gets a user source by id. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7513,7 +7513,7 @@
       "delete": {
         "operationId": "UserSourcesControllerV1_deleteUserSource",
         "summary": "Delete user source",
-        "description": "This route deletes a user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route deletes a user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7539,7 +7539,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createAuth0ExternalUserSource",
         "summary": "Create Auth0 external user source",
-        "description": "This route creates a new external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route creates a new external user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7572,7 +7572,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createCognitoExternalUserSource",
         "summary": "Create Cognito external user source",
-        "description": "This route creates a new external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route creates a new external user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7605,7 +7605,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createFirebaseExternalUserSource",
         "summary": "Create Firebase external user source",
-        "description": "This route creates a new external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route creates a new external user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7638,7 +7638,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createCustomCodeExternalUserSource",
         "summary": "Create Custom-Code external user source",
-        "description": "This route creates a new external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route creates a new external user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7671,7 +7671,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createFederationUserSource",
         "summary": "Create Federation user source",
-        "description": "This route creates a new federation user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route creates a new federation user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7704,7 +7704,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateAuth0ExternalUserSource",
         "summary": "Update Auth0 external user source",
-        "description": "This route updates an external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route updates an external user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7740,7 +7740,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateCognitoExternalUserSource",
         "summary": "Update Cognito external user source",
-        "description": "This route updates an external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route updates an external user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7776,7 +7776,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateFirebaseExternalUserSource",
         "summary": "Update Firebase external user source",
-        "description": "This route updates an external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route updates an external user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7812,7 +7812,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateCustomCodeExternalUserSource",
         "summary": "Update Custom-Code external user source",
-        "description": "This route updates an external user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route updates an external user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7848,7 +7848,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateFederationUserSource",
         "summary": "Update Federation user source",
-        "description": "This route updates a federation user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route updates a federation user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -7884,7 +7884,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_assignUserSource",
         "summary": "Assign applications to a user source",
-        "description": "This route assigns applications to a user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route assigns applications to a user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7910,7 +7910,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_unassignUserSource",
         "summary": "Unassign applications from a user source",
-        "description": "This route unassigns applications from a user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route unassigns applications from a user source. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7936,7 +7936,7 @@
       "get": {
         "operationId": "UserSourcesControllerV1_getUserSourceUsers",
         "summary": "Get user source users",
-        "description": "This route gets all of users of a user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "This route gets all of users of a user source. An environment token is required for this route.",
         "parameters": [
           {
             "name": "id",
@@ -8919,8 +8919,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -8958,8 +8957,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -9173,8 +9171,10 @@
     }
   },
   "info": {
-    "title": "Identity Management",
-    "description": "",
+    "title": "Authentication and Identity Management",
+    "description": {
+      "$ref": "descriptions/identity.md"
+    },
     "version": ""
   },
   "servers": [
@@ -12695,15 +12695,13 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -12715,15 +12713,13 @@
         "type": "object",
         "properties": {
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -12783,19 +12779,16 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -12833,19 +12826,16 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
