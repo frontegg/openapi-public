@@ -902,8 +902,10 @@
     }
   },
   "info": {
-    "title": "Team Management",
-    "description": "",
+    "title": "Single Sign-On Overview",
+    "description": {
+      "$ref": "descriptions/sso.md"
+    },
     "version": ""
   },
   "servers": [

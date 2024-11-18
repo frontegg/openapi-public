@@ -765,7 +765,9 @@
   },
   "info": {
     "title": "Audits Overview",
-    "description": "",
+    "description": {
+      "$ref": "descriptions/audits.md"
+    },
     "version": ""
   },
   "servers": [
