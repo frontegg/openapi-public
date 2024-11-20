@@ -115,7 +115,16 @@ function mapEndpoints(endpoints, serviceEndpointPrefix) {
 }
 
 function listOpenAPIs() {
-  return ['agent.json', 'entitlements.json', 'identity.json', 'scim.json', 'sso.json', 'tenants.json'];
+  return [
+    'agent.json',
+    'entitlements.json',
+    'identity.json',
+    'scim.json',
+    'sso.json',
+    'tenants.json',
+    'applications.json',
+    'audits.json',
+  ];
 }
 
 function generateReleaseDescription(newEndpoints, missingEndpoints, deprecatedEndpoints) {
