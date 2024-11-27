@@ -8521,7 +8521,7 @@
     "/resources/users/v1/{userId}/superuser": {
       "put": {
         "operationId": "UsersControllerV1_setUserSuperuserMode",
-        "summary": "Make User superuser",
+        "summary": "Make user super-user",
         "description": "This route sets a user as a super-user. Note that super-user functionality is no longer maintained due to incompatibility with newer features. A super user has access to all tenants within the workspace. Send the user ID as the path params. Also send as a PUT body params a Boolean value for super user. True is super user and false is not. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
@@ -10720,6 +10720,10 @@
             "items": {
               "type": "string"
             }
+          },
+          "metadata": {
+            "description": "Extra data that will be encoded as part of the JWT",
+            "type": "object"
           }
         }
       },
@@ -14363,6 +14367,10 @@
               "link"
             ],
             "description": ""
+          },
+          "codeExpiration": {
+            "description": "",
+            "type": "number"
           }
         },
         "required": [
@@ -14400,6 +14408,10 @@
               "link"
             ],
             "description": ""
+          },
+          "codeExpiration": {
+            "description": "",
+            "type": "number"
           }
         },
         "required": [
