@@ -4,7 +4,7 @@
     "/resources/tenants/v1/{tenantId}": {
       "get": {
         "operationId": "TenantControllerV1_getTenant",
-        "summary": "Get tenant by ID",
+        "summary": "Get account (tenant) by ID",
         "description": "Use the V2 route for **Get Tenant**. This route is no longer relevant.",
         "deprecated": true,
         "parameters": [
@@ -29,8 +29,8 @@
       },
       "put": {
         "operationId": "TenantControllerV1_updateTenant",
-        "summary": "Update Tenant",
-        "description": "Use the V2 route for **Update Tenant**. This route is no longer relevant.",
+        "summary": "Update account (tenant)",
+        "description": "Use the V2 route for **update tenant**. This route is no longer relevant.",
         "deprecated": true,
         "parameters": [
           {
@@ -67,8 +67,8 @@
       },
       "delete": {
         "operationId": "TenantControllerV1_deleteTenant",
-        "summary": "Delete tenant (account)",
-        "description": "Removes a tenant and all users of that tenant. If a tenant is part of the hierarchy, then all of its sub-tenants are assigned to a deleted tenant's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Delete account (tenant)",
+        "description": "Removes an account (tenant) and all users of that account. If an account is part of the hierarchy, then all of its sub-account are assigned to a deleted account's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -93,8 +93,8 @@
     "/resources/tenants/v1": {
       "post": {
         "operationId": "TenantControllerV1_createTenant",
-        "summary": "Create tenant (account)",
-        "description": "Create a new tenant. If tenant with given ID had existed before and was removed, then this action will reactivate that tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Create an account (tenant)",
+        "description": "Create a new account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -117,8 +117,8 @@
       },
       "delete": {
         "operationId": "TenantControllerV1_deleteCurrentTenant",
-        "summary": "Delete current tenant",
-        "description": "Removes current tenant and all users of that tenant. Only users that have the Frontegg Delete Account permission **fe.account-settings.delete.account** would be able to perform this action. A user token is required for this route. A user token can be obtained after user authentication.",
+        "summary": "Delete current account (tenant)",
+        "description": "Removes current account and all users of that account. Only users that have the Frontegg Delete Account permission **fe.account-settings.delete.account** would be able to perform this action. A user token is required for this route. A user token can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -133,8 +133,8 @@
     "/resources/tenants/v1/{tenantId}/metadata": {
       "post": {
         "operationId": "TenantControllerV1_addTenantMetadata",
-        "summary": "Add tenant metadata",
-        "description": "Add metadata to a tenant. If given metadata key already exists, its value is overwritten. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Add account (tenant) metadata",
+        "description": "Add metadata to an account (tenant). If given metadata key already exists, its value is overwritten. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -172,8 +172,8 @@
     "/resources/tenants/v1/{tenantId}/metadata/{key}": {
       "delete": {
         "operationId": "TenantControllerV1_deleteTenantMetadata",
-        "summary": "Delete tenant metadata",
-        "description": "Remove a key/value from a tenant's metadata. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Delete account (tenant) metadata",
+        "description": "Remove a key/value from an account's metadata. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -207,7 +207,7 @@
     "/resources/tenants/v2": {
       "get": {
         "operationId": "TenantControllerV2_getTenants",
-        "summary": "Get tenants",
+        "summary": "Get accounts (tenants)",
         "description": "This route returns all accounts (tenants) for and environment.",
         "parameters": [
           {
@@ -281,8 +281,8 @@
     "/resources/tenants/v2/{tenantId}": {
       "get": {
         "operationId": "TenantControllerV2_getTenant",
-        "summary": "Get tenant",
-        "description": "Get a tenant by identifier. When tenant cannot be found, empty array is returned. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Get an account (tenant)",
+        "description": "Get an account (tenant) by identifier. When an account cannot be found, empty array is returned. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -305,8 +305,8 @@
       },
       "put": {
         "operationId": "TenantControllerV2_updateTenant",
-        "summary": "Update tenant",
-        "description": "Update the given tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Update an account (tenant)",
+        "description": "Update a given account (tenant). A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -341,8 +341,8 @@
     "/resources/sub-tenants/v1": {
       "post": {
         "operationId": "SubTenantControllerV1_createSubTenant",
-        "summary": "Create sub-tenant",
-        "description": "Create a new sub tenant. If tenant with given ID had existed before and was removed, then this action will reactivate that tenant. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
+        "summary": "Create sub-account",
+        "description": "Create a new sub-account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that account. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -367,8 +367,8 @@
     "/resources/sub-tenants/v1/{tenantId}/management": {
       "put": {
         "operationId": "SubTenantControllerV1_updateSubTenantManagement",
-        "summary": "Update sub-tenant management",
-        "description": "Enable sub-tenants to give child accounts multi-seller management capabilities. Send isReseller: true to update sub-tenants with this capability",
+        "summary": "Update sub-account (tenant) management",
+        "description": "Enable sub-account to give child accounts multi-seller management capabilities. Send `isReseller: true` to update sub-accounts with this capability",
         "parameters": [
           {
             "name": "tenantId",
@@ -403,8 +403,8 @@
     "/resources/sub-tenants/v1/{tenantId}/hierarchy-settings": {
       "put": {
         "operationId": "SubTenantControllerV1_updateSubTenantHierarchySettings",
-        "summary": "Update sub tenant hierarchy settings",
-        "description": "Set the default behavior of sub-account access in a tenant. Set subAccountAccessType to defaultOff or defaultOn to allow sub-account access to be changed, or alwaysOn to force sub-account access on all users.",
+        "summary": "Update sub-account hierarchy settings",
+        "description": "Set the default behavior of sub-account access in a account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users.",
         "parameters": [
           {
             "name": "tenantId",
@@ -439,8 +439,8 @@
     "/resources/sub-tenants/v1/{tenantId}": {
       "delete": {
         "operationId": "SubTenantControllerV1_deleteSubTenant",
-        "summary": "Delete sub-tenant by ID",
-        "description": "Delete a sub tenant. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
+        "summary": "Delete a sub-account by ID",
+        "description": "Delete a sub-account. A user or vendor token is required for this route. A user token can be obtained after user authentication.",
         "parameters": [
           {
             "name": "tenantId",
@@ -465,8 +465,8 @@
     "/resources/account-settings/v1": {
       "get": {
         "operationId": "AccountSettingsControllerV1_getSettings",
-        "summary": "Get settings",
-        "description": "Get account settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Get account settings",
+        "description": "Get account settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -489,8 +489,8 @@
       },
       "put": {
         "operationId": "AccountSettingsControllerV1_updateSettings",
-        "summary": "Update settings",
-        "description": "Update account settings of a tenant. There has to be at least one setting passed on the body. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Update account settings",
+        "description": "Update account settings of an account (tenant). There has to be at least one setting passed on the body. An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -529,7 +529,7 @@
       "get": {
         "operationId": "AccountSettingsControllerV1_getPublicSettings",
         "summary": "Get public settings",
-        "description": "Get account public settings of a tenant. A tenant is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Get account public settings of an account (tenant). An account is determined by a given user token when using a user token and by the `**frontegg-tenant-id**` when using a vendor token. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -554,7 +554,7 @@
     "/resources/migrations/v1/tenants": {
       "post": {
         "operationId": "MigrationControllerV1_migrateTenants",
-        "summary": "Migrate tenants",
+        "summary": "Migrate accounts (tenants)",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -580,7 +580,7 @@
     "/resources/migrations/v1/tenants/status/{migrationId}": {
       "get": {
         "operationId": "MigrationControllerV1_getMigrateTenantsStatus",
-        "summary": "Tenant migration status",
+        "summary": "Accounts (tenants) migration status",
         "parameters": [
           {
             "name": "migrationId",
@@ -606,8 +606,8 @@
     "/resources/hierarchy/v1": {
       "get": {
         "operationId": "TenantHierarchyControllerV1_getSubTenants",
-        "summary": "Get sub-tenants",
-        "description": "Get all sub-tenants from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Get sub-accounts (tenants)",
+        "description": "Get all sub-accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -630,8 +630,8 @@
       },
       "post": {
         "operationId": "TenantHierarchyControllerV1_createSubTenants",
-        "summary": "Create sub-tenant",
-        "description": "Assign an existing tenant to the hierarchy as a sub-tenant of a given parent tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Create sub-account (tenant)",
+        "description": "Assign an existing account (tenant) to the hierarchy as a sub-account of a given parent account. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -645,7 +645,7 @@
         },
         "responses": {
           "400": {
-            "description": "When:a) given parameters do not pass validationb) or parent and child tenant are equalc) or child tenant is already a subtenant in other organization's hierarchy"
+            "description": "When:a) given parameters do not pass validationb) or parent and child tenant are equal:c) or child tenant is already a sub-account in other organization's hierarchy"
           }
         },
         "tags": [
@@ -654,8 +654,8 @@
       },
       "delete": {
         "operationId": "TenantHierarchyControllerV1_deleteSubTenant",
-        "summary": "Delete sub-tenant",
-        "description": "Delete given sub-tenant from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Delete sub-account (tenant)",
+        "description": "Delete given sub-account from the hierarchy. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -683,8 +683,8 @@
     "/resources/hierarchy/v1/parents": {
       "get": {
         "operationId": "TenantHierarchyControllerV1_getParentTenants",
-        "summary": "Get parent tenants",
-        "description": "Get all parent tenants from the hierarchy. Tenant ID header is required. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.",
+        "summary": "Get parent accounts (tenants)",
+        "description": "Get all parent accounts from the hierarchy. Tenant ID header is required. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -709,8 +709,8 @@
     "/resources/hierarchy/v1/tree": {
       "get": {
         "operationId": "TenantHierarchyControllerV1_getSubTenantsTree",
-        "summary": "Get sub-tenants hierarchy tree",
-        "description": "Get all tenants hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Get sub-accounts (tenanants) hierarchy tree",
+        "description": "Get all sub-accounts hierarchy as a tree structure. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
