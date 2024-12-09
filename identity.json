@@ -1300,7 +1300,7 @@
     "/resources/migrations/v1/local": {
       "post": {
         "operationId": "UsersControllerV1_migrateUserForVendor",
-        "summary": "Migrate a vendor user",
+        "summary": "Migrate a single user",
         "description": "This route enables you to migrate a user by sending the following required fields: user’s email, their tenantId and metadata, a new user will be created. This endpoint takes other properties as well, such as the user’s name, their phone number, hashed password, etc...",
         "parameters": [],
         "requestBody": {
@@ -1333,7 +1333,7 @@
     "/resources/migrations/v1/local/bulk": {
       "post": {
         "operationId": "UsersControllerV1_bulkMigrateUserForVendor",
-        "summary": "Migrate vendor users in bulk",
+        "summary": "Migrate users in bulk",
         "description": "This route enables you to migrate users in bulk. Expects an array of `users`. Each entry must include a user's `email` and `tenantId`, which specifies that user's parent account. Use the the other fields as needed to store additional information. We recommend using the `metadata` property if you need to store custom information in a user's object.",
         "parameters": [],
         "requestBody": {
