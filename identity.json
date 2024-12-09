@@ -12304,6 +12304,10 @@
               "type": "string"
             }
           },
+          "vendorMetadata": {
+            "type": "string",
+            "description": "Additional vendor-only data. stringified JSON object"
+          },
           "email": {
             "type": "string",
             "description": ""
@@ -12323,6 +12327,14 @@
           },
           "authenticatorAppMfaSecret": {
             "type": "string",
+            "description": ""
+          },
+          "phoneNumberType": {
+            "type": "string",
+            "enum": [
+              "auth",
+              "mfa"
+            ],
             "description": ""
           }
         },
