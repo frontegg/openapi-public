@@ -12269,7 +12269,7 @@
           },
           "phoneNumber": {
             "type": "string",
-            "description": "phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: \"+16037184056\" The number must be unique"
+            "description": "phoneNumber can be used either for login with SMS or for MFA, in combination with `phoneNumberType`. The required format is `area code + number`, without spaces. For example: `+16037184056`. Note that the number must be unique"
           },
           "provider": {
             "type": "string",
