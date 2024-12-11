@@ -1,9 +1,38 @@
 <br />
 <div align="center">
-<img src="https://fronteggstuff.blob.core.windows.net/frongegg-logos/logo-transparent.png" alt="Frontegg Logo" width="400" height="90">
+  <!-- Default Logo for Light Mode -->
+  <img 
+    src="https://i.ibb.co/hdQR89W/frontegg-logo-black.png" 
+    alt="Frontegg Logo" 
+    width="400" 
+    height="90"
+    id="logo"
+    style="display: block;"
+  >
 
-<h3 align="center">Frontegg's OpenAPI Specifications</h3>
+  <!-- Alternate Logo for Dark Mode -->
+  <img 
+    src="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png" 
+    alt="Frontegg Logo (Dark Mode)" 
+    width="400" 
+    height="90" 
+    id="logo-dark"
+    style="display: none;"
+  >
+
+  <h3 align="center">Frontegg's OpenAPI Specifications</h3>
 </div>
+
+<style>
+  @media (prefers-color-scheme: dark) {
+    #logo {
+      display: none;
+    }
+    #logo-dark {
+      display: block;
+    }
+  }
+</style>
 
 ## OpenAPI Specifications 
 
