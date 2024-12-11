@@ -1,8 +1,12 @@
+<br />
+<div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/hdQR89W/frontegg-logo-black.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://i.ibb.co/hdQR89W/frontegg-logo-black.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png">
   <img alt="Logo" src="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png" width="200">
 </picture>
+<h3 align="center">Frontegg's OpenAPI Specifications</h3>
+</div>
 
 ## OpenAPI Specifications 
 
