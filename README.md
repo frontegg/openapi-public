@@ -1,37 +1,8 @@
-<br />
-<div align="center">
-  <!-- Default Logo for Light Mode -->
-  <img 
-    src="https://i.ibb.co/hdQR89W/frontegg-logo-black.png" 
-    alt="Frontegg Logo" 
-    width="400" 
-    height="90"
-    id="logo"
-    style="display: block;"
-  >
-  <!-- Alternate Logo for Dark Mode -->
-  <img 
-    src="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png" 
-    alt="Frontegg Logo (Dark Mode)" 
-    width="400" 
-    height="90" 
-    id="logo-dark"
-    style="display: block;"
-  >
-
-  <h3 align="center">Frontegg's OpenAPI Specifications</h3>
-</div>
-
-<style>
-  @media (prefers-color-scheme: dark) {
-    #logo {
-      display: none;
-    }
-    #logo-dark {
-      display: block;
-    }
-  }
-</style>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://i.ibb.co/hdQR89W/frontegg-logo-black.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png">
+  <img alt="Logo" src="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png" width="200">
+</picture>
 
 ## OpenAPI Specifications 
 
