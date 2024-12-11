@@ -9,7 +9,6 @@
     id="logo"
     style="display: block;"
   >
-
   <!-- Alternate Logo for Dark Mode -->
   <img 
     src="https://i.ibb.co/gtpj5kT/frontegg-logo-white.png" 
@@ -17,7 +16,7 @@
     width="400" 
     height="90" 
     id="logo-dark"
-    style="display: none;"
+    style="display: block;"
   >
 
   <h3 align="center">Frontegg's OpenAPI Specifications</h3>
