@@ -11202,7 +11202,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserV3Dto"
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserV3Dto"
+                      }
+                    }
+                  }
                 }
               }
             }
