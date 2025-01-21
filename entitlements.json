@@ -512,6 +512,21 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "featureKeys",
+            "required": false,
+            "in": "query",
+            "description": "Comma separated feature Keys that can be used to filter the results",
+            "example": [
+              "test-feature"
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
@@ -1009,6 +1024,21 @@
             "example": "flase",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "featureKeys",
+            "required": false,
+            "in": "query",
+            "description": "Comma separated feature Keys that can be used to filter the results",
+            "example": [
+              "test-feature"
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -2014,6 +2044,110 @@
           "permissions"
         ]
       },
+      "EntitlementPlan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "UUID string that represents the plan ID",
+            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+          },
+          "vendorId": {
+            "type": "string",
+            "description": "UUID string that represents the vendor ID",
+            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+          },
+          "name": {
+            "type": "string",
+            "description": "String that represents the plan name",
+            "example": "Test Plan"
+          },
+          "defaultTimeLimitation": {
+            "type": "number",
+            "description": "Number that represents the default time limitation in days for auto-assigned plans",
+            "example": "30"
+          },
+          "description": {
+            "type": "string",
+            "description": "Feature plan description",
+            "example": "This is a test plan"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Date when plan was created",
+            "example": "2022-01-01T00:00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Date when plan was last updated",
+            "example": "2022-01-01T00:00:00"
+          }
+        },
+        "required": [
+          "id",
+          "vendorId",
+          "name",
+          "createdAt"
+        ]
+      },
+      "EntitlementDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "UUID string that represents the entitlement ID",
+            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+          },
+          "planId": {
+            "type": "string",
+            "description": "UUID string that represents the plan ID",
+            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+          },
+          "tenantId": {
+            "type": "string",
+            "description": "UUID string that represents the tenant ID",
+            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+          },
+          "userId": {
+            "type": "string",
+            "description": "UUID string that represents the user ID",
+            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
+          },
+          "expirationDate": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Date of entitlement expiration",
+            "example": "2022-01-01T12:00:00"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Date when entitlement was created",
+            "example": "2022-01-01T12:00:00"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Date when entitlement was last updated",
+            "example": "2022-01-01T12:00:00"
+          },
+          "plan": {
+            "description": "Get the related plan object of the entitlement, in case `withRelations` is set to `true`",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntitlementPlan"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "planId",
+          "tenantId",
+          "createdAt",
+          "plan"
+        ]
+      },
       "PlanDto": {
         "type": "object",
         "properties": {
@@ -2090,7 +2224,7 @@
             "description": "List of features linked to a plan",
             "allOf": [
               {
-                "$ref": "#/components/schemas/PlanFeatureDto"
+                "$ref": "#/components/schemas/EntitlementDto"
               }
             ]
           }
@@ -2791,110 +2925,6 @@
             "example": "{ \"some-key\": \"some-value\" }"
           }
         }
-      },
-      "EntitlementPlan": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "UUID string that represents the plan ID",
-            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-          },
-          "vendorId": {
-            "type": "string",
-            "description": "UUID string that represents the vendor ID",
-            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-          },
-          "name": {
-            "type": "string",
-            "description": "String that represents the plan name",
-            "example": "Test Plan"
-          },
-          "defaultTimeLimitation": {
-            "type": "number",
-            "description": "Number that represents the default time limitation in days for auto-assigned plans",
-            "example": "30"
-          },
-          "description": {
-            "type": "string",
-            "description": "Feature plan description",
-            "example": "This is a test plan"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Date when plan was created",
-            "example": "2022-01-01T00:00:00"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Date when plan was last updated",
-            "example": "2022-01-01T00:00:00"
-          }
-        },
-        "required": [
-          "id",
-          "vendorId",
-          "name",
-          "createdAt"
-        ]
-      },
-      "EntitlementDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "UUID string that represents the entitlement ID",
-            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-          },
-          "planId": {
-            "type": "string",
-            "description": "UUID string that represents the plan ID",
-            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-          },
-          "tenantId": {
-            "type": "string",
-            "description": "UUID string that represents the tenant ID",
-            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-          },
-          "userId": {
-            "type": "string",
-            "description": "UUID string that represents the user ID",
-            "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
-          },
-          "expirationDate": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Date of entitlement expiration",
-            "example": "2022-01-01T12:00:00"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Date when entitlement was created",
-            "example": "2022-01-01T12:00:00"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Date when entitlement was last updated",
-            "example": "2022-01-01T12:00:00"
-          },
-          "plan": {
-            "description": "Get the related plan object of the entitlement, in case `withRelations` is set to `true`",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntitlementPlan"
-              }
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "planId",
-          "tenantId",
-          "createdAt",
-          "plan"
-        ]
       },
       "CreateEntitlementDto": {
         "type": "object",
