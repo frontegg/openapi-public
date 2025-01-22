@@ -2281,6 +2281,14 @@
             "description": "Boolean indicating whether a plan is assigned automatically upon signup",
             "example": "true",
             "default": false
+          },
+          "featureKeys": {
+            "description": "Array of feature-keys to be applied on the plan",
+            "example": "[\"my-cool-feature\"]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -2330,6 +2338,14 @@
             "type": "boolean",
             "description": "Boolean indicating whether a plan is assigned automatically upon signup",
             "example": "true"
+          },
+          "featureKeys": {
+            "description": "Array of feature-keys to be applied on the plan",
+            "example": "[\"my-cool-feature\"]",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
