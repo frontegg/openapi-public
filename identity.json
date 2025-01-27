@@ -8273,7 +8273,7 @@
     "/resources/users/phone-numbers/v1/vendor/{userId}/{phoneId}": {
       "delete": {
         "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumberVendor",
-        "summary": "Delete user phone number by vendor",
+        "summary": "Delete user phone number on an environment",
         "description": "This route deletes user phone number without verification.",
         "parameters": [
           {
