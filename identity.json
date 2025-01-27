@@ -905,7 +905,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/RoleResponse"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -1488,7 +1508,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DomainRestrictionsResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/DomainRestrictionsResponse"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -2011,6 +2051,61 @@
         ]
       }
     },
+    "/resources/users/v1/signUp": {
+      "post": {
+        "operationId": "UsersControllerV1_signUpUser",
+        "summary": "Signup user",
+        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "frontegg-vendor-host",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-application-id",
+            "in": "header",
+            "description": "The application id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignUpResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
     "/resources/configurations/v1/restrictions/ip/config": {
       "post": {
         "operationId": "IPRestrictionsControllerV1_createDomainRestriction",
@@ -2089,7 +2184,34 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GetIpRestrictionResponse"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3320,6 +3442,60 @@
         "description": ""
       }
     },
+    "/resources/configurations/v1/mfa": {
+      "post": {
+        "operationId": "MfaController_upsertMfaConfig",
+        "summary": "Update MFA configuration",
+        "description": "This route updates the MFA configuration for a vendor. Send values in the POST body as objects for params that you want to add or update. See the dropdowns for available values for each object param.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MfaConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MfaConfigResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "MFA configuration"
+        ]
+      },
+      "get": {
+        "operationId": "MfaController_getMfaConfig",
+        "summary": "Get MFA configuration",
+        "description": "This route gets the MFA configuration for a vendor.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MfaConfigResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "MFA configuration"
+        ]
+      }
+    },
     "/resources/configurations/v1/mfa-policy": {
       "post": {
         "operationId": "SecurityPolicyController_createMfaPolicy",
@@ -3533,60 +3709,6 @@
           "MFA Settings"
         ],
         "description": ""
-      }
-    },
-    "/resources/configurations/v1/mfa": {
-      "post": {
-        "operationId": "MfaController_upsertMfaConfig",
-        "summary": "Update MFA configuration",
-        "description": "This route updates the MFA configuration for a vendor. Send values in the POST body as objects for params that you want to add or update. See the dropdowns for available values for each object param.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MfaConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MfaConfigResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "MFA configuration"
-        ]
-      },
-      "get": {
-        "operationId": "MfaController_getMfaConfig",
-        "summary": "Get MFA configuration",
-        "description": "This route gets the MFA configuration for a vendor.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MfaConfigResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "MFA configuration"
-        ]
       }
     },
     "/resources/configurations/v1/password": {
@@ -4944,6 +5066,41 @@
               "type": "number"
             },
             "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "userId",
+                "phoneNumber"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_phoneNumber",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -4952,7 +5109,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -5931,7 +6108,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GroupResponse"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GroupResponse"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -6371,7 +6568,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserV3Dto"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UserV3Dto"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -7075,7 +7292,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserV3Dto"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UserV3Dto"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -7267,61 +7504,6 @@
           "User management"
         ],
         "description": ""
-      }
-    },
-    "/resources/users/v1/signUp": {
-      "post": {
-        "operationId": "UsersControllerV1_signUpUser",
-        "summary": "Signup user",
-        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
-        "parameters": [
-          {
-            "name": "frontegg-vendor-host",
-            "required": true,
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "frontegg-application-id",
-            "in": "header",
-            "description": "The application id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignUpUserDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SignUpResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User management"
-        ]
       }
     },
     "/resources/users/v3/me": {
@@ -7954,10 +8136,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetUserSourceUsersResponseDTO"
-                  }
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GetUserSourceUsersResponseDTO"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -9269,6 +9468,10 @@
             "description": ""
           },
           "description": {
+            "type": "string",
+            "description": ""
+          },
+          "id": {
             "type": "string",
             "description": ""
           }
@@ -11775,6 +11978,54 @@
         },
         "required": [
           "userIds"
+        ]
+      },
+      "FronteggPaginationWrapper": {
+        "type": "object",
+        "properties": {}
+      },
+      "FronteggPaginationLinks": {
+        "type": "object",
+        "properties": {
+          "next": {
+            "type": "string",
+            "description": ""
+          },
+          "prev": {
+            "type": "string",
+            "description": ""
+          },
+          "first": {
+            "type": "string",
+            "description": ""
+          },
+          "last": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "next",
+          "prev",
+          "first",
+          "last"
+        ]
+      },
+      "FronteggPaginationMetadata": {
+        "type": "object",
+        "properties": {
+          "totalItems": {
+            "type": "number",
+            "description": ""
+          },
+          "totalPages": {
+            "type": "number",
+            "description": ""
+          }
+        },
+        "required": [
+          "totalItems",
+          "totalPages"
         ]
       },
       "TenantStatus": {
@@ -14460,6 +14711,10 @@
           }
         }
       },
+      "GetIpRestrictionResponse": {
+        "type": "object",
+        "properties": {}
+      },
       "CreateOrUpdateIpRestrictionDto": {
         "type": "object",
         "properties": {
@@ -14626,6 +14881,18 @@
           "token": {
             "type": "string",
             "description": "token"
+          },
+          "serviceId": {
+            "type": "string",
+            "description": "service ID"
+          },
+          "provider": {
+            "type": "string",
+            "description": "provider"
+          },
+          "channel": {
+            "type": "string",
+            "description": "channel"
           }
         }
       },
@@ -14647,10 +14914,19 @@
           "forcePermissions": {
             "type": "boolean",
             "description": ""
+          },
+          "machineToMachineAuthStrategy": {
+            "type": "string",
+            "enum": [
+              "ClientCredentials",
+              "AccessToken"
+            ],
+            "description": ""
           }
         },
         "required": [
-          "forcePermissions"
+          "forcePermissions",
+          "machineToMachineAuthStrategy"
         ]
       },
       "ActivateUserDto": {
