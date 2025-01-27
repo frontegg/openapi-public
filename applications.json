@@ -434,6 +434,32 @@
           "Applications settings"
         ]
       }
+    },
+    "/resources/applications/v1/credentials/shared/regenerate": {
+      "post": {
+        "operationId": "regenerateApplicationSharedSecretCredentials",
+        "summary": "Regenerate application shared secret credential",
+        "description": "Regenerate application shared secret client credential",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegenerateApplicationClientCredentialsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
     }
   },
   "info": {
@@ -742,10 +768,15 @@
           "clientSecret": {
             "type": "string",
             "description": ""
+          },
+          "sharedSecret": {
+            "type": "string",
+            "description": ""
           }
         },
         "required": [
-          "clientSecret"
+          "clientSecret",
+          "sharedSecret"
         ]
       },
       "RegenerateApplicationClientCredentialsRequest": {

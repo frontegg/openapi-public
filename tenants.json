@@ -278,6 +278,29 @@
         ]
       }
     },
+    "/resources/tenants/v2/alias/{alias}": {
+      "get": {
+        "operationId": "TenantControllerV2_getTenantByAlias",
+        "summary": "Get tenant by alias",
+        "description": "Get a tenant with custom login by alias. When tenant cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [
+          {
+            "name": "alias",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/resources/tenants/v2/{tenantId}": {
       "get": {
         "operationId": "TenantControllerV2_getTenant",
