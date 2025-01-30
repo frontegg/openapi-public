@@ -464,9 +464,7 @@
   },
   "info": {
     "title": "Multi-Apps Overview",
-    "description": {
-      "$ref": "descriptions/multi-apps.md"
-    },
+    "description": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
     "version": ""
   },
   "servers": [

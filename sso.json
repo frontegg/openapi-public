@@ -946,9 +946,7 @@
   },
   "info": {
     "title": "Single Sign-On Overview",
-    "description": {
-      "$ref": "descriptions/sso.md"
-    },
+    "description": "Frontegg’s Single Sign-On (SSO) enables users to sign in using their existing credentials, removing the need to create new usernames and passwords specifically for your application.\n\nOur SSO solution supports two popular protocols: SAML and OpenID Connect (OIDC). These protocols facilitate user authentication across multiple applications and can be configured via Frontegg’s Management Portal or the Self-Service menu within your application.\n\nThis section lists all relevant API endpoints, organized into Management and Self-Service categories:\n\n**Management Endpoints**: Require environment-level authorization and provide comprehensive control over SSO (SAML and OIDC) resources.\n<br>\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), allowing users with appropriate permissions to create, update, and delete SSO connections on their accounts.",
     "version": ""
   },
   "servers": [

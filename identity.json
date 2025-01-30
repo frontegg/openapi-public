@@ -9233,9 +9233,7 @@
   },
   "info": {
     "title": "Authentication and Identity Management",
-    "description": {
-      "$ref": "descriptions/identity.md"
-    },
+    "description": "Frontegg offers a comprehensive suite of authentication, user management, and security features to streamline identity management and enhance application security. This section provides an overview of all relevant API endpoints, organized into Authentication, Management, and Self-Service categories.\n\n**Authentication Endpoints**: Enable secure user login, multi-factor authentication (MFA), passwordless options, and social login integrations, allowing for a flexible and robust sign-in experience.\n\n**Management Endpoints**: Require environment-level authorization and provide full control over SSO (SAML and OpenID Connect) resources, user roles, permissions, and configurations. These endpoints are designed for administrative use, allowing for centralized identity and access management.\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), these endpoints empower users to manage their SSO connections and other account settings. Users with the necessary permissions can create, update, or delete SSO configurations directly, ensuring they have the tools to manage their access securely and independently.\n\nEach category in this section helps you configure and extend Frontegg’s capabilities, providing the flexibility to manage user identities, authentication protocols, and access controls as per your application’s needs.",
     "version": ""
   },
   "servers": [

@@ -758,9 +758,7 @@
   },
   "info": {
     "title": "Account Management Overview",
-    "description": {
-      "$ref": "descriptions/tenants.md"
-    },
+    "description": "\nFrontegg is built with multi-tenancy in mind, allowing the creation and management of multiple accounts (tenants) within an environment. This section provides an overview of relevant API endpoints, organized into Management and Self-Service categories, supporting the creation of accounts, hierarchies, and sub-accounts.\n\n**Management Endpoints**: Require environment-level authorization and offer full control over resources, including SSO (SAML and OIDC) configurations, account hierarchies, and sub-accounts.\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), enabling users with the appropriate permissions to create, update, and delete sub-accounts from ah hierarchy.",
     "version": ""
   },
   "servers": [
