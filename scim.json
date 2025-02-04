@@ -226,9 +226,7 @@
   },
   "info": {
     "title": "SCIM Provisioning Overview",
-    "description": {
-      "$ref": "descriptions/scim.md"
-    },
+    "description": "The SCIM Provisioning endpoints enable seamless management of user identities and groups in compliance with the [SCIM (System for Cross-domain Identity Management) standard](https://datatracker.ietf.org/doc/html/rfc7644). This service supports automatic provisioning and deprovisioning of user accounts, ensuring data synchronization across multiple identity providers and applications.\n\nFully compliant with SCIM 2.0, the SCIM Provisioning Service guarantees compatibility and interoperability across various identity platforms.\n\nThis section lists all relevant API endpoints, organized into Management and Self-Service categories:\n\n**Management Endpoints**: Require environment-level authorization and offer comprehensive control over SCIM resources.\n<br>\n\n**Self-Service Endpoints**: Accessible with a user token (JWT) and allow users with the necessary permissions to create, update, and delete a SCIM connection on their account.",
     "version": ""
   },
   "servers": [
