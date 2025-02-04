@@ -1858,9 +1858,7 @@
   },
   "info": {
     "title": "Entitlements Overview",
-    "description": {
-      "$ref": "descriptions/entitlements.md"
-    },
+    "description": "The Entitlements Engine is powered by the `isEntitledTo` query and is designed to manage and control user access within your application. It enables you to grant users specific roles, permissions, feature access, and more, providing a flexible framework for access management.\n\nBelow is an overview of API endpoints relevant to managing features, plans, feature flags, and API access control within your application. All endpoints are classified as **Management Endpoints**, requiring environment-level authorization and offering comprehensive control over entitlement resources.",
     "version": ""
   },
   "servers": [

@@ -765,9 +765,7 @@
   },
   "info": {
     "title": "Audits Overview",
-    "description": {
-      "$ref": "descriptions/audits.md"
-    },
+    "description": "Frontegg provides automatic audit logging from the moment it’s integrated into your application, capturing key events as your customers interact with the product. User-management activities, such as logins and settings updates, are automatically logged without any additional setup required on your part.\n\nAlongside Frontegg’s out-of-the-box logged events, you can add custom audit logs via the `POST` API or our backend SDKs, preserving the standard audit event structure. Custom logs will appear to your customers in their dedicated audit section within the self-service menu.\n\nThis section lists all relevant API endpoints, organized into Management and Self-Service categories:\n\n**Management Endpoints**: Require environment-level authorization and offer comprehensive control over audits resources.\n<br>\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), allowing users with the required permissions to create, update, and delete aduits connections on their account.",
     "version": ""
   },
   "servers": [

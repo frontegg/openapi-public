@@ -136,9 +136,7 @@
   },
   "info": {
     "title": "Entitlements Agent (PDP)",
-    "description": {
-      "$ref": "descriptions/entitlements-agent.md"
-    },
+    "description": "The endpoints in this section pertain to the usage of an Entitlements Agent. When your application or service needs to verify entitlements, it can query the Entitlements Agent directly via HTTP.\n\nThese endpoints can be integrated into any backend framework, enabling you to leverage entitlements for advanced authorization needs.",
     "version": ""
   },
   "servers": [
