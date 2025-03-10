@@ -1008,17 +1008,7 @@
         "operationId": "RolesControllerV2_getDistinctTenants",
         "summary": "Get distinct assigned tenants of roles",
         "description": "This route returns all assigned tenant ids from roles for vendor.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": ""
@@ -2081,7 +2071,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SignUpUserDto"
+                "$ref": "#/components/schemas/SignUpUserEmailDto"
               }
             }
           }
@@ -2095,14 +2085,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SignUpResponseDto"
+                  "$ref": "#/components/schemas/SignUpUserEmailDto"
                 }
               }
             }
           }
         },
         "tags": [
-          "User management"
+          "General"
         ]
       }
     },
@@ -4023,6 +4013,82 @@
                 }
               }
             }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/configurations/v1/password-rotation": {
+      "get": {
+        "operationId": "PasswordRotationConfigControllerV1_getPasswordRotationConfiguration",
+        "summary": "Get password rotation-period configuration",
+        "description": "This route allows vendors or tenants to get the configuration of their password rotation period. ",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordRotationConfigurationResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Password rotation configuration not found"
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      },
+      "post": {
+        "operationId": "PasswordRotationConfigControllerV1_upsertPasswordRotationConfiguration",
+        "summary": "Update or Create password rotation-period configuration",
+        "description": "This route allows vendors or tenants to update or create configuration for a password rotation-period. If no rotation-period was previously configured, a new configuration will be created with a default value. ",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdatePasswordRotationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/configurations/v1/password-rotation/vendor": {
+      "get": {
+        "operationId": "PasswordRotationConfigControllerV1_getVendorPasswordRotationConfiguration",
+        "summary": "Get vendor password rotation-period configuration",
+        "description": "This route allows vendors or tenants to get the configuration of their password rotation period. ",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordRotationConfigurationResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Password rotation configuration not found"
           }
         },
         "tags": [
@@ -10772,6 +10838,11 @@
             "items": {
               "type": "string"
             }
+          },
+          "expiresInMinutes": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Token expiration time in minutes. In case of undefined, the token won't be expired"
           }
         }
       },
@@ -12497,7 +12568,8 @@
           "scrypt",
           "firebase-scrypt",
           "pbkdf2",
-          "argon2"
+          "argon2",
+          "sha256"
         ]
       },
       "MigrateUserRequest": {
@@ -14692,6 +14764,69 @@
           }
         }
       },
+      "PasswordRotationConfigurationResponse": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": ""
+          },
+          "rotationPeriod": {
+            "type": "number",
+            "description": ""
+          },
+          "notificationPeriod": {
+            "type": "number",
+            "description": ""
+          },
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "createdAt",
+          "updatedAt",
+          "isActive",
+          "rotationPeriod",
+          "notificationPeriod",
+          "tenantId"
+        ]
+      },
+      "CreateOrUpdatePasswordRotationDto": {
+        "type": "object",
+        "properties": {
+          "isActive": {
+            "type": "boolean",
+            "description": "Indicates if the password rotation is active",
+            "default": false
+          },
+          "rotationPeriod": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 2628000,
+            "description": "The period for password rotation in minutes",
+            "default": 129600
+          },
+          "notificationPeriod": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 2628000,
+            "description": "The period for notification before password rotation in minutes",
+            "default": 10080
+          }
+        }
+      },
       "CreateOrUpdateIpRestrictionConfigDto": {
         "type": "object",
         "properties": {
@@ -15076,6 +15211,18 @@
           },
           "mfaToken": {
             "type": "string",
+            "description": ""
+          },
+          "resetPasswordToken": {
+            "type": "string",
+            "description": ""
+          },
+          "passwordExpiresIn": {
+            "type": "number",
+            "description": ""
+          },
+          "notificationPeriod": {
+            "type": "number",
             "description": ""
           },
           "mfaEnrolled": {
@@ -15740,7 +15887,7 @@
           "code"
         ]
       },
-      "SignUpUserDto": {
+      "SignUpUserEmailDto": {
         "type": "object",
         "properties": {
           "provider": {
@@ -15779,10 +15926,6 @@
             "type": "string",
             "description": ""
           },
-          "phoneNumber": {
-            "type": "string",
-            "description": ""
-          },
           "skipInviteEmail": {
             "type": "boolean",
             "description": ""
@@ -15807,6 +15950,10 @@
             "description": ""
           },
           "invitationToken": {
+            "type": "string",
+            "description": ""
+          },
+          "phoneNumber": {
             "type": "string",
             "description": ""
           }
@@ -15834,6 +15981,10 @@
           },
           "authResponse": {
             "$ref": "#/components/schemas/AuthenticationResponseDto",
+            "description": ""
+          },
+          "activationToken": {
+            "type": "string",
             "description": ""
           }
         }
