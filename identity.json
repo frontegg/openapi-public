@@ -594,7 +594,7 @@
       "get": {
         "operationId": "getInvitationConfiguration",
         "summary": "Get tenant invite configuration",
-        "description": "This route checks if the vendor allows tenant invitations and if notifications are active. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route checks whether account (tenant) invitations are enabled on the environment and whether notifications are active. An environment token is required for this route, it can be obtained from the environment authentication route.",
         "parameters": [],
         "responses": {
           "200": {
