@@ -2045,7 +2045,7 @@
       "post": {
         "operationId": "UsersControllerV1_signUpUser",
         "summary": "Signup user",
-        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route is for signing up a new user and new account (tenant). Send the user's information in the POST body. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
