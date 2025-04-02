@@ -565,6 +565,10 @@
           "integrationFinishedAt": {
             "type": "string",
             "description": ""
+          },
+          "metadata": {
+            "type": "object",
+            "description": ""
           }
         },
         "required": [
@@ -652,6 +656,10 @@
           "description": {
             "type": "string",
             "description": ""
+          },
+          "metadata": {
+            "type": "object",
+            "description": ""
           }
         },
         "required": [
@@ -709,6 +717,10 @@
           },
           "description": {
             "type": "string",
+            "description": ""
+          },
+          "metadata": {
+            "type": "object",
             "description": ""
           }
         }
