@@ -3704,8 +3704,8 @@
     "/resources/configurations/v1/password": {
       "post": {
         "operationId": "PasswordPolicyController_addOrUpdatePasswordConfig",
-        "summary": "Update password configuration",
-        "description": "This route updates the password policy for all tenants. To update the password policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. Send the updated values as POST body params.",
+        "summary": "Create or update password configuration",
+        "description": "This route creates or updates the password policy for the entire environment. To update the password policy for a specific account (tenant), send the tenant’s ID in the **`frontegg-tenant-id`** header. Send the updated values as POST body params.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3745,8 +3745,8 @@
       },
       "get": {
         "operationId": "PasswordPolicyController_getPasswordConfig",
-        "summary": "Gets password policy configuration",
-        "description": "This route gets the password policy for all tenants. To get the password policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "summary": "Get password policy configuration",
+        "description": "This route gets the password policy for all account (tenants). To get the password policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -4047,7 +4047,7 @@
       },
       "post": {
         "operationId": "PasswordRotationConfigControllerV1_upsertPasswordRotationConfiguration",
-        "summary": "Update or Create password rotation-period configuration",
+        "summary": "Create or update password rotation-period configuration",
         "description": "This route allows vendors or tenants to update or create configuration for a password rotation-period. If no rotation-period was previously configured, a new configuration will be created with a default value. ",
         "parameters": [],
         "requestBody": {
@@ -5363,6 +5363,42 @@
         "tags": [
           "SMS"
         ]
+      }
+    },
+    "/resources/users/phone-numbers/v1/me": {
+      "get": {
+        "operationId": "UserPhoneNumbersControllerV1_getUserOwnPhoneNumbers",
+        "summary": "Get current user`s phone numbers",
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SMS"
+        ],
+        "description": ""
       }
     },
     "/resources/configurations/v1/sms": {
@@ -10206,6 +10242,36 @@
           "email"
         ]
       },
+      "OptionalTestsConfig": {
+        "type": "object",
+        "properties": {
+          "requireLowercase": {
+            "type": "boolean",
+            "description": "Require at least one lowercase letter"
+          },
+          "requireUppercase": {
+            "type": "boolean",
+            "description": "Require at least one uppercase letter"
+          },
+          "requireNumbers": {
+            "type": "boolean",
+            "description": "Require at least one number"
+          },
+          "requireSpecialChars": {
+            "type": "boolean",
+            "description": "Require at least one special character"
+          }
+        }
+      },
+      "RequiredTestsConfig": {
+        "type": "object",
+        "properties": {
+          "checkThreeRepeatedChars": {
+            "type": "boolean",
+            "description": "Check if the password contains three repeated characters"
+          }
+        }
+      },
       "PasswordConfigRequest": {
         "type": "object",
         "properties": {
@@ -10231,6 +10297,14 @@
           },
           "blockPwnedPasswords": {
             "type": "boolean",
+            "description": ""
+          },
+          "optionalTests": {
+            "$ref": "#/components/schemas/OptionalTestsConfig",
+            "description": ""
+          },
+          "requiredTests": {
+            "$ref": "#/components/schemas/RequiredTestsConfig",
             "description": ""
           }
         }
@@ -10260,6 +10334,14 @@
           },
           "blockPwnedPasswords": {
             "type": "boolean",
+            "description": ""
+          },
+          "optionalTests": {
+            "type": "object",
+            "description": ""
+          },
+          "requiredTests": {
+            "type": "object",
             "description": ""
           }
         },
@@ -11382,6 +11464,8 @@
         "required": [
           "id",
           "email",
+          "name",
+          "profilePictureUrl",
           "sub",
           "verified",
           "mfaEnrolled",
@@ -13210,6 +13294,8 @@
         "required": [
           "id",
           "email",
+          "name",
+          "profilePictureUrl",
           "sub",
           "verified",
           "mfaEnrolled",
@@ -13514,6 +13600,8 @@
         "required": [
           "id",
           "email",
+          "name",
+          "profilePictureUrl",
           "sub",
           "verified",
           "mfaEnrolled",
@@ -15203,6 +15291,10 @@
           "tokenType": {
             "type": "string",
             "default": "bearer",
+            "description": ""
+          },
+          "otcToken": {
+            "type": "string",
             "description": ""
           },
           "mfaRequired": {
