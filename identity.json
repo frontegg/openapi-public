@@ -4023,8 +4023,8 @@
     "/resources/configurations/v1/password-rotation": {
       "get": {
         "operationId": "PasswordRotationConfigControllerV1_getPasswordRotationConfiguration",
-        "summary": "Get password rotation-period configuration",
-        "description": "This route allows vendors or tenants to get the configuration of their password rotation period. ",
+        "summary": "Get password expiration period configuration",
+        "description": "Retrieve the password expiration period configuration for an environment or account.",
         "parameters": [],
         "responses": {
           "200": {
@@ -4047,8 +4047,8 @@
       },
       "post": {
         "operationId": "PasswordRotationConfigControllerV1_upsertPasswordRotationConfiguration",
-        "summary": "Create or update password rotation-period configuration",
-        "description": "This route allows vendors or tenants to update or create configuration for a password rotation-period. If no rotation-period was previously configured, a new configuration will be created with a default value. ",
+        "summary": "Manage password expiration",
+        "description": "Create or update the configuration for the password expiration policy. If no configuration exists, a default policy will be applied.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4073,8 +4073,8 @@
     "/resources/configurations/v1/password-rotation/vendor": {
       "get": {
         "operationId": "PasswordRotationConfigControllerV1_getVendorPasswordRotationConfiguration",
-        "summary": "Get vendor password rotation-period configuration",
-        "description": "This route allows vendors or tenants to get the configuration of their password rotation period. ",
+        "summary": "Get environment configuration for password expiration period.",
+        "description": "Retrieve the password expiration period configuration for an environment or account.",
         "parameters": [],
         "responses": {
           "200": {
@@ -14896,21 +14896,21 @@
         "properties": {
           "isActive": {
             "type": "boolean",
-            "description": "Indicates if the password rotation is active",
+            "description": "Indicates whether password expiration is enabled",
             "default": false
           },
           "rotationPeriod": {
             "type": "number",
             "minimum": 1,
             "maximum": 2628000,
-            "description": "The period for password rotation in minutes",
+            "description": "The password expiration period, in minutes",
             "default": 129600
           },
           "notificationPeriod": {
             "type": "number",
             "minimum": 0,
             "maximum": 2628000,
-            "description": "The period for notification before password rotation in minutes",
+            "description": "Notification period before password expiration, in minutes",
             "default": 10080
           }
         }
