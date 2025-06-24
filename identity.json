@@ -1815,7 +1815,8 @@
                 "UnlockUser",
                 "UnlockUserSuccess",
                 "ActivateUserWithCode",
-                "InviteToTenantWithCode"
+                "InviteToTenantWithCode",
+                "VerifyNewEmail"
               ],
               "type": "string"
             },
@@ -1906,7 +1907,8 @@
                 "UnlockUser",
                 "UnlockUserSuccess",
                 "ActivateUserWithCode",
-                "InviteToTenantWithCode"
+                "InviteToTenantWithCode",
+                "VerifyNewEmail"
               ],
               "type": "string"
             }
@@ -3925,6 +3927,39 @@
         ]
       }
     },
+    "/resources/users/v1/passwords/reset/sms": {
+      "post": {
+        "operationId": "UsersPasswordControllerV1_resetPasswordViaSms",
+        "summary": "Reset password via SMS",
+        "description": "This route sends a reset password SMS to the user. Send an OTC to the user’s phone number in the POST body.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordViaSmsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordViaSmsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
     "/resources/users/v1/passwords/reset/verify": {
       "post": {
         "operationId": "UsersPasswordControllerV1_verifyResetPassword",
@@ -3944,6 +3979,39 @@
         "responses": {
           "201": {
             "description": ""
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v1/passwords/reset/sms/verify": {
+      "post": {
+        "operationId": "UsersPasswordControllerV1_verifyResetPasswordViaSmsOtc",
+        "summary": "Verify password reset code sent via SMS",
+        "description": "This route verifies the OTC sent via SMS for the password reset process. Gets the OTC from the POST body and returns userId and reset token if valid.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPasswordViaSmsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyPasswordViaSmsResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5107,6 +5175,49 @@
         ]
       }
     },
+    "/resources/roles/v1/{roleId}/tenant": {
+      "put": {
+        "operationId": "PermissionsControllerV1_updateRoleTenant",
+        "summary": "Update role tenant",
+        "description": "Update the tenant ID for a specific role. This endpoint is vendor-only.",
+        "parameters": [
+          {
+            "name": "roleId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Roles"
+        ]
+      }
+    },
     "/resources/users/phone-numbers/v1": {
       "get": {
         "operationId": "UserPhoneNumbersControllerV1_getAllPhoneNumbers",
@@ -5716,6 +5827,53 @@
         },
         "tags": [
           "Sessions management"
+        ]
+      }
+    },
+    "/resources/configurations/v1/user-emails-policy": {
+      "get": {
+        "operationId": "UserEmailsPolicyControllerV1_getUserEmailsPolicy",
+        "summary": "Get user emails policy",
+        "description": "Get information about the user emails policy. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserEmailsPolicyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User emails policy"
+        ]
+      },
+      "post": {
+        "operationId": "UserEmailsPolicyControllerV1_createOrUpdateUserEmailsPolicy",
+        "summary": "Create or update user emails policy",
+        "description": "Enable or disable the ability to change user emails. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserEmailsPolicyRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User emails policy"
         ]
       }
     },
@@ -7415,6 +7573,186 @@
                       }
                     }
                   ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/usernames/v1": {
+      "get": {
+        "operationId": "UsernamesControllerV1_getUsersUsernames",
+        "summary": "Get usernames for users",
+        "description": "This route gets usernames for users.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "userId",
+                "username"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "userIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "usernames",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsernameResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "post": {
+        "operationId": "UsernamesControllerV1_createUsername",
+        "summary": "Create a username for user",
+        "description": "This route creates a username for a user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUsernameRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/usernames/v1/{username}": {
+      "delete": {
+        "operationId": "UsernamesControllerV1_deleteUsername",
+        "summary": "Delete a username for user",
+        "description": "This route deletes a username for a user.",
+        "parameters": [
+          {
+            "name": "username",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/email/me": {
+      "post": {
+        "operationId": "SelfEmailUpdateControllerV1_updateEmailMe",
+        "summary": "Update user email",
+        "description": "This route updates the email for a user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelfEmailUpdateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelfEmailUpdateResponseDto"
                 }
               }
             }
@@ -10016,7 +10354,11 @@
               "MagicLink",
               "Code",
               "NoLocalAuthentication",
-              "SmsCode"
+              "SmsCode",
+              "UsernameAndPassword",
+              "UsernameAndMagicLink",
+              "UsernameAndCode",
+              "UsernameAndSms"
             ],
             "type": "string",
             "description": ""
@@ -10636,11 +10978,20 @@
               "UnlockUser",
               "UnlockUserSuccess",
               "ActivateUserWithCode",
-              "InviteToTenantWithCode"
+              "InviteToTenantWithCode",
+              "VerifyNewEmail"
             ],
             "description": ""
           },
           "senderEmail": {
+            "type": "string",
+            "description": ""
+          },
+          "subject": {
+            "type": "string",
+            "description": ""
+          },
+          "fromName": {
             "type": "string",
             "description": ""
           },
@@ -10650,15 +11001,7 @@
           },
           "htmlTemplate": {
             "type": "string",
-            "maxLength": 100000,
-            "description": ""
-          },
-          "subject": {
-            "type": "string",
-            "description": ""
-          },
-          "fromName": {
-            "type": "string",
+            "maxLength": 1000000,
             "description": ""
           },
           "successRedirectUrl": {
@@ -12314,6 +12657,19 @@
           "permissionIds"
         ]
       },
+      "UpdateRoleTenantRequest": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "nullable": true,
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId"
+        ]
+      },
       "AddRoleWithPermissionsRequest": {
         "type": "object",
         "properties": {
@@ -12808,6 +13164,31 @@
           "email"
         ]
       },
+      "ResetPasswordViaSmsDto": {
+        "type": "object",
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "format": "phone",
+            "description": ""
+          }
+        },
+        "required": [
+          "phoneNumber"
+        ]
+      },
+      "ResetPasswordViaSmsResponseDto": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "sessionId"
+        ]
+      },
       "VerifyPasswordDto": {
         "type": "object",
         "properties": {
@@ -12828,6 +13209,40 @@
           "userId",
           "token",
           "password"
+        ]
+      },
+      "VerifyPasswordViaSmsRequestDto": {
+        "type": "object",
+        "properties": {
+          "otcToken": {
+            "type": "string",
+            "description": ""
+          },
+          "sessionId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "otcToken",
+          "sessionId"
+        ]
+      },
+      "VerifyPasswordViaSmsResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": ""
+          },
+          "token": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "userId",
+          "token"
         ]
       },
       "UpdateUserPasswordDto": {
@@ -14915,6 +15330,85 @@
           }
         }
       },
+      "GetUserEmailsPolicyResponseDto": {
+        "type": "object",
+        "properties": {
+          "allowEmailChange": {
+            "type": "boolean",
+            "description": "Indicates whether email change has been enabled or disabled.",
+            "example": "true"
+          }
+        },
+        "required": [
+          "allowEmailChange"
+        ]
+      },
+      "CreateUserEmailsPolicyRequestDto": {
+        "type": "object",
+        "properties": {
+          "allowEmailChange": {
+            "type": "boolean",
+            "description": "Used to enable or disable email change for users.",
+            "example": "true"
+          }
+        }
+      },
+      "UsernameResponseDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username value",
+            "example": "user.name"
+          },
+          "userId": {
+            "type": "string",
+            "description": "The user id value",
+            "example": "user-id"
+          }
+        },
+        "required": [
+          "username",
+          "userId"
+        ]
+      },
+      "CreateUsernameRequestDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username to create. Allowed characters: alphanumeric (a-z, 0-9), ^, $, ., !, -, #, +, ', ~, _ (no spaces, no accents, automatically converted to lowercase). Max length: 128 characters.",
+            "example": "john.doe$!#-+'~_"
+          }
+        },
+        "required": [
+          "username"
+        ]
+      },
+      "SelfEmailUpdateRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email to update to"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "SelfEmailUpdateResponseDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "The token for the user to update their email"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
       "CreateOrUpdateIpRestrictionConfigDto": {
         "type": "object",
         "properties": {
@@ -15431,6 +15925,10 @@
             "type": "string",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "description": "Username. Either email or username must be provided."
+          },
           "password": {
             "type": "string",
             "description": ""
@@ -15445,7 +15943,6 @@
           }
         },
         "required": [
-          "email",
           "password"
         ]
       },
@@ -15528,6 +16025,10 @@
             "type": "string",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "description": ""
+          },
           "phoneNumber": {
             "type": "string",
             "description": ""
@@ -15536,6 +16037,7 @@
         "required": [
           "email",
           "userId",
+          "username",
           "phoneNumber"
         ]
       },
@@ -15590,11 +16092,16 @@
           "userId": {
             "type": "string",
             "description": ""
+          },
+          "username": {
+            "type": "string",
+            "description": ""
           }
         },
         "required": [
           "email",
-          "userId"
+          "userId",
+          "username"
         ]
       },
       "VerifyMFAAuthAppRequest": {
@@ -16002,6 +16509,10 @@
             "description": "Stringified JSON object. Use the JSON.stringify() method."
           },
           "email": {
+            "type": "string",
+            "description": ""
+          },
+          "username": {
             "type": "string",
             "description": ""
           },

@@ -46,6 +46,15 @@
               "type": "string"
             },
             "description": ""
+          },
+          {
+            "name": "_excludeAgents",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
           }
         ],
         "responses": {
@@ -632,6 +641,7 @@
               "web",
               "mobile-ios",
               "mobile-android",
+              "agent",
               "other"
             ],
             "description": ""
