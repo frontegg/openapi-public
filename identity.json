@@ -1816,7 +1816,8 @@
                 "UnlockUserSuccess",
                 "ActivateUserWithCode",
                 "InviteToTenantWithCode",
-                "VerifyNewEmail"
+                "VerifyNewEmail",
+                "EmailAddressChanged"
               ],
               "type": "string"
             },
@@ -1908,7 +1909,8 @@
                 "UnlockUserSuccess",
                 "ActivateUserWithCode",
                 "InviteToTenantWithCode",
-                "VerifyNewEmail"
+                "VerifyNewEmail",
+                "EmailAddressChanged"
               ],
               "type": "string"
             }
@@ -3927,39 +3929,6 @@
         ]
       }
     },
-    "/resources/users/v1/passwords/reset/sms": {
-      "post": {
-        "operationId": "UsersPasswordControllerV1_resetPasswordViaSms",
-        "summary": "Reset password via SMS",
-        "description": "This route sends a reset password SMS to the user. Send an OTC to the user’s phone number in the POST body.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResetPasswordViaSmsDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResetPasswordViaSmsResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Password settings"
-        ]
-      }
-    },
     "/resources/users/v1/passwords/reset/verify": {
       "post": {
         "operationId": "UsersPasswordControllerV1_verifyResetPassword",
@@ -3979,39 +3948,6 @@
         "responses": {
           "201": {
             "description": ""
-          }
-        },
-        "tags": [
-          "Password settings"
-        ]
-      }
-    },
-    "/resources/users/v1/passwords/reset/sms/verify": {
-      "post": {
-        "operationId": "UsersPasswordControllerV1_verifyResetPasswordViaSmsOtc",
-        "summary": "Verify password reset code sent via SMS",
-        "description": "This route verifies the OTC sent via SMS for the password reset process. Gets the OTC from the POST body and returns userId and reset token if valid.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/VerifyPasswordViaSmsRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VerifyPasswordViaSmsResponseDto"
-                }
-              }
-            }
           }
         },
         "tags": [
@@ -4078,6 +4014,105 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PasswordConfigResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v2/passwords/reset/email": {
+      "post": {
+        "operationId": "UsersPasswordControllerV2_resetPasswordViaEmail",
+        "summary": "Reset password via email",
+        "description": "This route sends a reset password SMS to the user. Send an OTC to the user’s phone number in the POST body.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordViaSmsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v2/passwords/reset/sms": {
+      "post": {
+        "operationId": "UsersPasswordControllerV2_resetPasswordViaSms",
+        "summary": "Reset password via SMS",
+        "description": "This route sends a reset password SMS to the user. Send an OTC to the user’s phone number in the POST body.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordViaSmsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v2/passwords/reset/sms/verify": {
+      "post": {
+        "operationId": "UsersPasswordControllerV2_verifyResetPasswordViaSmsOtc",
+        "summary": "Verify password reset code sent via SMS",
+        "description": "This route verifies the OTC sent via SMS for the password reset process. Gets the OTC from the POST body and returns userId and reset token if valid.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPasswordViaSmsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyPasswordViaSmsResponseDto"
                 }
               }
             }
@@ -5834,7 +5869,7 @@
       "get": {
         "operationId": "UserEmailsPolicyControllerV1_getUserEmailsPolicy",
         "summary": "Get user emails policy",
-        "description": "Get information about the user emails policy. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "Get information about the user emails policy. An environment token is required for this route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -5855,7 +5890,7 @@
       "post": {
         "operationId": "UserEmailsPolicyControllerV1_createOrUpdateUserEmailsPolicy",
         "summary": "Create or update user emails policy",
-        "description": "Enable or disable the ability to change user emails. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "Enable or disable the ability to change user emails. An environment token is required for this route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7730,7 +7765,40 @@
         ]
       }
     },
-    "/resources/users/email/me": {
+    "/resources/usernames/v1/me": {
+      "get": {
+        "operationId": "UsernamesControllerV1_getMeUsernames",
+        "summary": "Get authenticated user`s username",
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsernameResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/users/v1/email/me": {
       "post": {
         "operationId": "SelfEmailUpdateControllerV1_updateEmailMe",
         "summary": "Update user email",
@@ -7748,14 +7816,33 @@
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SelfEmailUpdateResponseDto"
-                }
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/email/me/verify": {
+      "post": {
+        "operationId": "SelfEmailUpdateControllerV1_verifyEmailMe",
+        "summary": "Verify user email",
+        "description": "This route verifies the email for a user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelfEmailUpdateVerifyRequestDto"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
           }
         },
         "tags": [
@@ -10979,7 +11066,8 @@
               "UnlockUserSuccess",
               "ActivateUserWithCode",
               "InviteToTenantWithCode",
-              "VerifyNewEmail"
+              "VerifyNewEmail",
+              "EmailAddressChanged"
             ],
             "description": ""
           },
@@ -13012,9 +13100,37 @@
           "sha256"
         ]
       },
+      "PhoneNumberType": {
+        "type": "string",
+        "enum": [
+          "auth",
+          "mfa"
+        ]
+      },
       "MigrateUserRequest": {
         "type": "object",
         "properties": {
+          "email": {
+            "type": "string",
+            "description": ""
+          },
+          "username": {
+            "type": "string",
+            "description": "The username of the user. If not provided, the email is required"
+          },
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "profilePictureUrl": {
+            "type": "string",
+            "description": "",
+            "maxLength": 4095
+          },
           "passwordHash": {
             "type": "string",
             "description": "The password hash. For SCrypt should include the salt and key seperated by the salt separator"
@@ -13028,9 +13144,17 @@
             "maxLength": 4095,
             "description": "Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }"
           },
+          "authenticatorAppMfaSecret": {
+            "type": "string",
+            "description": ""
+          },
           "phoneNumber": {
             "type": "string",
             "description": "phoneNumber can be used either for login with SMS or for MFA, in combination with `phoneNumberType`. The required format is `area code + number`, without spaces. For example: `+16037184056`. Note that the number must be unique"
+          },
+          "phoneNumberType": {
+            "$ref": "#/components/schemas/PhoneNumberType",
+            "description": ""
           },
           "provider": {
             "type": "string",
@@ -13068,35 +13192,6 @@
           "vendorMetadata": {
             "type": "string",
             "description": "Additional vendor-only data. stringified JSON object"
-          },
-          "email": {
-            "type": "string",
-            "description": ""
-          },
-          "tenantId": {
-            "type": "string",
-            "description": ""
-          },
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "profilePictureUrl": {
-            "type": "string",
-            "maxLength": 4095,
-            "description": ""
-          },
-          "authenticatorAppMfaSecret": {
-            "type": "string",
-            "description": ""
-          },
-          "phoneNumberType": {
-            "type": "string",
-            "enum": [
-              "auth",
-              "mfa"
-            ],
-            "description": ""
           }
         },
         "required": [
@@ -13147,7 +13242,7 @@
           "allowAccess"
         ]
       },
-      "ResetPasswordDto": {
+      "ResetPasswordV1Dto": {
         "type": "object",
         "properties": {
           "email": {
@@ -13162,31 +13257,6 @@
         },
         "required": [
           "email"
-        ]
-      },
-      "ResetPasswordViaSmsDto": {
-        "type": "object",
-        "properties": {
-          "phoneNumber": {
-            "type": "string",
-            "format": "phone",
-            "description": ""
-          }
-        },
-        "required": [
-          "phoneNumber"
-        ]
-      },
-      "ResetPasswordViaSmsResponseDto": {
-        "type": "object",
-        "properties": {
-          "sessionId": {
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "sessionId"
         ]
       },
       "VerifyPasswordDto": {
@@ -13209,6 +13279,61 @@
           "userId",
           "token",
           "password"
+        ]
+      },
+      "UpdateUserPasswordDto": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": ""
+          },
+          "newPassword": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "password",
+          "newPassword"
+        ]
+      },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "User identifier (phone number or email)"
+          },
+          "identifierType": {
+            "enum": [
+              "email",
+              "phoneNumber",
+              "username"
+            ],
+            "type": "string",
+            "description": "Type of the identifier"
+          },
+          "emailMetadata": {
+            "type": "object",
+            "description": ""
+          }
+        },
+        "required": [
+          "identifier",
+          "identifierType"
+        ]
+      },
+      "ResetPasswordViaSmsResponseDto": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "sessionId"
         ]
       },
       "VerifyPasswordViaSmsRequestDto": {
@@ -13243,23 +13368,6 @@
         "required": [
           "userId",
           "token"
-        ]
-      },
-      "UpdateUserPasswordDto": {
-        "type": "object",
-        "properties": {
-          "password": {
-            "type": "string",
-            "description": ""
-          },
-          "newPassword": {
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "password",
-          "newPassword"
         ]
       },
       "ResetActivationTokenDto": {
@@ -15397,16 +15505,21 @@
           "email"
         ]
       },
-      "SelfEmailUpdateResponseDto": {
+      "SelfEmailUpdateVerifyRequestDto": {
         "type": "object",
         "properties": {
-          "token": {
+          "code": {
             "type": "string",
-            "description": "The token for the user to update their email"
+            "description": "The code for the user to verify their email"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email for the user to verify their email"
           }
         },
         "required": [
-          "token"
+          "code",
+          "email"
         ]
       },
       "CreateOrUpdateIpRestrictionConfigDto": {
