@@ -5,7 +5,7 @@
       "post": {
         "operationId": "AuthenticationApiTokenControllerV2_authApiToken",
         "summary": "Authenticate using API token",
-        "description": "This route authenticates a tenant’s or user’s API token. The clientId and secret key are in Admin Portal ➜ API Tokens. Send these values as params in the POST body and authenticate to your Frontegg domain by replacing api.frontegg.com with your Frontegg domain.</br>**NOTE**: This route enforces(by default) a rotation mechanism for refresh tokens associated with the API token. It limits each token to a maximum of 100 refresh tokens simultaneously. When a client authenticates using the same API token for the 101th time, the earliest refresh token is automatically invalidated.",
+        "description": "Authenticate a tenant or user using an API token.\n\nTo authenticate, include your `clientId` and `secret` in the request body. You can locate these credentials in the Admin Portal ➜ **API Tokens**. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`) rather than the default domain.\n\n**Refresh Token Rotation:** This endpoint enforces a rotation policy. Each API token supports up to **100 active refresh tokens**. When the 101st request is made using the same API token, the oldest refresh token is invalidated.\n\nUse this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -38,7 +38,7 @@
       "post": {
         "operationId": "AuthenticationApiTokenControllerV2_refreshToken",
         "summary": "Refresh API token",
-        "description": "This route refreshes a JWT using the refresh token value. If the refresh token is valid, the route returns a new JWT and refresh token. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name.",
+        "description": "Refresh a JWT using a valid refresh token.\n\nTo obtain a new JWT and refresh token pair, include the refresh token in the request body. This is typically used to maintain an authenticated session without prompting the user to log in again.\n\nIf the provided refresh token is valid and not expired, the endpoint returns a new signed JWT and a new refresh token. If the token is invalid or has been revoked due to rotation limits, the request will fail with an authentication error.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -222,7 +222,7 @@
       "get": {
         "operationId": "TenantApiTokensV1Controller_getTenantsApiTokens",
         "summary": "Get client credentials tokens",
-        "description": "This route gets all API tokens for a specific tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets all API tokens for a specific tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -258,7 +258,7 @@
       "delete": {
         "operationId": "TenantApiTokensV1Controller_deleteTenantApiToken",
         "summary": "Delete client credentials token",
-        "description": "This route deletes a tenant API token. Send the token ID as the path param. Send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route deletes a tenant API token. Send the token ID as the path param. Send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "id",
@@ -291,7 +291,7 @@
       "patch": {
         "operationId": "TenantApiTokensV1Controller_updateTenantApiToken",
         "summary": "Update client credentials token",
-        "description": "This route updates a tenant API token. Send the tenant’s ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for description, roles, and permissions for the token.",
+        "description": "This route updates a tenant API token. Send the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for description, roles, and permissions for the token.",
         "parameters": [
           {
             "name": "id",
@@ -343,7 +343,7 @@
       "post": {
         "operationId": "TenantApiTokensV2Controller_createTenantApiToken",
         "summary": "Create client credentials token",
-        "description": "This route creates a tenant API token. Send the tenant’s ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata, description, roles, and permissions for the token.</br></br>You can get roles & permissions via API",
+        "description": "This route creates a tenant API token. Send the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata, description, roles, and permissions for the token.</br></br>You can get roles & permissions via API",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -386,7 +386,7 @@
       "get": {
         "operationId": "TenantInvitesController_getTenantInviteForUser",
         "summary": "Get tenant invite of user",
-        "description": "This route gets an invitation for a specific user to join a tenant. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets an invitation for a specific user to join a tenant. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -426,7 +426,7 @@
       "post": {
         "operationId": "TenantInvitesController_createTenantInviteForUser",
         "summary": "Create tenant invite for user",
-        "description": "This route creates an invitation for a specific user to join a tenant. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. To create a general invitation, use the general invitation route.",
+        "description": "This route creates an invitation for a specific user to join a tenant. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. To create a general invitation, use the general invitation route.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -476,7 +476,7 @@
       "delete": {
         "operationId": "TenantInvitesController_deleteTenantInviteForUser",
         "summary": "Delete tenant invite of user",
-        "description": "This route deletes an invitation for a specific user to join a tenant. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. To delete a general invitation, use the general invitation route.",
+        "description": "This route deletes an invitation for a specific user to join a tenant. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. To delete a general invitation, use the general invitation route.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -509,7 +509,7 @@
       "patch": {
         "operationId": "TenantInvitesController_updateTenantInviteForUser",
         "summary": "Update tenant invite of user",
-        "description": "This route updates an invitation for a specific user to join a tenant. In order to set up a specific expiration time, use the expiresInMinutes to declare when the invite is being invalidated. The shouldSendEmail boolean declares wether an invitation email will be sent or not. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route updates an invitation for a specific user to join a tenant. In order to set up a specific expiration time, use the expiresInMinutes to declare when the invite is being invalidated. The shouldSendEmail boolean declares wether an invitation email will be sent or not. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -617,7 +617,7 @@
       "post": {
         "operationId": "TenantInvitesController_createTenantInvite",
         "summary": "Create tenant invite",
-        "description": "This route creates a general invitation token. To create an invitation token for a specific tenant, send the tenant’s ID in the request’s body. To create an invitation token for a specific user of a tenant, you can add the user ID on the body params. If a user ID was provided, you can decide wether to send an email to the user or not via the shouldSendEmail param. In order to set up a specific expiration time, use the expiresInMinutes to declare when the invite is being invalidated. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route creates a general invitation token. To create an invitation token for a specific tenant, send the tenant's ID in the request's body. To create an invitation token for a specific user of a tenant, you can add the user ID on the body params. If a user ID was provided, you can decide wether to send an email to the user or not via the shouldSendEmail param. In order to set up a specific expiration time, use the expiresInMinutes to declare when the invite is being invalidated. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1139,7 +1139,7 @@
       "get": {
         "operationId": "CaptchaPolicyController_getCaptchaPolicy",
         "summary": "Get captcha policy",
-        "description": "This route gets the captcha policy. It returns the policy’s ID, site key, secret key, minimum score and ignored emails and wether the . ",
+        "description": "This route retrieves the captcha policy for all tenants. It returns the policy's ID, site key, secret key, minimum score, ignored emails, and whether the policy is enabled.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1285,7 +1285,7 @@
       "post": {
         "operationId": "UsersControllerV1_migrateUserFromAuth0",
         "summary": "Migrate from Auth0",
-        "description": "This route enables you to migrate your users from Auth0 to Frontegg easily. Add the Domain, Client ID, Secret and the tenant’s ID Field Name - they’ll be found on Auth0 and the migration will be as smooth as possible.",
+        "description": "This route enables you to migrate your users from Auth0 to Frontegg easily. Add the Domain, Client ID, Secret and the tenant's ID Field Name - they'll be found on Auth0 and the migration will be as smooth as possible.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1311,7 +1311,7 @@
       "post": {
         "operationId": "UsersControllerV1_migrateUserForVendor",
         "summary": "Migrate a single user",
-        "description": "This route enables you to migrate a user by sending the following required fields: user’s email, their tenantId and metadata, a new user will be created. This endpoint takes other properties as well, such as the user’s name, their phone number, hashed password, etc...",
+        "description": "This route enables you to migrate a user by sending the following required fields: user's email, their tenantId and metadata, a new user will be created. This endpoint takes other properties as well, such as the user's name, their phone number, hashed password, etc...",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1782,7 +1782,7 @@
       "get": {
         "operationId": "MailV1Controller_getTemplateConfiguration",
         "summary": "Get template",
-        "description": "This route gets all the vendor’s email templates. In order to get a specific template, pass its type as a query param. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route gets all the vendor's email templates. In order to get a specific template, pass its type as a query param. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "type",
@@ -1815,7 +1815,9 @@
                 "UnlockUser",
                 "UnlockUserSuccess",
                 "ActivateUserWithCode",
-                "InviteToTenantWithCode"
+                "InviteToTenantWithCode",
+                "VerifyNewEmail",
+                "EmailAddressChanged"
               ],
               "type": "string"
             },
@@ -1906,7 +1908,9 @@
                 "UnlockUser",
                 "UnlockUserSuccess",
                 "ActivateUserWithCode",
-                "InviteToTenantWithCode"
+                "InviteToTenantWithCode",
+                "VerifyNewEmail",
+                "EmailAddressChanged"
               ],
               "type": "string"
             }
@@ -1933,7 +1937,7 @@
       "post": {
         "operationId": "AuthenticatioAuthenticationControllerV1_authenticateLocalUser",
         "summary": "Authenticate user with password",
-        "description": "This route authenticates a local user using email and password. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Optionally, send login information for the user as POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login.",
+        "description": "Authenticate a local user using their email and password.\n\nInclude the user's login credentials in the request body. This endpoint supports optional parameters such as an invitation token (for sign-up flows via invitation) and a reCAPTCHA token (if reCAPTCHA is enabled for login).\n\nIf the credentials are valid, the response includes a signed JWT and a refresh token that can be used for future authenticated requests.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -1976,7 +1980,7 @@
       "post": {
         "operationId": "AuthenticatioAuthenticationControllerV1_refreshToken",
         "summary": "Refresh user JWT token ",
-        "description": "This route refreshes a JWT based on the refresh token expiration time. If the refresh token is valid, the route returns a new JWT and refresh token. Please note that the route expects the refresh cookie of the logged in user as well. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Configure your JWT settings in the Frontegg Portal.",
+        "description": "Refresh a JWT based on the refresh token's expiration time.\n\nThis endpoint returns a new JWT and refresh token if the existing refresh token is valid and not expired. The request must include the refresh token cookie for the currently logged-in user.\n\nEnsure your JWT settings are properly configured in the Frontegg Portal to support this flow.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -2019,7 +2023,7 @@
       "post": {
         "operationId": "AuthenticatioAuthenticationControllerV1_logout",
         "summary": "Logout user",
-        "description": "This route logs out a user using the refresh token that is passed as a cookie. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This route is designed for Frontegg embedded login or integrations that use only Frontegg APIs",
+        "description": "Log out a user by invalidating their refresh token.\n\nThis endpoint logs out the currently authenticated user by invalidating the refresh token provided in the refresh token cookie.\n\nThis route is intended for applications using Frontegg's embedded login experience or for integrations that interact exclusively with Frontegg APIs.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -2045,7 +2049,7 @@
       "post": {
         "operationId": "UsersControllerV1_signUpUser",
         "summary": "Signup user",
-        "description": "This route is for signing up a new user and new account (tenant). Send the user's information in the POST body. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example.",
+        "description": "Sign up a new user and create a new tenant account.\n\nThis endpoint registers a user with authentication details such as `email`, `password`, and the `provider` used for authentication (e.g., `local`, `saml`, `google`, `github`). Refer to the documentation or dropdown menu for the full list of supported provider values.\n\nAdditional optional fields such as user metadata may also be included. If not needed, `metadata` can be passed as an empty object (e.g., `{}`).\n\nThis endpoint is typically used during tenant onboarding or self-sign-up flows.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -2295,7 +2299,7 @@
       "post": {
         "operationId": "LockoutPolicyController_createLockoutPolicy",
         "summary": "Create lockout policy",
-        "description": "This route creates a lockout policy for all tenants. To create a lockout policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. To enable the Lockout Policy, make sure to set the enabled variable to true and the maximum attempts to a number of your preference.",
+        "description": "This route creates a lockout policy for all tenants. To create a lockout policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To enable the Lockout Policy, make sure to set the enabled variable to true and the maximum attempts to a number of your preference.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -2339,7 +2343,7 @@
       "patch": {
         "operationId": "LockoutPolicyController_updateLockoutPolicy",
         "summary": "Update lockout policy",
-        "description": "This route updates a lockout policy for all tenants. To update a lockout policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. To disable the lockout policy, make sure to set the enabled variable to false. The maximum attempts variable can also be changed to a number of your preference",
+        "description": "This route updates a lockout policy for all tenants. To update a lockout policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To disable the lockout policy, make sure to set the enabled variable to false. The maximum attempts variable can also be changed to a number of your preference",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -2383,7 +2387,7 @@
       "get": {
         "operationId": "LockoutPolicyController_getLockoutPolicy",
         "summary": "Get lockout policy",
-        "description": "This route gets the lockout policy for all tenants or one tenant specifically. To get the lockout policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets the lockout policy for all tenants or one tenant specifically. To get the lockout policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -2539,7 +2543,7 @@
       "post": {
         "operationId": "AuthenticationMFAControllerV1_recoverMfa",
         "summary": "Recover MFA",
-        "description": "This route recovers MFA for a non logged-in user. Send the user’s email and a recovery code as params in the POST body. The recovery code comes from the MFA authenticator app when you set up MFA.",
+        "description": "Recover multi-factor authentication (MFA) for a non-logged-in user.\n\nThis endpoint verifies a user's identity using a backup recovery code, typically generated by the user's MFA authenticator app during initial setup.\n\nUse this when a user cannot access their MFA device and needs to authenticate with their recovery code.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2565,7 +2569,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_disableAuthAppMfa",
         "summary": "Disable authenticator app MFA",
-        "description": "This route disables MFA enrollment for a logged-in user for a specific tenant. Send the **`frontegg-user-id`** header to declare which user. The MFA token should be obtained from the authenticator app. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Disable MFA enrollment for a logged-in user within a specific tenant.\n\nThis endpoint disables multi-factor authentication for a user, using the `mfaToken` obtained from the user's authenticator app.\n\nUse this endpoint to programmatically disable MFA when managing authentication settings at the tenant level.",
         "deprecated": true,
         "parameters": [
           {
@@ -2602,7 +2606,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_disableAuthenticatorMfa",
         "summary": "Disable authenticator app MFA",
-        "description": "This route disables MFA enrollment for a logged-in user for a specific tenant. Send the **`frontegg-user-id`** header to declare which user. The MFA token should be obtained from the authenticator app. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Disable multi-factor authentication (MFA) enrollment for a logged-in user within a specific tenant.\n\nThis endpoint removes MFA for a user, typically used in administrative contexts where a backend system or admin manages user security settings.\n\nThe request must include the `mfaToken`, which is the time-based one-time password (TOTP) generated by the user's authenticator app.\n\nUse this endpoint to programmatically disable MFA for a specific user within a tenant.",
         "parameters": [
           {
             "name": "deviceId",
@@ -2701,7 +2705,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Initiate the process of disabling SMS-based multi-factor authentication (MFA) for a specific device.\n\nProvide the target `deviceId` in the request path to mark the SMS MFA device for pre-disablement. This action prepares the device for subsequent steps required to complete the removal.\n\nUse this route as part of the MFA management flow for disabling SMS-based MFA on a per-device basis."
       }
     },
     "/resources/users/v1/mfa/sms/{deviceId}/disable/verify": {
@@ -2746,14 +2750,14 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Complete the process of disabling SMS-based multi-factor authentication (MFA) for a specific device.\n\nThis step finalizes MFA deactivation for the given `deviceId` after a prior pre-disable action.\n\nThe request must include:\n- `otcToken`: The one-time challenge token obtained during the pre-disable step.\n- `code`: The SMS verification code received by the user.\n\nUse this endpoint as the second step in the SMS MFA removal flow to verify the user's identity and confirm the disable action."
       }
     },
     "/resources/auth/v1/user/mfa/verify": {
       "post": {
         "operationId": "AuthenticationMFAControllerV1_verifyAuthenticatorMfaCode",
         "summary": "Verify MFA using code from authenticator app",
-        "description": "This route verifies the MFA code from an authenticator app. Send the **`frontegg-vendor-host`** as a header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send information required for MFA in the POST body. The `value` is the service name from your Authentication Settings in the Frontegg Portal. The MFA token is from the authenticator app.",
+        "description": "Verify a multi-factor authentication (MFA) code generated by an authenticator app during the authentication process.\n\nThis endpoint completes the MFA step by validating the provided code.\n\nThe request must include:\n- `value`: The MFA service name (e.g., `authenticator`), as configured in your Authentication Settings.\n- `mfaToken`: The time-based one-time password (TOTP) generated by the user's authenticator app.\n\nUse this endpoint to verify the user's MFA code during an authentication challenge, typically after the primary login step.",
         "deprecated": true,
         "parameters": [],
         "requestBody": {
@@ -2799,7 +2803,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Verify multi-factor authentication (MFA) using a code sent to the user's email.\n\nThis endpoint completes the email-based MFA verification step.\n\nThe request must include:\n- `mfaToken`: The token provided after the user initiates MFA via email.\n\nUse this endpoint to confirm the email-based MFA challenge and finalize the login or authentication process."
       }
     },
     "/resources/auth/v1/user/mfa/emailcode/verify": {
@@ -2825,7 +2829,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Verify a multi-factor authentication (MFA) challenge using a code sent to the user's email address.\n\nThis endpoint finalizes the email-based MFA verification and completes the authentication process.\n\nThe request must include:\n- `otcToken`: One-time challenge token received during the email MFA initiation.\n- `code`: The MFA code sent to the user's email.\n- `mfaToken`: Token returned from the original MFA setup or step-up authentication request.\n- `rememberDevice` (optional): If set to `true`, the device will be remembered to reduce MFA prompts on future logins from the same client.\n\nUse this endpoint to confirm the MFA challenge and optionally remember the current device for future sessions."
       }
     },
     "/resources/auth/v1/user/mfa/authenticator/enroll": {
@@ -2851,7 +2855,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Initiate enrollment in multi-factor authentication (MFA) using an authenticator app (e.g., Google Authenticator, Authy).\n\nThis endpoint begins the MFA setup process and returns the necessary data for configuring an authenticator app, such as a QR code or secret key.\n\nThe request must include:\n- `mfaToken`: A token received from the initial authentication flow that authorizes the MFA setup.\n\nUse this endpoint to generate the configuration required for linking an authenticator app before completing verification."
       }
     },
     "/resources/auth/v1/user/mfa/authenticator/enroll/verify": {
@@ -2877,14 +2881,14 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Complete enrollment in multi-factor authentication (MFA) using an authenticator app.\n\nThis endpoint verifies the MFA setup by validating the time-based one-time password (TOTP) generated by the authenticator app.\n\nThe request must include:\n- `token`: The 6-digit TOTP code generated by the authenticator app.\n- `mfaToken`: Token from the initial MFA enrollment initiation.\n- `rememberDevice` (optional): If set to `true`, the device will be remembered and may skip MFA on future logins from the same browser or device.\n\nUse this endpoint to finalize MFA enrollment and activate the authenticator app for the user's account."
       }
     },
     "/resources/auth/v1/user/mfa/authenticator/{deviceId}/verify": {
       "post": {
         "operationId": "AuthenticationMFAControllerV1_verifyAuthenticatorMfa",
         "summary": "Verify MFA using authenticator app",
-        "description": "This route verifies MFA as part of the authentication process. Send the **`frontegg-vendor-host`** as a header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send information required for MFA in the POST body. The `value` is the service name from your Authentication Settings in the Frontegg Portal. The MFA token is from the authenticator app.",
+        "description": "Verify multi-factor authentication (MFA) during the authentication process.\n\nThis endpoint is typically used after a primary login attempt when MFA is enabled for the user or tenant.\n\nThe request must include:\n- `value`: The MFA service name (e.g., `authenticator`, `email`, `sms`) configured under Authentication Settings.\n- `mfaToken`: The token or code provided by the user's MFA method (e.g., code from an authenticator app).\n\nUse this endpoint to complete the MFA verification step as part of the overall login flow.",
         "parameters": [
           {
             "name": "deviceId",
@@ -2939,7 +2943,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Initiate multi-factor authentication (MFA) enrollment using SMS.\n\nThis endpoint begins the SMS-based MFA setup by sending a verification code to the provided phone number.\n\nThe request must include:\n- `phoneNumber`: The user's mobile phone number in international format. It must match the format defined in your organization's phone number validation pattern (`phoneNumberRegexp`).\n\nUse this endpoint as the first step in enabling SMS-based MFA for a user."
       }
     },
     "/resources/auth/v1/user/mfa/sms/enroll/verify": {
@@ -2965,7 +2969,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Complete enrollment in multi-factor authentication (MFA) using SMS.\n\nThis endpoint finalizes the SMS-based MFA setup for the user by verifying the code sent to their phone number.\n\nThe request must include:\n- `otcToken`: Token received from the initial SMS MFA enrollment step.\n- `code`: The numeric code sent via SMS to the user's registered phone number.\n\nUse this endpoint to verify the user's phone number and activate SMS-based MFA on their account."
       }
     },
     "/resources/auth/v1/user/mfa/sms/{deviceId}": {
@@ -3001,7 +3005,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Verify multi-factor authentication (MFA) using an SMS-based device.\n\nThis endpoint confirms the SMS MFA challenge as part of the authentication or step-up verification process for a specific registered device.\n\nPath parameters:\n- `deviceId`: The unique identifier of the SMS MFA device being verified.\n\nRequest body must include:\n- `mfaToken`: Token provided during the authentication or challenge flow.\n\nUse this endpoint to complete SMS-based MFA verification for the specified device."
       }
     },
     "/resources/auth/v1/user/mfa/sms/{deviceId}/verify": {
@@ -3037,7 +3041,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Verify a multi-factor authentication (MFA) challenge using an SMS code for a specific registered device.\n\nThis endpoint finalizes the MFA step by validating the SMS code and may mark the device as trusted if specified.\n\nPath parameters:\n- `deviceId`: The unique identifier of the SMS MFA device being verified.\n\nRequest body must include:\n- `otcToken`: Token received from the SMS MFA challenge initiation.\n- `code`: The verification code sent to the user's phone via SMS.\n- `mfaToken`: MFA token issued during the initial login or step-up challenge.\n- `rememberDevice` (optional): Set to `true` to remember the device and reduce future MFA prompts on this device.\n\nUse this endpoint to complete SMS-based MFA verification and optionally trust the device for future logins."
       }
     },
     "/resources/auth/v1/user/mfa/webauthn/enroll": {
@@ -3063,7 +3067,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Initiate multi-factor authentication (MFA) enrollment using WebAuthn (e.g., security keys, biometrics).\n\nThis endpoint begins the WebAuthn MFA setup by returning a browser-based challenge needed to link a trusted device, such as a biometric reader or hardware security key.\n\nThe request must include:\n- `mfaToken`: Token issued during the authentication flow to authorize MFA setup.\n\nUse this endpoint as the first step when enrolling a user in WebAuthn-based MFA."
       }
     },
     "/resources/auth/v1/user/mfa/webauthn/enroll/verify": {
@@ -3089,7 +3093,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Complete enrollment in multi-factor authentication (MFA) using WebAuthn.\n\nThis endpoint verifies and registers a WebAuthn device, such as a biometric sensor (Platform) or hardware security key (CrossPlatform), finalizing the setup after the initial challenge.\n\nThe request must include:\n- `deviceType`: Type of device being enrolled. Accepts `Platform` (e.g., fingerprint scanner) or `CrossPlatform` (e.g., USB security key).\n- `webauthnToken`: Token received during the WebAuthn pre-enrollment step.\n- `options`: WebAuthn attestation data collected from the client.\n  - `id`: Device identifier.\n  - `response`: WebAuthn attestation response.\n    - `clientDataJSON`: Base64-encoded client data from the browser.\n    - `attestationObject`: Base64-encoded attestation object from the authenticator.\n  - `deviceType` (optional): May repeat the selected device type.\n- `mfaToken`: Token used to authorize MFA enrollment.\n- `rememberDevice` (optional): Set to `true` to remember the device and reduce MFA prompts on future logins.\n\nUse this endpoint to complete WebAuthn-based MFA enrollment and register the user's trusted device."
       }
     },
     "/resources/auth/v1/user/mfa/webauthn/{deviceId}": {
@@ -3125,7 +3129,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Verify a multi-factor authentication (MFA) challenge using a registered WebAuthn device.\n\nThis endpoint completes WebAuthn-based MFA verification, typically following primary authentication when WebAuthn is required as a second factor.\n\nPath parameters:\n- `deviceId`: The unique identifier of the WebAuthn device to be verified.\n\nRequest body must include:\n- `mfaToken`: Token issued during the login or step-up authentication flow.\n\nUse this endpoint to validate a WebAuthn device and complete the MFA step during authentication."
       }
     },
     "/resources/auth/v1/user/mfa/webauthn/{deviceId}/verify": {
@@ -3161,14 +3165,14 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Verify a multi-factor authentication (MFA) challenge using a WebAuthn device.\n\nThis endpoint completes MFA verification using a previously registered WebAuthn device such as a biometric sensor or hardware security key.\n\nPath parameters:\n- `deviceId`: The unique identifier of the registered WebAuthn device to be verified.\n\nRequest body must include:\n- `webauthnToken`: Token received from the server to initiate the WebAuthn challenge.\n- `options`: WebAuthn authentication response returned by the browser.\n  - `id`: The credential ID of the WebAuthn device.\n  - `response`: Object containing attestation data from the authenticator.\n    - `clientDataJSON`: Base64-encoded client data.\n    - `authenticatorData`: Base64-encoded data from the authenticator.\n    - `signature`: Signature from the authenticator, proving user presence.\n    - `userHandle`: The user's handle used during registration.\n  - `recaptchaToken` (optional): Token to verify human interaction, if reCAPTCHA is enabled.\n  - `invitationToken` (optional): Used when completing an MFA challenge as part of an invitation flow.\n- `mfaToken`: Token issued during the initial authentication step.\n- `rememberDevice` (optional): If set to `true`, this device will be remembered for future logins to reduce MFA prompts.\n\nUse this endpoint to complete WebAuthn-based MFA verification and confirm the user's identity using a secure hardware or platform authenticator."
       }
     },
     "/resources/configurations/v1/mfa-policy/allow-remember-device": {
       "get": {
         "operationId": "SecurityPolicyController_checkIfAllowToRememberDevice",
         "summary": "Check if remember device allowed",
-        "description": "This route checks if remember device is allowed for all tenants. To check if remember device is allowed for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. Get the mfa token from the authenticator app and send it as a query params.",
+        "description": "Check whether the 'remember device' feature is allowed for MFA verification.\n\nThis endpoint returns whether device remembering is enabled globally or for a specific tenant, based on the request context.\n\nQuery parameters:\n- `mfaToken`: Token generated from the authenticator app or MFA challenge step.\n\nUse this endpoint to determine whether the user should be prompted with the option to remember their device during MFA verification.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3210,7 +3214,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_enrollAuthAppMfa",
         "summary": "Enroll authenticator app MFA",
-        "description": "This route enrolls MFA for a logged-in user for a specific tenant. Send the **`frontegg-user-id`** header to declare which user. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Enroll a logged-in user in multi-factor authentication (MFA) for a specific tenant.\n\nThis endpoint initiates MFA enrollment on behalf of a user within a specific tenant context.\n\nUse this route to programmatically trigger MFA enrollment, typically as part of an administrative or backend workflow.",
         "deprecated": true,
         "parameters": [
           {
@@ -3244,7 +3248,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_enrollAuthenticatorMfa",
         "summary": "Enroll authenticator app MFA",
-        "description": "This route enrolls MFA for a logged-in user for a specific tenant. Send the **`frontegg-user-id`** header to declare which user. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Enroll a logged-in user in multi-factor authentication (MFA) for a specific tenant.\n\nThis endpoint initiates MFA enrollment on behalf of a user within a specific tenant context.\n\nUse this route to programmatically trigger MFA enrollment, typically as part of an administrative or backend workflow.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -3277,7 +3281,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_verifyAuthAppMfaEnrollment",
         "summary": "Verify authenticator app MFA enrollment",
-        "description": "This route verifies MFA enrollment using a QR code. Send the **`frontegg-user-id`** header to declare which user. Send information required for MFA in the POST body. The MFA token should be obtained from the authenticator app after scanning the QR code received . A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Verify multi-factor authentication (MFA) enrollment using a QR code for a specific user.\n\nThis endpoint completes MFA setup after the user scans a QR code with their authenticator app (e.g., Google Authenticator, Authy).\n\nRequest body must include:\n- `mfaToken`: The time-based one-time password (TOTP) generated by the user's authenticator app after scanning the QR code.\n\nUse this endpoint to confirm that the user has successfully linked their authenticator app and to activate MFA for their account.",
         "deprecated": true,
         "parameters": [
           {
@@ -3321,7 +3325,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_verifyAuthenticatorMfaEnrollment",
         "summary": "Verify authenticator app MFA enrollment",
-        "description": "This route verifies MFA enrollment using a QR code. Send the **`frontegg-user-id`** header to declare which user. Send information required for MFA in the POST body. The MFA token should be obtained from the authenticator app after scanning the QR code received . A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Verify multi-factor authentication (MFA) enrollment using a QR code for a specific user within a tenant.\n\nThis endpoint completes MFA enrollment after the user scans a QR code with an authenticator app (e.g., Google Authenticator, Authy).\n\nRequest body must include:\n- `mfaToken`: The time-based one-time password (TOTP) generated by the authenticator app after scanning the QR code.\n\nUse this endpoint to confirm that the user has successfully registered their authenticator app and to activate MFA for their account.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -3393,7 +3397,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Enroll a user in SMS-based multi-factor authentication (MFA).\n\nThis endpoint initiates SMS MFA enrollment by sending a verification code to the user's phone number.\n\nRequest body must include:\n- `phoneNumber`: The user's mobile number in international format. Must match the validation pattern defined by `phoneNumberRegexp`.\n\nUse this endpoint to begin the SMS MFA setup process for a specific user. The next step is to verify the SMS code to complete enrollment."
       }
     },
     "/resources/users/v1/mfa/sms/enroll/verify": {
@@ -3429,7 +3433,7 @@
         "tags": [
           "MFA"
         ],
-        "description": ""
+        "description": "Complete SMS-based multi-factor authentication (MFA) enrollment for a user.\n\nThis endpoint finalizes SMS MFA setup by verifying the code sent to the user's phone.\n\nRequest body must include:\n- `otcToken`: One-time challenge token received from the initial enrollment step.\n- `code`: The verification code sent to the user's phone via SMS.\n\nUse this endpoint to verify the user's phone number and activate SMS-based MFA for their account."
       }
     },
     "/resources/configurations/v1/mfa": {
@@ -3490,7 +3494,7 @@
       "post": {
         "operationId": "SecurityPolicyController_createMfaPolicy",
         "summary": "Create MFA policy",
-        "description": "This route creates the MFA policy globally or for a specific tenant. To create an MFA policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route creates the MFA policy globally or for a specific tenant. To create an MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3534,7 +3538,7 @@
       "patch": {
         "operationId": "SecurityPolicyController_updateSecurityPolicy",
         "summary": "Update security policy",
-        "description": "This route updates the MFA policy for all tenants. To update an MFA policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route updates the MFA policy for all tenants. To update an MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3581,7 +3585,7 @@
       "put": {
         "operationId": "SecurityPolicyController_upsertSecurityPolicy",
         "summary": "Upsert security policy",
-        "description": "This route creates or updates the MFA policy for all tenants. To create or update an MFA policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route creates or updates the MFA policy for all tenants. To create or update an MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3622,7 +3626,7 @@
       "get": {
         "operationId": "SecurityPolicyController_getSecurityPolicy",
         "summary": "Get security policy",
-        "description": "This route gets the MFA policy for all tenants. To get the MFA policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets the MFA policy for all tenants. To get the MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3705,7 +3709,7 @@
       "post": {
         "operationId": "PasswordPolicyController_addOrUpdatePasswordConfig",
         "summary": "Create or update password configuration",
-        "description": "This route creates or updates the password policy for the entire environment. To update the password policy for a specific account (tenant), send the tenant’s ID in the **`frontegg-tenant-id`** header. Send the updated values as POST body params.",
+        "description": "This route creates or updates the password policy for the entire environment. To update the password policy for a specific account (tenant), send the tenant's ID in the **`frontegg-tenant-id`** header. Send the updated values as POST body params.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3746,7 +3750,7 @@
       "get": {
         "operationId": "PasswordPolicyController_getPasswordConfig",
         "summary": "Get password policy configuration",
-        "description": "This route gets the password policy for all account (tenants). To get the password policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets the password policy for all account (tenants). To get the password policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3779,7 +3783,7 @@
       "post": {
         "operationId": "PasswordHistoryPolicyController_createPolicy",
         "summary": "Create password history policy",
-        "description": "This route creates the password history policy for all tenants. To create a password history policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. To enable the Password History, make sure to set the enabled variable to true and the password history size to a number between 1 to 10.",
+        "description": "This route creates the password history policy for all tenants. To create a password history policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To enable the Password History, make sure to set the enabled variable to true and the password history size to a number between 1 to 10.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3823,7 +3827,7 @@
       "patch": {
         "operationId": "PasswordHistoryPolicyController_updatePolicy",
         "summary": "Update password history policy",
-        "description": "This route updates the password history policy for all tenants. To update a password history policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. To disable the password history policy, make sure to set the enabled variable to false. The password history size can also be changed to a number between 1 to 10",
+        "description": "This route updates the password history policy for all tenants. To update a password history policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To disable the password history policy, make sure to set the enabled variable to false. The password history size can also be changed to a number between 1 to 10",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3867,7 +3871,7 @@
       "get": {
         "operationId": "PasswordHistoryPolicyController_getPolicy",
         "summary": "Get password history policy",
-        "description": "This route gets the password history policy for all tenants or one tenant specifically. To create a password history policy for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets the password history policy for all tenants or one tenant specifically. To create a password history policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -3903,7 +3907,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV1_resetPassword",
         "summary": "Reset password",
-        "description": "This route sends a reset password email to the user. Send the user’s email in the POST body. If your email template uses metadata, send email metadata in the POST body, too.",
+        "description": "This route sends a reset password email to the user. Send the user's email in the POST body. If your email template uses metadata, send email metadata in the POST body, too.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3929,7 +3933,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV1_verifyResetPassword",
         "summary": "Verify password",
-        "description": "This route verifies a user’s password using a verification token. Send the userId, token, and password in the POST body. For the token, see the route under users for generating user password reset token.",
+        "description": "This route verifies a user's password using a verification token. Send the userId, token, and password in the POST body. For the token, see the route under users for generating user password reset token.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3991,7 +3995,7 @@
       "get": {
         "operationId": "UsersPasswordControllerV1_getUserPasswordConfig",
         "summary": "Get strictest password configuration",
-        "description": "This route gets the user’s hardest password configuration. This is useful when a user belongs to multiple tenants and does not have the same password complexity for all of them. The route returns the strictest setting the user is subject to.",
+        "description": "This route gets the user's hardest password configuration. This is useful when a user belongs to multiple tenants and does not have the same password complexity for all of them. The route returns the strictest setting the user is subject to.",
         "parameters": [
           {
             "name": "userId",
@@ -4010,6 +4014,105 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PasswordConfigResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v2/passwords/reset/email": {
+      "post": {
+        "operationId": "UsersPasswordControllerV2_resetPasswordViaEmail",
+        "summary": "Reset password via email",
+        "description": "This route sends a reset password email to the user. Provide the user's email address in the body to initiate the reset process.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordViaSmsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v2/passwords/reset/sms": {
+      "post": {
+        "operationId": "UsersPasswordControllerV2_resetPasswordViaSms",
+        "summary": "Reset password via SMS",
+        "description": "This route sends a reset password SMS to the user. Send an OTC to the user’s phone number in the POST body.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordViaSmsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v2/passwords/reset/sms/verify": {
+      "post": {
+        "operationId": "UsersPasswordControllerV2_verifyResetPasswordViaSmsOtc",
+        "summary": "Verify password reset code sent via SMS",
+        "description": "This route verifies the OTC sent via SMS for the password reset process. Gets the OTC from the POST body and returns userId and reset token if valid.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyPasswordViaSmsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyPasswordViaSmsResponseDto"
                 }
               }
             }
@@ -4100,7 +4203,7 @@
       "post": {
         "operationId": "AuthenticationPasswordlessControllerV1_smsCodePreLogin",
         "summary": "SMS code prelogin",
-        "description": "This route triggers the system to send an SMS to the user and is the first step when authenticating using the sms otc passwordless mechanism. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's email as POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login.",
+        "description": "Initiate SMS-based passwordless authentication by sending a one-time code (OTC) to the user's phone.\n\nThis is the first step in the SMS OTC passwordless login flow. The system sends an SMS to the user associated with the provided email address.\n\nRequest body must include:\n- `email`: The email address of the user initiating the login.\n- `invitationToken` (optional): Include if the user is signing up through an invitation.\n- `recaptchaToken` (optional): Required if reCAPTCHA is enabled for login.\n\nUse this endpoint to begin the passwordless login process using SMS verification.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4136,7 +4239,7 @@
       "post": {
         "operationId": "AuthenticationPasswordlessControllerV1_smsCodePostLogin",
         "summary": "SMS code postlogin",
-        "description": "This route authenticates a local user and is the second step when authenticating using the sms otc passwordless mechanism. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's token id as a POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login. The route returns the refresh cookie and JWT.",
+        "description": "Complete passwordless authentication using a one-time code (OTC) sent via SMS.\n\nThis is the second step in the SMS OTC passwordless login flow. After the user receives the code, this endpoint finalizes authentication and returns a valid JWT and refresh cookie.\n\nRequest body must include:\n- `token`: The token ID associated with the SMS OTC sent to the user.\n- `invitationToken` (optional): Include if the user is signing up through an invitation.\n- `recaptchaToken` (optional): Required if reCAPTCHA is enabled for login.\n\nUse this endpoint to complete passwordless login via SMS and receive authentication tokens for the session.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4169,7 +4272,7 @@
       "post": {
         "operationId": "AuthenticationPasswordlessControllerV1_magicLinkPrelogin",
         "summary": "Magic link prelogin",
-        "description": "This route triggers the system to send the magic link to the user and is the first step when authenticating a local user with the magic link passwordless mechanism. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's email as POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login.",
+        "description": "Initiate passwordless authentication by sending a magic link to the user's email address.\n\nThis is the first step in the magic link passwordless login flow for local users. The system sends an email containing a secure login link to the provided address.\n\nRequest body must include:\n- `email`: The email address of the user initiating the login.\n- `invitationToken` (optional): Include if the user is signing up through an invitation.\n- `recaptchaToken` (optional): Required if reCAPTCHA is enabled for login.\n\nUse this endpoint to start the magic link authentication process by delivering a login link to the user's email inbox.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4198,7 +4301,7 @@
       "post": {
         "operationId": "AuthenticationPasswordlessControllerV1_magicLinkPostLogin",
         "summary": "Magic link postlogin",
-        "description": "This route authenticates a local user and is the second step when using the magic link passwordless mechanism. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's token id as POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login. The route returns the refresh cookie and JWT.",
+        "description": "Complete passwordless authentication using a magic link.\n\nThis is the second step in the magic link passwordless login flow for local users. After the user clicks the link in their email, this endpoint validates the token and authenticates the user.\n\nRequest body must include:\n- `token`: The token ID extracted from the magic link.\n- `invitationToken` (optional): Include if the user is signing up through an invitation.\n- `recaptchaToken` (optional): Required if reCAPTCHA is enabled for login.\n\nUse this endpoint to complete the magic link login flow and receive authentication credentials, including a JWT and a refresh cookie.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4231,7 +4334,7 @@
       "post": {
         "operationId": "AuthenticationPasswordlessControllerV1_emailCodePrelogin",
         "summary": "OTC (One-Time Code) prelogin",
-        "description": "This route triggers the system to send a one-time code to the user and is the first step when authenticating a local user using the email otc passwordless mechanism. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's email as POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login.",
+        "description": "Initiate passwordless authentication by sending a one-time code (OTC) to the user's email address.\n\nThis is the first step in the email OTC (one-time code) passwordless login flow for local users. The system sends a time-sensitive code to the specified email address.\n\nRequest body must include:\n- `email`: The email address of the user initiating the login.\n- `invitationToken` (optional): Include if the user is signing up through an invitation.\n- `recaptchaToken` (optional): Required if reCAPTCHA is enabled for login.\n\nUse this endpoint to start the passwordless login process via an email-based one-time code.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4260,7 +4363,7 @@
       "post": {
         "operationId": "AuthenticationPasswordlessControllerV1_emailCodePostLogin",
         "summary": "OTC (One-Time Code) postlogin",
-        "description": "This route authenticates a local user and is the second step when using the email otc passwordless mechanism. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's token id as POST body params. Include the invitation token if the user is signing up by invitation. Send the recaptcha token if the recaptcha is enabled for login. The route returns the refresh cookie and JWT.",
+        "description": "Complete passwordless authentication using a one-time code (OTC) sent to the user's email.\n\nThis is the second step in the email OTC passwordless login flow. After the user receives and enters the code, this endpoint validates the token and finalizes authentication.\n\nRequest body must include:\n- `token`: The token ID associated with the email OTC sent to the user.\n- `invitationToken` (optional): Include if the user is signing up via an invitation.\n- `recaptchaToken` (optional): Required if reCAPTCHA is enabled for login.\n\nUse this endpoint to validate the email-based one-time code and receive authentication credentials, including a JWT and refresh cookie.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4752,7 +4855,7 @@
       "post": {
         "operationId": "UserApiTokensV1Controller_createTenantApiToken",
         "summary": "Create user client credentials token",
-        "description": "This route creates a user-specific API token. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description.",
+        "description": "This route creates a user-specific API token. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -4802,7 +4905,7 @@
       "get": {
         "operationId": "UserApiTokensV1Controller_getApiTokens",
         "summary": "Get user client credentials tokens",
-        "description": "This route gets a user-specific API token. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets a user-specific API token. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -4847,7 +4950,7 @@
       "delete": {
         "operationId": "UserApiTokensV1Controller_deleteApiToken",
         "summary": "Delete user client credentials token by token ID",
-        "description": "This route deletes a user-specific API token. Send the token as the ID path param. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description.",
+        "description": "This route deletes a user-specific API token. Send the token as the ID path param. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -5107,11 +5210,54 @@
         ]
       }
     },
+    "/resources/roles/v1/{roleId}/tenant": {
+      "put": {
+        "operationId": "PermissionsControllerV1_updateRoleTenant",
+        "summary": "Update role tenant",
+        "description": "Update the tenant ID for a specific role. This endpoint is vendor-only.",
+        "parameters": [
+          {
+            "name": "roleId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleTenantRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Roles"
+        ]
+      }
+    },
     "/resources/users/phone-numbers/v1": {
       "get": {
         "operationId": "UserPhoneNumbersControllerV1_getAllPhoneNumbers",
         "summary": "Get all phone numbers",
-        "description": "This route returns all user phone numbers.",
+        "description": "Retrieve a paginated list of all user phone numbers associated with your environment.\n\nThis endpoint returns user phone numbers along with pagination metadata and navigation links. It supports filtering, sorting, and offset-based pagination for efficient querying.\n\nQuery parameters (optional):\n- `_limit` (number ≥ 1): Maximum number of items to return per page.\n- `_offset` (number ≥ 0): Number of items to skip (for pagination).\n- `_sortBy` (string): Field to sort by. Allowed values: `userId`, `phoneNumber`.\n- `_order` (string): Sort order. Allowed values: `ASC`, `DESC`.\n- `_phoneNumber` (string): Filter by a specific phone number.\n\nUse this endpoint to list or search user phone numbers in a paginated format, ideal for administrative tools or reporting.",
         "parameters": [
           {
             "name": "_limit",
@@ -5208,7 +5354,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumber",
         "summary": "Set phone number for a user",
-        "description": "This route creates new user phone number. By default verification code will be sent to the user. To create phone number without verification code, send **`verify`** as part of the request with value **`false`**.",
+        "description": "Assign a new phone number to a user and optionally trigger a verification code.\n\nBy default, the system sends an SMS verification code to the provided phone number. To skip verification (e.g., for internal setup), set the `verify` field to `false`.\n\nRequest body must include:\n- `phoneNumber`: The new phone number to assign to the user. Must follow international format.\n- `verify` (optional): Whether to send an SMS verification code. Defaults to `true` if not provided.\n\nUse this endpoint to set or update a user's phone number, with optional control over verification.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5241,7 +5387,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_preVerifyUserPhoneNumber",
         "summary": "Pre-verify user's phone number",
-        "description": "This route sends OTC to users phone number for verification.",
+        "description": "Send a one-time code (OTC) to the specified phone number to initiate verification.\n\nThis endpoint is used to pre-verify a phone number before associating it with a user account. It sends an SMS-based one-time code to the provided number.\n\nRequest body must include:\n- `phoneNumber`: The phone number to verify, in international format.\n\nUse this endpoint to validate ownership of a phone number by sending a one-time code for user input during onboarding or account setup.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5274,7 +5420,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_verifyCreateUserPhoneNumber",
         "summary": "Verify creation of phone number for user",
-        "description": "This route verifies user phone number using OTC code that was sent to the user.",
+        "description": "Verify a user's phone number using a one-time code (OTC) that was sent via SMS.\n\nThis is the final step in the phone number verification process. After initiating verification via the pre-verification route, use this endpoint to confirm the phone number by submitting the OTC and code.\n\nRequest body must include:\n- `otcToken`: The token issued when the OTC was sent.\n- `code`: The one-time code the user received on their phone.\n\nUse this endpoint to validate the user's ownership of the phone number and complete the verification process.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5300,7 +5446,7 @@
       "delete": {
         "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumber",
         "summary": "Delete user's phone number",
-        "description": "This route starts delete process for user phone number. Verification code will be sent to the user. Phone number wont be deleted until delete verification.",
+        "description": "Initiate the deletion process for a user's phone number.\n\nThis endpoint begins the phone number removal workflow by sending a verification code to the user. The phone number will not be deleted until the verification step is completed.\n\nPath parameters:\n- `id`: The unique identifier of the phone number to be deleted.\n\nUse this endpoint to trigger the secure deletion process for a user's phone number. A follow-up verification step is required to finalize the removal.",
         "parameters": [
           {
             "name": "id",
@@ -5333,7 +5479,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_verifyDeleteUserPhoneNumber",
         "summary": "Verify delete user's phone number",
-        "description": "This route verifies delete of user phone number using OTC code that was sent to the user and deletes phone number.",
+        "description": "Verify the deletion of a user's phone number using a one-time code (OTC).\n\nThis is the final step in the phone number deletion process. After initiating deletion, the system sends a verification code to the user's phone. This endpoint confirms the deletion by validating the OTC and code.\n\nPath parameters:\n- `id`: The unique identifier of the phone number to delete.\n\nRequest body must include:\n- `otcToken`: The token issued during the deletion request.\n- `code`: The one-time code sent to the user via SMS.\n\nUse this endpoint to securely complete the deletion of a user's phone number.",
         "parameters": [
           {
             "name": "id",
@@ -5368,7 +5514,7 @@
     "/resources/users/phone-numbers/v1/me": {
       "get": {
         "operationId": "UserPhoneNumbersControllerV1_getUserOwnPhoneNumbers",
-        "summary": "Get current user`s phone numbers",
+        "summary": "Get current user's phone numbers",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -5398,7 +5544,7 @@
         "tags": [
           "SMS"
         ],
-        "description": ""
+        "description": "Retrieve all phone numbers associated with the current user.\n\nThis endpoint returns a list of phone numbers linked to the authenticated user, including verification status and timestamps.\n\nThe response includes metadata such as verification status and timestamps for creation and last update.\n\nUse this endpoint to display or manage the user's registered phone numbers in your application."
       }
     },
     "/resources/configurations/v1/sms": {
@@ -5663,7 +5809,7 @@
       "get": {
         "operationId": "SessionConfigurationControllerV1_getSessionConfiguration",
         "summary": "Get tenant or vendor default session configuration",
-        "description": "This route gets the Session configuration for the entire environment or a specific tenant. To get the Session configuration for a specific tenant, send the tenant’s id in the **`frontegg-tenant-id`** header",
+        "description": "This route gets the Session configuration for the entire environment or a specific tenant. To get the Session configuration for a specific tenant, send the tenant's id in the **`frontegg-tenant-id`** header",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -5687,7 +5833,7 @@
       "post": {
         "operationId": "SessionConfigurationControllerV1_createSessionConfiguration",
         "summary": "Create or update tenant or vendor default session configuration",
-        "description": "This route creates or updates Session configuration for the entire environment or a specific tenant. To update the Session configuration for a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header",
+        "description": "This route creates or updates Session configuration for the entire environment or a specific tenant. To update the Session configuration for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -5716,6 +5862,53 @@
         },
         "tags": [
           "Sessions management"
+        ]
+      }
+    },
+    "/resources/configurations/v1/user-emails-policy": {
+      "get": {
+        "operationId": "UserEmailsPolicyControllerV1_getUserEmailsPolicy",
+        "summary": "Get user emails policy",
+        "description": "Get information about the user emails policy. An environment token is required for this route.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserEmailsPolicyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User emails policy"
+        ]
+      },
+      "post": {
+        "operationId": "UserEmailsPolicyControllerV1_createOrUpdateUserEmailsPolicy",
+        "summary": "Create or update user emails policy",
+        "description": "Enable or disable the ability to change user emails. An environment token is required for this route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserEmailsPolicyRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User emails policy"
         ]
       }
     },
@@ -6245,7 +6438,7 @@
       "post": {
         "operationId": "UsersTenantsControllerV1_disableUserTenant",
         "summary": "Disable user tenant",
-        "description": "This route disable a user. A disabled user cannot log in to the tenant or use the system. To disable a user, call this route and send the user’s ID as a path params.",
+        "description": "This route disable a user. A disabled user cannot log in to the tenant or use the system. To disable a user, call this route and send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -6277,7 +6470,7 @@
       "post": {
         "operationId": "UsersTenantsControllerV1_enableUserTenant",
         "summary": "Enable user tenant",
-        "description": "This route enables a disabled user. An enabled user can log in and use the system. To enable a user, call this route and send the user’s ID as a path params.",
+        "description": "This route enables a disabled user. An enabled user can log in and use the system. To enable a user, call this route and send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -6350,7 +6543,7 @@
       "delete": {
         "operationId": "TemporaryUsersV1Controller_setUserPermanent",
         "summary": "Sets a temporary user to permanent",
-        "description": "This route sets an existing temporary user as permanent. Send the user’s ID as a path params.",
+        "description": "This route sets an existing temporary user as permanent. Send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -6466,7 +6659,7 @@
       "post": {
         "operationId": "UsersActivationControllerV1_resetActivationToken",
         "summary": "Reset user activation token",
-        "description": "This route resets the activation token for a user and triggers a new activation email being sent to the user’s email.",
+        "description": "This route resets the activation token for a user and triggers a new activation email being sent to the user's email.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -6492,7 +6685,7 @@
       "post": {
         "operationId": "UsersTenantManagementControllerV1_resetTenantInvitationToken",
         "summary": "Reset invitation",
-        "description": "This route resets an invitation for a user to join a specific tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header and the user's email in the POST body. It returns a new invitation link with a new token.",
+        "description": "This route resets an invitation for a user to join a specific tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header and the user's email in the POST body. It returns a new invitation link with a new token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -6528,7 +6721,7 @@
       "post": {
         "operationId": "UsersTenantManagementControllerV1_resetAllTenantsInvitationToken",
         "summary": "Reset all invitation tokens",
-        "description": "This route resets all invitation for a user to join all sub tenants which currently have invitation token. Send the tenant’s ID in the **`frontegg-tenant-id`** header and the user's email in the POST body. It returns a new invitation link with a new token.",
+        "description": "This route resets all invitation for a user to join all sub tenants which currently have invitation token. Send the tenant's ID in the **`frontegg-tenant-id`** header and the user's email in the POST body. It returns a new invitation link with a new token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -6564,7 +6757,7 @@
       "get": {
         "operationId": "UsersControllerV3_getUsers",
         "summary": "Get users",
-        "description": "This route gets all users for a tenant OR environment. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare which tenant or leave it empty for all tenants' users",
+        "description": "This route gets all users for a tenant OR environment. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant or leave it empty for all tenants' users",
         "parameters": [
           {
             "name": "_limit",
@@ -6705,7 +6898,7 @@
       "get": {
         "operationId": "UsersControllerV3_getUsersRoles",
         "summary": "Get users roles",
-        "description": "This route gets all users roles for a tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare which tenant.",
+        "description": "This route gets all users roles for a tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant.",
         "parameters": [
           {
             "name": "ids",
@@ -6750,7 +6943,7 @@
       "get": {
         "operationId": "UsersControllerV3_getUsersGroups",
         "summary": "Get users groups",
-        "description": "This route gets all users groups for a tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare which tenant.",
+        "description": "This route gets all users groups for a tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant.",
         "parameters": [
           {
             "name": "ids",
@@ -6821,7 +7014,7 @@
       "post": {
         "operationId": "UsersControllerV2_createUser",
         "summary": "Invite user",
-        "description": "This route creates a user for a specific tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare to what tenant this user is assigned. Send the user's information in the POST body. The user's email and metadata are required. The metadata can be empty, like `{}`.",
+        "description": "This route creates a user for a specific tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare to what tenant this user is assigned. Send the user's information in the POST body. The user's email and metadata are required. The metadata can be empty, like `{}`.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -6960,7 +7153,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUser",
         "summary": "Update user",
-        "description": "This route updates a user’s information for a specific tenant. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant.",
+        "description": "This route updates a user's information for a specific tenant. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -7012,7 +7205,7 @@
       "delete": {
         "operationId": "UsersControllerV1_removeUserFromTenant",
         "summary": "Remove user",
-        "description": "This route removes a user globally or from a specific tenant. To remove the user globally, no need to send a **`frontegg-tenant-id`**. To remove the user from only a specific tenant, send the tenant’s ID in the **`frontegg-tenant-id`** header. Send the user's ID as a path params to declare which user you are removing. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route removes a user globally or from a specific tenant. To remove the user globally, no need to send a **`frontegg-tenant-id`**. To remove the user from only a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. Send the user's ID as a path params to declare which user you are removing. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -7045,7 +7238,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUserForVendor",
         "summary": "Update user globally",
-        "description": "This route updates a user’s information globally, not just for a specific tenant. Send the user’s ID as a path params to identify specific user. Send the updated user values within the PUT body. The PUT request does a complete update of the resource, so include values for all of the body params that you want to have values. This is a global update, so do not send a **`frontegg-tenant-id`** within the header.",
+        "description": "This route updates a user's information globally, not just for a specific tenant. Send the user's ID as a path params to identify specific user. Send the updated user values within the PUT body. The PUT request does a complete update of the resource, so include values for all of the body params that you want to have values. This is a global update, so do not send a **`frontegg-tenant-id`** within the header.",
         "parameters": [
           {
             "name": "userId",
@@ -7088,7 +7281,7 @@
       "post": {
         "operationId": "UsersControllerV1_addRolesToUser",
         "summary": "Assign roles to user",
-        "description": "This route associates roles to a specific user for a specific tenant. Send the tenant’s ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
+        "description": "This route associates roles to a specific user for a specific tenant. Send the tenant's ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -7138,7 +7331,7 @@
       "delete": {
         "operationId": "UsersControllerV1_deleteRolesFromUser",
         "summary": "Unassign roles from user",
-        "description": "This route disassociates roles from a specific user for a specific tenant. Send the tenant’s ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
+        "description": "This route disassociates roles from a specific user for a specific tenant. Send the tenant's ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
         "parameters": [
           {
             "name": "userId",
@@ -7190,7 +7383,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUserTenant",
         "summary": "Update user's active tenant",
-        "description": "This route updates the logged in user’s tenant. The user uses it when they have multiple tenants and they want to change the current tenant they log in to. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant to update when the request is sent with a vendor token. Send the tenant ID in the PUT body.",
+        "description": "This route updates the logged in user's tenant. The user uses it when they have multiple tenants and they want to change the current tenant they log in to. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant to update when the request is sent with a vendor token. Send the tenant ID in the PUT body.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -7425,11 +7618,243 @@
         ]
       }
     },
+    "/resources/usernames/v1": {
+      "get": {
+        "operationId": "UsernamesControllerV1_getUsersUsernames",
+        "summary": "Get usernames for users",
+        "description": "This route gets usernames for users.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "userId",
+                "username"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "userIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "usernames",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsernameResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "post": {
+        "operationId": "UsernamesControllerV1_createUsername",
+        "summary": "Create a username for user",
+        "description": "This route creates a username for a user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUsernameRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/usernames/v1/{username}": {
+      "delete": {
+        "operationId": "UsernamesControllerV1_deleteUsername",
+        "summary": "Delete a username for user",
+        "description": "This route deletes a username for a user.",
+        "parameters": [
+          {
+            "name": "username",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/usernames/v1/me": {
+      "get": {
+        "operationId": "UsernamesControllerV1_getMeUsernames",
+        "summary": "Get authenticated user's username",
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsernameResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/users/v1/email/me": {
+      "post": {
+        "operationId": "SelfEmailUpdateControllerV1_updateEmailMe",
+        "summary": "Update user email",
+        "description": "This route updates the email for a user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelfEmailUpdateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/email/me/verify": {
+      "post": {
+        "operationId": "SelfEmailUpdateControllerV1_verifyEmailMe",
+        "summary": "Verify user email",
+        "description": "This route verifies the email for a user.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelfEmailUpdateVerifyRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
     "/resources/users/v1/activate": {
       "post": {
         "operationId": "UsersActivationControllerV1_activateUser",
         "summary": "Activate user",
-        "description": "This route activates a non-activated user. You can use it to create your own activation flow. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the required userId and activation token in the POST body. For generating an activation token, see the route under users for generating an activation token. If the vendor's sign in flow requires a password or recaptcha, send those values in the POST body. Instead of this route, consider using our email template for user activation.",
+        "description": "This route activates a non-activated user. You can use it to create your own activation flow. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal. Send the required userId and activation token in the POST body. For generating an activation token, see the route under users for generating an activation token. If the vendor's sign in flow requires a password or recaptcha, send those values in the POST body. Instead of this route, consider using our email template for user activation.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -7472,7 +7897,7 @@
       "post": {
         "operationId": "UsersActivationControllerV1_activateUserWithCode",
         "summary": "Activate user with code",
-        "description": "This route activates a non-activated user. You can use it to create your own activation flow. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the required userId, activation token and code in the POST body. For generating an activation token, see the route under users for generating an activation token. If the vendor's sign in flow requires a password or recaptcha, send those values in the POST body. Instead of this route, consider using our email template for user activation.",
+        "description": "This route activates a non-activated user. You can use it to create your own activation flow. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal. Send the required userId, activation token and code in the POST body. For generating an activation token, see the route under users for generating an activation token. If the vendor's sign in flow requires a password or recaptcha, send those values in the POST body. Instead of this route, consider using our email template for user activation.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -7515,7 +7940,7 @@
       "get": {
         "operationId": "UsersActivationControllerV1_getActivationStrategy",
         "summary": "Get user activation strategy",
-        "description": "This route gets a user’s activation strategy. The activation strategy tells the vendor whether the user needs to set a password. Send the required userId and activation token in the POST body. For the activation token, see the route under users for generating an activation token. The route returns a Boolean called shouldSetPassword. If it is true, the user needs to to set a password. If it is false, the user does not need to set a password. For instance, SSO users do not set passwords.",
+        "description": "This route gets a user's activation strategy. The activation strategy tells the vendor whether the user needs to set a password. Send the required userId and activation token in the POST body. For the activation token, see the route under users for generating an activation token. The route returns a Boolean called shouldSetPassword. If it is true, the user needs to to set a password. If it is false, the user does not need to set a password. For instance, SSO users do not set passwords.",
         "parameters": [
           {
             "name": "userId",
@@ -8360,7 +8785,7 @@
       "get": {
         "operationId": "VendorOnlyUsers_getUserById",
         "summary": "Get user",
-        "description": "This route gets a user by its ID regardless of any tenant the user belongs to. Send the user’s ID as a path params. The route is for vendor-use only.",
+        "description": "This route gets a user by its ID regardless of any tenant the user belongs to. Send the user's ID as a path params. The route is for vendor-use only.",
         "parameters": [
           {
             "name": "userId",
@@ -8393,7 +8818,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_MFAUnenroll",
         "summary": "Unenroll user from MFA globally",
-        "description": "This route unenrolls a user from MFA regardless of any tenant the user belongs to. Send the user’s ID as a path params. The route is for vendor-use only.",
+        "description": "This route unenrolls a user from MFA regardless of any tenant the user belongs to. Send the user's ID as a path params. The route is for vendor-use only.",
         "parameters": [
           {
             "name": "userId",
@@ -8419,7 +8844,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_verifyUserPassword",
         "summary": "Verify user's password",
-        "description": "This route verify user email and password. Send the user’s email and password and the response will be true or false. The route is for vendor-use only.",
+        "description": "This route verify user email and password. Send the user's email and password and the response will be true or false. The route is for vendor-use only.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8712,7 +9137,7 @@
       "get": {
         "operationId": "UsersControllerV1_getUserById",
         "summary": "Get user by ID",
-        "description": "This route gets a specific user from a tenant. Send the tenant’s ID in the **`frontegg-tenant-id`** header to declare which tenant and send the user’s ID as a path params to declare which user. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route gets a specific user from a tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant and send the user's ID as a path params to declare which user. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "id",
@@ -8754,7 +9179,7 @@
       "post": {
         "operationId": "UsersControllerV1_verifyUser",
         "summary": "Verify user",
-        "description": "This route marks a user as verified. Send the user’s ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route marks a user as verified. Send the user's ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -8780,7 +9205,7 @@
       "put": {
         "operationId": "UsersControllerV1_setUserInvisibleMode",
         "summary": "Make user invisible",
-        "description": "This route sets whether a user is invisible or visible. If a user is invisible, the user data remains in the Frontegg system but the user will not appear in the list of users in the admin box. An invisible user remains part of the tenant. Send the user’s ID as a path params. Also send as a PUT body params a Boolean value for invisible. True is invisible and false is visible. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route sets whether a user is invisible or visible. If a user is invisible, the user data remains in the Frontegg system but the user will not appear in the list of users in the admin box. An invisible user remains part of the tenant. Send the user's ID as a path params. Also send as a PUT body params a Boolean value for invisible. True is invisible and false is visible. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -8950,7 +9375,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUserEmail",
         "summary": "Update user email",
-        "description": "This route updates the email address for a user globally, regardless of tenant. Send the user’s ID as a path params. Send the user’s new email address as a PUT body params.",
+        "description": "This route updates the email address for a user globally, regardless of tenant. Send the user's ID as a path params. Send the user's new email address as a PUT body params.",
         "parameters": [
           {
             "name": "userId",
@@ -8993,7 +9418,7 @@
       "post": {
         "operationId": "UsersControllerV1_generateUserActivationLink",
         "summary": "Generate activation token",
-        "description": "This route generates a new activation token for a user. Send the user’s ID as a path params. You may need this route in combination with the routes under Users Activation. It will not send the activation email itself, but return the activation link and token. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route generates a new activation token for a user. Send the user's ID as a path params. You may need this route in combination with the routes under Users Activation. It will not send the activation email itself, but return the activation link and token. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9026,7 +9451,7 @@
       "post": {
         "operationId": "UsersControllerV1_generateUserPasswordResetLink",
         "summary": "Generate password reset token",
-        "description": "This route generates a password reset token for a user. Send the user’s ID as a path params. You may need this route in combination with the routes under Users Passwords. It will not send the reset password email itself, but return the reset link and token. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route generates a password reset token for a user. Send the user's ID as a path params. You may need this route in combination with the routes under Users Passwords. It will not send the reset password email itself, but return the reset link and token. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9059,7 +9484,7 @@
       "post": {
         "operationId": "UsersControllerV1_unlockUser",
         "summary": "Unlock user",
-        "description": "This route unlocks a locked user. An unlocked user can sign in and use the system globally, regardless of the tenant. To unlock a user, call this route and send the user’s ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route unlocks a locked user. An unlocked user can sign in and use the system globally, regardless of the tenant. To unlock a user, call this route and send the user's ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9085,7 +9510,7 @@
       "post": {
         "operationId": "UsersControllerV1_lockUser",
         "summary": "Lock user",
-        "description": "This route locks a user. A locked user cannot sign in or use the system globally, regardless of the tenant. To lock a user, call this route and send the user’s ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route locks a user. A locked user cannot sign in or use the system globally, regardless of the tenant. To lock a user, call this route and send the user's ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -10016,7 +10441,11 @@
               "MagicLink",
               "Code",
               "NoLocalAuthentication",
-              "SmsCode"
+              "SmsCode",
+              "UsernameAndPassword",
+              "UsernameAndMagicLink",
+              "UsernameAndCode",
+              "UsernameAndSms"
             ],
             "type": "string",
             "description": ""
@@ -10636,11 +11065,21 @@
               "UnlockUser",
               "UnlockUserSuccess",
               "ActivateUserWithCode",
-              "InviteToTenantWithCode"
+              "InviteToTenantWithCode",
+              "VerifyNewEmail",
+              "EmailAddressChanged"
             ],
             "description": ""
           },
           "senderEmail": {
+            "type": "string",
+            "description": ""
+          },
+          "subject": {
+            "type": "string",
+            "description": ""
+          },
+          "fromName": {
             "type": "string",
             "description": ""
           },
@@ -10650,15 +11089,7 @@
           },
           "htmlTemplate": {
             "type": "string",
-            "maxLength": 100000,
-            "description": ""
-          },
-          "subject": {
-            "type": "string",
-            "description": ""
-          },
-          "fromName": {
-            "type": "string",
+            "maxLength": 1000000,
             "description": ""
           },
           "successRedirectUrl": {
@@ -12314,6 +12745,19 @@
           "permissionIds"
         ]
       },
+      "UpdateRoleTenantRequest": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "nullable": true,
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId"
+        ]
+      },
       "AddRoleWithPermissionsRequest": {
         "type": "object",
         "properties": {
@@ -12656,9 +13100,37 @@
           "sha256"
         ]
       },
+      "PhoneNumberType": {
+        "type": "string",
+        "enum": [
+          "auth",
+          "mfa"
+        ]
+      },
       "MigrateUserRequest": {
         "type": "object",
         "properties": {
+          "email": {
+            "type": "string",
+            "description": ""
+          },
+          "username": {
+            "type": "string",
+            "description": "The username of the user. If not provided, the email is required"
+          },
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "name": {
+            "type": "string",
+            "description": ""
+          },
+          "profilePictureUrl": {
+            "type": "string",
+            "description": "",
+            "maxLength": 4095
+          },
           "passwordHash": {
             "type": "string",
             "description": "The password hash. For SCrypt should include the salt and key seperated by the salt separator"
@@ -12672,9 +13144,17 @@
             "maxLength": 4095,
             "description": "Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }"
           },
+          "authenticatorAppMfaSecret": {
+            "type": "string",
+            "description": ""
+          },
           "phoneNumber": {
             "type": "string",
             "description": "phoneNumber can be used either for login with SMS or for MFA, in combination with `phoneNumberType`. The required format is `area code + number`, without spaces. For example: `+16037184056`. Note that the number must be unique"
+          },
+          "phoneNumberType": {
+            "$ref": "#/components/schemas/PhoneNumberType",
+            "description": ""
           },
           "provider": {
             "type": "string",
@@ -12712,35 +13192,6 @@
           "vendorMetadata": {
             "type": "string",
             "description": "Additional vendor-only data. stringified JSON object"
-          },
-          "email": {
-            "type": "string",
-            "description": ""
-          },
-          "tenantId": {
-            "type": "string",
-            "description": ""
-          },
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "profilePictureUrl": {
-            "type": "string",
-            "maxLength": 4095,
-            "description": ""
-          },
-          "authenticatorAppMfaSecret": {
-            "type": "string",
-            "description": ""
-          },
-          "phoneNumberType": {
-            "type": "string",
-            "enum": [
-              "auth",
-              "mfa"
-            ],
-            "description": ""
           }
         },
         "required": [
@@ -12791,7 +13242,7 @@
           "allowAccess"
         ]
       },
-      "ResetPasswordDto": {
+      "ResetPasswordV1Dto": {
         "type": "object",
         "properties": {
           "email": {
@@ -12845,6 +13296,78 @@
         "required": [
           "password",
           "newPassword"
+        ]
+      },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "User identifier (phone number or email)"
+          },
+          "identifierType": {
+            "enum": [
+              "email",
+              "phoneNumber",
+              "username"
+            ],
+            "type": "string",
+            "description": "Type of the identifier"
+          },
+          "emailMetadata": {
+            "type": "object",
+            "description": ""
+          }
+        },
+        "required": [
+          "identifier",
+          "identifierType"
+        ]
+      },
+      "ResetPasswordViaSmsResponseDto": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "sessionId"
+        ]
+      },
+      "VerifyPasswordViaSmsRequestDto": {
+        "type": "object",
+        "properties": {
+          "otcToken": {
+            "type": "string",
+            "description": ""
+          },
+          "sessionId": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "otcToken",
+          "sessionId"
+        ]
+      },
+      "VerifyPasswordViaSmsResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": ""
+          },
+          "token": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "userId",
+          "token"
         ]
       },
       "ResetActivationTokenDto": {
@@ -14915,6 +15438,90 @@
           }
         }
       },
+      "GetUserEmailsPolicyResponseDto": {
+        "type": "object",
+        "properties": {
+          "allowEmailChange": {
+            "type": "boolean",
+            "description": "Indicates whether email change has been enabled or disabled.",
+            "example": "true"
+          }
+        },
+        "required": [
+          "allowEmailChange"
+        ]
+      },
+      "CreateUserEmailsPolicyRequestDto": {
+        "type": "object",
+        "properties": {
+          "allowEmailChange": {
+            "type": "boolean",
+            "description": "Used to enable or disable email change for users.",
+            "example": "true"
+          }
+        }
+      },
+      "UsernameResponseDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username value",
+            "example": "user.name"
+          },
+          "userId": {
+            "type": "string",
+            "description": "The user id value",
+            "example": "user-id"
+          }
+        },
+        "required": [
+          "username",
+          "userId"
+        ]
+      },
+      "CreateUsernameRequestDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username to create. Allowed characters: alphanumeric (a-z, 0-9), ^, $, ., !, -, #, +, ', ~, _ (no spaces, no accents, automatically converted to lowercase). Max length: 128 characters.",
+            "example": "john.doe$!#-+'~_"
+          }
+        },
+        "required": [
+          "username"
+        ]
+      },
+      "SelfEmailUpdateRequestDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email to update to"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "SelfEmailUpdateVerifyRequestDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The code for the user to verify their email"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email for the user to verify their email"
+          }
+        },
+        "required": [
+          "code",
+          "email"
+        ]
+      },
       "CreateOrUpdateIpRestrictionConfigDto": {
         "type": "object",
         "properties": {
@@ -15431,6 +16038,10 @@
             "type": "string",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "description": "Username. Either email or username must be provided."
+          },
           "password": {
             "type": "string",
             "description": ""
@@ -15445,7 +16056,6 @@
           }
         },
         "required": [
-          "email",
           "password"
         ]
       },
@@ -15528,6 +16138,10 @@
             "type": "string",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "description": ""
+          },
           "phoneNumber": {
             "type": "string",
             "description": ""
@@ -15536,6 +16150,7 @@
         "required": [
           "email",
           "userId",
+          "username",
           "phoneNumber"
         ]
       },
@@ -15590,11 +16205,16 @@
           "userId": {
             "type": "string",
             "description": ""
+          },
+          "username": {
+            "type": "string",
+            "description": ""
           }
         },
         "required": [
           "email",
-          "userId"
+          "userId",
+          "username"
         ]
       },
       "VerifyMFAAuthAppRequest": {
@@ -16002,6 +16622,10 @@
             "description": "Stringified JSON object. Use the JSON.stringify() method."
           },
           "email": {
+            "type": "string",
+            "description": ""
+          },
+          "username": {
             "type": "string",
             "description": ""
           },
