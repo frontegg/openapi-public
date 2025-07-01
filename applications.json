@@ -5,7 +5,7 @@
       "get": {
         "operationId": "getApplications",
         "summary": "Get all applications for an environment",
-        "description": "Get all applications for an environment",
+        "description": "Retrieve a list of all applications configured within the current environment. You can optionally filter the results by access type, default status, active status, or specific application IDs. This route requires an environment token for authentication.",
         "parameters": [
           {
             "name": "_accessType",
@@ -79,7 +79,7 @@
       "post": {
         "operationId": "createApplication",
         "summary": "Create application",
-        "description": "Create application",
+        "description": "Create a new application within the current environment. You must provide basic information such as the application's name, URLs, and access type. You can also configure optional fields like the frontend stack, logo, default status, and metadata. This route requires an environment token for authentication.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -112,7 +112,7 @@
       "get": {
         "operationId": "getDefaultApplication",
         "summary": "Get the default application for an environment",
-        "description": "Get the default application for an environment",
+        "description": "Retrieve the default application configured in the current environment. The default application typically defines the primary application used for user access and authentication flows. This route requires an environment token for authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -135,7 +135,7 @@
       "get": {
         "operationId": "getApplicationById",
         "summary": "Get application by ID",
-        "description": "Get application by ID",
+        "description": "Retrieve the details of a specific application by its unique ID within the current environment. Use this route to fetch configuration, metadata, and status information for a given application. This request requires an environment token for authentication.",
         "parameters": [
           {
             "name": "id",
@@ -166,7 +166,7 @@
       "patch": {
         "operationId": "updateApplication",
         "summary": "Update an application",
-        "description": "Update an application",
+        "description": "Update the configuration of an existing application by its ID. You can modify fields such as the name, URLs, access type, status, frontend stack, and additional metadata. This request requires an environment token for authentication.",
         "parameters": [
           {
             "name": "id",
@@ -200,7 +200,7 @@
       "delete": {
         "operationId": "deleteApplication",
         "summary": "Delete an application",
-        "description": "Delete an application",
+        "description": "Delete an existing application by its ID from the current environment. This action permanently removes the application and its associated configuration. This request requires an environment token for authentication.",
         "parameters": [
           {
             "name": "id",
@@ -225,8 +225,8 @@
     "/resources/applications/tenant-assignments/v1": {
       "get": {
         "operationId": "getApplicationsTenantsAssignments",
-        "summary": "Get application to tenants assignments",
-        "description": "Get application to tenants assignments",
+        "summary": "Get application to accounts (tenants) assignments",
+        "description": "Retrieve the list of applications assigned to specific accounts (tenants), or the list of accounts (tenants) associated with specific applications. You can filter the results using `appIds` or `tenantIds` query parameters. This request requires an environment token.",
         "parameters": [
           {
             "name": "appIds",
@@ -279,8 +279,8 @@
     "/resources/applications/tenant-assignments/v1/{appId}": {
       "get": {
         "operationId": "getApplicationTenantsAssignmentsByAppId",
-        "summary": "Get tenants assignments for an application",
-        "description": "Get tenants assignments for an application",
+        "summary": "Get account (tenant) assignments for an application",
+        "description": "Retrieve all account (tenant) IDs currently assigned to a specific application.\n\nSend the application ID as a path parameter.",
         "parameters": [
           {
             "name": "appId",
@@ -310,8 +310,8 @@
       },
       "post": {
         "operationId": "createApplicationTenantAssignment",
-        "summary": "Create application to tenant assignment",
-        "description": "Create application to tenant assignment",
+        "summary": "Create application to account (tenant) assignment",
+        "description": "Assign an application to a specific account (tenant).\n\nProvide the application ID as a path parameter and the target account (tenant) ID in the request body.",
         "parameters": [
           {
             "name": "appId",
@@ -353,8 +353,8 @@
     "/resources/applications/tenant-assignments/v1/{appId}/{tenantId}": {
       "delete": {
         "operationId": "deleteApplicationTenantAssignment",
-        "summary": "Delete application to tenant assignment",
-        "description": "Delete application to tenant assignment",
+        "summary": "Delete application to account (tenant) assignment",
+        "description": "Remove the assignment of an application from a specific account (tenant).",
         "parameters": [
           {
             "name": "appId",
@@ -389,7 +389,7 @@
       "get": {
         "operationId": "getApplicationClientCredentials",
         "summary": "Get application client credentials",
-        "description": "Get application client credentials",
+        "description": "Retrieve the client credentials for a specific application. These credentials include both the `clientSecret` and the `sharedSecret`, which are required for authentication and secure communication with the application.",
         "parameters": [
           {
             "name": "appId",
@@ -422,7 +422,7 @@
       "post": {
         "operationId": "regenerateApplicationClientCredentials",
         "summary": "Regenerate application client credentials",
-        "description": "Regenerate application client credentials",
+        "description": "Regenerate the client credentials (client ID and secret) for a specific application. Use this route to issue a new set of credentials for the application. This request requires an environment token for authentication.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -448,7 +448,7 @@
       "post": {
         "operationId": "regenerateApplicationSharedSecretCredentials",
         "summary": "Regenerate application shared secret credential",
-        "description": "Regenerate application shared secret client credential",
+        "description": "Regenerate the shared secret credential for a specific application. Use this route to issue a new shared secret that the application can use for authentication. This request requires an environment token for authentication.",
         "parameters": [],
         "requestBody": {
           "required": true,

@@ -5,7 +5,7 @@
       "get": {
         "operationId": "SamlControllerV1_getVendorSamlConfig",
         "summary": "Get vendor's SAML config",
-        "description": "Get vendor's SAML config",
+        "description": "Retrieve the environment’s SAML configuration.\n\nReturns the current SAML identity provider settings configured for the environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -28,7 +28,7 @@
       "get": {
         "operationId": "SamlControllerV1_getSpCertificate",
         "summary": "Get service provider certificate",
-        "description": "Get service provider certificate",
+        "description": "Retrieve the service provider (SP) certificate used for SAML authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -44,12 +44,12 @@
       "get": {
         "operationId": "SamlControllerV1_getSpMetadata",
         "summary": "Get service provider metadata",
-        "description": "Get service provider metadata",
+        "description": "Retrieve the service provider metadata for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -70,12 +70,12 @@
       "post": {
         "operationId": "SsoConfigurationControllerV1_createSsoConfiguration",
         "summary": "Create SSO configuration",
-        "description": "Create SSO configuration",
+        "description": "Create a new Single Sign-On (SSO) configuration for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -104,12 +104,12 @@
       "get": {
         "operationId": "SsoConfigurationControllerV1_getSsoConfigurations",
         "summary": "Get SSO configurations",
-        "description": "Get SSO configurations",
+        "description": "Retrieve Single Sign-On (SSO) configurations for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -130,12 +130,12 @@
       "delete": {
         "operationId": "SsoConfigurationControllerV1_deleteSsoConfiguration",
         "summary": "Delete SSO configuration",
-        "description": "Delete SSO configuration",
+        "description": "Delete Single Sign-On (SSO) configurations for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -168,7 +168,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -208,12 +208,12 @@
       "post": {
         "operationId": "SsoConfigurationControllerV1_createSsoConfigurationByMetadata",
         "summary": "Create SSO configuration using metadata",
-        "description": "Create SSO configuration using metadata",
+        "description": "Create a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -244,12 +244,12 @@
       "put": {
         "operationId": "SsoConfigurationControllerV1_updateSsoConfigurationByMetadata",
         "summary": "Update SSO configuration using metadata",
-        "description": "Update SSO configuration using metadata",
+        "description": "Update a Single Sign-On (SSO) configuration using identity provider metadata for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -289,12 +289,12 @@
       "post": {
         "operationId": "SsoDomainControllerV1_createSsoDomain",
         "summary": "Create SSO domain",
-        "description": "Create SSO domain",
+        "description": "Add a domain to a Single Sign-On (SSO) configuration for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -334,12 +334,12 @@
       "delete": {
         "operationId": "SsoDomainControllerV1_deleteSsoDomain",
         "summary": "Delete SSO domain",
-        "description": "Delete SSO domain",
+        "description": "Remove a domain from a Single Sign-On (SSO) configuration for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -378,12 +378,12 @@
       "put": {
         "operationId": "SsoDomainControllerV1_validateSsoDomainByEmail",
         "summary": "Validate SSO domain by email",
-        "description": "Validate SSO using user's email domain",
+        "description": "Validate a domain in a Single Sign-On (SSO) configuration using the user's email domain.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -422,12 +422,12 @@
       "put": {
         "operationId": "SsoDomainControllerV2_validateSsoDomain",
         "summary": "Validate SSO domain",
-        "description": "Validate SSO domain",
+        "description": "Validate a domain in a Single Sign-On (SSO) configuration for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -466,12 +466,12 @@
       "put": {
         "operationId": "SsoRolesControllerV1_setSsoDefaultRoles",
         "summary": "Set SSO default roles",
-        "description": "Set SSO default roles",
+        "description": "Set default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -509,12 +509,12 @@
       "get": {
         "operationId": "SsoRolesControllerV1_getSsoDefaultRoles",
         "summary": "Get SSO default roles",
-        "description": "Get SSO default roles",
+        "description": "Retrieve default roles assigned to users authenticated through Single Sign-On (SSO) for the specified account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -544,12 +544,12 @@
       "post": {
         "operationId": "SsoGroupsControllerV1_createSsoGroup",
         "summary": "Create an SSO group",
-        "description": "Create an SSO group",
+        "description": "Create a new SSO group for user management and access control within the specified SSO configuration for the account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -587,12 +587,12 @@
       "get": {
         "operationId": "SsoGroupsControllerV1_getSsoGroup",
         "summary": "Get SSO group",
-        "description": "Get SSO group",
+        "description": "Retrieve an SSO group from the specified SSO configuration for the account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -622,12 +622,12 @@
       "patch": {
         "operationId": "SsoGroupsControllerV1_updateSsoGroup",
         "summary": "Update SSO group",
-        "description": "Update SSO group",
+        "description": "Update an existing SSO group within the specified SSO configuration for the account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -674,12 +674,12 @@
       "delete": {
         "operationId": "SsoGroupsControllerV1_deleteSsoGroup",
         "summary": "Delete SSO group",
-        "description": "Delete SSO group",
+        "description": "Delete an existing SSO group from the specified SSO configuration for the account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -718,7 +718,7 @@
       "post": {
         "operationId": "ExcludeEmailsFromSSOV1_excludeSSOEmail",
         "summary": "Exclude email from SSO",
-        "description": "Exclude email from SSO",
+        "description": "Exclude an email address from SSO enforcement.\n\nProvide the email address to exclude in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -742,7 +742,7 @@
       "get": {
         "operationId": "ExcludeEmailsFromSSOV1_getSSOExcludedEmails",
         "summary": "Get SSO excluded emails",
-        "description": "Get SSO excluded emails",
+        "description": "Retrieve the list of email addresses excluded from SSO enforcement.",
         "parameters": [],
         "responses": {
           "200": {
@@ -758,7 +758,7 @@
       "delete": {
         "operationId": "ExcludeEmailsFromSSOV1_deleteSSOExcludedEmail",
         "summary": "Delete SSO excluded email",
-        "description": "Delete SSO excluded email",
+        "description": "Remove an email address from the list of SSO-excluded emails.",
         "parameters": [
           {
             "name": "email",
@@ -784,7 +784,7 @@
       "put": {
         "operationId": "VendorOnlySsoConfigurationControllerV1_forceSsoDomainValidation",
         "summary": "Vendor only - Force SSO domain validation",
-        "description": "Vendor only - Force SSO domain validation",
+        "description": "Force domain validation for SSO configuration in the environment.",
         "parameters": [
           {
             "name": "domain",
@@ -819,8 +819,8 @@
     "/resources/sso/v1/configurations/multiple-sso-per-domain": {
       "get": {
         "operationId": "SsoPerTenantControllerV1_getSSOPerTenantConfig",
-        "summary": "Get SSO per tenant configuration",
-        "description": "Get SSO per tenant configuration",
+        "summary": "Get SSO per account (tenant) configuration",
+        "description": "Retrieve the SSO configuration for a specific account (tenant).",
         "parameters": [],
         "responses": {
           "200": {
@@ -833,8 +833,8 @@
       },
       "put": {
         "operationId": "SsoPerTenantControllerV1_createOrUpdateSSOPerTenantConfig",
-        "summary": "Create or update SSO per tenant configuration",
-        "description": "Create or update SSO per tenant configuration",
+        "summary": "Create or update SSO per account (tenant) configuration",
+        "description": "Create or update the SSO configuration for a specific account (tenant).",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -860,7 +860,7 @@
       "put": {
         "operationId": "SSODomainsConfigurationControllerV1_createOrUpdateSSODomainsConfiguration",
         "summary": "Create or update SSO domains configuration",
-        "description": "Create or update SSO domains configuration",
+        "description": "Create or update the SSO domains configuration for the account (tenant).",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -884,7 +884,7 @@
       "get": {
         "operationId": "SSODomainsConfigurationControllerV1_getSSODomainsConfiguration",
         "summary": "Get SSO domains configuration",
-        "description": "Get SSO domains configuration",
+        "description": "Retrieve the SSO domains configuration for the account (tenant).",
         "parameters": [],
         "responses": {
           "200": {
@@ -900,7 +900,7 @@
       "get": {
         "operationId": "OidcControllerV1_getOidcConifguration",
         "summary": "Get OIDC configuration",
-        "description": "Get OIDC configuration",
+        "description": "Retrieve the OpenID Connect (OIDC) configuration for the environment.",
         "parameters": [],
         "responses": {
           "201": {
@@ -921,7 +921,7 @@
       "post": {
         "operationId": "OidcControllerV1_configureOidc",
         "summary": "Configure OIDC",
-        "description": "Configure OIDC",
+        "description": "Configure or update an OpenID Connect (OIDC) identity provider for the environment.",
         "parameters": [],
         "requestBody": {
           "required": true,

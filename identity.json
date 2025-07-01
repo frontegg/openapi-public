@@ -5,7 +5,7 @@
       "post": {
         "operationId": "AuthenticationApiTokenControllerV2_authApiToken",
         "summary": "Authenticate using API token",
-        "description": "Authenticate a tenant or user using an API token.\n\nTo authenticate, include your `clientId` and `secret` in the request body. You can locate these credentials in the Admin Portal ➜ **API Tokens**. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`) rather than the default domain.\n\n**Refresh Token Rotation:** This endpoint enforces a rotation policy. Each API token supports up to **100 active refresh tokens**. When the 101st request is made using the same API token, the oldest refresh token is invalidated.\n\nUse this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.",
+        "description": "Authenticate an account (tenant) or user using an API token.\n\nTo authenticate, include your `clientId` and `secret` in the request body. You can locate these credentials in the Admin Portal ➜ **API Tokens**. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`) rather than the default domain.\n\n**Refresh Token Rotation:** This endpoint enforces a rotation policy. Each API token supports up to **100 active refresh tokens**. When the 101st request is made using the same API token, the oldest refresh token is invalidated.\n\nUse this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -70,12 +70,12 @@
     "/resources/tenants/access-tokens/v1": {
       "post": {
         "operationId": "TenantAccessTokensV1Controller_createTenantAccessToken",
-        "summary": "Create tenant access token",
+        "summary": "Create account (tenant) access token",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -107,16 +107,16 @@
         "tags": [
           "API tokens"
         ],
-        "description": ""
+        "description": "Create an access token for a specific account (tenant)."
       },
       "get": {
         "operationId": "TenantAccessTokensV1Controller_getTenantAccessTokens",
-        "summary": "Get tenant access tokens",
+        "summary": "Get account (tenant) access tokens",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -138,18 +138,18 @@
         "tags": [
           "API tokens"
         ],
-        "description": ""
+        "description": "Retrieve all access tokens for a specific account (tenant)."
       }
     },
     "/resources/tenants/access-tokens/v1/{id}": {
       "delete": {
         "operationId": "TenantAccessTokensV1Controller_deleteTenantAccessToken",
-        "summary": "Delete tenant access token",
+        "summary": "Delete account (tenant) access token",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -173,7 +173,7 @@
         "tags": [
           "API tokens"
         ],
-        "description": ""
+        "description": "Delete an account (tenant) access token."
       }
     },
     "/resources/tenants/api-tokens/v1": {
@@ -186,7 +186,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -222,12 +222,12 @@
       "get": {
         "operationId": "TenantApiTokensV1Controller_getTenantsApiTokens",
         "summary": "Get client credentials tokens",
-        "description": "This route gets all API tokens for a specific tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Retrieve all API tokens for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -258,7 +258,7 @@
       "delete": {
         "operationId": "TenantApiTokensV1Controller_deleteTenantApiToken",
         "summary": "Delete client credentials token",
-        "description": "This route deletes a tenant API token. Send the token ID as the path param. Send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Delete an account (tenant) API token.",
         "parameters": [
           {
             "name": "id",
@@ -272,7 +272,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -291,7 +291,7 @@
       "patch": {
         "operationId": "TenantApiTokensV1Controller_updateTenantApiToken",
         "summary": "Update client credentials token",
-        "description": "This route updates a tenant API token. Send the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for description, roles, and permissions for the token.",
+        "description": "Update an account (tenant) API token.",
         "parameters": [
           {
             "name": "id",
@@ -305,7 +305,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -343,12 +343,12 @@
       "post": {
         "operationId": "TenantApiTokensV2Controller_createTenantApiToken",
         "summary": "Create client credentials token",
-        "description": "This route creates a tenant API token. Send the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata, description, roles, and permissions for the token.</br></br>You can get roles & permissions via API",
+        "description": "Create an account (tenant) API token.\n\nYou can retrieve roles and permissions via the API.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -385,8 +385,8 @@
     "/resources/tenants/invites/v1/user": {
       "get": {
         "operationId": "TenantInvitesController_getTenantInviteForUser",
-        "summary": "Get tenant invite of user",
-        "description": "This route gets an invitation for a specific user to join a tenant. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "summary": "Get account (tenant) invite of user",
+        "description": "Retrieve an invitation for a specific user to join an account (tenant).",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -400,7 +400,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -425,8 +425,8 @@
       },
       "post": {
         "operationId": "TenantInvitesController_createTenantInviteForUser",
-        "summary": "Create tenant invite for user",
-        "description": "This route creates an invitation for a specific user to join a tenant. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. To create a general invitation, use the general invitation route.",
+        "summary": "Create account (tenant) invite for user",
+        "description": "Create an invitation for a specific user to join an account (tenant).\n\nTo create a general invitation, use the general invitation route.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -440,7 +440,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -475,8 +475,8 @@
       },
       "delete": {
         "operationId": "TenantInvitesController_deleteTenantInviteForUser",
-        "summary": "Delete tenant invite of user",
-        "description": "This route deletes an invitation for a specific user to join a tenant. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. To delete a general invitation, use the general invitation route.",
+        "summary": "Delete account (tenant) invite of user",
+        "description": "Delete an invitation for a specific user to join an account (tenant).\n\nTo delete a general invitation, use the general invitation route.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -490,7 +490,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -508,8 +508,8 @@
       },
       "patch": {
         "operationId": "TenantInvitesController_updateTenantInviteForUser",
-        "summary": "Update tenant invite of user",
-        "description": "This route updates an invitation for a specific user to join a tenant. In order to set up a specific expiration time, use the expiresInMinutes to declare when the invite is being invalidated. The shouldSendEmail boolean declares wether an invitation email will be sent or not. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Update account (tenant) invite of user",
+        "description": "Update an invitation for a specific user to join an account (tenant).\n\nTo set a specific expiration time, use the `expiresInMinutes` parameter to define when the invitation will be invalidated. Use the `shouldSendEmail` Boolean parameter to control whether an invitation email is sent.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -523,7 +523,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -560,8 +560,8 @@
     "/resources/tenants/invites/v1/verify": {
       "post": {
         "operationId": "TenantInvitesController_verifyTenantInvite",
-        "summary": "Verify tenant invite",
-        "description": "This route verifies a tenant invitation. Pass the invitation token as the token param. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Verify account (tenant) invite",
+        "description": "Verify an account (tenant) invitation.\n\nPass the invitation token as the `token` parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -593,8 +593,8 @@
     "/resources/tenants/invites/v1/configuration": {
       "get": {
         "operationId": "getInvitationConfiguration",
-        "summary": "Get tenant invite configuration",
-        "description": "This route checks whether account (tenant) invitations are enabled on the environment and whether notifications are active. An environment token is required for this route, it can be obtained from the environment authentication route.",
+        "summary": "Get account (tenant) invite configuration",
+        "description": "Check whether account (tenant) invitations are enabled and whether notifications are active for your environment.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -616,8 +616,8 @@
     "/resources/tenants/invites/v1": {
       "post": {
         "operationId": "TenantInvitesController_createTenantInvite",
-        "summary": "Create tenant invite",
-        "description": "This route creates a general invitation token. To create an invitation token for a specific tenant, send the tenant's ID in the request's body. To create an invitation token for a specific user of a tenant, you can add the user ID on the body params. If a user ID was provided, you can decide wether to send an email to the user or not via the shouldSendEmail param. In order to set up a specific expiration time, use the expiresInMinutes to declare when the invite is being invalidated. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Create account (tenant) invite",
+        "description": "Create a general or account (tenant)-specific invitation token.\n\nUse this endpoint to generate invitation tokens for accounts (tenants) or individual users.\n\nTo create a general invitation token, send the request without specifying an account (tenant) or user. To create an account (tenant)-specific token, include the account (tenant) ID in the request body. To create a token for a specific user of an account (tenant), also include the user ID in the body parameters. If a user ID is provided, you can control whether an invitation email is sent by setting the `shouldSendEmail` parameter.\n\nTo set a custom expiration time for the invitation, use the `expiresInMinutes` parameter to define when the token will expire.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -649,8 +649,8 @@
     "/resources/tenants/invites/v1/all": {
       "get": {
         "operationId": "TenantInvitesController_getAllInvites",
-        "summary": "Get all tenant invites",
-        "description": "This route gets all invitations for all tenants. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Get all account (tenant) invites",
+        "description": "Retrieve all invitation tokens across all accounts (tenants).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -675,8 +675,8 @@
     "/resources/tenants/invites/v1/token/{id}": {
       "delete": {
         "operationId": "TenantInvitesController_deleteTenantInvite",
-        "summary": "Delete a tenant invite",
-        "description": "This route deletes an invitation to join a tenant using the invitation ID. You can find it via the Get all tenant invites API. Send the invitation ID as a path param - you can get if via the **Get all tenant invites** API. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Delete an account (tenant) invite",
+        "description": "Delete an invitation for an account (tenant) using the invitation ID.\n\nUse this endpoint to delete a specific invitation by providing its invitation ID as a path parameter. You can obtain the invitation ID via the **Get all account (tenant) invites** API.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "id",
@@ -705,7 +705,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Retrieve the current account activation strategies configured in your environment.",
             "content": {
               "application/json": {
                 "schema": {
@@ -736,7 +736,7 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Create a new activation strategy or update the existing activation strategy for your environment."
           }
         },
         "tags": [
@@ -752,7 +752,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Retrieve the current invitation strategies configured in your environment.",
             "content": {
               "application/json": {
                 "schema": {
@@ -783,7 +783,7 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "Create a new invitation strategy or update the existing invitation strategy for your environment."
           }
         },
         "tags": [
@@ -796,7 +796,7 @@
       "get": {
         "operationId": "PermissionsControllerV2_getAllRoles",
         "summary": "Get roles v2",
-        "description": "This route returns all roles for vendor. Each role is an object containing the name, permissions, and other defining information.",
+        "description": "Retrieve all roles for your environment.\n\nEach role object includes the name, permissions, and other defining information.",
         "parameters": [
           {
             "name": "_limit",
@@ -892,7 +892,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -938,12 +938,12 @@
       "post": {
         "operationId": "RolesControllerV2_addRole",
         "summary": "Create a new role",
-        "description": "This route adds a new role for a specific tenant. Send the tenant ID in the **`frontegg-tenant-id`** header. Add the required permissions within the request body to customize the role.",
+        "description": "Add a new role for a specific account (tenant).\n\nInclude the required permissions in the request body to customize the role.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -981,12 +981,12 @@
       "get": {
         "operationId": "RolesControllerV2_getDistinctLevels",
         "summary": "Get distinct levels of roles",
-        "description": "This route returns all levels from roles for vendor.",
+        "description": "Retrieve all role levels for your environment.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -1006,8 +1006,8 @@
     "/resources/roles/v2/distinct-tenants": {
       "get": {
         "operationId": "RolesControllerV2_getDistinctTenants",
-        "summary": "Get distinct assigned tenants of roles",
-        "description": "This route returns all assigned tenant ids from roles for vendor.",
+        "summary": "Get distinct assigned accounts (tenants) of roles",
+        "description": "Retrieve all assigned account (tenant) IDs from roles for your environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1023,7 +1023,7 @@
       "post": {
         "operationId": "VendorConfigController_addOrUpdateConfig",
         "summary": "Update identity management configuration",
-        "description": "This route updates the identity management configuration for a vendor. Send values in the POST body for params that you want to add or update. See the dropdown for available values for each param.",
+        "description": "Update the identity management configuration for your environment.\n\nUse this endpoint to add or update identity management parameters by sending the desired values in the request body.\n\nRefer to the parameter documentation for the list of supported values.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1054,7 +1054,7 @@
       "get": {
         "operationId": "VendorConfigController_getVendorConfig",
         "summary": "Get identity management configuration",
-        "description": "This route gets the identity management configuration for a vendor.",
+        "description": "Retrieve the identity management configuration for your environment.\n\nUse this endpoint to get the current identity management settings configured in your environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1077,7 +1077,7 @@
       "post": {
         "operationId": "CaptchaPolicyController_createCaptchaPolicy",
         "summary": "Create captcha policy",
-        "description": "This route creates a captcha policy for all tenants. To enable the Captcha Policy, make sure to set the enabled variable to true, the site key and secret key to the ones you got from reCaptcha and the minimum score to a number between 0 to 1.",
+        "description": "Create a CAPTCHA policy for all accounts (tenants).\n\nProvide the required settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1108,7 +1108,7 @@
       "put": {
         "operationId": "CaptchaPolicyController_updateCaptchaPolicy",
         "summary": "Update captcha policy",
-        "description": "This route updates a captcha policy for all tenants. To enable the Captcha Policy, make sure to set the enabled variable to true, the site key and secret key to the ones you got from reCaptcha and the minimum score to a number between 0 to 1.",
+        "description": "Update the CAPTCHA policy for all accounts (tenants).\n\nProvide the desired settings in the request body. To enable the policy, set the `enabled` parameter to `true`, and provide the `siteKey` and `secretKey` obtained from reCAPTCHA. You can also set the `minimumScore` parameter to a value between `0` and `1` to define the minimum score threshold.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1139,7 +1139,7 @@
       "get": {
         "operationId": "CaptchaPolicyController_getCaptchaPolicy",
         "summary": "Get captcha policy",
-        "description": "This route retrieves the captcha policy for all tenants. It returns the policy's ID, site key, secret key, minimum score, ignored emails, and whether the policy is enabled.",
+        "description": "Retrieve the CAPTCHA policy for your environment.\n\nThe response includes the policy ID, `siteKey`, `secretKey`, `minimumScore`, list of ignored emails, and whether the policy is enabled.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1162,7 +1162,7 @@
       "get": {
         "operationId": "VendorConfigController_getVendorConfigBasic",
         "summary": "Get identity management configuration",
-        "description": "This route gets the identity management configuration for a vendor.",
+        "description": "Retrieve the identity management configuration for your environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1185,7 +1185,7 @@
       "post": {
         "operationId": "CustomSsoV1Controller_createSsoProvider",
         "summary": "Create custom oauth provider",
-        "description": "This route creates a custom social login provider using OAuth details of the identity provider",
+        "description": "Create a custom social login provider using the OAuth details of the identity provider.\n\nProvide the required OAuth parameters in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1209,7 +1209,7 @@
       "get": {
         "operationId": "SsoV2Controller_getSsoProviders",
         "summary": "Get custom oauth provider",
-        "description": "This route fetches the custom social login providers on an environment",
+        "description": "Retrieve the custom social login providers configured in your environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1225,7 +1225,7 @@
       "patch": {
         "operationId": "CustomSsoV1Controller_updateSsoProvider",
         "summary": "Update custom oauth provider",
-        "description": "This route updates the custom social login provider on an environment by ID",
+        "description": "Update a custom social login provider in your environment by ID.\n\nProvide the ID of the custom social login provider and the desired OAuth parameters in the request body.",
         "parameters": [
           {
             "name": "id",
@@ -1259,7 +1259,7 @@
       "delete": {
         "operationId": "CustomSsoV1Controller_deleteCustomSsoConfig",
         "summary": "Delete custom oauth provider",
-        "description": "This route deletes the custom social login provider on an environment by ID",
+        "description": "Delete a custom social login provider in your environment by ID.\n\nProvide the ID of the custom social login provider to delete.",
         "parameters": [
           {
             "name": "id",
@@ -1285,7 +1285,7 @@
       "post": {
         "operationId": "UsersControllerV1_migrateUserFromAuth0",
         "summary": "Migrate from Auth0",
-        "description": "This route enables you to migrate your users from Auth0 to Frontegg easily. Add the Domain, Client ID, Secret and the tenant's ID Field Name - they'll be found on Auth0 and the migration will be as smooth as possible.",
+        "description": "Migrate users from Auth0 into your environment.\n\nProvide the `domain`, `clientId`, `secret`, and `tenantIdFieldName` parameters in the request body. These values can be obtained from your Auth0 account (tenant) configuration.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1311,7 +1311,7 @@
       "post": {
         "operationId": "UsersControllerV1_migrateUserForVendor",
         "summary": "Migrate a single user",
-        "description": "This route enables you to migrate a user by sending the following required fields: user's email, their tenantId and metadata, a new user will be created. This endpoint takes other properties as well, such as the user's name, their phone number, hashed password, etc...",
+        "description": "Migrate a user into your environment.\n\nProvide the required fields: user's email, `tenantId`, and metadata. You can also include additional properties such as the user's name, phone number, hashed password, and other optional attributes.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1344,7 +1344,7 @@
       "post": {
         "operationId": "UsersControllerV1_bulkMigrateUserForVendor",
         "summary": "Migrate users in bulk",
-        "description": "This route enables you to migrate users in bulk. Expects an array of `users`. Each entry must include a user's `email` and `tenantId`, which specifies that user's parent account. Use the the other fields as needed to store additional information. We recommend using the `metadata` property if you need to store custom information in a user's object.",
+        "description": "Migrate users in bulk into your environment.\n\nProvide an array of `users` in the request body. Each user object must include the user's `email` and `tenantId`, which specifies the user's parent account. You can include additional fields as needed to store more information. If you need to store custom data, use the `metadata` property.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1377,7 +1377,7 @@
       "get": {
         "operationId": "UsersControllerV1_checkBulkMigrationStatus",
         "summary": "Check status of bulk migration",
-        "description": "This route returns the status of a pending or completed migration. The payload includes the migration's current `state`, the number of migrated users, and any errors that occured during migration. Payload is limited to 1,000 users.",
+        "description": "Retrieve the status of a pending or completed migration.\n\nThe response includes the migration's `state`, the number of migrated users, and any errors that occurred during the migration. The response payload is limited to 1,000 users.",
         "parameters": [
           {
             "name": "migrationId",
@@ -1411,7 +1411,7 @@
         "operationId": "DelegationConfigurationControllerV1_getDelegationConfiguration",
         "x-vendor-only": "true",
         "summary": "Get delegation configuration",
-        "description": "Get information about the delegation configuration (if enabled). An environment token is required for this route.",
+        "description": "Retrieve the delegation configuration for your environment.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1433,7 +1433,7 @@
         "operationId": "DelegationConfigurationControllerV1_createOrUpdateDelegationConfiguration",
         "x-vendor-only": "true",
         "summary": "Create or update delegation configuration",
-        "description": "Enable or disable the ability to use delegation in a token exchange flow. An environment token is required for this route.",
+        "description": "Enable or disable delegation in the token exchange flow.\n\nUse this endpoint to update the delegation configuration by enabling or disabling delegation for the token exchange flow.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1459,7 +1459,7 @@
       "post": {
         "operationId": "DomainRestrictionsController_createDomainRestriction",
         "summary": "Create domain restriction",
-        "description": "This route creates a new domain restriction for a tenant. Send values in the POST body as objects. See the dropdowns for available values for each object param.",
+        "description": "This route creates a new domain restriction for an account (tenant). Send values in the POST body as objects. See the dropdowns for available values for each object param.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1490,7 +1490,7 @@
       "get": {
         "operationId": "DomainRestrictionsController_getDomainRestrictions",
         "summary": "Get domain restrictions",
-        "description": "This route gets the domain restrictions for a tenant.",
+        "description": "Retrieve the domain restrictions for an account (tenant).",
         "parameters": [],
         "responses": {
           "200": {
@@ -1533,7 +1533,7 @@
       "get": {
         "operationId": "DomainRestrictionsController_getDomainRestrictionsConfig",
         "summary": "Get domain restrictions",
-        "description": "This route gets the domain restrictions for a tenant.",
+        "description": "Retrieve the domain restrictions for an account (tenant).",
         "parameters": [],
         "responses": {
           "200": {
@@ -1554,7 +1554,7 @@
       "post": {
         "operationId": "DomainRestrictionsController_updateDomainRestrictionsConfig",
         "summary": "Change domain restrictions config list type and toggle it off/on",
-        "description": "This route updates domain restrictions config, can toggle check on/off.",
+        "description": "Update the domain restrictions configuration.\n\nYou can toggle the domain restriction check on or off.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1587,7 +1587,7 @@
       "delete": {
         "operationId": "DomainRestrictionsController_deleteDomainRestriction",
         "summary": "Delete domain restriction",
-        "description": "This route deletes domain restriction.",
+        "description": "Delete a domain restriction.",
         "parameters": [
           {
             "name": "id",
@@ -1613,7 +1613,7 @@
       "post": {
         "operationId": "DomainRestrictionsController_createBulkDomainsRestriction",
         "summary": "Replace bulk domain restriction",
-        "description": "This route replaces all domains from the incoming request",
+        "description": "Replace all domain restrictions with the domains provided in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1649,7 +1649,7 @@
       "post": {
         "operationId": "MailConfigController_createOrUpdateMailConfig",
         "summary": "Create or update configuration",
-        "description": "Frontegg sends emails via SendGrid. If you already have an account on SendGrid and you wish emails to be sent from your SendGrid account, pass the SendGrid secret key as a body param. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Configure your SendGrid account to send emails from your environment.\n\nProvide your SendGrid secret key in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "deprecated": true,
         "parameters": [],
         "requestBody": {
@@ -1677,7 +1677,7 @@
       "get": {
         "operationId": "MailConfigController_getMailConfig",
         "summary": "Get configuration",
-        "description": "This route returns the mail configuration setup on Frontegg for your SendGrid account. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Retrieve the mail configuration for your SendGrid account.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1698,7 +1698,7 @@
       "delete": {
         "operationId": "MailConfigController_deleteMailConfig",
         "summary": "Delete configuration",
-        "description": "A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Delete the mail configuration for your SendGrid account.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1714,7 +1714,7 @@
       "post": {
         "operationId": "MailConfigController_createOrUpdateMailConfigV2",
         "summary": "Create or update configuration v2",
-        "description": "Configure and manage email settings with our controller, supporting SES, Mailgun, and SendGrid. Easily set the email provider and sender details, include additional parameters as needed, and send configuration data via POST. A vendor token from the authentication route is required.",
+        "description": "Configure email settings for your environment, supporting SES, Mailgun, and SendGrid.\n\nProvide the email provider, sender details, and any additional parameters in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1758,7 +1758,7 @@
       "post": {
         "operationId": "MailV1Controller_addOrUpdateTemplate",
         "summary": "Add or update template",
-        "description": "This route creates or updates an email template. Select the email template using the type. The type value needs to be the name of one of the Frontegg email templates. See the dropdown for available values. Also, set the sender using senderEmail. Optionally, include values for the other available body params. Send the information for the template in the POST body. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Create or update an email template for your environment.\n\nSpecify the email template using the `type` parameter. The value of `type` must match one of the predefined Frontegg email templates. Set the sender using the `senderEmail` parameter, and optionally include values for the other available body parameters. Provide the template information in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1782,7 +1782,7 @@
       "get": {
         "operationId": "MailV1Controller_getTemplateConfiguration",
         "summary": "Get template",
-        "description": "This route gets all the vendor's email templates. In order to get a specific template, pass its type as a query param. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Retrieve all email templates for your environment.\n\nTo retrieve a specific template, pass its `type` as a query parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "type",
@@ -1848,7 +1848,7 @@
       "delete": {
         "operationId": "MailV1Controller_deleteTemplate",
         "summary": "Delete template",
-        "description": "This route deletes specified email template. Select the email template using the ID of the template - which can be obtained via the **Get template** API. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Delete a specified email template.\n\nProvide the ID of the template to delete. You can obtain the template ID via the **Get template** API.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "templateId",
@@ -1874,7 +1874,7 @@
       "get": {
         "operationId": "MailV1Controller_getDefaultTemplateConfiguration",
         "summary": "Get default template by type",
-        "description": "This route gets default email template by type, pass required type as a query param.",
+        "description": "Retrieve the default email template by type.\n\nPass the required `type` as a query parameter.",
         "parameters": [
           {
             "name": "type",
@@ -2049,7 +2049,7 @@
       "post": {
         "operationId": "UsersControllerV1_signUpUser",
         "summary": "Signup user",
-        "description": "Sign up a new user and create a new tenant account.\n\nThis endpoint registers a user with authentication details such as `email`, `password`, and the `provider` used for authentication (e.g., `local`, `saml`, `google`, `github`). Refer to the documentation or dropdown menu for the full list of supported provider values.\n\nAdditional optional fields such as user metadata may also be included. If not needed, `metadata` can be passed as an empty object (e.g., `{}`).\n\nThis endpoint is typically used during tenant onboarding or self-sign-up flows.",
+        "description": "Sign up a new user and create a new account (tenant).\n\nThis endpoint registers a user with authentication details such as `email`, `password`, and the `provider` used for authentication (e.g., `local`, `saml`, `google`, `github`). Refer to the documentation or dropdown menu for the full list of supported provider values.\n\nAdditional optional fields such as user metadata may also be included. If not needed, `metadata` can be passed as an empty object (e.g., `{}`).\n\nThis endpoint is typically used during account (tenant) onboarding or self-sign-up flows.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -2104,7 +2104,7 @@
       "post": {
         "operationId": "IPRestrictionsControllerV1_createDomainRestriction",
         "summary": "Create or update IP restriction configuration (ALLOW/BLOCK)",
-        "description": "This route creates or updates ip restrictions config.",
+        "description": "Create or update the IP restriction configuration.\n\nYou can configure IP restrictions as either ALLOW or BLOCK.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2128,7 +2128,7 @@
       "get": {
         "operationId": "IPRestrictionsControllerV1_getIpRestrictionConfig",
         "summary": "Get IP restriction configuration (ALLOW/BLOCK)",
-        "description": "This route gets the ip restrictions config for a tenant.",
+        "description": "Retrieve the IP restriction configuration for an account (tenant).\n\nThe configuration defines whether IP restrictions are set to ALLOW or BLOCK.",
         "parameters": [],
         "responses": {
           "200": {
@@ -2144,7 +2144,7 @@
       "get": {
         "operationId": "IPRestrictionsControllerV1_getAllIpRestrictions",
         "summary": "Get all IP restrictions",
-        "description": "This route gets the ip restrictions for a tenant.",
+        "description": "Retrieve the IP restrictions for an account (tenant).",
         "parameters": [
           {
             "name": "_limit",
@@ -2215,7 +2215,7 @@
       "post": {
         "operationId": "IPRestrictionsControllerV1_createIpRestriction",
         "summary": "Create IP restriction",
-        "description": "This route creates or updates ip restriction for a tenant. Send values in the POST body as objects. See the dropdowns for available values for each object param.",
+        "description": "Create or update an IP restriction for an account (tenant).\n\nProvide the required values as objects in the request body. Refer to the parameter documentation for the list of supported values.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2241,7 +2241,7 @@
       "post": {
         "operationId": "IPRestrictionsControllerV1_testCurrentIp",
         "summary": "Test Current IP",
-        "description": "This route checks if current ip is allowed.",
+        "description": "Check if the current IP is allowed based on the IP restriction configuration.",
         "parameters": [],
         "responses": {
           "201": {
@@ -2273,7 +2273,7 @@
       "delete": {
         "operationId": "IPRestrictionsControllerV1_deleteIpRestrictionById",
         "summary": "Delete IP restriction by IP",
-        "description": "This route deletes ip restriction.",
+        "description": "Delete an IP restriction.\n\nProvide the IP restriction ID as a path parameter.",
         "parameters": [
           {
             "name": "id",
@@ -2299,12 +2299,12 @@
       "post": {
         "operationId": "LockoutPolicyController_createLockoutPolicy",
         "summary": "Create lockout policy",
-        "description": "This route creates a lockout policy for all tenants. To create a lockout policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To enable the Lockout Policy, make sure to set the enabled variable to true and the maximum attempts to a number of your preference.",
+        "description": "Create a lockout policy for all accounts (tenants).\n\nTo enable the lockout policy, set the `enabled` parameter to `true` and configure the `maximumAttempts` value as desired.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -2343,12 +2343,12 @@
       "patch": {
         "operationId": "LockoutPolicyController_updateLockoutPolicy",
         "summary": "Update lockout policy",
-        "description": "This route updates a lockout policy for all tenants. To update a lockout policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To disable the lockout policy, make sure to set the enabled variable to false. The maximum attempts variable can also be changed to a number of your preference",
+        "description": "Update the lockout policy for all accounts (tenants).\n\nTo disable the lockout policy, set the `enabled` parameter to `false`. You can also update the `maximumAttempts` value as desired.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -2387,12 +2387,12 @@
       "get": {
         "operationId": "LockoutPolicyController_getLockoutPolicy",
         "summary": "Get lockout policy",
-        "description": "This route gets the lockout policy for all tenants or one tenant specifically. To get the lockout policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Retrieve the lockout policy for all accounts (tenants) or for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -2427,7 +2427,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -2452,7 +2452,7 @@
         "tags": [
           "M2M tokens"
         ],
-        "description": ""
+        "description": "Retrieve the list of active access tokens for a specified account (tenant).\n\nPass the account's `frontegg-tenant-id` as a query parameter."
       }
     },
     "/resources/vendor-only/users/access-tokens/v1/{id}": {
@@ -2463,7 +2463,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -2494,18 +2494,18 @@
         "tags": [
           "M2M tokens"
         ],
-        "description": ""
+        "description": "Retrieve data for a specific user access token.\n\nPass the account's `frontegg-tenant-id` as a query parameter and the access token `id` as a path parameter."
       }
     },
     "/resources/vendor-only/tenants/access-tokens/v1/{id}": {
       "get": {
         "operationId": "VendorOnlyTenantAccessTokensV1Controller_getTenantAccessTokenData",
-        "summary": "Get tenant access token data",
+        "summary": "Get account (tenant) access token data",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -2536,7 +2536,7 @@
         "tags": [
           "M2M tokens"
         ],
-        "description": ""
+        "description": "Retrieve data for a specific account (tenant) access token.\n\nPass the account's `frontegg-tenant-id` as a query parameter and the access token `id` as a path parameter."
       }
     },
     "/resources/auth/v1/user/mfa/recover": {
@@ -2569,7 +2569,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_disableAuthAppMfa",
         "summary": "Disable authenticator app MFA",
-        "description": "Disable MFA enrollment for a logged-in user within a specific tenant.\n\nThis endpoint disables multi-factor authentication for a user, using the `mfaToken` obtained from the user's authenticator app.\n\nUse this endpoint to programmatically disable MFA when managing authentication settings at the tenant level.",
+        "description": "Disable MFA enrollment for a logged-in user within a specific account (tenant).\n\nThis endpoint disables multi-factor authentication for a user, using the `mfaToken` obtained from the user's authenticator app.\n\nUse this endpoint to programmatically disable MFA when managing authentication settings at the account (tenant) level.",
         "deprecated": true,
         "parameters": [
           {
@@ -2606,7 +2606,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_disableAuthenticatorMfa",
         "summary": "Disable authenticator app MFA",
-        "description": "Disable multi-factor authentication (MFA) enrollment for a logged-in user within a specific tenant.\n\nThis endpoint removes MFA for a user, typically used in administrative contexts where a backend system or admin manages user security settings.\n\nThe request must include the `mfaToken`, which is the time-based one-time password (TOTP) generated by the user's authenticator app.\n\nUse this endpoint to programmatically disable MFA for a specific user within a tenant.",
+        "description": "Disable multi-factor authentication (MFA) enrollment for a logged-in user within a specific account (tenant).\n\nThis endpoint removes MFA for a user, typically used in administrative contexts where a backend system or admin manages user security settings.\n\nThe request must include the `mfaToken`, which is the time-based one-time password (TOTP) generated by the user's authenticator app.\n\nUse this endpoint to programmatically disable MFA for a specific user within an account (tenant).",
         "parameters": [
           {
             "name": "deviceId",
@@ -2673,7 +2673,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -2888,7 +2888,7 @@
       "post": {
         "operationId": "AuthenticationMFAControllerV1_verifyAuthenticatorMfa",
         "summary": "Verify MFA using authenticator app",
-        "description": "Verify multi-factor authentication (MFA) during the authentication process.\n\nThis endpoint is typically used after a primary login attempt when MFA is enabled for the user or tenant.\n\nThe request must include:\n- `value`: The MFA service name (e.g., `authenticator`, `email`, `sms`) configured under Authentication Settings.\n- `mfaToken`: The token or code provided by the user's MFA method (e.g., code from an authenticator app).\n\nUse this endpoint to complete the MFA verification step as part of the overall login flow.",
+        "description": "Verify multi-factor authentication (MFA) during the authentication process.\n\nThis endpoint is typically used after a primary login attempt when MFA is enabled for the user or account (tenant).\n\nThe request must include:\n- `value`: The MFA service name (e.g., `authenticator`, `email`, `sms`) configured under Authentication Settings.\n- `mfaToken`: The token or code provided by the user's MFA method (e.g., code from an authenticator app).\n\nUse this endpoint to complete the MFA verification step as part of the overall login flow.",
         "parameters": [
           {
             "name": "deviceId",
@@ -3172,12 +3172,12 @@
       "get": {
         "operationId": "SecurityPolicyController_checkIfAllowToRememberDevice",
         "summary": "Check if remember device allowed",
-        "description": "Check whether the 'remember device' feature is allowed for MFA verification.\n\nThis endpoint returns whether device remembering is enabled globally or for a specific tenant, based on the request context.\n\nQuery parameters:\n- `mfaToken`: Token generated from the authenticator app or MFA challenge step.\n\nUse this endpoint to determine whether the user should be prompted with the option to remember their device during MFA verification.",
+        "description": "Check whether the 'remember device' feature is allowed for MFA verification.\n\nThis endpoint returns whether device remembering is enabled globally or for a specific account (tenant), based on the request context.\n\nQuery parameters:\n- `mfaToken`: Token generated from the authenticator app or MFA challenge step.\n\nUse this endpoint to determine whether the user should be prompted with the option to remember their device during MFA verification.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3214,7 +3214,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_enrollAuthAppMfa",
         "summary": "Enroll authenticator app MFA",
-        "description": "Enroll a logged-in user in multi-factor authentication (MFA) for a specific tenant.\n\nThis endpoint initiates MFA enrollment on behalf of a user within a specific tenant context.\n\nUse this route to programmatically trigger MFA enrollment, typically as part of an administrative or backend workflow.",
+        "description": "Enroll a logged-in user in multi-factor authentication (MFA) for a specific account (tenant).\n\nThis endpoint initiates MFA enrollment on behalf of a user within a specific account (tenant) context.\n\nUse this route to programmatically trigger MFA enrollment, typically as part of an administrative or backend workflow.",
         "deprecated": true,
         "parameters": [
           {
@@ -3248,7 +3248,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_enrollAuthenticatorMfa",
         "summary": "Enroll authenticator app MFA",
-        "description": "Enroll a logged-in user in multi-factor authentication (MFA) for a specific tenant.\n\nThis endpoint initiates MFA enrollment on behalf of a user within a specific tenant context.\n\nUse this route to programmatically trigger MFA enrollment, typically as part of an administrative or backend workflow.",
+        "description": "Enroll a logged-in user in multi-factor authentication (MFA) for a specific account (tenant).\n\nThis endpoint initiates MFA enrollment on behalf of a user within a specific account (tenant) context.\n\nUse this route to programmatically trigger MFA enrollment, typically as part of an administrative or backend workflow.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -3325,7 +3325,7 @@
       "post": {
         "operationId": "UsersMfaControllerV1_verifyAuthenticatorMfaEnrollment",
         "summary": "Verify authenticator app MFA enrollment",
-        "description": "Verify multi-factor authentication (MFA) enrollment using a QR code for a specific user within a tenant.\n\nThis endpoint completes MFA enrollment after the user scans a QR code with an authenticator app (e.g., Google Authenticator, Authy).\n\nRequest body must include:\n- `mfaToken`: The time-based one-time password (TOTP) generated by the authenticator app after scanning the QR code.\n\nUse this endpoint to confirm that the user has successfully registered their authenticator app and to activate MFA for their account.",
+        "description": "Verify multi-factor authentication (MFA) enrollment using a QR code for a specific user within an account (tenant).\n\nThis endpoint completes MFA enrollment after the user scans a QR code with an authenticator app (e.g., Google Authenticator, Authy).\n\nRequest body must include:\n- `mfaToken`: The time-based one-time password (TOTP) generated by the authenticator app after scanning the QR code.\n\nUse this endpoint to confirm that the user has successfully registered their authenticator app and to activate MFA for their account.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -3440,7 +3440,7 @@
       "post": {
         "operationId": "MfaController_upsertMfaConfig",
         "summary": "Update MFA configuration",
-        "description": "This route updates the MFA configuration for a vendor. Send values in the POST body as objects for params that you want to add or update. See the dropdowns for available values for each object param.",
+        "description": "Update the MFA configuration for your environment.\n\nProvide the desired configuration values as objects in the request body. Refer to the parameter documentation for the list of supported values.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3471,7 +3471,7 @@
       "get": {
         "operationId": "MfaController_getMfaConfig",
         "summary": "Get MFA configuration",
-        "description": "This route gets the MFA configuration for a vendor.",
+        "description": "Retrieve the MFA configuration for your environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -3494,12 +3494,12 @@
       "post": {
         "operationId": "SecurityPolicyController_createMfaPolicy",
         "summary": "Create MFA policy",
-        "description": "This route creates the MFA policy globally or for a specific tenant. To create an MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Create an MFA policy globally or for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3538,12 +3538,12 @@
       "patch": {
         "operationId": "SecurityPolicyController_updateSecurityPolicy",
         "summary": "Update security policy",
-        "description": "This route updates the MFA policy for all tenants. To update an MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Update the MFA policy for all accounts (tenants).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3585,12 +3585,12 @@
       "put": {
         "operationId": "SecurityPolicyController_upsertSecurityPolicy",
         "summary": "Upsert security policy",
-        "description": "This route creates or updates the MFA policy for all tenants. To create or update an MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Create or update the MFA policy for all accounts (tenants).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3626,12 +3626,12 @@
       "get": {
         "operationId": "SecurityPolicyController_getSecurityPolicy",
         "summary": "Get security policy",
-        "description": "This route gets the MFA policy for all tenants. To get the MFA policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "This route gets the MFA policy for all accounts (tenants).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3678,7 +3678,7 @@
         "tags": [
           "MFA settings"
         ],
-        "description": ""
+        "description": "Retrieve the MFA strategies configured for your environment."
       },
       "post": {
         "operationId": "MFAStrategiesControllerV1_createOrUpdateMFAStrategy",
@@ -3702,19 +3702,19 @@
         "tags": [
           "MFA settings"
         ],
-        "description": ""
+        "description": "Create or update an MFA strategy.\n\nProvide the desired strategy configuration in the request body."
       }
     },
     "/resources/configurations/v1/password": {
       "post": {
         "operationId": "PasswordPolicyController_addOrUpdatePasswordConfig",
         "summary": "Create or update password configuration",
-        "description": "This route creates or updates the password policy for the entire environment. To update the password policy for a specific account (tenant), send the tenant's ID in the **`frontegg-tenant-id`** header. Send the updated values as POST body params.",
+        "description": "Create or update the password policy for the entire environment.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3750,12 +3750,12 @@
       "get": {
         "operationId": "PasswordPolicyController_getPasswordConfig",
         "summary": "Get password policy configuration",
-        "description": "This route gets the password policy for all account (tenants). To get the password policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Retrieve the password policy for all accounts (tenants).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3783,12 +3783,12 @@
       "post": {
         "operationId": "PasswordHistoryPolicyController_createPolicy",
         "summary": "Create password history policy",
-        "description": "This route creates the password history policy for all tenants. To create a password history policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To enable the Password History, make sure to set the enabled variable to true and the password history size to a number between 1 to 10.",
+        "description": "Create a password history policy for all accounts (tenants).\n\nTo enable the password history policy, set the `enabled` parameter to `true` and specify the `passwordHistorySize` as a number between 1 and 10.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3827,12 +3827,12 @@
       "patch": {
         "operationId": "PasswordHistoryPolicyController_updatePolicy",
         "summary": "Update password history policy",
-        "description": "This route updates the password history policy for all tenants. To update a password history policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. To disable the password history policy, make sure to set the enabled variable to false. The password history size can also be changed to a number between 1 to 10",
+        "description": "Update the password history policy for all accounts (tenants).\n\nTo disable the password history policy, set the `enabled` parameter to `false`. You can also update the `passwordHistorySize` value to a number between 1 and 10.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3871,12 +3871,12 @@
       "get": {
         "operationId": "PasswordHistoryPolicyController_getPolicy",
         "summary": "Get password history policy",
-        "description": "This route gets the password history policy for all tenants or one tenant specifically. To create a password history policy for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Retrieve the password history policy for all accounts (tenants) or for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3907,7 +3907,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV1_resetPassword",
         "summary": "Reset password",
-        "description": "This route sends a reset password email to the user. Send the user's email in the POST body. If your email template uses metadata, send email metadata in the POST body, too.",
+        "description": "Send a reset password email to a user.\n\nProvide the user's email in the request body. If your email template uses metadata, include the email metadata in the request body as well.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3933,7 +3933,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV1_verifyResetPassword",
         "summary": "Verify password",
-        "description": "This route verifies a user's password using a verification token. Send the userId, token, and password in the POST body. For the token, see the route under users for generating user password reset token.",
+        "description": "Verify a user's password using a verification token.\n\nProvide the `userId`, `token`, and `password` in the request body. The `token` can be obtained using the route for generating a user password reset token.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -3959,7 +3959,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV1_changePassword",
         "summary": "Change password",
-        "description": "This route changes the password for a logged-in user. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant. Send the current and new passwords in the POST body.",
+        "description": "Change the password for a logged-in user.\n\nInclude the current and new passwords in the request body.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -3995,7 +3995,7 @@
       "get": {
         "operationId": "UsersPasswordControllerV1_getUserPasswordConfig",
         "summary": "Get strictest password configuration",
-        "description": "This route gets the user's hardest password configuration. This is useful when a user belongs to multiple tenants and does not have the same password complexity for all of them. The route returns the strictest setting the user is subject to.",
+        "description": "Retrieve the user's strictest password configuration.\n\nThis is useful when a user belongs to multiple accounts (tenants) with varying password complexity requirements. The route returns the strictest setting the user is subject to.",
         "parameters": [
           {
             "name": "userId",
@@ -4127,7 +4127,7 @@
       "get": {
         "operationId": "PasswordRotationConfigControllerV1_getPasswordRotationConfiguration",
         "summary": "Get password expiration period configuration",
-        "description": "Retrieve the password expiration period configuration for an environment or account.",
+        "description": "Retrieve the password expiration period configuration for your environment or for a specific account (tenant).",
         "parameters": [],
         "responses": {
           "200": {
@@ -4151,7 +4151,7 @@
       "post": {
         "operationId": "PasswordRotationConfigControllerV1_upsertPasswordRotationConfiguration",
         "summary": "Manage password expiration",
-        "description": "Create or update the configuration for the password expiration policy. If no configuration exists, a default policy will be applied.",
+        "description": "Create or update the configuration for the password expiration policy.\n\nIf no configuration exists, a default policy will be applied.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4177,7 +4177,7 @@
       "get": {
         "operationId": "PasswordRotationConfigControllerV1_getVendorPasswordRotationConfiguration",
         "summary": "Get environment configuration for password expiration period.",
-        "description": "Retrieve the password expiration period configuration for an environment or account.",
+        "description": "Retrieve the password expiration period configuration for your environment or for a specific account (tenant).",
         "parameters": [],
         "responses": {
           "200": {
@@ -4396,7 +4396,7 @@
       "get": {
         "operationId": "PermissionsControllerV1_getAllPermissions",
         "summary": "Get permissions",
-        "description": "This route returns all permissions for the vendor. Each permission is an object containing the name, description, assigned roles, categories, and other defining information.",
+        "description": "Retrieve all permissions configured for your environment.\n\nEach permission object includes the name, description, assigned roles, categories, and other defining information.",
         "parameters": [],
         "responses": {
           "200": {
@@ -4420,7 +4420,7 @@
       "post": {
         "operationId": "PermissionsControllerV1_addPermissions",
         "summary": "Create permissions",
-        "description": "This route adds a new permission. Each permission you add requires information about the permission in the POST body. Note that you do not associate permissions to the role here. Use the associate permission to roles route to do that.",
+        "description": "Add a new permission.\n\nProvide the permission information in the request body.\n\nThis route does not associate permissions with roles. Use the associate permission to roles route to manage role associations.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4459,7 +4459,7 @@
       "delete": {
         "operationId": "PermissionsControllerV1_deletePermission",
         "summary": "Delete permission",
-        "description": "This route deletes a permission. Add the permission ID as a path parameter to the route url to specify which permission you are deleting.  Use the **Get permissions** API to get the permission ID.",
+        "description": "Delete a permission.\n\nProvide the permission ID as a path parameter to specify which permission to delete. You can obtain the permission ID using the **Get permissions** API.",
         "parameters": [
           {
             "name": "permissionId",
@@ -4483,7 +4483,7 @@
       "patch": {
         "operationId": "PermissionsControllerV1_updatePermission",
         "summary": "Update permission",
-        "description": "This route updates an existing permission. Add the permission ID as a path parameter to the route url to specify which permission you are updating. Send the updated information about the permission in the PATCH body. Note that you do not update roles for the permission here. Use the associate permission to roles route to do that.",
+        "description": "Update an existing permission.\n\nProvide the permission ID as a path parameter to specify which permission to update, and send the updated permission information in the request body.\n\nThis route does not update role associations for the permission. Use the associate permission to roles route to manage role associations.",
         "parameters": [
           {
             "name": "permissionId",
@@ -4526,7 +4526,7 @@
       "put": {
         "operationId": "PermissionsControllerV1_setRolesToPermission",
         "summary": "Set a permission to multiple roles",
-        "description": "This route associates a permission to multiple roles. Add the permission ID as a path parameter to the route url and include the role IDs in the request body as an array of strings. Any pre-existing roles associated with the permission will stay associated. Use the **Get roles** API to get the role IDs.",
+        "description": "Associate a permission with multiple roles.\n\nProvide the permission ID as a path parameter and include the role IDs in the request body as an array of strings. Any pre-existing role associations will remain.\n\nYou can obtain role IDs using the **Get roles** API.",
         "parameters": [
           {
             "name": "permissionId",
@@ -4569,7 +4569,7 @@
       "put": {
         "operationId": "PermissionsControllerV1_updatePermissionsAssignmentType",
         "summary": "Set permissions classification",
-        "description": "This route accepts an array of **`permissionIds`** and the type for these permissions classifications. This allows segregating which permissions will be used from self service",
+        "description": "Classify permissions for self-service usage.\n\nProvide an array of `permissionIds` and the classification `type` in the request body. This allows you to segregate which permissions will be used for self-service.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4626,7 +4626,7 @@
       "post": {
         "operationId": "PermissionsCategoriesController_createPermissionCategory",
         "summary": "Create category",
-        "description": "Use this route to add a new permissions category. Each category you add requires you to send information about the category in the POST body. Note that you do not associate the category with permissions here. You do that using the add and update permission routes where you send the category ID as a body parameter.",
+        "description": "Add a new permissions category.\n\nProvide the category information in the request body. Note that categories are not associated with permissions in this route — you can associate permissions by sending the category ID in the add or update permission routes.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4659,7 +4659,7 @@
       "patch": {
         "operationId": "PermissionsCategoriesController_updateCategory",
         "summary": "Update category",
-        "description": "This route updates an existing permissions category. Add the category ID as a path parameter to the route url to specify which category you are updating. Send the updated information about the category in the PATCH body. Note that here is not where you update the permissions associated with the category. Use the add or update permissions routes to do that. Use the **Get categories** API to get ",
+        "description": "Update an existing permissions category.\n\nProvide the category ID as a path parameter to specify which category to update, and send the updated category information in the request body.\n\nThis route does not update the permissions associated with the category. Use the add or update permissions routes to manage permission associations.",
         "parameters": [
           {
             "name": "categoryId",
@@ -4693,7 +4693,7 @@
       "delete": {
         "operationId": "PermissionsCategoriesController_deleteCategory",
         "summary": "Delete category",
-        "description": "This route deletes a category. Add the category ID as a path parameter to the route url to specify which category you are deleting. Use the **Get categories** API to get the category ID.",
+        "description": "Delete a permissions category.\n\nProvide the category ID as a path parameter to specify which category to delete. You can obtain the category ID using the **Get categories** API.",
         "parameters": [
           {
             "name": "categoryId",
@@ -4723,7 +4723,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -4764,7 +4764,7 @@
         "tags": [
           "Personal tokens"
         ],
-        "description": ""
+        "description": "Create an access token for a specific user."
       },
       "get": {
         "operationId": "UserAccessTokensV1Controller_getUserAccessTokens",
@@ -4773,7 +4773,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -4804,7 +4804,7 @@
         "tags": [
           "Personal tokens"
         ],
-        "description": ""
+        "description": "Retrieve all access tokens for a specific user."
       }
     },
     "/resources/users/access-tokens/v1/{id}": {
@@ -4815,7 +4815,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -4848,19 +4848,19 @@
         "tags": [
           "Personal tokens"
         ],
-        "description": ""
+        "description": "Delete a user access token."
       }
     },
     "/resources/users/api-tokens/v1": {
       "post": {
         "operationId": "UserApiTokensV1Controller_createTenantApiToken",
         "summary": "Create user client credentials token",
-        "description": "This route creates a user-specific API token. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description.",
+        "description": "Create a user-specific API token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -4905,12 +4905,12 @@
       "get": {
         "operationId": "UserApiTokensV1Controller_getApiTokens",
         "summary": "Get user client credentials tokens",
-        "description": "This route gets a user-specific API token. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header.",
+        "description": "Retrieve a user-specific API token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -4950,12 +4950,12 @@
       "delete": {
         "operationId": "UserApiTokensV1Controller_deleteApiToken",
         "summary": "Delete user client credentials token by token ID",
-        "description": "This route deletes a user-specific API token. Send the token as the ID path param. Send the user's ID in the **`frontegg-user-id`** header and the tenant's ID in the **`frontegg-tenant-id`** header. Optionally, send as POST body params values for metadata and description.",
+        "description": "Delete a user-specific API token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -4994,12 +4994,12 @@
       "get": {
         "operationId": "PermissionsControllerV1_getAllRoles",
         "summary": "Get roles",
-        "description": "This route returns all roles for all tenants. To get a role for a specific tenant, send the tenant ID in the **`frontegg-tenant-id`** header. Each role is an object containing the name, permissions, and other defining information.",
+        "description": "Retrieve all roles across all accounts (tenants).\n\nEach role object includes the name, permissions, and other defining information.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -5028,12 +5028,12 @@
       "post": {
         "operationId": "PermissionsControllerV1_addRoles",
         "summary": "Create roles",
-        "description": "This route adds a new role for all tenants. To add a role for a specific tenant, send tenant ID in the **`frontegg-tenant-id`** header. Each role you add requires information about the role in the POST body. Note that you do not assign permissions to the role here. Use the attach permissions to role route to do that.",
+        "description": "Add a new role across all accounts (tenants).\n\nThis route does not assign permissions to the role. Use the attach permissions to role route to manage role permissions.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -5077,7 +5077,7 @@
       "delete": {
         "operationId": "PermissionsControllerV1_deleteRole",
         "summary": "Delete role",
-        "description": "This route deletes a role. Add the role ID as a path parameter to the route url to specify which role you are deleting.",
+        "description": "Delete a role.\n\nProvide the role ID as a path parameter to specify which role to delete.",
         "parameters": [
           {
             "name": "roleId",
@@ -5091,7 +5091,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -5110,7 +5110,7 @@
       "patch": {
         "operationId": "PermissionsControllerV1_updateRole",
         "summary": "Update role",
-        "description": "This route updates an existing role. Add the role ID as a path parameter to the route url to specify which role you are updating. Send the updated information about the role in the PATCH body. Note that you do not update permissions for the role here. Use the attach permissions to role route to do that. Use the **Get roles** API to get the role ID.",
+        "description": "Update an existing role.\n\nProvide the role ID as a path parameter to specify which role to update, and send the updated role information in the request body.\n\nThis route does not update permissions for the role. Use the attach permissions to role route to manage role permissions.\n\nYou can obtain the role ID using the **Get roles** API.",
         "parameters": [
           {
             "name": "roleId",
@@ -5124,7 +5124,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -5162,7 +5162,7 @@
       "put": {
         "operationId": "PermissionsControllerV1_setPermissionsToRole",
         "summary": "Assign permissions to a role",
-        "description": "This route assigns permissions to a role. Add the role ID as a path parameter to the route url and include the permission IDs in the request body as an array of strings. Any pre-existing permissions will be overridden by the new permissions. Use the get roles API to get the role IDs. Use the **Get permissions** API to get the permissions IDs.",
+        "description": "Assign permissions to a role.\n\nProvide the role ID as a path parameter and include the permission IDs in the request body as an array of strings. Any pre-existing permissions will be overridden by the new permissions.\n\nYou can obtain role IDs using the **Get roles** API and permission IDs using the **Get permissions** API.",
         "parameters": [
           {
             "name": "roleId",
@@ -5176,7 +5176,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "For relating a role to a specific tenant, use `get tenants` API to find the tenant ids",
+            "description": "For relating a role to a specific account (tenant), use `get accounts (tenants)` API to find the account (tenant) Ids",
             "required": false,
             "schema": {
               "type": "string"
@@ -5551,7 +5551,7 @@
       "post": {
         "operationId": "VendorSmsController_createSmsVendorConfig",
         "summary": "Creates or updates a vendor SMS config",
-        "description": "This route creates or updates SMS configuration for a vendor.",
+        "description": "Create or update the SMS configuration for your environment.\n\nProvide the desired SMS configuration values in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5601,7 +5601,7 @@
         "tags": [
           "SMS configuration"
         ],
-        "description": ""
+        "description": "Delete the SMS configuration for your environment."
       },
       "get": {
         "operationId": "VendorSmsController_getSmsVendorConfig",
@@ -5622,7 +5622,7 @@
         "tags": [
           "SMS configuration"
         ],
-        "description": ""
+        "description": "Retrieve the SMS configuration for your environment."
       }
     },
     "/resources/configurations/v1/sms/templates": {
@@ -5645,7 +5645,7 @@
         "tags": [
           "SMS templates"
         ],
-        "description": ""
+        "description": "Retrieve the SMS templates configured for your environment."
       }
     },
     "/resources/configurations/v1/sms/templates/{type}": {
@@ -5678,7 +5678,7 @@
         "tags": [
           "SMS templates"
         ],
-        "description": ""
+        "description": "Retrieve an SMS template by type.\n\nProvide the `type` as a path parameter to specify which SMS template to retrieve."
       },
       "delete": {
         "operationId": "VendorSmsController_deleteSmsTemplate",
@@ -5702,7 +5702,7 @@
         "tags": [
           "SMS templates"
         ],
-        "description": ""
+        "description": "Delete an SMS template by type.\n\nProvide the `type` as a path parameter to specify which SMS template to delete."
       },
       "post": {
         "operationId": "VendorSmsController_createSmsTemplate",
@@ -5753,7 +5753,7 @@
         "tags": [
           "SMS templates"
         ],
-        "description": ""
+        "description": "Create or update an SMS template by type.\n\nProvide the `type` as a path parameter and include the SMS template details in the request body."
       }
     },
     "/resources/configurations/v1/sms/templates/{type}/default": {
@@ -5786,7 +5786,7 @@
         "tags": [
           "SMS templates"
         ],
-        "description": ""
+        "description": "Retrieve the default SMS template by type.\n\nProvide the `type` as a path parameter to specify which default SMS template to retrieve."
       }
     },
     "/resources/configurations/sessions/v1/vendor": {
@@ -5802,19 +5802,19 @@
         "tags": [
           "Sessions configuration"
         ],
-        "description": ""
+        "description": "Retrieve the session configuration for your environment."
       }
     },
     "/resources/configurations/sessions/v1": {
       "get": {
         "operationId": "SessionConfigurationControllerV1_getSessionConfiguration",
-        "summary": "Get tenant or vendor default session configuration",
-        "description": "This route gets the Session configuration for the entire environment or a specific tenant. To get the Session configuration for a specific tenant, send the tenant's id in the **`frontegg-tenant-id`** header",
+        "summary": "Get account (tenant) or vendor default session configuration",
+        "description": "Retrieve the session configuration for the entire environment or for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -5832,13 +5832,13 @@
       },
       "post": {
         "operationId": "SessionConfigurationControllerV1_createSessionConfiguration",
-        "summary": "Create or update tenant or vendor default session configuration",
-        "description": "This route creates or updates Session configuration for the entire environment or a specific tenant. To update the Session configuration for a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header",
+        "summary": "Create or update account (tenant) or vendor default session configuration",
+        "description": "Create or update the session configuration for the entire environment or for a specific account (tenant).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -5916,7 +5916,7 @@
       "get": {
         "operationId": "GroupsControllerV1_getAllGroups",
         "summary": "Get all groups",
-        "description": "This route gets all user groups for a tenant.",
+        "description": "Retrieve all user groups for an account (tenant).",
         "parameters": [
           {
             "name": "_groupsRelations",
@@ -5952,7 +5952,7 @@
       "post": {
         "operationId": "GroupsControllerV1_createGroup",
         "summary": "Create group",
-        "description": "This route creates user group for a tenant.",
+        "description": "Create a user group for an account (tenant).\n\nProvide the group details in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5984,8 +5984,8 @@
     "/resources/groups/v1/bulkGet": {
       "post": {
         "operationId": "GroupsControllerV1_getGroupsByIds",
-        "summary": "Get groups by ids",
-        "description": "This route gets user group by given IDs for a tenant.",
+        "summary": "Get groups by Ids",
+        "description": "Retrieve user groups by given IDs for an account (tenant).\n\nProvide the group IDs in the request body.",
         "parameters": [
           {
             "name": "_groupsRelations",
@@ -6033,7 +6033,7 @@
       "patch": {
         "operationId": "GroupsControllerV1_updateGroup",
         "summary": "Update group",
-        "description": "This route updates user group by id for a tenant.",
+        "description": "Update a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter and the updated group details in the request body.",
         "parameters": [
           {
             "name": "id",
@@ -6074,7 +6074,7 @@
       "delete": {
         "operationId": "GroupsControllerV1_deleteGroup",
         "summary": "Delete group",
-        "description": "This route deletes user group by id for a tenant.",
+        "description": "Delete a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter.",
         "parameters": [
           {
             "name": "id",
@@ -6098,7 +6098,7 @@
       "get": {
         "operationId": "GroupsControllerV1_getGroupById",
         "summary": "Get group by ID",
-        "description": "This route gets user group by given ID for a tenant.",
+        "description": "Retrieve a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter.",
         "parameters": [
           {
             "name": "id",
@@ -6145,7 +6145,7 @@
       "get": {
         "operationId": "GroupsControllerV1_getGroupsConfiguration",
         "summary": "Get groups configuration",
-        "description": "This route gets the user group configuration for a vendor.",
+        "description": "Retrieve the user group configuration for your environment.",
         "parameters": [],
         "responses": {
           "200": {
@@ -6166,7 +6166,7 @@
       "post": {
         "operationId": "GroupsControllerV1_createOrUpdateGroupsConfiguration",
         "summary": "Create or update groups configuration",
-        "description": "This route creates or updates the user group configuration for a vendor.",
+        "description": "Create or update the user group configuration for your environment.\n\nProvide the configuration details in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -6192,7 +6192,7 @@
       "post": {
         "operationId": "GroupsControllerV1_addRolesToGroup",
         "summary": "Add roles to group",
-        "description": "This route adds requested roles to existing group. User can assign only roles that are lower then his own.",
+        "description": "Add roles to an existing user group.\n\nA user can assign only roles that are lower than their own.",
         "parameters": [
           {
             "name": "groupId",
@@ -6226,7 +6226,7 @@
       "delete": {
         "operationId": "GroupsControllerV1_removeRolesFromGroup",
         "summary": "Remove roles from group",
-        "description": "This route removes requested roles from existing group.",
+        "description": "Remove roles from an existing user group.\n\nProvide the roles to remove in the request body.",
         "parameters": [
           {
             "name": "groupId",
@@ -6262,7 +6262,7 @@
       "post": {
         "operationId": "GroupsControllerV1_addUsersToGroup",
         "summary": "Add users to group",
-        "description": "This route adds requested users to existing group. Only allowed for users that have higher roles then group roles.",
+        "description": "Add users to an existing user group.\n\nOnly users with higher roles than the group's roles are allowed to perform this action.",
         "parameters": [
           {
             "name": "groupId",
@@ -6296,7 +6296,7 @@
       "delete": {
         "operationId": "GroupsControllerV1_removeUsersFromGroup",
         "summary": "Remove users from group",
-        "description": "This route removes requested users from existing group.",
+        "description": "Remove users from an existing user group.\n\nProvide the users to remove in the request body.",
         "parameters": [
           {
             "name": "groupId",
@@ -6332,7 +6332,7 @@
       "get": {
         "operationId": "GroupsControllerV2_getAllGroupsPaginated",
         "summary": "Get all groups paginated",
-        "description": "This route gets all user groups for a tenant.",
+        "description": "Retrieve all user groups for an account (tenant), with pagination.\n\nUse query parameters to control pagination and optionally include related group data.",
         "parameters": [
           {
             "name": "_groupsRelations",
@@ -6437,8 +6437,8 @@
     "/resources/tenants/users/v1/{userId}/disable": {
       "post": {
         "operationId": "UsersTenantsControllerV1_disableUserTenant",
-        "summary": "Disable user tenant",
-        "description": "This route disable a user. A disabled user cannot log in to the tenant or use the system. To disable a user, call this route and send the user's ID as a path params.",
+        "summary": "Disable user account (tenant)",
+        "description": "Disable a user for an account (tenant).\n\nA disabled user cannot log in to the account (tenant) or use the system.\n\nProvide the user's ID as a path parameter.",
         "parameters": [
           {
             "name": "userId",
@@ -6469,8 +6469,8 @@
     "/resources/tenants/users/v1/{userId}/enable": {
       "post": {
         "operationId": "UsersTenantsControllerV1_enableUserTenant",
-        "summary": "Enable user tenant",
-        "description": "This route enables a disabled user. An enabled user can log in and use the system. To enable a user, call this route and send the user's ID as a path params.",
+        "summary": "Enable user account (tenant)",
+        "description": "Enable a disabled user for an account (tenant).\n\nAn enabled user can log in and use the system.\n\nProvide the user's ID as a path parameter.",
         "parameters": [
           {
             "name": "userId",
@@ -6502,7 +6502,7 @@
       "put": {
         "operationId": "TemporaryUsersV1Controller_editTimeLimit",
         "summary": "Sets a permanent user to temporary",
-        "description": "This route updates the settings for temporary users, use it to enable or disable it for an environment",
+        "description": "Update the settings for temporary users.\n\nUse this route to enable or disable temporary users for your environment",
         "parameters": [
           {
             "name": "userId",
@@ -6543,7 +6543,7 @@
       "delete": {
         "operationId": "TemporaryUsersV1Controller_setUserPermanent",
         "summary": "Sets a temporary user to permanent",
-        "description": "This route sets an existing temporary user as permanent. Send the user's ID as a path params.",
+        "description": "Set an existing temporary user as permanent.\n\nProvide the user's ID as a path parameter.",
         "parameters": [
           {
             "name": "userId",
@@ -6569,7 +6569,7 @@
       "get": {
         "operationId": "TemporaryUsersV1Controller_getConfiguration",
         "summary": "Gets temporary users configuration",
-        "description": "This route get the settings for temporary users, use it to check whether the policy is's enabled or disabled",
+        "description": "Retrieve the settings for temporary users.\n\nUse this endpoint to check whether the policy is enabled or disabled.",
         "parameters": [],
         "responses": {
           "200": {
@@ -6623,7 +6623,7 @@
       "put": {
         "operationId": "UsersControllerV1_setUserRolesFromSubTenants",
         "summary": "Set sub-account access for a user",
-        "description": "This route sets sub-account access for users as true or false",
+        "description": "Set sub-account access for a user.\n\nUse this endpoint to enable or disable sub-account access by setting the value to `true` or `false`.",
         "parameters": [
           {
             "name": "userId",
@@ -6659,7 +6659,7 @@
       "post": {
         "operationId": "UsersActivationControllerV1_resetActivationToken",
         "summary": "Reset user activation token",
-        "description": "This route resets the activation token for a user and triggers a new activation email being sent to the user's email.",
+        "description": "Reset the activation token for a user and trigger a new activation email.\n\nProvide the user's ID as a path parameter.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -6685,12 +6685,12 @@
       "post": {
         "operationId": "UsersTenantManagementControllerV1_resetTenantInvitationToken",
         "summary": "Reset invitation",
-        "description": "This route resets an invitation for a user to join a specific tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header and the user's email in the POST body. It returns a new invitation link with a new token.",
+        "description": "Reset an invitation for a user to join a specific account (tenant).\n\nThe response includes a new invitation link with a new token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -6721,12 +6721,12 @@
       "post": {
         "operationId": "UsersTenantManagementControllerV1_resetAllTenantsInvitationToken",
         "summary": "Reset all invitation tokens",
-        "description": "This route resets all invitation for a user to join all sub tenants which currently have invitation token. Send the tenant's ID in the **`frontegg-tenant-id`** header and the user's email in the POST body. It returns a new invitation link with a new token.",
+        "description": "Reset all invitations for a user to join all sub-accounts (tenants) that currently have an invitation token.\n\nThe response includes new invitation links with new tokens.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -6757,7 +6757,7 @@
       "get": {
         "operationId": "UsersControllerV3_getUsers",
         "summary": "Get users",
-        "description": "This route gets all users for a tenant OR environment. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant or leave it empty for all tenants' users",
+        "description": "Retrieve all users for an account (tenant) or for the entire environment.",
         "parameters": [
           {
             "name": "_limit",
@@ -6772,7 +6772,7 @@
             "name": "_includeSubTenants",
             "required": false,
             "in": "query",
-            "description": "when passing a user id, gives the option to include or not include sub tenants when searching users",
+            "description": "when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users",
             "schema": {
               "default": true,
               "type": "boolean"
@@ -6850,7 +6850,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -6898,7 +6898,7 @@
       "get": {
         "operationId": "UsersControllerV3_getUsersRoles",
         "summary": "Get users roles",
-        "description": "This route gets all users roles for a tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant.",
+        "description": "Retrieve all user roles for an account (tenant).",
         "parameters": [
           {
             "name": "ids",
@@ -6915,7 +6915,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -6943,7 +6943,7 @@
       "get": {
         "operationId": "UsersControllerV3_getUsersGroups",
         "summary": "Get users groups",
-        "description": "This route gets all users groups for a tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant.",
+        "description": "Retrieve all user groups for an account (tenant).",
         "parameters": [
           {
             "name": "ids",
@@ -6960,7 +6960,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -7007,19 +7007,19 @@
         "tags": [
           "User management"
         ],
-        "description": ""
+        "description": "Unlock your user account.\n\nProvide the required information in the request body to unlock the account."
       }
     },
     "/resources/users/v2": {
       "post": {
         "operationId": "UsersControllerV2_createUser",
         "summary": "Invite user",
-        "description": "This route creates a user for a specific tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare to what tenant this user is assigned. Send the user's information in the POST body. The user's email and metadata are required. The metadata can be empty, like `{}`.",
+        "description": "Create a user for a specific account (tenant).\n\nInclude the user's information in the request body. The `email` and `metadata` fields are required. The `metadata` field can be empty (e.g., `{}`).",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -7057,7 +7057,7 @@
       "put": {
         "operationId": "UsersControllerV2_updateUserProfile",
         "summary": "Update user profile",
-        "description": "This route updates a logged-in user's profile. Send the updated values in the PUT body. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "description": "Update the profile of a logged-in user.\n\nProvide the updated values in the request body.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7088,7 +7088,7 @@
       "get": {
         "operationId": "UsersControllerV2_getUserProfile",
         "summary": "Get user profile",
-        "description": "This route gets a logged-in user's profile. No params required. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "description": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -7117,7 +7117,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -7153,7 +7153,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUser",
         "summary": "Update user",
-        "description": "This route updates a user's information for a specific tenant. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant.",
+        "description": "TUpdate a user's information for a specific account (tenant).\n\nInclude the updated user information in the request body.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -7167,7 +7167,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -7205,7 +7205,7 @@
       "delete": {
         "operationId": "UsersControllerV1_removeUserFromTenant",
         "summary": "Remove user",
-        "description": "This route removes a user globally or from a specific tenant. To remove the user globally, no need to send a **`frontegg-tenant-id`**. To remove the user from only a specific tenant, send the tenant's ID in the **`frontegg-tenant-id`** header. Send the user's ID as a path params to declare which user you are removing. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Remove a user globally or from a specific account (tenant).\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -7219,7 +7219,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier (optional)",
+            "description": "The account (tenant) ID identifier (optional)",
             "required": false,
             "schema": {
               "type": "string"
@@ -7238,7 +7238,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUserForVendor",
         "summary": "Update user globally",
-        "description": "This route updates a user's information globally, not just for a specific tenant. Send the user's ID as a path params to identify specific user. Send the updated user values within the PUT body. The PUT request does a complete update of the resource, so include values for all of the body params that you want to have values. This is a global update, so do not send a **`frontegg-tenant-id`** within the header.",
+        "description": "Update a user's information globally.\n\nProvide the user's ID as a path parameter and include the updated user values in the request body. The PUT request performs a complete update of the resource — include values for all body parameters you want to set.\n\nThis is a global update, so do not send a `frontegg-tenant-id` header.",
         "parameters": [
           {
             "name": "userId",
@@ -7281,7 +7281,7 @@
       "post": {
         "operationId": "UsersControllerV1_addRolesToUser",
         "summary": "Assign roles to user",
-        "description": "This route associates roles to a specific user for a specific tenant. Send the tenant's ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
+        "description": "Associate roles to a specific user for a specific account (tenant).",
         "parameters": [
           {
             "name": "userId",
@@ -7295,7 +7295,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -7331,7 +7331,7 @@
       "delete": {
         "operationId": "UsersControllerV1_deleteRolesFromUser",
         "summary": "Unassign roles from user",
-        "description": "This route disassociates roles from a specific user for a specific tenant. Send the tenant's ID in the frontegg-tenant-id header to declare which tenant. Send the role IDs in the POST body. The role IDs need to be an array of strings. Also send the user's ID as a path params.",
+        "description": "Disassociate roles from a specific user for a specific account (tenant).\n\nInclude the role IDs in the request body as an array of strings.",
         "parameters": [
           {
             "name": "userId",
@@ -7345,7 +7345,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -7382,8 +7382,8 @@
     "/resources/users/v1/tenant": {
       "put": {
         "operationId": "UsersControllerV1_updateUserTenant",
-        "summary": "Update user's active tenant",
-        "description": "This route updates the logged in user's tenant. The user uses it when they have multiple tenants and they want to change the current tenant they log in to. Send the **`frontegg-user-id`** and **`frontegg-tenant-id`** headers to declare which user and which tenant to update when the request is sent with a vendor token. Send the tenant ID in the PUT body.",
+        "summary": "Update user's active account (tenant)",
+        "description": "Update the current account (tenant) for a logged-in user.\n\nUse this endpoint when a user belongs to multiple accounts (tenants) and wants to change the active account (tenant).\n\nInclude the target account (tenant) ID in the request body.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -7397,7 +7397,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -7435,7 +7435,7 @@
       "get": {
         "operationId": "UsersControllerV1_searchUsers",
         "summary": "Get users with fuzzy search",
-        "description": "This route retrieves all users for a specific tenant or environment. To filter by tenant, include the tenant's ID in the **`frontegg-tenant-id`** header; otherwise, leave it empty to retrieve users from all tenants. In addition to all standard Get users query params, this route supports phrase search, allowing for complex queries using parameters such as contains, excludes, optional and approximate matching.",
+        "description": "Retrieve all users for a specific account (tenant) or for the entire environment.\n\nIn addition to all standard Get users query parameters, this route supports phrase search, enabling complex queries with options such as `contains`, `excludes`, `optional`, and approximate matching.",
         "parameters": [
           {
             "name": "_limit",
@@ -7450,7 +7450,7 @@
             "name": "_includeSubTenants",
             "required": false,
             "in": "query",
-            "description": "when passing a user id, gives the option to include or not include sub tenants when searching users",
+            "description": "when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users",
             "schema": {
               "default": true,
               "type": "boolean"
@@ -7574,7 +7574,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -7854,7 +7854,7 @@
       "post": {
         "operationId": "UsersActivationControllerV1_activateUser",
         "summary": "Activate user",
-        "description": "This route activates a non-activated user. You can use it to create your own activation flow. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal. Send the required userId and activation token in the POST body. For generating an activation token, see the route under users for generating an activation token. If the vendor's sign in flow requires a password or recaptcha, send those values in the POST body. Instead of this route, consider using our email template for user activation.",
+        "description": "Activate a non-activated user.\n\nInclude the `userId` and `activationToken` in the request body. If required by your environment's sign-in flow, also include the user's password and reCAPTCHA values.\n\nYou can generate an activation token using the route under Users → Generate Activation Token.\n\nAlternatively, you can use the built-in email template for user activation.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -7897,7 +7897,7 @@
       "post": {
         "operationId": "UsersActivationControllerV1_activateUserWithCode",
         "summary": "Activate user with code",
-        "description": "This route activates a non-activated user. You can use it to create your own activation flow. Send the **`frontegg-vendor-host`** as a header to declare which vendor. This is your domain name in the Frontegg Portal. Send the required userId, activation token and code in the POST body. For generating an activation token, see the route under users for generating an activation token. If the vendor's sign in flow requires a password or recaptcha, send those values in the POST body. Instead of this route, consider using our email template for user activation.",
+        "description": "Activate a non-activated user.\n\nUse this endpoint to implement a custom activation flow.\n\nInclude the `userId`, `activationToken`, and `code` in the request body. If required by your environment's sign-in flow, also include the user's password and reCAPTCHA values.\n\nYou can generate an activation token using the route under Users → Generate Activation Token.\n\nAlternatively, you can use the built-in email template for user activation.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -7940,7 +7940,7 @@
       "get": {
         "operationId": "UsersActivationControllerV1_getActivationStrategy",
         "summary": "Get user activation strategy",
-        "description": "This route gets a user's activation strategy. The activation strategy tells the vendor whether the user needs to set a password. Send the required userId and activation token in the POST body. For the activation token, see the route under users for generating an activation token. The route returns a Boolean called shouldSetPassword. If it is true, the user needs to to set a password. If it is false, the user does not need to set a password. For instance, SSO users do not set passwords.",
+        "description": "Retrieve a user's activation strategy.\n\nThe activation strategy indicates whether the user needs to set a password.\n\nInclude the `userId` and `activationToken` in the request body. You can generate an activation token using the route under Users → Generate Activation Token.\n\nThe response returns a Boolean field `shouldSetPassword`. If `true`, the user needs to set a password. If `false`, the user does not need to set a password (for example, SSO users do not set passwords).",
         "parameters": [
           {
             "name": "userId",
@@ -7982,7 +7982,7 @@
       "post": {
         "operationId": "UsersTenantManagementControllerV1_acceptInvitation",
         "summary": "Accept invitation",
-        "description": "This route accepts an invitation for a user to join a specific tenant. Send the required userId and invitation token in the POST body. The userId and invitation token appear as a query params in the url Frontegg sends to the user in the activation email.",
+        "description": "Accept an invitation for a user to join a specific account (tenant).\n\nInclude the `userId` and `invitationToken` in the request body. These values appear as query parameters in the URL that Frontegg sends to the user in the activation email.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8030,14 +8030,14 @@
         "tags": [
           "User management"
         ],
-        "description": ""
+        "description": "Accept an invitation to join a specific account (tenant) using an invitation code.\n\nInclude the required `userId`, `invitationToken`, and `code` in the request body."
       }
     },
     "/resources/users/v3/me": {
       "get": {
         "operationId": "UsersControllerV3_getUserProfile",
         "summary": "Get user profile",
-        "description": "This route gets a logged-in user's profile. No params required. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "description": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -8059,8 +8059,8 @@
     "/resources/users/v2/me/tenants": {
       "get": {
         "operationId": "UsersControllerV2_getUserTenants",
-        "summary": "Get user tenants",
-        "description": "This route gets the list of tenants that a logged-in user belongs to. No params required. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "summary": "Get user accounts (tenants)",
+        "description": "Retrieve the list of accounts (tenants) that a logged-in user belongs to.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -8095,8 +8095,8 @@
     "/resources/users/v2/me/hierarchy": {
       "get": {
         "operationId": "UsersControllerV2_getUserTenantsHierarchy",
-        "summary": "Get user tenants' hierarchy",
-        "description": "This route gets the list of tenants with hierarchy metadata that a logged-in user belongs to. If the user is a member of several tenants in a tree some might be reduced. No params required. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "summary": "Get user accounts (tenants) hierarchy",
+        "description": "Retrieve the list of accounts (tenants) with hierarchy metadata that a logged-in user belongs to.\n\nIf the user is a member of multiple accounts (tenants) in a hierarchy, some entries may be reduced based on the hierarchy structure.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -8119,7 +8119,7 @@
       "get": {
         "operationId": "UsersControllerV1_getMeAuthorization",
         "summary": "Get user permissions and roles",
-        "description": "This route gets the list of permissions and roles that a logged-in user has. No params required. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "description": "Retrieve the list of permissions and roles that a logged-in user has.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -8141,8 +8141,8 @@
     "/resources/users/v1/me/tenants": {
       "get": {
         "operationId": "UsersControllerV1_getUserTenants",
-        "summary": "Get user tenants",
-        "description": "This route gets the list of tenants that a logged-in user belongs to. No params required. Mind to use your Frontegg subdomain/custom domain as a host. A user token is required for this route. A user token can be obtained after user authentication.",
+        "summary": "Get user accounts (tenants)",
+        "description": "Retrieve the list of accounts (tenants) that a logged-in user belongs to.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
@@ -8165,7 +8165,7 @@
       "get": {
         "operationId": "UserSourcesControllerV1_getUserSources",
         "summary": "Get vendor user sources",
-        "description": "This route gets all vendor's user sources. An environment token is required for this route.",
+        "description": "Retrieve all user sources configured for your environment.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "responses": {
           "200": {
@@ -8191,7 +8191,7 @@
       "get": {
         "operationId": "UserSourcesControllerV1_getUserSource",
         "summary": "Get vendor user source",
-        "description": "This route gets a user source by id. An environment token is required for this route.",
+        "description": "Retrieve a user source by ID.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8222,7 +8222,7 @@
       "delete": {
         "operationId": "UserSourcesControllerV1_deleteUserSource",
         "summary": "Delete user source",
-        "description": "This route deletes a user source. An environment token is required for this route.",
+        "description": "Delete a user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8248,7 +8248,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createAuth0ExternalUserSource",
         "summary": "Create Auth0 external user source",
-        "description": "This route creates a new external user source. An environment token is required for this route.",
+        "description": "Create a new external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8281,7 +8281,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createCognitoExternalUserSource",
         "summary": "Create Cognito external user source",
-        "description": "This route creates a new external user source. An environment token is required for this route.",
+        "description": "Create a new external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8314,7 +8314,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createFirebaseExternalUserSource",
         "summary": "Create Firebase external user source",
-        "description": "This route creates a new external user source. An environment token is required for this route.",
+        "description": "Create a new external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8347,7 +8347,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createCustomCodeExternalUserSource",
         "summary": "Create Custom-Code external user source",
-        "description": "This route creates a new external user source. An environment token is required for this route.",
+        "description": "Create a new external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8380,7 +8380,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createFederationUserSource",
         "summary": "Create Federation user source",
-        "description": "This route creates a new federation user source. An environment token is required for this route.",
+        "description": "Create a new federation user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8413,7 +8413,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateAuth0ExternalUserSource",
         "summary": "Update Auth0 external user source",
-        "description": "This route updates an external user source. An environment token is required for this route.",
+        "description": "Update an external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8449,7 +8449,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateCognitoExternalUserSource",
         "summary": "Update Cognito external user source",
-        "description": "This route updates an external user source. An environment token is required for this route.",
+        "description": "Update an external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8485,7 +8485,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateFirebaseExternalUserSource",
         "summary": "Update Firebase external user source",
-        "description": "This route updates an external user source. An environment token is required for this route.",
+        "description": "Update an external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8521,7 +8521,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateCustomCodeExternalUserSource",
         "summary": "Update Custom-Code external user source",
-        "description": "This route updates an external user source. An environment token is required for this route.",
+        "description": "Update an external user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8557,7 +8557,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateFederationUserSource",
         "summary": "Update Federation user source",
-        "description": "This route updates a federation user source. An environment token is required for this route.",
+        "description": "Update a federation user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8593,7 +8593,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_assignUserSource",
         "summary": "Assign applications to a user source",
-        "description": "This route assigns applications to a user source. An environment token is required for this route.",
+        "description": "Assign applications to a user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8619,7 +8619,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_unassignUserSource",
         "summary": "Unassign applications from a user source",
-        "description": "This route unassigns applications from a user source. An environment token is required for this route.",
+        "description": "Unassign applications from a user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8645,7 +8645,7 @@
       "get": {
         "operationId": "UserSourcesControllerV1_getUserSourceUsers",
         "summary": "Get user source users",
-        "description": "This route gets all of users of a user source. An environment token is required for this route.",
+        "description": "Retrieve all users of a user source.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -8698,7 +8698,7 @@
       "get": {
         "operationId": "UserSessionsControllerV1_getActiveSessions",
         "summary": "Get user's active sessions",
-        "description": "This route returns all the user's active sessions. Specify the user by sending its ID in frontegg-user-id header.",
+        "description": "Retrieve all active sessions for a user.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -8724,7 +8724,7 @@
       "delete": {
         "operationId": "UserSessionsControllerV1_deleteAllUserActiveSessions",
         "summary": "Delete all user sessions",
-        "description": "This route deletes all user's session. Specify the user by sending its ID in frontegg-user-id header.",
+        "description": "Delete all active sessions for a user.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -8750,7 +8750,7 @@
       "delete": {
         "operationId": "UserSessionsControllerV1_deleteUserSession",
         "summary": "Delete single user's session",
-        "description": "This route deletes user's session. Specify the user by sending its ID in frontegg-user-id header and the session ID in the url param.",
+        "description": "Delete a specific active session for a user.",
         "parameters": [
           {
             "name": "id",
@@ -8785,7 +8785,7 @@
       "get": {
         "operationId": "VendorOnlyUsers_getUserById",
         "summary": "Get user",
-        "description": "This route gets a user by its ID regardless of any tenant the user belongs to. Send the user's ID as a path params. The route is for vendor-use only.",
+        "description": "Retrieve a user by ID, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for vendor use only.",
         "parameters": [
           {
             "name": "userId",
@@ -8818,7 +8818,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_MFAUnenroll",
         "summary": "Unenroll user from MFA globally",
-        "description": "This route unenrolls a user from MFA regardless of any tenant the user belongs to. Send the user's ID as a path params. The route is for vendor-use only.",
+        "description": "Unenroll a user from MFA, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for vendor use only.",
         "parameters": [
           {
             "name": "userId",
@@ -8844,7 +8844,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_verifyUserPassword",
         "summary": "Verify user's password",
-        "description": "This route verify user email and password. Send the user's email and password and the response will be true or false. The route is for vendor-use only.",
+        "description": "Verify a user's email and password.\n\nProvide the user's email and password in the request body. The response will indicate `true` or `false`.\n\nThis route is for vendor use only.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8877,7 +8877,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_createUser",
         "summary": "Create user",
-        "description": "This route creates a user and allows setting **`mfaBypass`** property on that user for testing purposes. The route is for vendor-use only.",
+        "description": "Create a user and set the `mfaBypass` property for testing purposes.\n\nThis route is for vendor use only.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -8909,8 +8909,8 @@
     "/resources/tenants/users/v1/statuses": {
       "get": {
         "operationId": "get",
-        "summary": "Get users tenants statuses",
-        "description": "This route gets the tenants statuses of vendor users. Expects an array of **`userIds`** with max of 200 and optionally an array of **`userTenantStatuses`** as query params. Note that there is a limit of 2000 tenants statuses per user.",
+        "summary": "Get users account (tenant) statuses",
+        "description": "Retrieve the account (tenant) statuses of vendor users.\n\nProvide an array of `userIds` (maximum 200) and optionally an array of `userTenantStatuses` as query parameters. There is a limit of 2000 account (tenant) statuses per user.",
         "parameters": [
           {
             "name": "userIds",
@@ -8928,7 +8928,7 @@
             "name": "userTenantStatuses",
             "required": false,
             "in": "query",
-            "description": "Tenant Statuses",
+            "description": "Account (tenant) Statuses",
             "schema": {
               "type": "array",
               "items": {
@@ -8964,7 +8964,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
         "summary": "Create user phone number verified by default",
-        "description": "This route creates new user phone number, phone numbers added by vendor will be automatically verified.",
+        "description": "Create a new user phone number.\n\nPhone numbers added by the vendor will be automatically verified.",
         "parameters": [
           {
             "name": "userId",
@@ -9000,7 +9000,7 @@
       "delete": {
         "operationId": "UserPhoneNumbersControllerV1_deleteUserPhoneNumberVendor",
         "summary": "Delete user phone number on an environment",
-        "description": "This route deletes user phone number without verification.",
+        "description": "Delete a user phone number without verification.",
         "parameters": [
           {
             "name": "phoneId",
@@ -9034,13 +9034,13 @@
     "/resources/users/bulk/v1/invite": {
       "post": {
         "operationId": "UsersBulkControllerV1_bulkInviteUsers",
-        "summary": "Invite users to tenant in bulk",
-        "description": "This route enables you to invite users to tenant in bulk. Expects an array of `users`. Each entry must include a user's `email`.",
+        "summary": "Invite users to an account (tenant) in bulk",
+        "description": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9078,7 +9078,7 @@
       "get": {
         "operationId": "UsersBulkControllerV1_getBulkInviteStatus",
         "summary": "Get status of bulk invite task",
-        "description": "This route enables you to invite users to tenant in bulk. Expects an array of `users`. Each entry must include a user's `email`.",
+        "description": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`.",
         "parameters": [
           {
             "name": "id",
@@ -9104,7 +9104,7 @@
       "get": {
         "operationId": "UsersControllerV1_getUserByEmail",
         "summary": "Get user by email",
-        "description": "This route get user by email",
+        "description": "Retrieve a user by email.\n\nProvide the user's `email` as a query parameter.",
         "parameters": [
           {
             "name": "email",
@@ -9137,7 +9137,7 @@
       "get": {
         "operationId": "UsersControllerV1_getUserById",
         "summary": "Get user by ID",
-        "description": "This route gets a specific user from a tenant. Send the tenant's ID in the **`frontegg-tenant-id`** header to declare which tenant and send the user's ID as a path params to declare which user. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Retrieve a specific user from an account (tenant).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "id",
@@ -9151,7 +9151,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9179,7 +9179,7 @@
       "post": {
         "operationId": "UsersControllerV1_verifyUser",
         "summary": "Verify user",
-        "description": "This route marks a user as verified. Send the user's ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Mark a user as verified.\n\nProvide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9205,7 +9205,7 @@
       "put": {
         "operationId": "UsersControllerV1_setUserInvisibleMode",
         "summary": "Make user invisible",
-        "description": "This route sets whether a user is invisible or visible. If a user is invisible, the user data remains in the Frontegg system but the user will not appear in the list of users in the admin box. An invisible user remains part of the tenant. Send the user's ID as a path params. Also send as a PUT body params a Boolean value for invisible. True is invisible and false is visible. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Set whether a user is invisible or visible.\n\nAn invisible user remains part of the account (tenant) but will not appear in the list of users in the admin box. The user data remains in the system.\n\nProvide the user's ID as a path parameter and a Boolean `invisible` value in the request body (`true` for invisible, `false` for visible).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9248,7 +9248,7 @@
       "put": {
         "operationId": "UsersControllerV1_setUserSuperuserMode",
         "summary": "Make user super-user",
-        "description": "This route sets a user as a super-user. Note that super-user functionality is no longer maintained due to incompatibility with newer features. A super user has access to all tenants within the workspace. Send the user ID as the path params. Also send as a PUT body params a Boolean value for super user. True is super user and false is not. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Set a user as a super-user.\n\nSuper-user functionality is no longer maintained due to incompatibility with newer features. A super-user has access to all accounts (tenants) within the workspace.\n\nProvide the user's ID as a path parameter and a Boolean `superUser` value in the request body (`true` for super-user, `false` for regular user).\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9290,8 +9290,8 @@
     "/resources/users/v1/{userId}/tenant": {
       "put": {
         "operationId": "UsersControllerV1_updateUserTenantForVendor",
-        "summary": "Set user's tenant",
-        "description": "This route is for the vendor to set the active tenant of a user. The active tenant is the tenant the user will see in their admin portal and also the tenant for which the API reference will default to in situations where a route is tenant specific. Send the user ID as a path param and the tenant ID as a PUT body param. When using a non-existing tenant ID, there will be a tenant create for the provided ID. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Set user's account (tenant)",
+        "description": "Set the active account (tenant) of a user.\n\nThe active account (tenant) is the account (tenant) the user will see in their admin portal and the account (tenant) used by default for account (tenant)-specific API routes.\n\nProvide the user's ID as a path parameter and the account (tenant) ID as a `tenantId` value in the request body. If a non-existing account (tenant) ID is provided, an account (tenant) will be created for that ID.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9331,8 +9331,8 @@
       },
       "post": {
         "operationId": "UsersControllerV1_addUserToTenantForVendor",
-        "summary": "Add user to tenant",
-        "description": "This route adds a user to a tenant. Send the user ID as a path params and the tenant ID as a POST body params. To skip the invite email requirement, pass as an optional POST body params for skipInviteEmail. Set its value to true to skip the invite email. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Add user to account (tenant)",
+        "description": "Add a user to an account (tenant).\n\nProvide the user's ID as a path parameter and the account (tenant) ID as a `tenantId` value in the request body. To skip sending an invite email, include the optional `skipInviteEmail` parameter in the request body and set it to `true`.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9375,7 +9375,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUserEmail",
         "summary": "Update user email",
-        "description": "This route updates the email address for a user globally, regardless of tenant. Send the user's ID as a path params. Send the user's new email address as a PUT body params.",
+        "description": "Update a user's email address globally, regardless of account (tenant).\n\nProvide the user's ID as a path parameter and the new email address as an `email` value in the request body.",
         "parameters": [
           {
             "name": "userId",
@@ -9418,7 +9418,7 @@
       "post": {
         "operationId": "UsersControllerV1_generateUserActivationLink",
         "summary": "Generate activation token",
-        "description": "This route generates a new activation token for a user. Send the user's ID as a path params. You may need this route in combination with the routes under Users Activation. It will not send the activation email itself, but return the activation link and token. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Generate a new activation token for a user.\n\nProvide the user's ID as a path parameter. This route does not send the activation email but returns the activation link and token. It can be used in combination with the routes under **Users Activation**.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9451,7 +9451,7 @@
       "post": {
         "operationId": "UsersControllerV1_generateUserPasswordResetLink",
         "summary": "Generate password reset token",
-        "description": "This route generates a password reset token for a user. Send the user's ID as a path params. You may need this route in combination with the routes under Users Passwords. It will not send the reset password email itself, but return the reset link and token. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Generate a password reset token for a user.\n\nProvide the user's ID as a path parameter. This route does not send the reset password email but returns the reset link and token. It can be used in combination with the routes under **Users Passwords**.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9484,7 +9484,7 @@
       "post": {
         "operationId": "UsersControllerV1_unlockUser",
         "summary": "Unlock user",
-        "description": "This route unlocks a locked user. An unlocked user can sign in and use the system globally, regardless of the tenant. To unlock a user, call this route and send the user's ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Unlock a locked user.\n\nAn unlocked user can sign in and use the system globally, regardless of account (tenant). Provide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9510,7 +9510,7 @@
       "post": {
         "operationId": "UsersControllerV1_lockUser",
         "summary": "Lock user",
-        "description": "This route locks a user. A locked user cannot sign in or use the system globally, regardless of the tenant. To lock a user, call this route and send the user's ID as a path params. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Lock a user.\n\nA locked user cannot sign in or use the system globally, regardless of account (tenant). Provide the user's ID as a path parameter.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
             "name": "userId",
@@ -9535,8 +9535,8 @@
     "/resources/users/v1/tenants/migrate": {
       "put": {
         "operationId": "UsersControllerV1_moveAllUsersTenants",
-        "summary": "Move all users from one tenant to another",
-        "description": "This route migrates all the users from the source tenant to the target. Specify in the request body the srcTenantId (the source tenant ID) and targetTenantId (the target tenant ID). A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Move all users from one account (tenant) to another",
+        "description": "Migrate all users from a source account (tenant) to a target account (tenant).\n\nSpecify `srcTenantId` (source account (tenant) ID) and `targetTenantId` (target account (tenant) ID) in the request body.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9562,7 +9562,7 @@
       "get": {
         "operationId": "ApplicationsControllerV1_getUsersForApplication",
         "summary": "Get users for application",
-        "description": "This route gets users for an application.",
+        "description": "Retrieve users for an application.\n\nProvide the application ID as a path parameter.",
         "parameters": [
           {
             "name": "appId",
@@ -9598,7 +9598,7 @@
       "get": {
         "operationId": "ApplicationsControllerV1_getApplicationsForUser",
         "summary": "Get applications for user",
-        "description": "This route gets applications for a user.",
+        "description": "Retrieve applications for a user.\n\nProvide the user's ID as a path parameter",
         "parameters": [
           {
             "name": "userId",
@@ -9634,7 +9634,7 @@
       "post": {
         "operationId": "ApplicationsControllerV1_assignUsersToApplication",
         "summary": "Assign users to application",
-        "description": "This route assigns users to an application.",
+        "description": "Assign users to an application.\n\nProvide the application ID as a path parameter and the user IDs in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9668,7 +9668,7 @@
       "delete": {
         "operationId": "ApplicationsControllerV1_unassignUsersFromApplication",
         "summary": "Unassign users from application",
-        "description": "This route unassigns users from an application.",
+        "description": "Unassign users from an application.\n\nProvide the application ID as a path parameter and the user IDs in the request body.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9693,8 +9693,8 @@
     "/resources/applications/user-tenants/active/v1": {
       "get": {
         "operationId": "ApplicationsActiveUserTenantsControllerV1_getUserApplicationActiveTenants",
-        "summary": "Get user active tenants in applications",
-        "description": "This route gets the active user tenants for an application.",
+        "summary": "Get user active accounts (tenants) in applications",
+        "description": "Retrieve the active accounts (tenants) of a user for an application.\n\nProvide the application ID and the user ID as path parameters.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -9724,8 +9724,8 @@
       },
       "put": {
         "operationId": "ApplicationsActiveUserTenantsControllerV1_switchUserApplicationActiveTenant",
-        "summary": "Switch users active tenant in applications",
-        "description": "This route updates the active user tenants for an application.",
+        "summary": "Switch users active account (tenant) in applications",
+        "description": "Update the active accounts (tenants) of a user for an application.\n\nProvide the application ID and the user ID as path parameters and the updated list of account (tenant) IDs in the request body.",
         "parameters": [
           {
             "name": "frontegg-user-id",
@@ -10125,7 +10125,7 @@
             "description": ""
           },
           "roleIds": {
-            "description": "Array of role ids",
+            "description": "Array of role Ids",
             "type": "array",
             "items": {
               "type": "string"
@@ -11339,14 +11339,14 @@
             "description": ""
           },
           "roleIds": {
-            "description": "Array of role ids. Either this or permissionIds must be provided, but not both.",
+            "description": "Array of role Ids. Either this or permissionIds must be provided, but not both.",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "permissionIds": {
-            "description": "Array of permission ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.",
+            "description": "Array of permission Ids. Either this or roleIds must be provided, but not both. roleIds will override permissionIds.",
             "type": "array",
             "items": {
               "type": "string"
@@ -11394,14 +11394,14 @@
             "description": ""
           },
           "permissionIds": {
-            "description": "Array of permission ids",
+            "description": "Array of permission Ids",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "roleIds": {
-            "description": "Array of role ids",
+            "description": "Array of role Ids",
             "type": "array",
             "items": {
               "type": "string"
@@ -11454,14 +11454,14 @@
             "description": ""
           },
           "permissionIds": {
-            "description": "Array of permission ids. Either this or roleIds will be present, but not both.",
+            "description": "Array of permission Ids. Either this or roleIds will be present, but not both.",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "roleIds": {
-            "description": "Array of role ids. Either this or permissionIds will be present, but not both.",
+            "description": "Array of role Ids. Either this or permissionIds will be present, but not both.",
             "type": "array",
             "items": {
               "type": "string"
@@ -11497,14 +11497,14 @@
             "description": ""
           },
           "roleIds": {
-            "description": "Array of role ids",
+            "description": "Array of role Ids",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "permissionIds": {
-            "description": "Array of permission ids",
+            "description": "Array of permission Ids",
             "type": "array",
             "items": {
               "type": "string"
@@ -11543,14 +11543,14 @@
             "description": ""
           },
           "permissionIds": {
-            "description": "Array of permission ids",
+            "description": "Array of permission Ids",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "roleIds": {
-            "description": "Array of role ids",
+            "description": "Array of role Ids",
             "type": "array",
             "items": {
               "type": "string"
@@ -12734,7 +12734,7 @@
         "type": "object",
         "properties": {
           "permissionIds": {
-            "description": "Set permission ids to attach to the role",
+            "description": "Set permission Ids to attach to the role",
             "type": "array",
             "items": {
               "type": "string"
@@ -13183,7 +13183,7 @@
           },
           "roleIds": {
             "default": [],
-            "description": "Role ids of the migrated users. If not provided, the user will be assigned the default roles",
+            "description": "Role Ids of the migrated users. If not provided, the user will be assigned the default roles",
             "type": "array",
             "items": {
               "type": "string"
@@ -14669,7 +14669,7 @@
             ]
           },
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -14807,7 +14807,7 @@
             ]
           },
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -14945,7 +14945,7 @@
             ]
           },
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -15020,7 +15020,7 @@
             ]
           },
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -15099,7 +15099,7 @@
             ]
           },
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -15249,7 +15249,7 @@
         "type": "object",
         "properties": {
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -15269,7 +15269,7 @@
         "type": "object",
         "properties": {
           "appIds": {
-            "description": "The application ids to assign to this user source",
+            "description": "The application Ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
