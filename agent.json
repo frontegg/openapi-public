@@ -4,8 +4,8 @@
     "/v1/data/e10s/features/is_entitled_to_input_feature": {
       "post": {
         "operationId": "OpenApiPDPController_isEntitledToFeature",
-        "summary": "Is Entitled To Feature",
-        "description": "Check whether a given tenant or user is entitled to the requested feature",
+        "summary": "Is entitled to feature",
+        "description": "Check whether a specific account (tenant) or user is entitled to access a requested feature based on their permissions, attributes, and entitlement configuration.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -48,8 +48,8 @@
     "/v1/data/e10s/permissions/is_entitled_to_input_permission": {
       "post": {
         "operationId": "OpenApiPDPController_isEntitledToPermission",
-        "summary": "Is Entitled To Permission",
-        "description": "Check whether a given user is entitled to the requested permission",
+        "summary": "Is entitled to permission",
+        "description": "Check whether a specific user is entitled to access a requested permission based on their role assignments and account (tenant) configuration.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -92,8 +92,8 @@
     "/v1/data/e10s/routes/is_entitled_to_input_route": {
       "post": {
         "operationId": "OpenApiPDPController_isEntitledToRoute",
-        "summary": "Is Entitled To Route",
-        "description": "Check whether a given tenant or user is entitled to the requested route",
+        "summary": "Is entitled to route",
+        "description": "Check whether a specific account (tenant) or user is entitled to access a requested route based on the HTTP method, path, and their associated permissions or feature entitlements.",
         "parameters": [],
         "requestBody": {
           "required": true,
