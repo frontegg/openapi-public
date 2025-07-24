@@ -502,6 +502,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Settings retrieved successfully"
+          },
           "404": {
             "description": "When an account (tenant) with given ID does not exist."
           }
@@ -536,6 +539,9 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Settings updated successfully"
+          },
           "400": {
             "description": "When: a) given parameters do not pass validation b) empty object is passed in request content"
           },
@@ -565,6 +571,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Public settings retrieved successfully"
+          },
           "404": {
             "description": "When an account (tenant) with given ID does not exist."
           }

@@ -6769,6 +6769,29 @@
             }
           },
           {
+            "name": "_identifier",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username prefix match. Must be provided together with _identifierType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_identifierType",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username. Must be provided together with _identifier",
+            "schema": {
+              "enum": [
+                "email",
+                "phoneNumber",
+                "username"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "name": "_includeSubTenants",
             "required": false,
             "in": "query",
@@ -7444,6 +7467,29 @@
             "description": "The default limit is 50 users per request, the maximum is 200",
             "schema": {
               "type": "number"
+            }
+          },
+          {
+            "name": "_identifier",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username prefix match. Must be provided together with _identifierType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_identifierType",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username. Must be provided together with _identifier",
+            "schema": {
+              "enum": [
+                "email",
+                "phoneNumber",
+                "username"
+              ],
+              "type": "string"
             }
           },
           {
@@ -11941,6 +11987,11 @@
             "type": "string",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "description": "The username of the user. If not provided, the email is required. Maximum length is 255 characters.",
+            "maxLength": 255
+          },
           "name": {
             "type": "string",
             "description": ""
@@ -11978,7 +12029,6 @@
           }
         },
         "required": [
-          "email",
           "tenantId"
         ]
       },
@@ -12972,6 +13022,12 @@
             "format": "email",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "maxLength": 255,
+            "pattern": "/^[a-zA-Z0-9._-]+$/",
+            "description": "The username of the user. If not provided, the email is required. Maximum length is 255 characters."
+          },
           "name": {
             "type": "string",
             "description": ""
@@ -13034,10 +13090,7 @@
             "type": "boolean",
             "description": ""
           }
-        },
-        "required": [
-          "email"
-        ]
+        }
       },
       "UsersBulkInviteRequestDto": {
         "type": "object",
@@ -13097,7 +13150,8 @@
           "firebase-scrypt",
           "pbkdf2",
           "argon2",
-          "sha256"
+          "sha256",
+          "sha1"
         ]
       },
       "PhoneNumberType": {
@@ -13861,6 +13915,12 @@
             "format": "email",
             "description": ""
           },
+          "username": {
+            "type": "string",
+            "maxLength": 255,
+            "pattern": "/^[a-zA-Z0-9._-]+$/",
+            "description": "The username of the user. If not provided, the email is required. Maximum length is 255 characters."
+          },
           "name": {
             "type": "string",
             "description": ""
@@ -13919,10 +13979,7 @@
             "minimum": 300,
             "description": "Temporary user expiration in seconds"
           }
-        },
-        "required": [
-          "email"
-        ]
+        }
       },
       "UserCreatedResponse": {
         "type": "object",
