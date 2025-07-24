@@ -247,6 +247,19 @@
             "description": ""
           },
           {
+            "name": "accessType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "FREE_ACCESS",
+                "MANAGED_ACCESS"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
             "name": "frontegg-tenant-id",
             "in": "header",
             "description": "The tenant ID identifier",
@@ -351,6 +364,49 @@
       }
     },
     "/resources/applications/tenant-assignments/v1/{appId}/{tenantId}": {
+      "put": {
+        "operationId": "editApplicationTenantAssignment",
+        "summary": "Edit application to tenant assignment",
+        "description": "Edit application to tenant assignment",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditApplicationTenantRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      },
       "delete": {
         "operationId": "deleteApplicationTenantAssignment",
         "summary": "Delete application to account (tenant) assignment",
@@ -378,6 +434,73 @@
         "responses": {
           "200": {
             "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/tenant-assignments/v2": {
+      "get": {
+        "operationId": "getApplicationsTenantsAssignmentsV2",
+        "summary": "Get tenant application assignments with per-app accessType",
+        "description": "Get tenant application assignments with per-app accessType",
+        "parameters": [
+          {
+            "name": "appIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "tenantIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "accessType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "FREE_ACCESS",
+                "MANAGED_ACCESS"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationsTenantAssignmentsResponseV2"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -735,7 +858,7 @@
           }
         }
       },
-      "ApplicationsTenantAssignmentResponse": {
+      "ApplicationsTenantAssignmentResponseV1": {
         "type": "object",
         "properties": {
           "tenantId": {
@@ -755,7 +878,7 @@
           "appIds"
         ]
       },
-      "ApplicationTenantsResponse": {
+      "ApplicationTenantsResponseV1": {
         "type": "object",
         "properties": {
           "tenantIds": {
@@ -770,16 +893,81 @@
           "tenantIds"
         ]
       },
-      "CreateApplicationTenantRequest": {
+      "CreateApplicationTenantRequestV1": {
         "type": "object",
         "properties": {
           "tenantId": {
             "type": "string",
             "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
           }
         },
         "required": [
           "tenantId"
+        ]
+      },
+      "EditApplicationTenantRequestV1": {
+        "type": "object",
+        "properties": {
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          }
+        },
+        "required": [
+          "accessType"
+        ]
+      },
+      "ApplicationTenantAssignmentAccessType": {
+        "type": "object",
+        "properties": {
+          "appId": {
+            "type": "string",
+            "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          }
+        },
+        "required": [
+          "appId",
+          "accessType"
+        ]
+      },
+      "ApplicationsTenantAssignmentsResponseV2": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationTenantAssignmentAccessType"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId",
+          "assignments"
         ]
       },
       "ApplicationsClientCredentialsResponse": {
