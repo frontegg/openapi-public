@@ -1039,6 +1039,14 @@
           "subAccountAccessLimit": {
             "type": "number",
             "description": ""
+          },
+          "idpClientId": {
+            "type": "string",
+            "description": ""
+          },
+          "idpClientSecret": {
+            "type": "string",
+            "description": ""
           }
         },
         "required": [
@@ -1053,7 +1061,9 @@
           "oidcSecret",
           "configMetadata",
           "overrideActiveTenant",
-          "subAccountAccessLimit"
+          "subAccountAccessLimit",
+          "idpClientId",
+          "idpClientSecret"
         ]
       },
       "UpdateSSOConfigurationByMetadataRequestDto": {
