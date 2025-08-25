@@ -1039,6 +1039,14 @@
           "subAccountAccessLimit": {
             "type": "number",
             "description": ""
+          },
+          "idpClientId": {
+            "type": "string",
+            "description": "SSO app client ID used to authenticate group fetch requests"
+          },
+          "idpClientSecret": {
+            "type": "string",
+            "description": "SSO app client secret used with the client ID for authentication"
           }
         },
         "required": [
@@ -1053,7 +1061,9 @@
           "oidcSecret",
           "configMetadata",
           "overrideActiveTenant",
-          "subAccountAccessLimit"
+          "subAccountAccessLimit",
+          "idpClientId",
+          "idpClientSecret"
         ]
       },
       "UpdateSSOConfigurationByMetadataRequestDto": {
