@@ -7261,7 +7261,7 @@
       "put": {
         "operationId": "UsersControllerV1_updateUserForVendor",
         "summary": "Update user (global)",
-        "description": "Updates a user’s information globally. Provide the user ID as a path parameter and include the fields to update in the request body. The route supports partial updates—only the provided fields are changed. For identifier fields such as `emails` or phones, new items are added instead of replacing existing ones.",
+        "description": "Updates a user’s information globally. Provide the user ID as a path parameter and include the fields to update in the request body. The route supports partial updates—only the provided fields are changed. For identifier fields such as `emails` or `phones`, new items are added instead of replacing existing ones.",
         "parameters": [
           {
             "name": "userId",
