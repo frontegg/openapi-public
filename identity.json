@@ -7260,8 +7260,8 @@
       },
       "put": {
         "operationId": "UsersControllerV1_updateUserForVendor",
-        "summary": "Update user globally",
-        "description": "Update a user's information globally.\n\nProvide the user's ID as a path parameter and include the updated user values in the request body. The PUT request performs a complete update of the resource — include values for all body parameters you want to set.\n\nThis is a global update, so do not send a `frontegg-tenant-id` header.",
+        "summary": "Update user (global)",
+        "description": "Updates a user’s information globally. Provide the user ID as a path parameter and include the fields to update in the request body. The route supports partial updates—only the provided fields are changed. For identifier fields such as `emails` or phones, new items are added instead of replacing existing ones.",
         "parameters": [
           {
             "name": "userId",
