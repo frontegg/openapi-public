@@ -613,61 +613,6 @@
         ]
       }
     },
-    "/resources/tenants/invites/v2/user": {
-      "post": {
-        "operationId": "TenantInvitesV2Controller_createTenantInviteForUser",
-        "summary": "Create tenant invite with roles for user",
-        "description": "This route creates an invitation with roles for a specific user to join a tenant. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. To create a general invitation, use the general invitation route.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateInviteTokenRequestForUserV2"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InviteTokenDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Account invitations"
-        ]
-      }
-    },
     "/resources/tenants/invites/v1": {
       "post": {
         "operationId": "TenantInvitesController_createTenantInvite",
@@ -1074,347 +1019,6 @@
         ]
       }
     },
-    "/resources/approval-flows/v1": {
-      "post": {
-        "operationId": "ApprovalFlowsController_createApprovalFlow",
-        "summary": "Create approval flow",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      },
-      "get": {
-        "operationId": "ApprovalFlowsController_getApprovalFlows",
-        "summary": "Get approval flows",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowsListResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      }
-    },
-    "/resources/approval-flows/v1/{id}": {
-      "get": {
-        "operationId": "ApprovalFlowsController_getApprovalFlowById",
-        "summary": "Get approval flow by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      },
-      "patch": {
-        "operationId": "ApprovalFlowsController_updateApprovalFlow",
-        "summary": "Update approval flow",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      },
-      "delete": {
-        "operationId": "ApprovalFlowsController_deleteApprovalFlow",
-        "summary": "Delete approval flow",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      }
-    },
-    "/resources/approval-flows/v1/approver-action": {
-      "post": {
-        "operationId": "ApprovalFlowsController_approverAction",
-        "summary": "Approver action",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApproverActionDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      }
-    },
-    "/resources/approval-flows/v1/execution-data": {
-      "get": {
-        "operationId": "ApprovalFlowsController_getExecutionData",
-        "summary": "Get approval flow execution data",
-        "parameters": [
-          {
-            "name": "approvalFlowExecutionId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "approverId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "approvalFlowStepId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExecutionDataResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      }
-    },
-    "/resources/approval-flows/v1/{id}/execute": {
-      "post": {
-        "operationId": "ApprovalFlowsController_executeApprovalFlow",
-        "summary": "Execute approval flow",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExecuteApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      }
-    },
-    "/resources/approval-flows/v1/step-up/execute": {
-      "post": {
-        "operationId": "ApprovalFlowsController_executeStepUpApprovalFlow",
-        "summary": "Execute step up approval flow",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExecuteApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ],
-        "description": ""
-      }
-    },
     "/resources/configurations/v1": {
       "post": {
         "operationId": "VendorConfigController_addOrUpdateConfig",
@@ -1552,390 +1156,6 @@
         "tags": [
           "Core settings"
         ]
-      }
-    },
-    "/resources/configurations/v1/jwt-template-targeting": {
-      "get": {
-        "operationId": "JwtTemplateTargetingControllerV1_getJwtTemplateTargeting",
-        "summary": "Get JWT template targeting configuration",
-        "description": "This route gets the JWT template targeting configuration for the vendor.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JwtTemplateTargetingResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Core settings"
-        ]
-      },
-      "post": {
-        "operationId": "JwtTemplateTargetingControllerV1_createJwtTemplateTargeting",
-        "summary": "Create JWT template targeting configuration",
-        "description": "This route creates the JWT template targeting configuration for the vendor.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateJwtTemplateTargetingRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JwtTemplateTargetingResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Core settings"
-        ]
-      },
-      "put": {
-        "operationId": "JwtTemplateTargetingControllerV1_updateJwtTemplateTargeting",
-        "summary": "Update or create JWT template targeting configuration",
-        "description": "This route updates the JWT template targeting configuration for the vendor.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateJwtTemplateTargetingRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Core settings"
-        ]
-      }
-    },
-    "/resources/configurations/v1/jwt-template-targeting/{id}": {
-      "patch": {
-        "operationId": "JwtTemplateTargetingControllerV1_patchJwtTemplateTargeting",
-        "summary": "Update JWT template targeting configuration by id",
-        "description": "This route updates the JWT template targeting configuration for the vendor by id.",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateJwtTemplateTargetingRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Core settings"
-        ]
-      },
-      "delete": {
-        "operationId": "JwtTemplateTargetingControllerV1_deleteJwtTemplateTargeting",
-        "summary": "Delete JWT template targeting configuration by id",
-        "description": "This route deletes the JWT template targeting configuration for the vendor by id.",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Core settings"
-        ]
-      }
-    },
-    "/resources/jwt-templates/v1": {
-      "post": {
-        "operationId": "JwtTemplatesController_createJwtTemplate",
-        "summary": "Create JWT template",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateJwtTemplateDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JwtTemplateResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Core settings"
-        ],
-        "description": ""
-      },
-      "get": {
-        "operationId": "JwtTemplatesController_getJwtTemplates",
-        "summary": "Get all JWT templates",
-        "parameters": [
-          {
-            "name": "keys",
-            "required": false,
-            "in": "query",
-            "description": "Filter by template keys",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "ids",
-            "required": false,
-            "in": "query",
-            "description": "Filter by template IDs",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "_limit",
-            "required": false,
-            "in": "query",
-            "description": "Maximum number of items to return",
-            "schema": {
-              "minimum": 1,
-              "type": "number"
-            }
-          },
-          {
-            "name": "_offset",
-            "required": false,
-            "in": "query",
-            "description": "0-based page offset",
-            "schema": {
-              "minimum": 0,
-              "type": "number"
-            }
-          },
-          {
-            "name": "_sortBy",
-            "required": false,
-            "in": "query",
-            "description": "Field to sort by",
-            "schema": {
-              "enum": [
-                "id",
-                "key",
-                "name",
-                "createdAt",
-                "updatedAt"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "_order",
-            "required": false,
-            "in": "query",
-            "description": "Sort order",
-            "schema": {
-              "enum": [
-                "ASC",
-                "DESC"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/JwtTemplateResponseDto"
-                          }
-                        },
-                        "_links": {
-                          "$ref": "#/components/schemas/FronteggPaginationLinks"
-                        },
-                        "_metadata": {
-                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Core settings"
-        ],
-        "description": ""
-      }
-    },
-    "/resources/jwt-templates/v1/{id}": {
-      "get": {
-        "operationId": "JwtTemplatesController_getJwtTemplateById",
-        "summary": "Get JWT template by id",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JwtTemplateResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Core settings"
-        ],
-        "description": ""
-      },
-      "put": {
-        "operationId": "JwtTemplatesController_updateJwtTemplate",
-        "summary": "Update JWT template",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateJwtTemplateDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JwtTemplateResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Core settings"
-        ],
-        "description": ""
-      },
-      "delete": {
-        "operationId": "JwtTemplatesController_deleteJwtTemplate",
-        "summary": "Delete JWT template",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Core settings"
-        ],
-        "description": ""
       }
     },
     "/resources/configurations/v1/basic": {
@@ -2176,39 +1396,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MigrationObject"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Data migration"
-        ]
-      }
-    },
-    "/resources/migrations/v2/local/bulk": {
-      "post": {
-        "operationId": "UsersControllerV2_bulkMigrateUserForVendor",
-        "summary": "Migrate vendor users in bulk",
-        "description": "This route enables you to migrate users in bulk. Expects an array of `users`. Each entry must include a user's `email` and `tenantId`, which specifies that user's parent account. Use the the other fields as needed to store additional information. We recommend using the `metadata` property if you need to store custom information in a user's object.",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MigrateUsersRequestV2"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MigrationContext"
                 }
               }
             }
@@ -2630,8 +1817,7 @@
                 "ActivateUserWithCode",
                 "InviteToTenantWithCode",
                 "VerifyNewEmail",
-                "EmailAddressChanged",
-                "ApprovalFlowApprove"
+                "EmailAddressChanged"
               ],
               "type": "string"
             },
@@ -2724,8 +1910,7 @@
                 "ActivateUserWithCode",
                 "InviteToTenantWithCode",
                 "VerifyNewEmail",
-                "EmailAddressChanged",
-                "ApprovalFlowApprove"
+                "EmailAddressChanged"
               ],
               "type": "string"
             }
@@ -2915,77 +2100,12 @@
         ]
       }
     },
-    "/resources/users/v1/signUp/username": {
-      "post": {
-        "operationId": "UsersSignUpControllerV1_signUpUserUsername",
-        "summary": "Signup user with username",
-        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
-        "parameters": [
-          {
-            "name": "frontegg-vendor-host",
-            "required": true,
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "frontegg-application-id",
-            "in": "header",
-            "description": "The application ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SignUpUserUsernameDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SignUpResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "General"
-        ]
-      }
-    },
     "/resources/configurations/v1/restrictions/ip/config": {
       "post": {
         "operationId": "IPRestrictionsControllerV1_createDomainRestriction",
         "summary": "Create or update IP restriction configuration (ALLOW/BLOCK)",
         "description": "Create or update the IP restriction configuration.\n\nYou can configure IP restrictions as either ALLOW or BLOCK.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -3009,17 +2129,7 @@
         "operationId": "IPRestrictionsControllerV1_getIpRestrictionConfig",
         "summary": "Get IP restriction configuration (ALLOW/BLOCK)",
         "description": "Retrieve the IP restriction configuration for an account (tenant).\n\nThe configuration defines whether IP restrictions are set to ALLOW or BLOCK.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": ""
@@ -3064,15 +2174,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -3115,17 +2216,7 @@
         "operationId": "IPRestrictionsControllerV1_createIpRestriction",
         "summary": "Create IP restriction",
         "description": "Create or update an IP restriction for an account (tenant).\n\nProvide the required values as objects in the request body. Refer to the parameter documentation for the list of supported values.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -3151,17 +2242,7 @@
         "operationId": "IPRestrictionsControllerV1_testCurrentIp",
         "summary": "Test Current IP",
         "description": "Check if the current IP is allowed based on the IP restriction configuration.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": ""
@@ -3177,17 +2258,7 @@
         "operationId": "testCurrentIpInAllowList",
         "summary": "Test current IP is in allow list",
         "description": "This route checks if current ip is active in the allow list.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": ""
@@ -3212,15 +2283,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -3735,14 +2797,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestVerifyMFAEmailResponse"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3768,14 +2823,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3801,14 +2849,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestEnrollAuthenticatorAppMfaResponse"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3834,14 +2875,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3878,14 +2912,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3910,14 +2937,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestEnrollMFASMSResponse"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3943,14 +2963,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -3986,14 +2999,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestVerifyMFASMSResponse"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -4029,14 +3035,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -4062,14 +3061,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestEnrollMFAWebAuthnResponse"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -4095,14 +3087,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -4138,14 +3123,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RequestVerifyMFAWebAuthnResponse"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -4181,14 +3159,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthenticationResponseDto"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -6287,7 +5258,6 @@
         "operationId": "UserPhoneNumbersControllerV1_getAllPhoneNumbers",
         "summary": "Get all phone numbers",
         "description": "Retrieve a paginated list of all user phone numbers associated with your environment.\n\nThis endpoint returns user phone numbers along with pagination metadata and navigation links. It supports filtering, sorting, and offset-based pagination for efficient querying.\n\nQuery parameters (optional):\n- `_limit` (number ≥ 1): Maximum number of items to return per page.\n- `_offset` (number ≥ 0): Number of items to skip (for pagination).\n- `_sortBy` (string): Field to sort by. Allowed values: `userId`, `phoneNumber`.\n- `_order` (string): Sort order. Allowed values: `ASC`, `DESC`.\n- `_phoneNumber` (string): Filter by a specific phone number.\n\nUse this endpoint to list or search user phone numbers in a paginated format, ideal for administrative tools or reporting.",
-        "deprecated": true,
         "parameters": [
           {
             "name": "_limit",
@@ -6547,15 +5517,6 @@
         "summary": "Get current user's phone numbers",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "frontegg-user-id",
             "in": "header",
             "description": "The user id",
@@ -6584,118 +5545,6 @@
           "SMS"
         ],
         "description": "Retrieve all phone numbers associated with the current user.\n\nThis endpoint returns a list of phone numbers linked to the authenticated user, including verification status and timestamps.\n\nThe response includes metadata such as verification status and timestamps for creation and last update.\n\nUse this endpoint to display or manage the user's registered phone numbers in your application."
-      }
-    },
-    "/resources/users/phone-numbers/v2": {
-      "get": {
-        "operationId": "UserPhoneNumbersControllerV2_getAllPhoneNumbers",
-        "summary": "Get all phone numbers v2",
-        "description": "This route returns all user phone numbers.",
-        "parameters": [
-          {
-            "name": "_limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "maximum": 250,
-              "type": "number"
-            },
-            "description": ""
-          },
-          {
-            "name": "_offset",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 0,
-              "type": "number"
-            },
-            "description": ""
-          },
-          {
-            "name": "_sortBy",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "enum": [
-                "userId",
-                "phoneNumber"
-              ],
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "_order",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "enum": [
-                "ASC",
-                "DESC"
-              ],
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "_phoneNumber",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "userIds",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
-                          }
-                        },
-                        "_links": {
-                          "$ref": "#/components/schemas/FronteggPaginationLinks"
-                        },
-                        "_metadata": {
-                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "SMS"
-        ]
       }
     },
     "/resources/configurations/v1/sms": {
@@ -6940,29 +5789,6 @@
         "description": "Retrieve the default SMS template by type.\n\nProvide the `type` as a path parameter to specify which default SMS template to retrieve."
       }
     },
-    "/resources/configurations/v1/sms/templates/default/all": {
-      "get": {
-        "operationId": "VendorSmsController_getAllSmsDefaultTemplates",
-        "summary": "Gets all vendor default SMS templates",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SmsTemplateResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "SMS templates"
-        ],
-        "description": ""
-      }
-    },
     "/resources/configurations/sessions/v1/vendor": {
       "get": {
         "operationId": "SessionConfigurationControllerV1_getVendorSessionConfiguration",
@@ -7105,15 +5931,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -7136,17 +5953,7 @@
         "operationId": "GroupsControllerV1_createGroup",
         "summary": "Create group",
         "description": "Create a user group for an account (tenant).\n\nProvide the group details in the request body.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -7193,15 +6000,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -7245,15 +6043,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -7295,15 +6084,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -7342,15 +6122,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -7431,15 +6202,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -7474,15 +6236,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -7519,15 +6272,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -7562,15 +6306,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -7660,15 +6395,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -7722,15 +6448,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -7763,15 +6480,6 @@
               "type": "string"
             },
             "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -7908,459 +6616,6 @@
         },
         "tags": [
           "Users"
-        ]
-      }
-    },
-    "/resources/users/emails/v1": {
-      "get": {
-        "operationId": "UserEmailsControllerV1_getAllEmails",
-        "summary": "Get all user emails",
-        "description": "This route returns all user emails. ",
-        "parameters": [
-          {
-            "name": "_limit",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 1,
-              "type": "number"
-            },
-            "description": ""
-          },
-          {
-            "name": "_offset",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "minimum": 0,
-              "type": "number"
-            },
-            "description": ""
-          },
-          {
-            "name": "_sortBy",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "enum": [
-                "userId",
-                "email"
-              ],
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "_order",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "enum": [
-                "ASC",
-                "DESC"
-              ],
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "_email",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "userIds",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant ID identifier",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
-                    },
-                    {
-                      "properties": {
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/UserEmailResponseDto"
-                          }
-                        },
-                        "_links": {
-                          "$ref": "#/components/schemas/FronteggPaginationLinks"
-                        },
-                        "_metadata": {
-                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      },
-      "post": {
-        "operationId": "UserEmailsControllerV1_createUserEmail",
-        "summary": "Create a user email",
-        "description": "This route creates a user email.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserEmailRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserEmailResponseDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserEmailResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/verify": {
-      "post": {
-        "operationId": "UserEmailsControllerV1_verifyUserEmail",
-        "summary": "Verify user email",
-        "description": "This route verifies a user email.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserEmailVerifyRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/{emailId}": {
-      "delete": {
-        "operationId": "UserEmailsControllerV1_deleteUserEmail",
-        "summary": "Delete a user email",
-        "description": "This route deletes a user email.",
-        "parameters": [
-          {
-            "name": "emailId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/vendor/{userId}": {
-      "post": {
-        "operationId": "UserEmailsControllerV1_createUserEmailForVendor",
-        "summary": "Create a user email for vendor",
-        "description": "This route creates a user email.",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserEmailVendorRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserEmailResponseDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserEmailResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/vendor/{userId}/{emailId}": {
-      "delete": {
-        "operationId": "UserEmailsControllerV1_deleteUserEmailForVendor",
-        "summary": "Delete a user email for vendor",
-        "description": "This route deletes a user email.",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "emailId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/vendor/{userId}/primary": {
-      "post": {
-        "operationId": "UserEmailsControllerV1_markEmailAsPrimary",
-        "summary": "Mark email as primary for vendor",
-        "description": "This route marks an email as primary.",
-        "parameters": [
-          {
-            "name": "userId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MarkEmailAsPrimaryRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/me/primary": {
-      "post": {
-        "operationId": "UserEmailsControllerV1_markEmailAsPrimaryMe",
-        "summary": "Mark email as primary",
-        "description": "This route marks an email as primary.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MarkEmailAsPrimaryRequestDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "User management"
-        ]
-      }
-    },
-    "/resources/users/emails/v1/me": {
-      "get": {
-        "operationId": "UserEmailsControllerV1_getUserOwnEmails",
-        "summary": "Get current user`s emails",
-        "description": "This route returns all user emails for the current user.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserEmailResponseDto"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User management"
         ]
       }
     },
@@ -8547,15 +6802,6 @@
             }
           },
           {
-            "name": "_namePrefix",
-            "required": false,
-            "in": "query",
-            "description": "Filter users by prefix name match",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "_offset",
             "required": false,
             "in": "query",
@@ -8620,15 +6866,6 @@
                 "ASC",
                 "DESC"
               ],
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
-            "name": "_externalIds",
-            "required": false,
-            "in": "query",
-            "schema": {
               "type": "string"
             },
             "description": ""
@@ -8942,18 +7179,18 @@
         "description": "TUpdate a user's information for a specific account (tenant).\n\nInclude the updated user information in the request body.",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-user-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID identifier",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "frontegg-user-id",
+            "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The user ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9172,18 +7409,18 @@
         "description": "Update the current account (tenant) for a logged-in user.\n\nUse this endpoint when a user belongs to multiple accounts (tenants) and wants to change the active account (tenant).\n\nInclude the target account (tenant) ID in the request body.",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-user-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID identifier",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "frontegg-user-id",
+            "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The user ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9263,15 +7500,6 @@
             "schema": {
               "default": true,
               "type": "boolean"
-            }
-          },
-          {
-            "name": "_namePrefix",
-            "required": false,
-            "in": "query",
-            "description": "Filter users by prefix name match",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -9390,15 +7618,6 @@
             "description": ""
           },
           {
-            "name": "_externalIds",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
             "name": "frontegg-tenant-id",
             "in": "header",
             "description": "The account (tenant) ID identifier",
@@ -9498,15 +7717,6 @@
             "description": ""
           },
           {
-            "name": "_usernamePrefix",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          {
             "name": "userIds",
             "required": false,
             "in": "query",
@@ -9551,17 +7761,7 @@
         "operationId": "UsernamesControllerV1_createUsername",
         "summary": "Create a username for user",
         "description": "This route creates a username for a user.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -9617,15 +7817,6 @@
         "summary": "Get authenticated user's username",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "frontegg-user-id",
             "in": "header",
             "description": "The user id",
@@ -9658,17 +7849,7 @@
         "operationId": "SelfEmailUpdateControllerV1_updateEmailMe",
         "summary": "Update user email",
         "description": "This route updates the email for a user.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -9694,17 +7875,7 @@
         "operationId": "SelfEmailUpdateControllerV1_verifyEmailMe",
         "summary": "Verify user email",
         "description": "This route verifies the email for a user.",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -10587,17 +8758,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetActiveSessionsResponse"
-                  }
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -12125,10 +10286,6 @@
           "roles"
         ]
       },
-      "GetActiveSessionsResponse": {
-        "type": "object",
-        "properties": {}
-      },
       "RecoverMfaDto": {
         "type": "object",
         "properties": {
@@ -12251,10 +10408,6 @@
             "description": ""
           },
           "addPermissionsToJwt": {
-            "type": "boolean",
-            "description": ""
-          },
-          "allowCustomLoginTenantSwitch": {
             "type": "boolean",
             "description": ""
           }
@@ -12382,10 +10535,6 @@
           "addSamlAttributesToJwt": {
             "type": "boolean",
             "description": ""
-          },
-          "allowCustomLoginTenantSwitch": {
-            "type": "boolean",
-            "description": ""
           }
         },
         "required": [
@@ -12412,8 +10561,7 @@
           "addRolesToJwt",
           "addPermissionsToJwt",
           "refreshTokensRotationLimit",
-          "addSamlAttributesToJwt",
-          "allowCustomLoginTenantSwitch"
+          "addSamlAttributesToJwt"
         ]
       },
       "MfaAuthAppConfig": {
@@ -12965,8 +11113,7 @@
               "ActivateUserWithCode",
               "InviteToTenantWithCode",
               "VerifyNewEmail",
-              "EmailAddressChanged",
-              "ApprovalFlowApprove"
+              "EmailAddressChanged"
             ],
             "description": ""
           },
@@ -13760,10 +11907,6 @@
             "type": "string",
             "description": ""
           },
-          "externalId": {
-            "type": "string",
-            "description": ""
-          },
           "createdAt": {
             "format": "date-time",
             "type": "string",
@@ -13857,10 +12000,6 @@
             "type": "string",
             "description": ""
           },
-          "phoneNumber": {
-            "type": "string",
-            "description": ""
-          },
           "metadata": {
             "type": "string",
             "description": "Stringified JSON object"
@@ -13887,10 +12026,6 @@
           "mfaBypass": {
             "type": "boolean",
             "description": "Bypass MFA for this user"
-          },
-          "externalId": {
-            "type": "string",
-            "description": "The external id of the user"
           }
         },
         "required": [
@@ -13915,13 +12050,6 @@
           "shouldSendEmail": {
             "type": "boolean",
             "description": ""
-          },
-          "roleIds": {
-            "description": "Array of role IDs to assign to invited users",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         },
         "required": [
@@ -13962,13 +12090,6 @@
           },
           "name": {
             "type": "string",
-            "description": ""
-          },
-          "roleIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
             "description": ""
           }
         },
@@ -14038,35 +12159,6 @@
         "required": [
           "tenantInvitationsAllowed",
           "emailsEnabled"
-        ]
-      },
-      "CreateInviteTokenRequestForUserV2": {
-        "type": "object",
-        "properties": {
-          "expiresInMinutes": {
-            "type": "number",
-            "description": ""
-          },
-          "shouldSendEmail": {
-            "type": "boolean",
-            "description": ""
-          },
-          "roleIds": {
-            "description": "Array of role IDs to assign to invited users",
-            "example": [
-              "role1",
-              "role2"
-            ],
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "required": [
-          "expiresInMinutes",
-          "shouldSendEmail",
-          "roleIds"
         ]
       },
       "SessionIdleTimeoutConfigurationDto": {
@@ -14922,107 +13014,6 @@
         "type": "object",
         "properties": {}
       },
-      "UserEmailResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": ""
-          },
-          "userId": {
-            "type": "string",
-            "description": ""
-          },
-          "email": {
-            "type": "string",
-            "description": ""
-          },
-          "verified": {
-            "type": "boolean",
-            "description": ""
-          },
-          "isPrimary": {
-            "type": "boolean",
-            "description": ""
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "id",
-          "userId",
-          "email",
-          "verified",
-          "isPrimary",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "CreateUserEmailRequestDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "New email"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
-      "CreateUserEmailVerifyRequestDto": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "description": "The code for the user to verify their email"
-          },
-          "email": {
-            "type": "string",
-            "description": "The email for the user to verify their email"
-          }
-        },
-        "required": [
-          "code",
-          "email"
-        ]
-      },
-      "CreateUserEmailVendorRequestDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "New email"
-          },
-          "isVerified": {
-            "type": "boolean",
-            "description": "Is user email verified"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
-      "MarkEmailAsPrimaryRequestDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "Email to mark as primary"
-          }
-        },
-        "required": [
-          "email"
-        ]
-      },
       "UserBulkInviteRequestDto": {
         "type": "object",
         "properties": {
@@ -15170,20 +13161,28 @@
           "mfa"
         ]
       },
-      "MigrateUserRequestV1": {
+      "MigrateUserRequest": {
         "type": "object",
         "properties": {
+          "email": {
+            "type": "string",
+            "description": ""
+          },
+          "username": {
+            "type": "string",
+            "description": "The username of the user. If not provided, the email is required"
+          },
           "tenantId": {
             "type": "string",
-            "description": "The tenant id of the user"
+            "description": ""
           },
           "name": {
             "type": "string",
-            "description": "The name of the user"
+            "description": ""
           },
           "profilePictureUrl": {
             "type": "string",
-            "description": "The profile picture url of the user",
+            "description": "",
             "maxLength": 4095
           },
           "passwordHash": {
@@ -15201,11 +13200,11 @@
           },
           "authenticatorAppMfaSecret": {
             "type": "string",
-            "description": "The authenticator app MFA secret"
+            "description": ""
           },
           "phoneNumber": {
             "type": "string",
-            "description": "phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: \"+16037184056\" The number must be unique"
+            "description": "phoneNumber can be used either for login with SMS or for MFA, in combination with `phoneNumberType`. The required format is `area code + number`, without spaces. For example: `+16037184056`. Note that the number must be unique"
           },
           "phoneNumberType": {
             "$ref": "#/components/schemas/PhoneNumberType",
@@ -15231,9 +13230,14 @@
             "type": "string",
             "description": "Stringified JSON object"
           },
+          "verifyUser": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to verify the user as part of the migration process. If this is set to false, another call is required for the verify user API"
+          },
           "roleIds": {
             "default": [],
-            "description": "Role ids of the migrated users. If not provided, the user will be assigned the default roles",
+            "description": "Role Ids of the migrated users. If not provided, the user will be assigned the default roles",
             "type": "array",
             "items": {
               "type": "string"
@@ -15241,39 +13245,21 @@
           },
           "vendorMetadata": {
             "type": "string",
-            "description": "Extra vendor-only data. stringified JSON object"
-          },
-          "externalId": {
-            "type": "string",
-            "description": "The external id of the user"
-          },
-          "username": {
-            "type": "string",
-            "description": "The username of the user. If not provided, the email is required. Maximum length is 255 characters.",
-            "maxLength": 128
-          },
-          "email": {
-            "type": "string",
-            "description": "The email of the user. If not provided, the username is required"
-          },
-          "verifyUser": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether to verify the user as part of the migration process. If this is set to false, another call is required for the verify user API"
+            "description": "Additional vendor-only data. stringified JSON object"
           }
         },
         "required": [
-          "tenantId",
-          "email"
+          "email",
+          "tenantId"
         ]
       },
-      "MigrateUsersRequestV1": {
+      "MigrateUsersRequest": {
         "type": "object",
         "properties": {
           "users": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MigrateUserRequestV1"
+              "$ref": "#/components/schemas/MigrateUserRequest"
             },
             "description": ""
           }
@@ -15297,138 +13283,6 @@
       "MigrationObject": {
         "type": "object",
         "properties": {}
-      },
-      "EmailObjectDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "The email address",
-            "format": "email"
-          },
-          "primary": {
-            "type": "boolean",
-            "description": "Whether this is the primary email"
-          },
-          "verified": {
-            "type": "boolean",
-            "description": "Whether this email is verified"
-          }
-        },
-        "required": [
-          "email",
-          "primary",
-          "verified"
-        ]
-      },
-      "MigrateUserRequestV2": {
-        "type": "object",
-        "properties": {
-          "tenantId": {
-            "type": "string",
-            "description": "The tenant id of the user"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the user"
-          },
-          "profilePictureUrl": {
-            "type": "string",
-            "description": "The profile picture url of the user",
-            "maxLength": 4095
-          },
-          "passwordHash": {
-            "type": "string",
-            "description": "The password hash. For SCrypt should include the salt and key seperated by the salt separator"
-          },
-          "passwordHashType": {
-            "$ref": "#/components/schemas/PasswordHashingType",
-            "description": ""
-          },
-          "passwordHashConfig": {
-            "type": "string",
-            "maxLength": 4095,
-            "description": "Stringified JSON Hashing config for the migrated password. For SCrypt should be formatted as { saltSeparator, N, r, p, keyLen }. For FirebaseScrypt should be formatted as { memCost, rounds, saltSeparator, signerKey }"
-          },
-          "authenticatorAppMfaSecret": {
-            "type": "string",
-            "description": "The authenticator app MFA secret"
-          },
-          "phoneNumber": {
-            "type": "string",
-            "description": "phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: \"+16037184056\" The number must be unique"
-          },
-          "phoneNumberType": {
-            "$ref": "#/components/schemas/PhoneNumberType",
-            "description": ""
-          },
-          "provider": {
-            "type": "string",
-            "enum": [
-              "local",
-              "saml",
-              "google",
-              "github",
-              "facebook",
-              "microsoft",
-              "scim2",
-              "slack",
-              "apple"
-            ],
-            "default": "local",
-            "description": ""
-          },
-          "metadata": {
-            "type": "string",
-            "description": "Stringified JSON object"
-          },
-          "roleIds": {
-            "default": [],
-            "description": "Role ids of the migrated users. If not provided, the user will be assigned the default roles",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "vendorMetadata": {
-            "type": "string",
-            "description": "Extra vendor-only data. stringified JSON object"
-          },
-          "externalId": {
-            "type": "string",
-            "description": "The external id of the user"
-          },
-          "username": {
-            "type": "string",
-            "description": "The username of the user. If not provided, the email is required. Maximum length is 128 characters.",
-            "maxLength": 128
-          },
-          "emails": {
-            "description": "The emails of the user. If not provided, the username is required",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmailObjectDto"
-            }
-          }
-        },
-        "required": [
-          "tenantId"
-        ]
-      },
-      "MigrateUsersRequestV2": {
-        "type": "object",
-        "properties": {
-          "users": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MigrateUserRequestV2"
-            },
-            "description": ""
-          }
-        },
-        "required": [
-          "users"
-        ]
       },
       "UpdateSubAccountAccessRequestDto": {
         "type": "object",
@@ -15990,10 +13844,6 @@
             "type": "string",
             "description": ""
           },
-          "externalId": {
-            "type": "string",
-            "description": ""
-          },
           "createdAt": {
             "format": "date-time",
             "type": "string",
@@ -16303,10 +14153,6 @@
             "type": "string",
             "description": ""
           },
-          "externalId": {
-            "type": "string",
-            "description": ""
-          },
           "createdAt": {
             "format": "date-time",
             "type": "string",
@@ -16535,10 +14381,6 @@
           "mfaBypass": {
             "type": "boolean",
             "description": "Indicates whether MFA should be bypassed for this user"
-          },
-          "externalId": {
-            "type": "string",
-            "description": "The external id of the user"
           },
           "name": {
             "type": "string",
@@ -17737,728 +15579,6 @@
           "email"
         ]
       },
-      "ApprovalFlowChannelDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "boolean",
-            "description": ""
-          },
-          "sms": {
-            "type": "boolean",
-            "description": ""
-          }
-        },
-        "required": [
-          "email",
-          "sms"
-        ]
-      },
-      "ApprovalFlowConfigurationDto": {
-        "type": "object",
-        "properties": {
-          "autoApproveInMinutes": {
-            "type": "number",
-            "minimum": 1,
-            "description": ""
-          },
-          "reminderIntervalMinutes": {
-            "type": "number",
-            "minimum": 60,
-            "description": ""
-          },
-          "notifyOnDecisions": {
-            "type": "boolean",
-            "description": ""
-          },
-          "timeoutMinutes": {
-            "type": "number",
-            "minimum": 5,
-            "maximum": 10080,
-            "description": ""
-          },
-          "webhookUrl": {
-            "type": "string",
-            "description": ""
-          }
-        }
-      },
-      "ApproverSelectorDto": {
-        "type": "object",
-        "properties": {
-          "roleKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          "emails": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          "phoneNumbers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        }
-      },
-      "StepConfigurationDto": {
-        "type": "object",
-        "properties": {
-          "minApprovals": {
-            "type": "number",
-            "minimum": 1,
-            "description": ""
-          }
-        },
-        "required": [
-          "minApprovals"
-        ]
-      },
-      "CreateApprovalFlowStepDto": {
-        "type": "object",
-        "properties": {
-          "approverSelectors": {
-            "$ref": "#/components/schemas/ApproverSelectorDto",
-            "description": ""
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/StepConfigurationDto",
-            "description": ""
-          },
-          "stepOrder": {
-            "type": "number",
-            "minimum": 1,
-            "description": ""
-          }
-        },
-        "required": [
-          "approverSelectors",
-          "configuration",
-          "stepOrder"
-        ]
-      },
-      "CreateApprovalFlowDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "description": {
-            "type": "string",
-            "description": ""
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": ""
-          },
-          "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannelDto",
-            "description": ""
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto",
-            "description": ""
-          },
-          "steps": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateApprovalFlowStepDto"
-            },
-            "description": ""
-          }
-        },
-        "required": [
-          "name",
-          "channels",
-          "configuration",
-          "steps"
-        ]
-      },
-      "ApprovalFlowChannel": {
-        "type": "object",
-        "properties": {}
-      },
-      "ApprovalFlowConfigurationResponseDto": {
-        "type": "object",
-        "properties": {
-          "autoApproveInMinutes": {
-            "type": "number",
-            "description": ""
-          },
-          "reminderIntervalMinutes": {
-            "type": "number",
-            "description": ""
-          },
-          "notifyOnDecisions": {
-            "type": "boolean",
-            "description": ""
-          },
-          "logging": {
-            "type": "boolean",
-            "description": ""
-          },
-          "timeoutMinutes": {
-            "type": "number",
-            "description": ""
-          },
-          "webhookUrl": {
-            "type": "string",
-            "description": ""
-          }
-        }
-      },
-      "ApproverSelectorResponseDto": {
-        "type": "object",
-        "properties": {
-          "roleKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          "emails": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          "phoneNumbers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        },
-        "required": [
-          "roleKeys",
-          "emails",
-          "phoneNumbers"
-        ]
-      },
-      "StepConfigurationResponseDto": {
-        "type": "object",
-        "properties": {
-          "minApprovals": {
-            "type": "number",
-            "description": ""
-          }
-        }
-      },
-      "ApprovalFlowStepResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": ""
-          },
-          "stepOrder": {
-            "type": "number",
-            "description": ""
-          },
-          "approverSelectors": {
-            "$ref": "#/components/schemas/ApproverSelectorResponseDto",
-            "description": ""
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/StepConfigurationResponseDto",
-            "description": ""
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "id",
-          "stepOrder",
-          "approverSelectors",
-          "configuration",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "ApprovalFlowResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": ""
-          },
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "description": {
-            "type": "string",
-            "description": ""
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": ""
-          },
-          "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannel",
-            "description": ""
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationResponseDto",
-            "description": ""
-          },
-          "steps": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApprovalFlowStepResponseDto"
-            },
-            "description": ""
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "isActive",
-          "channels",
-          "configuration",
-          "steps",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "ApprovalFlowsListResponseDto": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-            },
-            "description": ""
-          },
-          "total": {
-            "type": "number",
-            "description": ""
-          }
-        },
-        "required": [
-          "items",
-          "total"
-        ]
-      },
-      "UpdateApprovalFlowDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "description": {
-            "type": "string",
-            "description": ""
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": ""
-          },
-          "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannelDto",
-            "description": ""
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto",
-            "description": ""
-          },
-          "steps": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateApprovalFlowStepDto"
-            },
-            "description": ""
-          }
-        }
-      },
-      "ApproverActionDto": {
-        "type": "object",
-        "properties": {
-          "approved": {
-            "type": "boolean",
-            "description": ""
-          },
-          "approvalFlowExecutionId": {
-            "type": "string",
-            "description": ""
-          },
-          "approverId": {
-            "type": "string",
-            "description": ""
-          },
-          "approvalFlowStepId": {
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "approved",
-          "approvalFlowExecutionId",
-          "approverId",
-          "approvalFlowStepId"
-        ]
-      },
-      "ExecutionDataResponseDto": {
-        "type": "object",
-        "properties": {
-          "approvalFlowName": {
-            "type": "string",
-            "description": ""
-          },
-          "approvalFlowDescription": {
-            "type": "string",
-            "description": ""
-          },
-          "requester": {
-            "type": "string",
-            "description": ""
-          },
-          "approvalFlowRequestDate": {
-            "format": "date-time",
-            "type": "string",
-            "description": ""
-          },
-          "executionData": {
-            "type": "object",
-            "description": ""
-          }
-        },
-        "required": [
-          "approvalFlowName",
-          "requester",
-          "approvalFlowRequestDate"
-        ]
-      },
-      "ExecuteApprovalFlowDto": {
-        "type": "object",
-        "properties": {
-          "executionData": {
-            "type": "object",
-            "description": ""
-          },
-          "webhookUrl": {
-            "type": "string",
-            "description": ""
-          }
-        }
-      },
-      "JwtTemplateTargetingResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Jwt template targeting ID"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Created at"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Last updated at"
-          },
-          "targeting": {
-            "type": "object",
-            "description": "Targeting rules"
-          }
-        },
-        "required": [
-          "id",
-          "createdAt",
-          "updatedAt",
-          "targeting"
-        ]
-      },
-      "ConditionDto": {
-        "type": "object",
-        "properties": {
-          "attribute": {
-            "enum": [
-              "userId",
-              "applicationId",
-              "tenantId",
-              "roleIds",
-              "tokenType",
-              "userEmail"
-            ],
-            "type": "string",
-            "description": "The attribute to evaluate"
-          },
-          "op": {
-            "enum": [
-              "in_list",
-              "contains",
-              "ends_with"
-            ],
-            "type": "string",
-            "description": "The operation to apply"
-          },
-          "value": {
-            "type": "object",
-            "description": "The value to compare against"
-          },
-          "negate": {
-            "type": "boolean",
-            "description": "The negate flag"
-          }
-        },
-        "required": [
-          "attribute",
-          "op",
-          "value",
-          "negate"
-        ]
-      },
-      "RuleDto": {
-        "type": "object",
-        "properties": {
-          "conditionLogic": {
-            "type": "string",
-            "enum": [
-              "and"
-            ],
-            "description": "The logic to combine conditions"
-          },
-          "conditions": {
-            "description": "The conditions to evaluate",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConditionDto"
-            }
-          },
-          "treatment": {
-            "type": "string",
-            "description": "The treatment value (template key) if conditions match"
-          }
-        },
-        "required": [
-          "conditionLogic",
-          "conditions",
-          "treatment"
-        ]
-      },
-      "UpdateJwtTemplateTargetingRequestDto": {
-        "type": "object",
-        "properties": {
-          "rules": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RuleDto"
-            },
-            "description": ""
-          }
-        }
-      },
-      "JwtTemplatePayloadDto": {
-        "type": "object",
-        "properties": {
-          "claims": {
-            "type": "object",
-            "description": "Claims mapping as key-value pairs"
-          }
-        },
-        "required": [
-          "claims"
-        ]
-      },
-      "CreateJwtTemplateDto": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "Unique key for the template"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the template"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the template"
-          },
-          "expiration": {
-            "type": "number",
-            "minimum": 10,
-            "maximum": 15552000,
-            "description": "Token expiration time in seconds"
-          },
-          "algorithm": {
-            "enum": [
-              "RS256",
-              "HS256"
-            ],
-            "type": "string",
-            "description": "JWT signing algorithm"
-          },
-          "templateSchema": {
-            "description": "JWT template schema",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/JwtTemplatePayloadDto"
-              }
-            ]
-          }
-        },
-        "required": [
-          "key",
-          "name",
-          "expiration",
-          "algorithm",
-          "templateSchema"
-        ]
-      },
-      "JwtTemplatePayloadResponseDto": {
-        "type": "object",
-        "properties": {
-          "claims": {
-            "type": "object",
-            "description": "Claims mapping as key-value pairs"
-          }
-        },
-        "required": [
-          "claims"
-        ]
-      },
-      "JwtTemplateResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Template ID"
-          },
-          "vendorId": {
-            "type": "string",
-            "description": "Vendor ID"
-          },
-          "key": {
-            "type": "string",
-            "description": "Unique key for the template"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the template"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true,
-            "description": "Description of the template"
-          },
-          "expiration": {
-            "type": "number",
-            "description": "Token expiration time in seconds"
-          },
-          "algorithm": {
-            "enum": [
-              "RS256",
-              "HS256"
-            ],
-            "type": "string",
-            "description": "JWT signing algorithm"
-          },
-          "templateSchema": {
-            "description": "JWT template schema",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/JwtTemplatePayloadResponseDto"
-              }
-            ]
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Creation timestamp"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "description": "Last update timestamp"
-          }
-        },
-        "required": [
-          "id",
-          "vendorId",
-          "key",
-          "name",
-          "expiration",
-          "algorithm",
-          "templateSchema",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "UpdateJwtTemplateDto": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "Unique key for the template"
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the template"
-          },
-          "description": {
-            "type": "string",
-            "description": "Description of the template"
-          },
-          "expiration": {
-            "type": "number",
-            "minimum": 10,
-            "maximum": 15552000,
-            "description": "Token expiration time in seconds"
-          },
-          "algorithm": {
-            "enum": [
-              "RS256",
-              "HS256"
-            ],
-            "type": "string",
-            "description": "JWT signing algorithm"
-          },
-          "templateSchema": {
-            "description": "JWT template schema",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/JwtTemplatePayloadDto"
-              }
-            ]
-          }
-        }
-      },
       "CreateOrUpdateIpRestrictionConfigDto": {
         "type": "object",
         "properties": {
@@ -19187,10 +16307,6 @@
           "mfaToken"
         ]
       },
-      "RequestVerifyMFAEmailResponse": {
-        "type": "object",
-        "properties": {}
-      },
       "VerifyMFAEmailOTCRequest": {
         "type": "object",
         "properties": {
@@ -19229,18 +16345,6 @@
           "mfaToken"
         ]
       },
-      "RequestEnrollAuthenticatorAppMfaResponse": {
-        "type": "object",
-        "properties": {
-          "qrCode": {
-            "type": "string",
-            "description": "QR code to be verified by authenticator app"
-          }
-        },
-        "required": [
-          "qrCode"
-        ]
-      },
       "VerifyEnrollMFAAuthAppRequest": {
         "type": "object",
         "properties": {
@@ -19275,10 +16379,6 @@
           "phoneNumber"
         ]
       },
-      "RequestEnrollMFASMSResponse": {
-        "type": "object",
-        "properties": {}
-      },
       "VerifyEnrollMFASMSRequest": {
         "type": "object",
         "properties": {
@@ -19295,10 +16395,6 @@
           "otcToken",
           "code"
         ]
-      },
-      "RequestVerifyMFASMSResponse": {
-        "type": "object",
-        "properties": {}
       },
       "VerifyMFASMSRequest": {
         "type": "object",
@@ -19324,22 +16420,6 @@
           "otcToken",
           "code",
           "mfaToken"
-        ]
-      },
-      "WebAuthnCredentialCreationOptions": {
-        "type": "object",
-        "properties": {}
-      },
-      "RequestEnrollMFAWebAuthnResponse": {
-        "type": "object",
-        "properties": {
-          "options": {
-            "$ref": "#/components/schemas/WebAuthnCredentialCreationOptions",
-            "description": ""
-          }
-        },
-        "required": [
-          "options"
         ]
       },
       "WebAuthNClientResponse": {
@@ -19418,10 +16498,6 @@
           "options",
           "mfaToken"
         ]
-      },
-      "RequestVerifyMFAWebAuthnResponse": {
-        "type": "object",
-        "properties": {}
       },
       "WebAuthNResponse": {
         "type": "object",
@@ -19504,6 +16580,18 @@
       "CheckAllowRememberResponse": {
         "type": "object",
         "properties": {}
+      },
+      "RequestEnrollAuthenticatorAppMfaResponse": {
+        "type": "object",
+        "properties": {
+          "qrCode": {
+            "type": "string",
+            "description": "QR code to be verified by authenticator app"
+          }
+        },
+        "required": [
+          "qrCode"
+        ]
       },
       "VerifyEnrollMFAUserAuthAppRequest": {
         "type": "object",
@@ -19673,89 +16761,6 @@
             "description": ""
           }
         }
-      },
-      "SignUpUserUsernameDto": {
-        "type": "object",
-        "properties": {
-          "provider": {
-            "type": "string",
-            "enum": [
-              "local",
-              "saml",
-              "google",
-              "github",
-              "facebook",
-              "microsoft",
-              "scim2",
-              "slack",
-              "apple"
-            ],
-            "description": ""
-          },
-          "metadata": {
-            "type": "string",
-            "description": "Stringified JSON object. Use the JSON.stringify() method."
-          },
-          "username": {
-            "type": "string",
-            "maxLength": 255,
-            "pattern": "/^[a-zA-Z0-9._-]+$/",
-            "description": ""
-          },
-          "name": {
-            "type": "string",
-            "description": ""
-          },
-          "profilePictureUrl": {
-            "type": "string",
-            "maxLength": 4095,
-            "description": ""
-          },
-          "password": {
-            "type": "string",
-            "description": ""
-          },
-          "skipInviteEmail": {
-            "type": "boolean",
-            "description": ""
-          },
-          "roleIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          "emailMetadata": {
-            "type": "object",
-            "description": ""
-          },
-          "companyName": {
-            "type": "string",
-            "description": ""
-          },
-          "recaptchaToken": {
-            "type": "string",
-            "description": ""
-          },
-          "invitationToken": {
-            "type": "string",
-            "description": ""
-          },
-          "email": {
-            "type": "string",
-            "description": ""
-          },
-          "phoneNumber": {
-            "type": "string",
-            "description": ""
-          }
-        },
-        "required": [
-          "provider",
-          "username",
-          "companyName"
-        ]
       },
       "UserTenantDataDto": {
         "type": "object",
