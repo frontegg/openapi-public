@@ -1558,7 +1558,7 @@
       "get": {
         "operationId": "JwtTemplateTargetingControllerV1_getJwtTemplateTargeting",
         "summary": "Get JWT template targeting configuration",
-        "description": "This route gets the JWT template targeting configuration for the vendor.",
+        "description": "Retrieves the JWT template targeting configuration for your environment. Note: This feature must be enabled by request.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1579,7 +1579,7 @@
       "post": {
         "operationId": "JwtTemplateTargetingControllerV1_createJwtTemplateTargeting",
         "summary": "Create JWT template targeting configuration",
-        "description": "This route creates the JWT template targeting configuration for the vendor.",
+        "description": "Creates a new JWT template targeting configuration for your environment. Note: This feature must be enabled by request.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1610,7 +1610,7 @@
       "put": {
         "operationId": "JwtTemplateTargetingControllerV1_updateJwtTemplateTargeting",
         "summary": "Update or create JWT template targeting configuration",
-        "description": "This route updates the JWT template targeting configuration for the vendor.",
+        "description": "Updates or creates a JWT template targeting configuration for your environment. Note: This feature must be enabled by request.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1635,8 +1635,8 @@
     "/resources/configurations/v1/jwt-template-targeting/{id}": {
       "patch": {
         "operationId": "JwtTemplateTargetingControllerV1_patchJwtTemplateTargeting",
-        "summary": "Update JWT template targeting configuration by id",
-        "description": "This route updates the JWT template targeting configuration for the vendor by id.",
+        "summary": "Update JWT template targeting configuration by ID",
+        "description": "Updates a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request.",
         "parameters": [
           {
             "name": "id",
@@ -1669,8 +1669,8 @@
       },
       "delete": {
         "operationId": "JwtTemplateTargetingControllerV1_deleteJwtTemplateTargeting",
-        "summary": "Delete JWT template targeting configuration by id",
-        "description": "This route deletes the JWT template targeting configuration for the vendor by id.",
+        "summary": "Delete JWT template targeting configuration by ID",
+        "description": "Deletes a specific JWT template targeting configuration by ID. Note: This feature must be enabled by request.",
         "parameters": [
           {
             "name": "id",
@@ -1722,7 +1722,7 @@
         "tags": [
           "Core settings"
         ],
-        "description": ""
+        "description": "Creates a new JWT template for your environment. Note: This feature must be enabled by request."
       },
       "get": {
         "operationId": "JwtTemplatesController_getJwtTemplates",
@@ -1837,13 +1837,13 @@
         "tags": [
           "Core settings"
         ],
-        "description": ""
+        "description": "Retrieves all JWT templates for your environment. Note: This feature must be enabled by request."
       }
     },
     "/resources/jwt-templates/v1/{id}": {
       "get": {
         "operationId": "JwtTemplatesController_getJwtTemplateById",
-        "summary": "Get JWT template by id",
+        "summary": "Get JWT template by ID",
         "parameters": [
           {
             "name": "id",
@@ -1870,7 +1870,7 @@
         "tags": [
           "Core settings"
         ],
-        "description": ""
+        "description": "Retrieves a specific JWT template by ID. Note: This feature must be enabled by request."
       },
       "put": {
         "operationId": "JwtTemplatesController_updateJwtTemplate",
@@ -1911,7 +1911,7 @@
         "tags": [
           "Core settings"
         ],
-        "description": ""
+        "description": "Updates an existing JWT template. Note: This feature must be enabled by request."
       },
       "delete": {
         "operationId": "JwtTemplatesController_deleteJwtTemplate",
@@ -1935,7 +1935,7 @@
         "tags": [
           "Core settings"
         ],
-        "description": ""
+        "description": "Deletes an existing JWT template. Note: This feature must be enabled by request."
       }
     },
     "/resources/configurations/v1/basic": {
