@@ -617,7 +617,7 @@
       "post": {
         "operationId": "TenantInvitesV2Controller_createTenantInviteForUser",
         "summary": "Create tenant invite with roles for user",
-        "description": "This route creates an invitation with roles for a specific user to join a tenant. Send the user’s ID in the **`frontegg-user-id`** header and the tenant’s ID in the **`frontegg-tenant-id`** header. To create a general invitation, use the general invitation route.",
+        "description": "Creates an invitation with assigned roles for a specific user to join an account (tenant). Provide the user's ID via the `frontegg-user-id` header and the account ID via the `frontegg-tenant-id` header. For general invitations without a specific user, use the general invitation endpoint instead.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -2190,7 +2190,7 @@
       "post": {
         "operationId": "UsersControllerV2_bulkMigrateUserForVendor",
         "summary": "Migrate vendor users in bulk",
-        "description": "This route enables you to migrate users in bulk. Expects an array of `users`. Each entry must include a user's `email` and `tenantId`, which specifies that user's parent account. Use the the other fields as needed to store additional information. We recommend using the `metadata` property if you need to store custom information in a user's object.",
+        "description": "Migrate users in bulk to your environment. Provide an array of user objects, each containing `email` and `tenantId`. Use the `metadata` property to store custom information for each user.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2272,7 +2272,7 @@
       "post": {
         "operationId": "DomainRestrictionsController_createDomainRestriction",
         "summary": "Create domain restriction",
-        "description": "This route creates a new domain restriction for an account (tenant). Send values in the POST body as objects. See the dropdowns for available values for each object param.",
+        "description": "Creates a new email domain restriction for an account (tenant). Provide the restriction configuration in the request body. See the schema below for available parameters and values.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2919,7 +2919,7 @@
       "post": {
         "operationId": "UsersSignUpControllerV1_signUpUserUsername",
         "summary": "Signup user with username",
-        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. An environment token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Sign up a new user and create a new account (tenant). Include the `frontegg-vendor-host` header (your domain name from Portal → Workspace Settings → Domains). Required fields: `email`, `provider` (authentication method: local, saml, google, github), `companyName`, and `metadata` (can be empty `{}`). Requires an environment authentication token.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -3176,7 +3176,7 @@
       "post": {
         "operationId": "testCurrentIpInAllowList",
         "summary": "Test current IP is in allow list",
-        "description": "This route checks if current ip is active in the allow list.",
+        "description": "Verifies if the current IP address is in the allow list for your environment.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
@@ -5057,7 +5057,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV2_resetPasswordViaEmail",
         "summary": "Reset password via email",
-        "description": "This route sends a reset password email to the user. Provide the user's email address in the body to initiate the reset process.",
+        "description": "Sends a password reset email to the user. Provide the user's email address in the request body to initiate the reset process.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5631,7 +5631,7 @@
       "get": {
         "operationId": "PermissionsCategoriesController_getAllCategoriesWithPermissions",
         "summary": "Get permissions categories",
-        "description": "This route returns all permissions categories for a vendor. Each category is an object containing the name, description, permissions, and other defining information.",
+        "description": "Retrieves all permission categories for your environment. Each category includes its name, description, associated permissions, and metadata.",
         "parameters": [],
         "responses": {
           "200": {
@@ -6243,7 +6243,7 @@
       "put": {
         "operationId": "PermissionsControllerV1_updateRoleTenant",
         "summary": "Update role tenant",
-        "description": "Update the tenant ID for a specific role. This endpoint is vendor-only.",
+        "description": "Updates the account (tenant) ID for a specific role. This is a management-only endpoint.",
         "parameters": [
           {
             "name": "roleId",
@@ -8163,7 +8163,7 @@
       "post": {
         "operationId": "UserEmailsControllerV1_createUserEmailForVendor",
         "summary": "Create a user email for vendor",
-        "description": "This route creates a user email.",
+        "description": "Creates a new email address for a user.",
         "parameters": [
           {
             "name": "userId",
@@ -10849,7 +10849,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
         "summary": "Create user phone number verified by default",
-        "description": "Create a new user phone number.\n\nPhone numbers added using the management route will be automatically verified.",
+        "description": "Creates a new phone number for a user. Phone numbers added via this management endpoint are automatically verified.",
         "parameters": [
           {
             "name": "userId",
