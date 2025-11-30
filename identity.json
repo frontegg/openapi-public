@@ -2919,7 +2919,7 @@
       "post": {
         "operationId": "UsersSignUpControllerV1_signUpUserUsername",
         "summary": "Signup user with username",
-        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "This route is for signing up a new user and new tenant. Send the **`frontegg-vendor-host`** header. This is your domain name in the Frontegg Portal ➜ Workspace Settings ➜ Domains ➜ Domain Name. Send the user's information in the POST body. The user's email, provider, companyName, and metadata are required. The provider is the authentication provider, like local, saml, google, github. See the dropdown for available values. The metadata can be empty, like `{}`. You also can send in the POST body additional information as shown in the example. An environment token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-vendor-host",
@@ -10670,7 +10670,7 @@
       "get": {
         "operationId": "VendorOnlyUsers_getUserById",
         "summary": "Get user",
-        "description": "Retrieve a user by ID, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for vendor use only.",
+        "description": "Retrieve a user by ID, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for management use only.",
         "parameters": [
           {
             "name": "userId",
@@ -10703,7 +10703,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_MFAUnenroll",
         "summary": "Unenroll user from MFA globally",
-        "description": "Unenroll a user from MFA, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for vendor use only.",
+        "description": "Unenroll a user from MFA, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for manag use only.",
         "parameters": [
           {
             "name": "userId",
@@ -10729,7 +10729,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_verifyUserPassword",
         "summary": "Verify user's password",
-        "description": "Verify a user's email and password.\n\nProvide the user's email and password in the request body. The response will indicate `true` or `false`.\n\nThis route is for vendor use only.",
+        "description": "Verify a user's email and password.\n\nProvide the user's email and password in the request body. The response will indicate `true` or `false`.\n\nThis route is for management use only.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10762,7 +10762,7 @@
       "post": {
         "operationId": "VendorOnlyUsers_createUser",
         "summary": "Create user",
-        "description": "Create a user and set the `mfaBypass` property for testing purposes.\n\nThis route is for vendor use only.",
+        "description": "Create a user and set the `mfaBypass` property for testing purposes.\n\nThis route is for management use only.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10849,7 +10849,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
         "summary": "Create user phone number verified by default",
-        "description": "Create a new user phone number.\n\nPhone numbers added by the vendor will be automatically verified.",
+        "description": "Create a new user phone number.\n\nPhone numbers added using the management route will be automatically verified.",
         "parameters": [
           {
             "name": "userId",
