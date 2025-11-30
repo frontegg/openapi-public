@@ -48,6 +48,58 @@
             "description": ""
           },
           {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "web",
+                  "mobile-ios",
+                  "mobile-android",
+                  "agent",
+                  "other"
+                ]
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "frontendStack",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "react",
+                  "vue",
+                  "angular",
+                  "next.js",
+                  "vanilla.js",
+                  "ionic",
+                  "flutter",
+                  "react-native",
+                  "kotlin",
+                  "swift"
+                ]
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter applications by name (case-insensitive partial match)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "_excludeAgents",
             "required": false,
             "in": "query",
@@ -247,6 +299,19 @@
             "description": ""
           },
           {
+            "name": "accessType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "FREE_ACCESS",
+                "MANAGED_ACCESS"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
             "name": "frontegg-tenant-id",
             "in": "header",
             "description": "The tenant ID identifier",
@@ -351,6 +416,49 @@
       }
     },
     "/resources/applications/tenant-assignments/v1/{appId}/{tenantId}": {
+      "put": {
+        "operationId": "editApplicationTenantAssignment",
+        "summary": "Edit application to tenant assignment",
+        "description": "Edit application to tenant assignment",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "tenantId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditApplicationTenantRequestV1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      },
       "delete": {
         "operationId": "deleteApplicationTenantAssignment",
         "summary": "Delete application to account (tenant) assignment",
@@ -378,6 +486,73 @@
         "responses": {
           "200": {
             "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ]
+      }
+    },
+    "/resources/applications/tenant-assignments/v2": {
+      "get": {
+        "operationId": "getApplicationsTenantsAssignmentsV2",
+        "summary": "Get tenant application assignments with per-app accessType",
+        "description": "Get tenant application assignments with per-app accessType",
+        "parameters": [
+          {
+            "name": "appIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "tenantIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "accessType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "FREE_ACCESS",
+                "MANAGED_ACCESS"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationsTenantAssignmentsResponseV2"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -469,12 +644,182 @@
           "Applications settings"
         ]
       }
+    },
+    "/application-clients": {
+      "post": {
+        "operationId": "createApplicationClient",
+        "summary": "Create application client",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApplicationClientRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationClientResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ],
+        "description": ""
+      }
+    },
+    "/application-clients/app/{appId}": {
+      "get": {
+        "operationId": "getApplicationClientsByAppId",
+        "summary": "Get application clients by app ID",
+        "parameters": [
+          {
+            "name": "appId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApplicationClientResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ],
+        "description": ""
+      }
+    },
+    "/application-clients/{id}": {
+      "get": {
+        "operationId": "getApplicationClientById",
+        "summary": "Get application client by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationClientResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ],
+        "description": ""
+      },
+      "patch": {
+        "operationId": "updateApplicationClient",
+        "summary": "Update application client",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateApplicationClientRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApplicationClientResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ],
+        "description": ""
+      },
+      "delete": {
+        "operationId": "deleteApplicationClient",
+        "summary": "Delete application client",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Applications settings"
+        ],
+        "description": ""
+      }
     }
   },
   "info": {
     "title": "Multi-Apps Overview",
     "description": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-    "version": ""
+    "version": "",
+    "x-metadata": {
+      "note": "Trigger publish artifacts job, remove this x-metadata after publishing"
+    }
   },
   "servers": [
     {
@@ -516,6 +861,10 @@
         "type": "object",
         "properties": {
           "id": {
+            "type": "string",
+            "description": ""
+          },
+          "vendorId": {
             "type": "string",
             "description": ""
           },
@@ -578,10 +927,19 @@
           "metadata": {
             "type": "object",
             "description": ""
+          },
+          "appHost": {
+            "type": "string",
+            "description": ""
+          },
+          "allowDcr": {
+            "type": "boolean",
+            "description": ""
           }
         },
         "required": [
           "id",
+          "vendorId",
           "accessType",
           "appURL",
           "loginURL",
@@ -594,7 +952,8 @@
           "type",
           "frontendStack",
           "description",
-          "integrationFinishedAt"
+          "integrationFinishedAt",
+          "allowDcr"
         ]
       },
       "CreateApplicationRequest": {
@@ -670,6 +1029,11 @@
           "metadata": {
             "type": "object",
             "description": ""
+          },
+          "allowDcr": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
           }
         },
         "required": [
@@ -732,10 +1096,19 @@
           "metadata": {
             "type": "object",
             "description": ""
+          },
+          "appHost": {
+            "type": "string",
+            "description": ""
+          },
+          "allowDcr": {
+            "type": "boolean",
+            "default": false,
+            "description": ""
           }
         }
       },
-      "ApplicationsTenantAssignmentResponse": {
+      "ApplicationsTenantAssignmentResponseV1": {
         "type": "object",
         "properties": {
           "tenantId": {
@@ -755,7 +1128,7 @@
           "appIds"
         ]
       },
-      "ApplicationTenantsResponse": {
+      "ApplicationTenantsResponseV1": {
         "type": "object",
         "properties": {
           "tenantIds": {
@@ -770,16 +1143,81 @@
           "tenantIds"
         ]
       },
-      "CreateApplicationTenantRequest": {
+      "CreateApplicationTenantRequestV1": {
         "type": "object",
         "properties": {
           "tenantId": {
             "type": "string",
             "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
           }
         },
         "required": [
           "tenantId"
+        ]
+      },
+      "EditApplicationTenantRequestV1": {
+        "type": "object",
+        "properties": {
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          }
+        },
+        "required": [
+          "accessType"
+        ]
+      },
+      "ApplicationTenantAssignmentAccessType": {
+        "type": "object",
+        "properties": {
+          "appId": {
+            "type": "string",
+            "description": ""
+          },
+          "accessType": {
+            "type": "string",
+            "enum": [
+              "FREE_ACCESS",
+              "MANAGED_ACCESS"
+            ],
+            "description": ""
+          }
+        },
+        "required": [
+          "appId",
+          "accessType"
+        ]
+      },
+      "ApplicationsTenantAssignmentsResponseV2": {
+        "type": "object",
+        "properties": {
+          "tenantId": {
+            "type": "string",
+            "description": ""
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationTenantAssignmentAccessType"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "tenantId",
+          "assignments"
         ]
       },
       "ApplicationsClientCredentialsResponse": {
@@ -810,6 +1248,104 @@
         "required": [
           "appId"
         ]
+      },
+      "CreateApplicationClientRequestDto": {
+        "type": "object",
+        "properties": {
+          "clientName": {
+            "type": "string",
+            "description": ""
+          },
+          "clientType": {
+            "type": "string",
+            "enum": [
+              "Agent"
+            ],
+            "description": ""
+          },
+          "redirectURLs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "clientName",
+          "clientType"
+        ]
+      },
+      "ApplicationClientResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Client ID (UUID)"
+          },
+          "appId": {
+            "type": "string",
+            "description": ""
+          },
+          "clientName": {
+            "type": "string",
+            "description": ""
+          },
+          "clientSecret": {
+            "type": "string",
+            "description": ""
+          },
+          "clientType": {
+            "type": "string",
+            "enum": [
+              "Agent"
+            ],
+            "description": ""
+          },
+          "redirectURLs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": ""
+          }
+        },
+        "required": [
+          "id",
+          "appId",
+          "clientName",
+          "clientSecret",
+          "clientType",
+          "redirectURLs",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "UpdateApplicationClientRequestDto": {
+        "type": "object",
+        "properties": {
+          "clientName": {
+            "type": "string",
+            "description": ""
+          },
+          "redirectURLs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        }
       }
     }
   },
