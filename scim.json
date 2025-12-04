@@ -5,7 +5,7 @@
       "get": {
         "operationId": "Scim2ConnectionConfigController_fetchAll",
         "summary": "Get all SCIM configurations",
-        "description": "Get all provisiong (SCIM) configurations for an environment.",
+        "description": "Retrieve all provisioning (SCIM) configurations for the environment.",
         "parameters": [
           {
             "name": "tenantId",
@@ -71,7 +71,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -123,7 +123,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -163,7 +163,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -206,7 +206,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"

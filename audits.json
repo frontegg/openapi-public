@@ -5,7 +5,7 @@
       "get": {
         "operationId": "AuditsController_getAudits",
         "summary": "Get audits",
-        "description": "This route gets all audit logs for a tenant. Send the tenant’s id in the **`frontegg-tenant-id`** header to declare the tenant. Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400",
+        "description": "This route gets all audit logs for an account (tenant). Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400",
         "deprecated": true,
         "parameters": [
           {
@@ -94,7 +94,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -113,12 +113,12 @@
       "post": {
         "operationId": "AuditsController_addAudits",
         "summary": "Add audits",
-        "description": "Add audits",
+        "description": "Create a new audit entry in your account (tenant) audit trail. This endpoint allows you to log custom audit events with specified severity levels for security monitoring and compliance tracking.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -149,12 +149,12 @@
       "get": {
         "operationId": "AuditsController_getAuditsStats",
         "summary": "Get audits statistics",
-        "description": "Get audits statistics",
+        "description": "Retrieve comprehensive statistics and metrics about audit events for your account (tenant). This endpoint provides aggregated data to help you monitor audit activity, analyze security trends, and generate compliance reports.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -264,7 +264,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -295,7 +295,7 @@
       "post": {
         "operationId": "AuditsController_exportCsvToStream",
         "summary": "Export CSV to stream",
-        "description": "Export CSV to stream",
+        "description": "Export audit data as a CSV file stream with customizable columns and filtering options. This endpoint allows you to generate downloadable CSV reports of your audit trail data for compliance, analysis, or backup purposes.",
         "parameters": [
           {
             "name": "vendorId",
@@ -383,7 +383,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -414,7 +414,7 @@
       "get": {
         "operationId": "AuditsController_V2_getAudits",
         "summary": "Get audits (V2)",
-        "description": "This route gets all audit logs for a tenant. Send the tenant’s id in the **`frontegg-tenant-id`** header to declare the tenant. Optionally, use the query params to filter and organize the results. There's a limit of 200 audits. You can use the 'offset' query param to get the following 200 results. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400",
+        "description": "Retrieve audit logs for a specific account (tenant). Use optional query parameters to filter results by creation date, users, email addresses, or account (tenant) IDs. You can also sort the results and paginate through them using `count` and `offset`. The maximum number of audit logs per request is 200. For example: \n?count=200&offset=0&sortBy=createdAt&sortDirection=desc returns audits 1-200, \n?count=200&offset=200&sortBy=createdAt&sortDirection=desc returns audits 201-400",
         "parameters": [
           {
             "name": "created_from",
@@ -534,7 +534,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -555,7 +555,7 @@
       "post": {
         "operationId": "AuditsController_V2_exportCsvToStream",
         "summary": "Export CSV to stream (V2)",
-        "description": "Export CSV to stream",
+        "description": "Export filtered audit logs as a downloadable CSV stream with customizable columns and comprehensive filtering options. This endpoint generates CSV reports of your account (tenant) audit data for compliance reporting, data analysis, backup purposes, and integration with external systems. Features include customizable column selection through the properties array, advanced filtering by date ranges, users, emails, severity levels, and custom JSON criteria, pagination support for large datasets (1-200 records per request), sorting capabilities by any field, and streaming CSV output for efficient large file handling. The response includes proper CSV formatting with headers, comma-separated values, and UTF-8 encoding.",
         "parameters": [
           {
             "name": "created_from",
@@ -675,7 +675,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -706,7 +706,7 @@
       "get": {
         "operationId": "MetricsController_getMetrics",
         "summary": "Get metrics",
-        "description": "Get metrics",
+        "description": "Retrieve audit-related metrics for your environment within a specified time range. You can use query parameters to define the time window, result limit, and aggregation frequency. The response includes top resources, top accounts (tenants), and audit event counts over time. This request requires an environment token for authentication.",
         "parameters": [
           {
             "name": "from",

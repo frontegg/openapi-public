@@ -5,14 +5,14 @@
       "get": {
         "operationId": "TenantControllerV1_getTenant",
         "summary": "Get account (tenant) by ID",
-        "description": "Use the V2 route for **Get Tenant**. This route is no longer relevant.",
+        "description": "Use the V2 route for **Get account (tenant)**. This route is no longer relevant.",
         "deprecated": true,
         "parameters": [
           {
             "name": "tenantId",
             "required": true,
             "in": "path",
-            "description": "The tenant ID to get.",
+            "description": "The account (tenant) ID to get.",
             "schema": {
               "type": "string"
             }
@@ -20,7 +20,7 @@
         ],
         "responses": {
           "400": {
-            "description": "When the tenant ID does not pass the validation."
+            "description": "When the account (tenant) ID does not pass the validation."
           }
         },
         "tags": [
@@ -30,7 +30,7 @@
       "put": {
         "operationId": "TenantControllerV1_updateTenant",
         "summary": "Update account (tenant)",
-        "description": "Use the V2 route for **update tenant**. This route is no longer relevant.",
+        "description": "Use the V2 route for **update account (tenant)**. This route is no longer relevant.",
         "deprecated": true,
         "parameters": [
           {
@@ -58,7 +58,7 @@
             "description": "When body doesn't contain any property to change."
           },
           "404": {
-            "description": "When given tenant doesn't exist."
+            "description": "When given account (tenant) doesn't exist."
           }
         },
         "tags": [
@@ -68,7 +68,7 @@
       "delete": {
         "operationId": "TenantControllerV1_deleteTenant",
         "summary": "Delete account (tenant)",
-        "description": "Removes an account (tenant) and all users of that account. If an account is part of the hierarchy, then all of its sub-account are assigned to a deleted account's parent. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Remove an account (tenant) and all its users. If the account is part of a hierarchy, all sub-accounts are reassigned to the deleted account's parent. Requires an environment token obtained from the environment authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -82,7 +82,7 @@
         ],
         "responses": {
           "404": {
-            "description": "When the given tenant doesn't exist."
+            "description": "When the given account (tenant) doesn't exist."
           }
         },
         "tags": [
@@ -94,7 +94,7 @@
       "post": {
         "operationId": "TenantControllerV1_createTenant",
         "summary": "Create an account (tenant)",
-        "description": "Create a new account (tenant). If an account with given ID had existed before and was removed, then this action will reactivate that tenant. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Create a new account (tenant). If an account with the given ID previously existed and was removed, this action will reactivate that account. Requires an environment token obtained from the environment authentication route.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -108,7 +108,7 @@
         },
         "responses": {
           "400": {
-            "description": "When the tenant ID does not pass the validation."
+            "description": "When the account (tenant) ID does not pass the validation."
           }
         },
         "tags": [
@@ -118,11 +118,11 @@
       "delete": {
         "operationId": "TenantControllerV1_deleteCurrentTenant",
         "summary": "Delete current account (tenant)",
-        "description": "Removes current account and all users of that account. Only users that have the Frontegg Delete Account permission **fe.account-settings.delete.account** would be able to perform this action. A user token is required for this route. A user token can be obtained after user authentication.",
+        "description": "Delete the current account (tenant) and all users belonging to that account.\n\nOnly users with the `fe.account-settings.delete.account` permission can perform this action.\n\nA user token is required for this route and can be obtained after user authentication.",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "When current tenant has been removed."
+            "description": "When current account (tenant) has been removed."
           }
         },
         "tags": [
@@ -134,7 +134,7 @@
       "post": {
         "operationId": "TenantControllerV1_addTenantMetadata",
         "summary": "Add account (tenant) metadata",
-        "description": "Add metadata to an account (tenant). If given metadata key already exists, its value is overwritten. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Add metadata to an account (tenant).\n\nIf a metadata key already exists, its value is overwritten.\n\nProvide the account (tenant) ID as a path parameter and the metadata object in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -161,7 +161,7 @@
             "description": "When the given metadata is neither a JSON, nor JSON-string."
           },
           "404": {
-            "description": "When the given tenant doesn't exist."
+            "description": "When the given account (tenant) doesn't exist."
           }
         },
         "tags": [
@@ -173,7 +173,7 @@
       "delete": {
         "operationId": "TenantControllerV1_deleteTenantMetadata",
         "summary": "Delete account (tenant) metadata",
-        "description": "Remove a key/value from an account's metadata. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Remove a key-value pair from an account's (tenant's) metadata.\n\nProvide the account (tenant) ID and the metadata key as path parameters.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -196,7 +196,7 @@
         ],
         "responses": {
           "404": {
-            "description": "When the provided tenant doesn't exist."
+            "description": "When the provided account (tenant) doesn't exist."
           }
         },
         "tags": [
@@ -208,13 +208,13 @@
       "get": {
         "operationId": "TenantControllerV2_getTenants",
         "summary": "Get accounts (tenants)",
-        "description": "This route returns all accounts (tenants) for and environment.",
+        "description": "Retrieve all accounts (tenants) for an environment.\n\nSupports filtering, sorting, and pagination. You can filter by account name or account (tenant) ID, sort by `createdAt`, `name`, or `tenantId`, and specify the order (`ASC` or `DESC`).\n\nYou can also provide specific account (tenant) IDs to retrieve only those accounts (tenants). The default limit is 50 accounts (tenants) per request; the maximum is 200.",
         "parameters": [
           {
             "name": "_limit",
             "required": false,
             "in": "query",
-            "description": "The default limit is 50 tenants per request, the maximum is 200",
+            "description": "The default limit is 50 accounts (tenants) per request, the maximum is 200",
             "schema": {
               "type": "number"
             }
@@ -259,7 +259,7 @@
             "name": "_tenantIds",
             "required": false,
             "in": "query",
-            "description": "This param allows passing specific tenantIds and getting only these tenants data",
+            "description": "This param allows passing specific tenantIds and getting only these accounts (tenants) data",
             "schema": {
               "type": "array",
               "items": {
@@ -281,8 +281,8 @@
     "/resources/tenants/v2/alias/{alias}": {
       "get": {
         "operationId": "TenantControllerV2_getTenantByAlias",
-        "summary": "Get tenant by alias",
-        "description": "Get a tenant with custom login by alias. When tenant cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "summary": "Get account (tenant) by alias",
+        "description": "Get an account (tenant) with custom login by alias. When an account (tenant) cannot be found, an exception is thrown. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "alias",
@@ -305,7 +305,7 @@
       "get": {
         "operationId": "TenantControllerV2_getTenant",
         "summary": "Get an account (tenant)",
-        "description": "Get an account (tenant) by identifier. When an account cannot be found, empty array is returned. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Retrieve an account (tenant) by its identifier.\n\nIf the account (tenant) cannot be found, an empty array is returned.\n\nProvide the account (tenant) ID as a path parameter.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -329,7 +329,7 @@
       "put": {
         "operationId": "TenantControllerV2_updateTenant",
         "summary": "Update an account (tenant)",
-        "description": "Update a given account (tenant). A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "description": "Update an account (tenant).\n\nProvide the account (tenant) ID as a path parameter and the updated account (tenant) data in the request body.\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
         "parameters": [
           {
             "name": "tenantId",
@@ -379,7 +379,7 @@
         },
         "responses": {
           "400": {
-            "description": "When tenant ID does not pass validation."
+            "description": "When account (tenant) ID does not pass validation."
           }
         },
         "tags": [
@@ -427,7 +427,7 @@
       "put": {
         "operationId": "SubTenantControllerV1_updateSubTenantHierarchySettings",
         "summary": "Update sub-account hierarchy settings",
-        "description": "Set the default behavior of sub-account access in a account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users.",
+        "description": "Set the default behavior of sub-account access in an account (tenant). Set `subAccountAccessType` to `defaultOff` or `defaultOn` to allow sub-account access to be changed, or `alwaysOn` to force sub-account access on all users.",
         "parameters": [
           {
             "name": "tenantId",
@@ -477,7 +477,7 @@
         ],
         "responses": {
           "404": {
-            "description": "When the given tenant doesn't exist."
+            "description": "When the given account (tenant) doesn't exist."
           }
         },
         "tags": [
@@ -494,7 +494,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -502,8 +502,11 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Settings retrieved successfully"
+          },
           "404": {
-            "description": "When tenant with given ID does not exist."
+            "description": "When an account (tenant) with given ID does not exist."
           }
         },
         "tags": [
@@ -518,7 +521,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -536,11 +539,14 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Settings updated successfully"
+          },
           "400": {
             "description": "When: a) given parameters do not pass validation b) empty object is passed in request content"
           },
           "404": {
-            "description": "When tenant with given ID does not exist."
+            "description": "When an account (tenant) with given ID does not exist."
           }
         },
         "tags": [
@@ -557,7 +563,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -565,8 +571,11 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Public settings retrieved successfully"
+          },
           "404": {
-            "description": "When tenant with given ID does not exist."
+            "description": "When an account (tenant) with given ID does not exist."
           }
         },
         "tags": [
@@ -597,7 +606,7 @@
         "tags": [
           "Account migration"
         ],
-        "description": ""
+        "description": "Migrate one or more existing accounts (tenants) into your current environment. Use this route to initiate migration for a list of account (tenant) IDs. This request requires an environment token for authentication."
       }
     },
     "/resources/migrations/v1/tenants/status/{migrationId}": {
@@ -623,7 +632,7 @@
         "tags": [
           "Account migration"
         ],
-        "description": ""
+        "description": "Retrieve the current status of an ongoing accounts (tenants) migration. Provide the `migrationId` to track the progress and outcome of the migration request. This route requires an environment token for authentication."
       }
     },
     "/resources/hierarchy/v1": {
@@ -635,7 +644,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -668,7 +677,7 @@
         },
         "responses": {
           "400": {
-            "description": "When:a) given parameters do not pass validationb) or parent and child tenant are equal:c) or child tenant is already a sub-account in other organization's hierarchy"
+            "description": "When:a) given parameters do not pass validationb) or parent and child account (tenant) are equal:c) or child account (tenant) is already a sub-account in other organization's hierarchy"
           }
         },
         "tags": [
@@ -695,7 +704,7 @@
             "description": "When provided parameters do not pass validation."
           },
           "404": {
-            "description": "When given tenants are not in parent-child relation."
+            "description": "When given accounts (tenants) are not in parent-child relation."
           }
         },
         "tags": [
@@ -707,12 +716,12 @@
       "get": {
         "operationId": "TenantHierarchyControllerV1_getParentTenants",
         "summary": "Get parent accounts (tenants)",
-        "description": "Get all parent accounts from the hierarchy. Tenant ID header is required. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.",
+        "description": "Get all parent accounts from the hierarchy. A user token or vendor token are required for this route. A user token can be obtained after user authentication. A vendor token can be obtained from the vendor authentication route.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -738,7 +747,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The tenant ID identifier",
+            "description": "The account (tenant) ID identifier",
             "required": true,
             "schema": {
               "type": "string"

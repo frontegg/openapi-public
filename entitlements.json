@@ -5,8 +5,8 @@
       "get": {
         "operationId": "PlansControllerV1_getTenantPlans",
         "x-tag": "Plans",
-        "summary": "Get Tenant Plans",
-        "description": "Retrieve a paginated list of plans belongs to the tenant, with the abillity to search, order and filter by related entities",
+        "summary": "Get account (tenant) plans",
+        "description": "Retrieve a paginated list of plans for a specific account (tenant) with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and optionally exclude non-entitled plans.",
         "parameters": [
           {
             "name": "tenantId",
@@ -125,8 +125,8 @@
       "get": {
         "operationId": "PlansControllerV1_getPlans",
         "x-tag": "Plans",
-        "summary": "Get Plans",
-        "description": "Retrieve a paginated list of plans, with the abillity to search, order and filter by related entities",
+        "summary": "Get plans",
+        "description": "Retrieve a paginated list of plans with filtering, search, and sorting capabilities. Search by name, sort by name or creation date, and filter by feature IDs, user IDs, or account (tenant) IDs.",
         "parameters": [
           {
             "name": "offset",
@@ -218,7 +218,7 @@
             "name": "tenantIds",
             "required": false,
             "in": "query",
-            "description": "Comma separated tenant IDs to filter results by",
+            "description": "Comma separated account (tenant) IDs to filter results by",
             "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
             "schema": {
               "type": "array",
@@ -264,8 +264,8 @@
       "post": {
         "operationId": "PlansControllerV1_createPlan",
         "x-tag": "Plans",
-        "summary": "Create Plan",
-        "description": "Create a new plan",
+        "summary": "Create plan",
+        "description": "Create a new plan with features, rules, default treatment, and optional auto-assignment settings.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -298,8 +298,8 @@
       "get": {
         "operationId": "PlansControllerV1_getSinglePlan",
         "x-tag": "Plans",
-        "summary": "Get Single Plan",
-        "description": "Retrieve a single plan, including features linked to it",
+        "summary": "Get single plan",
+        "description": "Retrieve a single plan by its unique identifier, including linked features and entitlements.",
         "parameters": [
           {
             "name": "id",
@@ -330,8 +330,8 @@
       "patch": {
         "operationId": "PlansControllerV1_updatePlan",
         "x-tag": "Plans",
-        "summary": "Update Plan",
-        "description": "Update an existing plan",
+        "summary": "Update plan",
+        "description": "Update an existing plan's name, features, rules, default treatment, or auto-assignment settings.",
         "parameters": [
           {
             "name": "id",
@@ -372,8 +372,8 @@
       "delete": {
         "operationId": "PlansControllerV1_deletePlan",
         "x-tag": "Plans",
-        "summary": "Delete Plan",
-        "description": "Delete a plan",
+        "summary": "Delete plan",
+        "description": "Delete an existing plan by its unique identifier.",
         "parameters": [
           {
             "name": "id",
@@ -399,8 +399,8 @@
       "get": {
         "operationId": "PlansControllerV1_getPlanFeatures",
         "x-tag": "Plans",
-        "summary": "Get Plan Features",
-        "description": "Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`))",
+        "summary": "Get plan features",
+        "description": "Retrieve a paginated list of plan features, with the abillity to search and order (by date (`createdAt`) or expiration date (`expirationDate`)).",
         "parameters": [
           {
             "name": "id",
@@ -567,8 +567,8 @@
       "patch": {
         "operationId": "PlansControllerV1_linkFeaturesToPlan",
         "x-tag": "Plans",
-        "summary": "Link Features to Plan",
-        "description": "Link features to plan",
+        "summary": "Link features to plan",
+        "description": "Link multiple features to an existing plan by their feature IDs.",
         "parameters": [
           {
             "name": "id",
@@ -604,8 +604,8 @@
       "patch": {
         "operationId": "PlansControllerV1_unlinkFeaturesFromPlan",
         "x-tag": "Plans",
-        "summary": "Unlink Features from Plan",
-        "description": "Unlink features from a given plan",
+        "summary": "Unlink features from plan",
+        "description": "Unlink multiple features from an existing plan by their feature IDs.",
         "parameters": [
           {
             "name": "id",
@@ -641,8 +641,8 @@
       "get": {
         "operationId": "RoutesControllerV1_getMany",
         "x-tag": "API Access Control",
-        "summary": "Get Routes",
-        "description": "Retrieve all routes",
+        "summary": "Get routes",
+        "description": "Retrieve all configured routes with their HTTP methods, paths, policies, and associated rules for access control and feature gating.",
         "parameters": [],
         "responses": {
           "200": {
@@ -666,8 +666,8 @@
       "post": {
         "operationId": "RoutesControllerV1_create",
         "x-tag": "API Access Control",
-        "summary": "Create Route",
-        "description": "Create a new route",
+        "summary": "Create route",
+        "description": "Create a new route configuration with HTTP method, path, and policy type (`allow`, `deny`, or `ruleBased`) for access control management.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -700,8 +700,8 @@
       "get": {
         "operationId": "RoutesControllerV1_getSingle",
         "x-tag": "API Access Control",
-        "summary": "Get Single Route",
-        "description": "Retrieve a single route",
+        "summary": "Get single route",
+        "description": "Retrieve detailed information for a specific route by its unique ID, including method, path, policy type, and associated rules.",
         "parameters": [
           {
             "name": "id",
@@ -732,8 +732,8 @@
       "delete": {
         "operationId": "RoutesControllerV1_delete",
         "x-tag": "API Access Control",
-        "summary": "Delete Route",
-        "description": "Delete a route",
+        "summary": "Delete route",
+        "description": "Delete a specific route by its unique ID, permanently removing the route configuration and its associated access control rules.",
         "parameters": [
           {
             "name": "id",
@@ -757,8 +757,8 @@
       "patch": {
         "operationId": "RoutesControllerV1_update",
         "x-tag": "API Access Control",
-        "summary": "Update Route",
-        "description": "Update an existing route",
+        "summary": "Update route",
+        "description": "Update an existing route's configuration, including HTTP method, path, policy type, and description for access control management.",
         "parameters": [
           {
             "name": "id",
@@ -801,8 +801,8 @@
       "post": {
         "operationId": "RoutesControllerV1_importOpenApi",
         "x-tag": "API Access Control",
-        "summary": "Import Open API",
-        "description": "Imports an Open API specifications in JSON format",
+        "summary": "Import open API",
+        "description": "Import route configurations from an OpenAPI specification in JSON format, automatically creating routes based on the API definition.",
         "parameters": [],
         "responses": {
           "200": {
@@ -818,8 +818,8 @@
       "put": {
         "operationId": "RoutesControllerV1_replaceRules",
         "x-tag": "API Access Control",
-        "summary": "Create or Replace Route Rules",
-        "description": "Create or replace route rules",
+        "summary": "Create or replace route rules",
+        "description": "Create or replace route rules for a specific route, defining access control through feature flags or permission-based restrictions that determine user authorization.",
         "parameters": [
           {
             "name": "id",
@@ -865,7 +865,7 @@
       "get": {
         "operationId": "RoutesConfigurationsControllerV1_getRoutesConfiguration",
         "x-tag": "API Access Control Configurations",
-        "summary": "Get Routes Configuration",
+        "summary": "Get routes configuration",
         "description": "Retrieve routes configuration",
         "parameters": [],
         "responses": {
@@ -887,7 +887,7 @@
       "patch": {
         "operationId": "RoutesConfigurationsControllerV1_updateRoutesConfiguration",
         "x-tag": "API Access Control Configurations",
-        "summary": "Update Routes Configuration",
+        "summary": "Update routes configuration",
         "description": "Update route configurations",
         "parameters": [],
         "requestBody": {
@@ -921,8 +921,8 @@
       "get": {
         "operationId": "FeaturesControllerV1_getFeatures",
         "x-tag": "Features",
-        "summary": "Get Features",
-        "description": "Retrieve a paginated list of features. You can search for specific features or order them by field",
+        "summary": "Get Feature Flags",
+        "description": "Retrieve a paginated list of features with filtering, search, and sorting capabilities. Filter by feature IDs, keys, permission keys, or feature flag association. Search by name and sort by name, key, or creation date.",
         "parameters": [
           {
             "name": "offset",
@@ -1078,8 +1078,8 @@
       "post": {
         "operationId": "FeaturesControllerV1_createFeature",
         "x-tag": "Features",
-        "summary": "Create Feature",
-        "description": "Create a new feature",
+        "summary": "Create feature",
+        "description": "Create a new feature with a unique name and key, optional description, and associated permissions.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1112,8 +1112,8 @@
       "patch": {
         "operationId": "FeaturesControllerV1_updateFeature",
         "x-tag": "Features",
-        "summary": "Update Feature",
-        "description": "Update an existing feature",
+        "summary": "Update feature",
+        "description": "Update an existing feature's name, key, description, or associated permissions.",
         "parameters": [
           {
             "name": "featureId",
@@ -1147,8 +1147,8 @@
       "delete": {
         "operationId": "FeaturesControllerV1_deleteFeature",
         "x-tag": "Features",
-        "summary": "Delete Feature",
-        "description": "Delete a feature",
+        "summary": "Delete feature",
+        "description": "Delete an existing feature by its unique identifier.",
         "parameters": [
           {
             "name": "featureId",
@@ -1174,8 +1174,8 @@
       "post": {
         "operationId": "FeaturesControllerV2_create",
         "x-tag": "Features",
-        "summary": "Create Feature",
-        "description": "Create a new feature",
+        "summary": "Create feature",
+        "description": "Create a new feature with a unique name and key, optional description, associated permissions, and custom metadata.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1208,8 +1208,8 @@
       "patch": {
         "operationId": "FeaturesControllerV2_update",
         "x-tag": "Features",
-        "summary": "Update Feature",
-        "description": "Update an existing feature",
+        "summary": "Update feature",
+        "description": "Update an existing feature's name, key, description, associated permissions, or custom metadata.",
         "parameters": [
           {
             "name": "featureId",
@@ -1245,8 +1245,8 @@
       "get": {
         "operationId": "EntitlementsControllerV2_getEntitlements",
         "x-tag": "Entitlements",
-        "summary": "Get Entitlements",
-        "description": "Retrieve a paginated list of Entitlements, with the ability to order, sort (`ASC` for ascending, `DESC` for descending), and filter results( expiration date (`expirationDate`) or create date (`createdAt`) fields",
+        "summary": "Get entitlements",
+        "description": "Retrieve a paginated list of entitlements with sorting and filtering capabilities. Sort by expiration date (`expirationDate`) or creation date (`createdAt`), filter by plan IDs (`planId`, `planIds`), assign level (`assignLevel`) for user or account, user IDs (`userIds`), or account (tenant) IDs (`tenantIds`), and optionally include related entities (`withRelations`).",
         "parameters": [
           {
             "name": "offset",
@@ -1350,7 +1350,7 @@
             "name": "tenantIds",
             "required": false,
             "in": "query",
-            "description": "Comma separated tenant IDs to filter results by",
+            "description": "Comma separated account (tenant) IDs to filter results by",
             "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3",
             "schema": {
               "type": "array",
@@ -1405,8 +1405,8 @@
       "post": {
         "operationId": "EntitlementsControllerV2_createEntitlement",
         "x-tag": "Entitlements",
-        "summary": "Create Entitlement",
-        "description": "Create a new entitlement",
+        "summary": "Create entitlement",
+        "description": "Create a new entitlement by associating a plan with an account (tenant) and optionally a specific user, with configurable expiration settings.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1439,8 +1439,8 @@
       "post": {
         "operationId": "EntitlementsControllerV2_createBatchEntitlements",
         "x-tag": "Entitlements",
-        "summary": "Batch Create Entitlements",
-        "description": "Batch create multiple entitlements in a single request",
+        "summary": "Batch create entitlements",
+        "description": "Create multiple entitlements in a single batch operation, efficiently associating plans with accounts (tenants) and optionally specific users.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1471,8 +1471,8 @@
       "patch": {
         "operationId": "EntitlementsControllerV2_updateBatchEntitlements",
         "x-tag": "Entitlements",
-        "summary": "Batch Update Entitlements",
-        "description": "Batch update multiple entitlements in a single request",
+        "summary": "Batch update entitlements",
+        "description": "Update multiple existing entitlements in a single batch operation, allowing efficient modification of expiration dates and other entitlement properties.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1496,8 +1496,8 @@
       "delete": {
         "operationId": "EntitlementsControllerV2_deleteBatchEntitlements",
         "x-tag": "Entitlements",
-        "summary": "Batch Delete Entitlements",
-        "description": "Batch delete multiple entitlements in a single request",
+        "summary": "Batch delete entitlements",
+        "description": "Delete multiple entitlements in a single batch operation by providing an array of entitlement IDs, enabling efficient bulk removal of entitlements.",
         "parameters": [
           {
             "name": "ids",
@@ -1527,8 +1527,8 @@
       "get": {
         "operationId": "EntitlementsControllerV2_getSingleEntitlement",
         "x-tag": "Entitlements",
-        "summary": "Get Single Entitlement",
-        "description": "Retrieve a single entitlement by ID",
+        "summary": "Get single entitlement",
+        "description": "Retrieve detailed information for a specific entitlement by its unique ID, including associated plan details and metadata.",
         "parameters": [
           {
             "name": "id",
@@ -1559,8 +1559,8 @@
       "patch": {
         "operationId": "EntitlementsControllerV2_updateEntitlement",
         "x-tag": "Entitlements",
-        "summary": "Update Entitlement",
-        "description": "Update an existing entitlement",
+        "summary": "Update entitlement",
+        "description": "Update an existing entitlement's properties, such as expiration date, by providing the entitlement ID and the fields to modify.",
         "parameters": [
           {
             "name": "id",
@@ -1601,8 +1601,8 @@
       "delete": {
         "operationId": "EntitlementsControllerV2_deleteEntitlement",
         "x-tag": "Entitlements",
-        "summary": "Delete Entitlement",
-        "description": "Delete an entitlement",
+        "summary": "Delete entitlement",
+        "description": "Delete a specific entitlement by its unique ID, permanently removing the entitlement and its associated permissions.",
         "parameters": [
           {
             "name": "id",
@@ -1628,8 +1628,8 @@
       "get": {
         "operationId": "FeatureFlagsControllerV1_getFeatureFlags",
         "x-tag": "Feature Flags",
-        "summary": "Get Feature Flags",
-        "description": "Retrieve a paginated list of feature flags. You can search for specific feature flags or order them by field",
+        "summary": "Get feature flags",
+        "description": "Retrieve a paginated list of feature flags with search, filtering, and sorting capabilities by name or creation date (`createdAt` or `name` fields).",
         "parameters": [
           {
             "name": "offset",
@@ -1724,8 +1724,8 @@
       "post": {
         "operationId": "FeatureFlagsControllerV1_createFeatureFlag",
         "x-tag": "Feature Flags",
-        "summary": "Create Feature Flag",
-        "description": "Create a new feature flag",
+        "summary": "Create feature flag",
+        "description": "Create a new feature flag with configurable on/off states, default treatments, targeting rules, and custom metadata for controlled feature rollouts.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1758,8 +1758,8 @@
       "get": {
         "operationId": "FeatureFlagsControllerV1_getSingleFeatureFlag",
         "x-tag": "Feature Flags",
-        "summary": "Get Single Feature Flag",
-        "description": "Retrieve a single feature flag",
+        "summary": "Get single feature flag",
+        "description": "Retrieve detailed information for a specific feature flag by its unique ID, including configuration, rules, and associated feature details.",
         "parameters": [
           {
             "name": "id",
@@ -1790,8 +1790,8 @@
       "patch": {
         "operationId": "FeatureFlagsControllerV1_updateFeatureFlag",
         "x-tag": "Feature Flags",
-        "summary": "Update Feature Flag",
-        "description": "Update an existing feature flag",
+        "summary": "Update feature flag",
+        "description": "Update an existing feature flag's configuration, including its on/off state, treatments, targeting rules, and metadata.",
         "parameters": [
           {
             "name": "id",
@@ -1832,8 +1832,8 @@
       "delete": {
         "operationId": "FeatureFlagsControllerV1_deleteFeatureFlag",
         "x-tag": "Feature Flags",
-        "summary": "Delete Feature Flag",
-        "description": "Delete a feature flag",
+        "summary": "Delete feature flag",
+        "description": "Delete a specific feature flag by its unique ID, permanently removing the feature flag and its associated configuration.",
         "parameters": [
           {
             "name": "id",
@@ -2103,7 +2103,7 @@
           },
           "tenantId": {
             "type": "string",
-            "description": "UUID string that represents the tenant ID",
+            "description": "UUID string that represents the account (tenant) ID",
             "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
           },
           "userId": {
@@ -2950,7 +2950,7 @@
           },
           "tenantId": {
             "type": "string",
-            "description": "UUID string that represents the tenant ID",
+            "description": "UUID string that represents the account (tenant) ID",
             "example": "e6a5012c-cbeb-4c1e-ab80-e5f43efd44e3"
           },
           "userId": {
