@@ -2168,9 +2168,9 @@
             },
             "description": ""
           }
-        ],
+        },
         "responses": {
-          "200": {
+          "202": {
             "description": "",
             "content": {
               "application/json": {
@@ -2227,7 +2227,7 @@
         "description": "Retrieve the delegation configuration for your environment.\n\nA valid environment token is required to call this endpoint.",
         "parameters": [],
         "responses": {
-          "200": {
+          "202": {
             "description": "",
             "content": {
               "application/json": {
@@ -2379,6 +2379,15 @@
             }
           }
         },
+        "tags": [
+          "Domain restrictions"
+        ]
+      },
+      "get": {
+        "operationId": "DomainRestrictionsController_getDomainRestrictions",
+        "summary": "Get domain restrictions",
+        "description": "Retrieve the domain restrictions for an account (tenant).",
+        "parameters": [],
         "responses": {
           "201": {
             "description": "",
@@ -2413,8 +2422,15 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": ""
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainRestrictionsConfigResponse"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2480,7 +2496,17 @@
             "description": ""
           },
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DomainRestrictionsResponse"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2845,9 +2871,39 @@
             "required": true,
             "in": "header",
             "schema": {
+              "enum": [
+                "ResetPassword",
+                "ActivateUser",
+                "InviteToTenant",
+                "PwnedPassword",
+                "MagicLink",
+                "OTC",
+                "ConnectNewDevice",
+                "UserUsedInvitation",
+                "ResetPhoneNumber",
+                "BulkInvitesToTenant",
+                "MFAEnroll",
+                "MFAUnenroll",
+                "NewMFAMethod",
+                "MFARecoveryCode",
+                "RemoveMFAMethod",
+                "EmailVerification",
+                "BruteForceProtection",
+                "SuspiciousIP",
+                "MFAOTC",
+                "ImpossibleTravel",
+                "BotDetection",
+                "SmsAuthenticationEnabled",
+                "UnlockUser",
+                "UnlockUserSuccess",
+                "ActivateUserWithCode",
+                "InviteToTenantWithCode",
+                "VerifyNewEmail",
+                "EmailAddressChanged",
+                "ApprovalFlowApprove"
+              ],
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -3011,7 +3067,8 @@
         "description": "Retrieve the IP restriction configuration for an account (tenant).\n\nThe configuration defines whether IP restrictions are set to ALLOW or BLOCK.",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-vendor-host",
+            "required": true,
             "in": "header",
             "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
             "required": false,
@@ -3020,6 +3077,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpUserEmailDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": ""
@@ -3105,6 +3172,11 @@
                 }
               }
             }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
           }
         },
         "tags": [
@@ -3224,7 +3296,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": ""
           }
         },
@@ -3447,6 +3519,19 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthTenantAccessTokenResponse"
+                }
+              }
             }
           },
           {
@@ -3458,6 +3543,9 @@
             },
             "description": ""
           }
+        },
+        "tags": [
+          "M2M tokens"
         ],
         "responses": {
           "200": {
@@ -3491,6 +3579,11 @@
                 "$ref": "#/components/schemas/RecoverMfaDto"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
           }
         },
         "responses": {
@@ -3710,7 +3803,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestVerifyMFAEmailResponse"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4092,9 +4192,9 @@
               }
             }
           }
-        },
+        ],
         "responses": {
-          "201": {
+          "200": {
             "description": "",
             "content": {
               "application/json": {
@@ -4119,11 +4219,9 @@
           {
             "name": "deviceId",
             "required": true,
-            "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -4162,11 +4260,9 @@
           {
             "name": "deviceId",
             "required": true,
-            "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -4224,6 +4320,33 @@
         ],
         "responses": {
           "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "MFA"
+        ],
+        "description": "Complete SMS-based multi-factor authentication (MFA) enrollment for a user.\n\nThis endpoint finalizes SMS MFA setup by verifying the code sent to the user's phone.\n\nRequest body must include:\n- `otcToken`: One-time challenge token received from the initial enrollment step.\n- `code`: The verification code sent to the user's phone via SMS.\n\nUse this endpoint to verify the user's phone number and activate SMS-based MFA for their account."
+      }
+    },
+    "/resources/configurations/v1/mfa": {
+      "post": {
+        "operationId": "MfaController_upsertMfaConfig",
+        "summary": "Update MFA configuration",
+        "description": "Update the MFA configuration for your environment.\n\nProvide the desired configuration values as objects in the request body. Refer to the parameter documentation for the list of supported values.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MfaConfigRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -4299,6 +4422,9 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "MFA Policy already exists. Try to use the Update MFA Policy API"
           }
         },
         "tags": [
@@ -4416,6 +4542,9 @@
                 "$ref": "#/components/schemas/RequestEnrollMFASMSRequest"
               }
             }
+          },
+          "404": {
+            "description": "Security Policy not found. MFA is disabled"
           }
         },
         "responses": {
@@ -4443,6 +4572,9 @@
               "type": "string"
             }
           }
+        },
+        "tags": [
+          "MFA settings"
         ],
         "requestBody": {
           "required": true,
@@ -4455,7 +4587,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": ""
           }
         },
@@ -4624,8 +4756,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          "404": {
+            "description": "Password History Policy not found. Policy is disabled"
           }
-        ],
+        },
+        "tags": [
+          "Password settings"
+        ]
+      }
+    },
+    "/resources/users/v1/passwords/reset": {
+      "post": {
+        "operationId": "UsersPasswordControllerV1_resetPassword",
+        "summary": "Reset password",
+        "description": "Send a reset password email to a user.\n\nProvide the user's email in the request body. If your email template uses metadata, include the email metadata in the request body as well.",
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -4801,6 +4947,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Password rotation configuration not found"
           }
         },
         "tags": [
@@ -4879,7 +5028,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -4913,7 +5062,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -5036,6 +5185,16 @@
             "description": ""
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddRolesToPermissionRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -5193,8 +5352,15 @@
           }
         },
         "responses": {
-          "200": {
-            "description": ""
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionCategoryResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5341,7 +5507,7 @@
               }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "",
@@ -5428,7 +5594,7 @@
         "description": "Retrieve all permissions configured for your environment.\n\nEach permission object includes the name, description, assigned roles, categories, and other defining information.",
         "parameters": [],
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -5463,7 +5629,7 @@
               }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "",
@@ -5520,8 +5686,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -5576,7 +5741,7 @@
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -5779,7 +5944,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "",
             "content": {
               "application/json": {
@@ -5937,10 +6102,9 @@
         "description": "Retrieve a user-specific API token.",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "name": "id",
             "required": true,
+            "in": "path",
             "schema": {
               "type": "string"
             }
@@ -5984,7 +6148,16 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user id",
             "required": true,
             "schema": {
               "type": "string"
@@ -6011,7 +6184,17 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserPhoneNumberResponseDto"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -6159,6 +6342,22 @@
               "type": "string"
             }
           }
+        },
+        "tags": [
+          "SMS configuration"
+        ]
+      },
+      "delete": {
+        "operationId": "VendorSmsController_deleteSmsVendorConfig",
+        "summary": "Deletes a vendor SMS config",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "SMS configuration"
         ],
         "requestBody": {
           "required": true,
@@ -6264,7 +6463,7 @@
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -6397,7 +6596,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "",
             "content": {
               "application/json": {
@@ -6662,7 +6861,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
@@ -9213,6 +9412,2215 @@
           }
         },
         "tags": [
+          "User groups"
+        ]
+      },
+      "get": {
+        "operationId": "GroupsControllerV1_getGroupById",
+        "summary": "Get group by ID",
+        "description": "Retrieve a user group by ID for an account (tenant).\n\nProvide the group ID as a path parameter.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "description": "The default limit is 50 users per request, the maximum is 200",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "_identifier",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username prefix match. Must be provided together with _identifierType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_identifierType",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username. Must be provided together with _identifier",
+            "schema": {
+              "enum": [
+                "email",
+                "phoneNumber",
+                "username"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "_includeSubTenants",
+            "required": false,
+            "in": "query",
+            "description": "when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users",
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "_namePrefix",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by prefix name match",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_phraseSearchContains",
+            "required": false,
+            "in": "query",
+            "description": "Pass a list of strings, separated by comma, to search for users that contain all of the strings in the list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "_phraseSearchExcludes",
+            "required": false,
+            "in": "query",
+            "description": "Pass a list of strings, separated by comma, to search for users that do not contain any of the strings in the list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "_phraseSearchOptional",
+            "required": false,
+            "in": "query",
+            "description": "Pass a list of strings, separated by comma, to search for users that contain at least one of the strings in the list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "_phraseSearchApproximate",
+            "required": false,
+            "in": "query",
+            "description": "When true, the search will be approximate (fuzzy), meaning it will include similar characters to the ones in the search string",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_email",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_tenantId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "ids",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_groupsRelations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "roles",
+                "users",
+                "rolesAndUsers"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_externalIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      }
+    },
+    "/resources/groups/v1/config": {
+      "get": {
+        "operationId": "UsernamesControllerV1_getUsersUsernames",
+        "summary": "Get usernames for users",
+        "description": "This route gets usernames for users.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "userId",
+                "username"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_usernamePrefix",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "userIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "usernames",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGroupConfigurationResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      },
+      "post": {
+        "operationId": "UsernamesControllerV1_createUsername",
+        "summary": "Create a username for user",
+        "description": "This route creates a username for a user.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateGroupConfigurationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      }
+    },
+    "/resources/groups/v1/{groupId}/roles": {
+      "post": {
+        "operationId": "GroupsControllerV1_addRolesToGroup",
+        "summary": "Add roles to group",
+        "description": "Add roles to an existing user group.\n\nA user can assign only roles that are lower than their own.",
+        "parameters": [
+          {
+            "name": "groupId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsernameResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/users/v1/email/me": {
+      "post": {
+        "operationId": "SelfEmailUpdateControllerV1_updateEmailMe",
+        "summary": "Update user email",
+        "description": "This route updates the email for a user.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRolesOnGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      }
+    },
+    "/resources/users/v1/email/me/verify": {
+      "post": {
+        "operationId": "SelfEmailUpdateControllerV1_verifyEmailMe",
+        "summary": "Verify user email",
+        "description": "This route verifies the email for a user.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRolesOnGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      }
+    },
+    "/resources/groups/v1/{groupId}/users": {
+      "post": {
+        "operationId": "GroupsControllerV1_addUsersToGroup",
+        "summary": "Add users to group",
+        "description": "Add users to an existing user group.\n\nOnly users with higher roles than the group's roles are allowed to perform this action.",
+        "parameters": [
+          {
+            "name": "groupId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUsersOnGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      },
+      "delete": {
+        "operationId": "GroupsControllerV1_removeUsersFromGroup",
+        "summary": "Remove users from group",
+        "description": "Remove users from an existing user group.\n\nProvide the users to remove in the request body.",
+        "parameters": [
+          {
+            "name": "groupId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUsersOnGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      }
+    },
+    "/resources/groups/v2": {
+      "get": {
+        "operationId": "GroupsControllerV2_getAllGroupsPaginated",
+        "summary": "Get all groups paginated",
+        "description": "Retrieve all user groups for an account (tenant), with pagination.\n\nUse query parameters to control pagination and optionally include related group data.",
+        "parameters": [
+          {
+            "name": "_groupsRelations",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "roles",
+                "users",
+                "rolesAndUsers"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "id",
+                "name",
+                "createdAt",
+                "updatedAt"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GroupResponse"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User groups"
+        ]
+      }
+    },
+    "/resources/tenants/users/v1/{userId}/disable": {
+      "post": {
+        "operationId": "UsersTenantsControllerV1_disableUserTenant",
+        "summary": "Disable user account (tenant)",
+        "description": "Disable a user for an account (tenant).\n\nA disabled user cannot log in to the account (tenant) or use the system.\n\nProvide the user's ID as a path parameter.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "201": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/tenants/users/v1/{userId}/enable": {
+      "post": {
+        "operationId": "UsersTenantsControllerV1_enableUserTenant",
+        "summary": "Enable user account (tenant)",
+        "description": "Enable a disabled user for an account (tenant).\n\nAn enabled user can log in and use the system.\n\nProvide the user's ID as a path parameter.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "201": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/temporary/v1/{userId}": {
+      "put": {
+        "operationId": "TemporaryUsersV1Controller_editTimeLimit",
+        "summary": "Sets a permanent user to temporary",
+        "description": "Update the settings for temporary users.\n\nUse this route to enable or disable temporary users for your environment",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemporaryUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemporaryUserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "delete": {
+        "operationId": "TemporaryUsersV1Controller_setUserPermanent",
+        "summary": "Sets a temporary user to permanent",
+        "description": "Set an existing temporary user as permanent.\n\nProvide the user's ID as a path parameter.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/temporary/v1/configuration": {
+      "get": {
+        "operationId": "TemporaryUsersV1Controller_getConfiguration",
+        "summary": "Gets temporary users configuration",
+        "description": "Retrieve the settings for temporary users.\n\nUse this endpoint to check whether the policy is enabled or disabled.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemporaryUsersConfigurationDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "put": {
+        "operationId": "TemporaryUsersV1Controller_updateConfiguration",
+        "summary": "Set temporary users configuration",
+        "description": "This route updates the settings for temporary users, use it to enable or disable it for an environment",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemporaryUsersConfigurationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemporaryUsersConfigurationDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/resources/users/emails/v1": {
+      "get": {
+        "operationId": "UserEmailsControllerV1_getAllEmails",
+        "summary": "Get all user emails",
+        "description": "This route returns all user emails. ",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "userId",
+                "email"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_email",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "userIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UserEmailResponseDto"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "post": {
+        "operationId": "UserEmailsControllerV1_createUserEmail",
+        "summary": "Create a user email",
+        "description": "This route creates a user email.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserEmailRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEmailResponseDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEmailResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/verify": {
+      "post": {
+        "operationId": "UserEmailsControllerV1_verifyUserEmail",
+        "summary": "Verify user email",
+        "description": "This route verifies a user email.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserEmailVerifyRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/{emailId}": {
+      "delete": {
+        "operationId": "UserEmailsControllerV1_deleteUserEmail",
+        "summary": "Delete a user email",
+        "description": "This route deletes a user email.",
+        "parameters": [
+          {
+            "name": "emailId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/vendor/{userId}": {
+      "post": {
+        "operationId": "UserEmailsControllerV1_createUserEmailForVendor",
+        "summary": "Create a user email for vendor",
+        "description": "This route creates a user email.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserEmailVendorRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEmailResponseDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEmailResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/vendor/{userId}/{emailId}": {
+      "delete": {
+        "operationId": "UserEmailsControllerV1_deleteUserEmailForVendor",
+        "summary": "Delete a user email for vendor",
+        "description": "This route deletes a user email.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "emailId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/vendor/{userId}/primary": {
+      "post": {
+        "operationId": "UserEmailsControllerV1_markEmailAsPrimary",
+        "summary": "Mark email as primary for vendor",
+        "description": "This route marks an email as primary.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkEmailAsPrimaryRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/me/primary": {
+      "post": {
+        "operationId": "UserEmailsControllerV1_markEmailAsPrimaryMe",
+        "summary": "Mark email as primary",
+        "description": "This route marks an email as primary.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarkEmailAsPrimaryRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/emails/v1/me": {
+      "get": {
+        "operationId": "UserEmailsControllerV1_getUserOwnEmails",
+        "summary": "Get current user`s emails",
+        "description": "This route returns all user emails for the current user.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserEmailResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/sub-tenants/users/v1/{userId}/access": {
+      "put": {
+        "operationId": "UsersControllerV1_setUserRolesFromSubTenants",
+        "summary": "Set sub-account access for a user",
+        "description": "Set sub-account access for a user.\n\nUse this endpoint to enable or disable sub-account access by setting the value to `true` or `false`.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubAccountAccessRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/activate/reset": {
+      "post": {
+        "operationId": "UsersActivationControllerV1_resetActivationToken",
+        "summary": "Reset user activation token",
+        "description": "Reset the activation token for a user and trigger a new activation email.\n\nProvide the user's ID as a path parameter.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetActivationTokenDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/invitation/reset": {
+      "post": {
+        "operationId": "UsersTenantManagementControllerV1_resetTenantInvitationToken",
+        "summary": "Reset invitation",
+        "description": "Reset an invitation for a user to join a specific account (tenant).\n\nThe response includes a new invitation link with a new token.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetTenantInvitationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/invitation/reset/all": {
+      "post": {
+        "operationId": "UsersTenantManagementControllerV1_resetAllTenantsInvitationToken",
+        "summary": "Reset all invitation tokens",
+        "description": "Reset all invitations for a user to join all sub-accounts (tenants) that currently have an invitation token.\n\nThe response includes new invitation links with new tokens.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetTenantInvitationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v3": {
+      "get": {
+        "operationId": "UsersControllerV3_getUsers",
+        "summary": "Get users",
+        "description": "Retrieve all users for an account (tenant) or for the entire environment.",
+        "parameters": [
+          {
+            "name": "_limit",
+            "required": false,
+            "in": "query",
+            "description": "The default limit is 50 users per request, the maximum is 200",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "_identifier",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username prefix match. Must be provided together with _identifierType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_identifierType",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by username. Must be provided together with _identifier",
+            "schema": {
+              "enum": [
+                "email",
+                "phoneNumber",
+                "username"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "_includeSubTenants",
+            "required": false,
+            "in": "query",
+            "description": "when passing a user id, gives the option to include or not include sub accounts (tenants) when searching users",
+            "schema": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "_namePrefix",
+            "required": false,
+            "in": "query",
+            "description": "Filter users by prefix name match",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "_offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "minimum": 0,
+              "type": "number"
+            },
+            "description": ""
+          },
+          {
+            "name": "_email",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_tenantId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "ids",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_sortBy",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "createdAt",
+                "name",
+                "email",
+                "id",
+                "verified",
+                "isLocked",
+                "provider",
+                "tenantId"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "_externalIds",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FronteggPaginationWrapper"
+                    },
+                    {
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UserV3Dto"
+                          }
+                        },
+                        "_links": {
+                          "$ref": "#/components/schemas/FronteggPaginationLinks"
+                        },
+                        "_metadata": {
+                          "$ref": "#/components/schemas/FronteggPaginationMetadata"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v3/roles": {
+      "get": {
+        "operationId": "UsersControllerV3_getUsersRoles",
+        "summary": "Get users roles",
+        "description": "Retrieve all user roles for an account (tenant).",
+        "parameters": [
+          {
+            "name": "ids",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetActiveSessionsResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User sessions"
+        ]
+      }
+    },
+    "/resources/users/sessions/v1/me/all": {
+      "delete": {
+        "operationId": "UserSessionsControllerV1_deleteAllUserActiveSessions",
+        "summary": "Delete all user sessions",
+        "description": "Delete all active sessions for a user.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserRolesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v3/groups": {
+      "get": {
+        "operationId": "UsersControllerV3_getUsersGroups",
+        "summary": "Get users groups",
+        "description": "Retrieve all user groups for an account (tenant).",
+        "parameters": [
+          {
+            "name": "ids",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User sessions"
+        ]
+      }
+    },
+    "/resources/vendor-only/users/v1/{userId}": {
+      "get": {
+        "operationId": "VendorOnlyUsers_getUserById",
+        "summary": "Get user",
+        "description": "Retrieve a user by ID, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for management use only.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserGroupsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v3/me/unlock": {
+      "post": {
+        "operationId": "VendorOnlyUsers_MFAUnenroll",
+        "summary": "Unenroll user from MFA globally",
+        "description": "Unenroll a user from MFA, regardless of account (tenant).\n\nProvide the user's ID as a path parameter.\n\nThis route is for manag use only.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ],
+        "description": "Unlock your user account.\n\nProvide the required information in the request body to unlock the account."
+      }
+    },
+    "/resources/users/v2": {
+      "post": {
+        "operationId": "VendorOnlyUsers_verifyUserPassword",
+        "summary": "Verify user's password",
+        "description": "Verify a user's email and password.\n\nProvide the user's email and password in the request body. The response will indicate `true` or `false`.\n\nThis route is for management use only.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/vendor-only/users/v1": {
+      "post": {
+        "operationId": "VendorOnlyUsers_createUser",
+        "summary": "Create user",
+        "description": "Create a user and set the `mfaBypass` property for testing purposes.\n\nThis route is for management use only.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "get": {
+        "operationId": "UsersControllerV2_getUserProfile",
+        "summary": "Get user profile",
+        "description": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1": {
+      "post": {
+        "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
+        "summary": "Create user phone number verified by default",
+        "description": "Creates a new phone number for a user. Phone numbers added via this management endpoint are automatically verified.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "put": {
+        "operationId": "UsersControllerV1_updateUser",
+        "summary": "Update user",
+        "description": "TUpdate a user's information for a specific account (tenant).\n\nInclude the updated user information in the request body.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/{userId}": {
+      "delete": {
+        "operationId": "UsersControllerV1_removeUserFromTenant",
+        "summary": "Remove user",
+        "description": "Remove a user globally or from a specific account (tenant).\n\nAn environment token is required for this route and can be obtained from the environment authentication route.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier (optional)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "put": {
+        "operationId": "UsersControllerV1_updateUserForVendor",
+        "summary": "Update user (global)",
+        "description": "Updates a user’s information globally. Provide the user ID as a path parameter and include the fields to update in the request body. The route supports partial updates—only the provided fields are changed. For identifier fields such as `emails` or `phones`, new items are added instead of replacing existing ones.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVendorUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/resources/users/v1/{userId}/roles": {
+      "post": {
+        "operationId": "UsersControllerV1_addRolesToUser",
+        "summary": "Assign roles to user",
+        "description": "Associate roles to a specific user for a specific account (tenant).",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignUserToRolesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssignUserToRolesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      },
+      "delete": {
+        "operationId": "UsersControllerV1_deleteRolesFromUser",
+        "summary": "Unassign roles from user",
+        "description": "Disassociate roles from a specific user for a specific account (tenant).\n\nInclude the role IDs in the request body as an array of strings.",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnassignUserFromRolesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUserToRolesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
+    "/resources/users/v1/tenant": {
+      "put": {
+        "operationId": "UsersControllerV1_updateUserTenant",
+        "summary": "Update user's active account (tenant)",
+        "description": "Update the current account (tenant) for a logged-in user.\n\nUse this endpoint when a user belongs to multiple accounts (tenants) and wants to change the active account (tenant).\n\nInclude the target account (tenant) ID in the request body.",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The account (tenant) ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserTenantDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
           "User management"
         ]
       }
@@ -10849,7 +13257,7 @@
       "post": {
         "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumberVendor",
         "summary": "Create user phone number verified by default",
-        "description": "Creates a new phone number for a user. Phone numbers added via this management endpoint are automatically verified.",
+        "description": "Create a new user phone number.\n\nPhone numbers added using the management route will be automatically verified.",
         "parameters": [
           {
             "name": "userId",
