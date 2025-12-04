@@ -5090,7 +5090,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV2_resetPasswordViaSms",
         "summary": "Reset password via SMS",
-        "description": "This route sends a reset password SMS to the user. Send an OTC to the user’s phone number in the POST body.",
+        "description": "Sends a password reset SMS with a one-time code (OTP) to the user. Provide the user's phone number in the request body to initiate the reset process.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5123,7 +5123,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV2_verifyResetPasswordViaSmsOtc",
         "summary": "Verify password reset code sent via SMS",
-        "description": "This route verifies the OTC sent via SMS for the password reset process. Gets the OTC from the POST body and returns userId and reset token if valid.",
+        "description": "Verifies the one-time code (OTP) sent via SMS for password reset. Provide the OTP in the request body. If valid, returns the user ID and reset token.",
         "parameters": [],
         "requestBody": {
           "required": true,
