@@ -5,7 +5,7 @@
       "post": {
         "operationId": "AuthenticationApiTokenControllerV2_authApiToken",
         "summary": "Authenticate using API token",
-        "description": "Authenticate an account (tenant) or user using an API token.\n\nTo authenticate, include your `clientId` and `secret` in the request body. You can locate these credentials in the Admin Portal ➜ **API Tokens**. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`) rather than the default domain.\n\n**Refresh Token Rotation:** This endpoint enforces a rotation policy. Each API token supports up to **100 active refresh tokens**. When the 101st request is made using the same API token, the oldest refresh token is invalidated.\n\nUse this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.",
+        "description": "Authenticates using an account (tenant) or user API token. Obtain your `clientId` and `secret` from Admin Portal → API Tokens, then provide them in the request body. Send the request to your Frontegg environment (e.g., `https://<your-subdomain>.frontegg.com`).\n\n**Note:** By default, this endpoint enforces refresh token rotation. Each API token is limited to 100 active refresh tokens. When authenticating with the same API token for the 101st time, the oldest refresh token is automatically invalidated.\n\nUse this endpoint to securely authenticate automated services, back-end clients, or integrations that rely on static credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -38,7 +38,7 @@
       "post": {
         "operationId": "AuthenticationApiTokenControllerV2_refreshToken",
         "summary": "Refresh API token",
-        "description": "Refresh a JWT using a valid refresh token.\n\nTo obtain a new JWT and refresh token pair, include the refresh token in the request body. This is typically used to maintain an authenticated session without prompting the user to log in again.\n\nIf the provided refresh token is valid and not expired, the endpoint returns a new signed JWT and a new refresh token. If the token is invalid or has been revoked due to rotation limits, the request will fail with an authentication error.",
+        "description": "Refreshes a JWT access token using a refresh token. If the refresh token is valid, returns a new JWT and refresh token pair. This maintains an authenticated session without requiring the user to log in again.\n\nIf the refresh token is invalid, expired, or has been revoked due to rotation limits, the request will fail with an authentication error.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2098,7 +2098,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MigrateUserRequest"
+                "$ref": "#/components/schemas/MigrateUserRequestV1"
               }
             }
           }
@@ -2131,7 +2131,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MigrateUsersRequest"
+                "$ref": "#/components/schemas/MigrateUsersRequestV1"
               }
             }
           }
