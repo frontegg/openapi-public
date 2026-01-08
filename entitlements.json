@@ -85,6 +85,22 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "featureKeys",
+            "required": false,
+            "in": "query",
+            "description": "Filter plans that contain features with these keys",
+            "example": [
+              "feature-key-1",
+              "feature-key-2"
+            ],
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
@@ -450,6 +466,7 @@
             "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)",
             "example": "key",
             "schema": {
+              "default": "createdAt",
               "enum": [
                 "name",
                 "key",
@@ -465,6 +482,7 @@
             "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order",
             "example": "ASC",
             "schema": {
+              "default": "DESC",
               "enum": [
                 "ASC",
                 "DESC"
@@ -963,6 +981,7 @@
             "description": "Order fields by date created (`createdAt`) or expired (`expirationDate`)",
             "example": "key",
             "schema": {
+              "default": "createdAt",
               "enum": [
                 "name",
                 "key",
@@ -978,6 +997,7 @@
             "description": "Sort fields by an ascending (`ASC`) or a decending (`DESC`) order",
             "example": "ASC",
             "schema": {
+              "default": "DESC",
               "enum": [
                 "ASC",
                 "DESC"
@@ -1853,6 +1873,352 @@
         "tags": [
           "Feature Flags"
         ]
+      }
+    },
+    "/resources/entity-types/v1/{key}": {
+      "get": {
+        "operationId": "EntityTypesV1Controller_getEntityType",
+        "summary": "Get Entity Type",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeOneResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      },
+      "patch": {
+        "operationId": "EntityTypesV1Controller_updateEntityType",
+        "summary": "Update Entity Type",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      },
+      "delete": {
+        "operationId": "EntityTypesV1Controller_deleteEntityType",
+        "summary": "Delete Entity Type",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/entity-types/v1": {
+      "get": {
+        "operationId": "EntityTypesV1Controller_getEntityTypes",
+        "summary": "Get Entity Types",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedEntityTypesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      },
+      "post": {
+        "operationId": "EntityTypesV1Controller_createEntityType",
+        "summary": "Create Entity Type",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/entity-types/v1/{key}/actions": {
+      "post": {
+        "operationId": "EntityTypesActionsV1Controller_createEntityTypeActions",
+        "summary": "Create Entity Type Actions",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntityTypeActionsResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/entity-types/v1/{key}/actions/{actionKey}": {
+      "patch": {
+        "operationId": "EntityTypesActionsV1Controller_updateEntityTypeAction",
+        "summary": "Update Entity Type Action",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeActionsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      },
+      "delete": {
+        "operationId": "EntityTypesActionsV1Controller_deleteEntityTypeAction",
+        "summary": "Delete Entity Type Action",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/entity-types/v1/{key}/relations": {
+      "post": {
+        "operationId": "EntityTypesRelationsV1Controller_createEntityTypeRelations",
+        "summary": "Create Entity Type Relations",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntityTypeRelationResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/entity-types/v1/{key}/relations/{relationKey}": {
+      "patch": {
+        "operationId": "EntityTypesRelationsV1Controller_updateEntityTypeRelation",
+        "summary": "Update Entity Type Relation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeRelationResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      },
+      "delete": {
+        "operationId": "EntityTypesRelationsV1Controller_deleteEntityTypeRelation",
+        "summary": "Delete Entity Type Relation",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/relations/v1/assignments": {
+      "get": {
+        "operationId": "RelationsV1Controller_getRelationAssignments",
+        "summary": "Get Relation Assignments",
+        "parameters": [
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "schema": {
+              "default": 0,
+              "type": "integer"
+            },
+            "description": ""
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 10,
+            "schema": {
+              "default": 10,
+              "type": "integer"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedRelationAssignmentsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/relations/v1/assign": {
+      "post": {
+        "operationId": "RelationsV1Controller_createRelationAssignments",
+        "summary": "Create Relation Assignments",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationAssignmentsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelationAssignmentDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/relations/v1/unassign": {
+      "post": {
+        "operationId": "RelationsV1Controller_deleteRelationAssignments",
+        "summary": "Delete Relation Assignments",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RelationAssignmentsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "description": ""
       }
     }
   },
@@ -3259,6 +3625,285 @@
             }
           }
         }
+      },
+      "EntityTypeOneResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "readOnly": true,
+            "example": "document",
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "readOnly": true,
+            "example": "Representation of a Word document file",
+            "description": ""
+          },
+          "createdAt": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2021-06-02T14:00:00.000Z",
+            "format": "date-time",
+            "description": ""
+          },
+          "relations": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "actions": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "key",
+          "description",
+          "createdAt",
+          "relations",
+          "actions"
+        ]
+      },
+      "EntityTypeResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "readOnly": true,
+            "example": "document",
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "readOnly": true,
+            "example": "Representation of a Word document file",
+            "description": ""
+          },
+          "createdAt": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2021-06-02T14:00:00.000Z",
+            "format": "date-time",
+            "description": ""
+          }
+        },
+        "required": [
+          "key",
+          "description",
+          "createdAt"
+        ]
+      },
+      "PagedEntityTypesResponse": {
+        "type": "object",
+        "properties": {
+          "hasNext": {
+            "type": "boolean",
+            "readOnly": true,
+            "example": true,
+            "description": ""
+          },
+          "items": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityTypeResponse"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "hasNext",
+          "items"
+        ]
+      },
+      "EntityTypeActionsResponse": {
+        "type": "object",
+        "properties": {
+          "vendorId": {
+            "type": "string",
+            "readOnly": true,
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": ""
+          },
+          "entityTypeKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "book",
+            "description": ""
+          },
+          "key": {
+            "type": "string",
+            "readOnly": true,
+            "example": "read",
+            "description": ""
+          },
+          "relationKeys": {
+            "readOnly": true,
+            "example": [
+              "reader",
+              "writer",
+              {
+                "fromRelation": "parent",
+                "toAction": "read"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "vendorId",
+          "entityTypeKey",
+          "key",
+          "relationKeys"
+        ]
+      },
+      "EntityTypeRelationResponse": {
+        "type": "object",
+        "properties": {
+          "vendorId": {
+            "type": "string",
+            "readOnly": true,
+            "example": "123e4567-e89b-12d3-a456-426614174000",
+            "description": ""
+          },
+          "targetEntityTypeKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "book",
+            "description": ""
+          },
+          "key": {
+            "type": "string",
+            "readOnly": true,
+            "example": "reader",
+            "description": ""
+          },
+          "subjectEntityTypeKeys": {
+            "readOnly": true,
+            "example": [
+              "copywriter",
+              "customer"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "vendorId",
+          "targetEntityTypeKey",
+          "key",
+          "subjectEntityTypeKeys"
+        ]
+      },
+      "RelationAssignmentDto": {
+        "type": "object",
+        "properties": {
+          "subjectEntityTypeKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "user",
+            "description": ""
+          },
+          "subjectKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "anthony@email-of.his",
+            "description": ""
+          },
+          "relationKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "reader",
+            "description": ""
+          },
+          "targetEntityTypeKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "document",
+            "description": ""
+          },
+          "targetKey": {
+            "type": "string",
+            "readOnly": true,
+            "example": "document-1.doc",
+            "description": ""
+          },
+          "activeFrom": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2024-01-01T00:00:00Z",
+            "description": ""
+          },
+          "activeUntil": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2024-12-31T23:59:59Z",
+            "description": ""
+          }
+        },
+        "required": [
+          "subjectEntityTypeKey",
+          "subjectKey",
+          "relationKey",
+          "targetEntityTypeKey",
+          "targetKey",
+          "activeFrom",
+          "activeUntil"
+        ]
+      },
+      "PagedRelationAssignmentsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelationAssignmentDto"
+            },
+            "description": ""
+          },
+          "hasNext": {
+            "type": "boolean",
+            "readOnly": true,
+            "example": false,
+            "description": ""
+          }
+        },
+        "required": [
+          "items",
+          "hasNext"
+        ]
+      },
+      "RelationAssignmentsRequest": {
+        "type": "object",
+        "properties": {
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelationAssignmentDto"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "assignments"
+        ]
       }
     }
   },

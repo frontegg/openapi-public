@@ -10985,6 +10985,82 @@
         ]
       }
     },
+    "/resources/vendor-only/users/v1/{userId}/roles/bulk": {
+      "patch": {
+        "operationId": "VendorOnlyUsers_bulkUpdateRolesAcrossAllTenants",
+        "summary": "Bulk update user roles across all tenants",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkUpdateUserRolesRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Roles updated successfully (sync) or task queued (async)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkUpdateUserRolesSyncResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "description": ""
+      }
+    },
+    "/resources/vendor-only/users/v1/bulk-roles/status/{taskId}": {
+      "get": {
+        "operationId": "VendorOnlyUsers_getBulkRolesTaskStatus",
+        "summary": "Get status of bulk roles update task",
+        "parameters": [
+          {
+            "name": "taskId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkRolesTaskStatusResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "description": ""
+      }
+    },
     "/resources/users/v1/email": {
       "get": {
         "operationId": "UsersControllerV1_getUserByEmail",
@@ -15120,6 +15196,184 @@
         "type": "object",
         "properties": {}
       },
+      "BulkUpdateUserRolesRequestDto": {
+        "type": "object",
+        "properties": {
+          "addRoleIds": {
+            "description": "Role IDs to add across tenants",
+            "example": [
+              "role-uuid-1",
+              "role-uuid-2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "removeRoleIds": {
+            "description": "Role IDs to remove across tenants",
+            "example": [
+              "role-uuid-3"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tenantIds": {
+            "description": "Specific tenant IDs to update. If not provided, all tenants the user belongs to will be updated.",
+            "example": [
+              "tenant-uuid-1",
+              "tenant-uuid-2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BulkUpdateUserRolesSyncResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "The user ID that was updated",
+            "example": "user-uuid"
+          },
+          "affectedTenants": {
+            "type": "number",
+            "description": "Number of tenants affected by the update",
+            "example": 15
+          },
+          "rolesAdded": {
+            "description": "Role IDs that were added",
+            "example": [
+              "role-uuid-1"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rolesRemoved": {
+            "description": "Role IDs that were removed",
+            "example": [
+              "role-uuid-2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "userId",
+          "affectedTenants",
+          "rolesAdded",
+          "rolesRemoved"
+        ]
+      },
+      "BulkRolesTaskError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Failed to update roles for tenant"
+          },
+          "tenantId": {
+            "type": "string",
+            "description": "Tenant ID where the error occurred"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details"
+          },
+          "tenantIds": {
+            "description": "Tenant IDs affected by this error (for batch failures)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "BulkRolesTaskStatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Task ID",
+            "example": "task-uuid"
+          },
+          "userId": {
+            "type": "string",
+            "description": "User ID being updated",
+            "example": "user-uuid"
+          },
+          "status": {
+            "enum": [
+              "NotStarted",
+              "InProgress",
+              "Completed",
+              "CompletedWithErrors"
+            ],
+            "type": "string",
+            "description": "Current status of the task",
+            "example": "InProgress"
+          },
+          "totalTenants": {
+            "type": "number",
+            "description": "Total number of tenants to update",
+            "example": 500
+          },
+          "processedTenants": {
+            "type": "number",
+            "description": "Number of tenants already processed",
+            "example": 150
+          },
+          "addedRoleIds": {
+            "description": "Role IDs being added",
+            "example": [
+              "role-uuid-1"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "removedRoleIds": {
+            "description": "Role IDs being removed",
+            "example": [
+              "role-uuid-2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "errors": {
+            "description": "Errors encountered during processing",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BulkRolesTaskError"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "status",
+          "totalTenants",
+          "processedTenants",
+          "addedRoleIds",
+          "removedRoleIds"
+        ]
+      },
       "Auth0Configuration": {
         "type": "object",
         "properties": {
@@ -18263,81 +18517,13 @@
           "targeting"
         ]
       },
-      "ConditionDto": {
-        "type": "object",
-        "properties": {
-          "attribute": {
-            "enum": [
-              "userId",
-              "applicationId",
-              "tenantId",
-              "roleIds",
-              "tokenType",
-              "userEmail"
-            ],
-            "type": "string",
-            "description": "The attribute to evaluate"
-          },
-          "op": {
-            "enum": [
-              "in_list",
-              "contains",
-              "ends_with"
-            ],
-            "type": "string",
-            "description": "The operation to apply"
-          },
-          "value": {
-            "type": "object",
-            "description": "The value to compare against"
-          },
-          "negate": {
-            "type": "boolean",
-            "description": "The negate flag"
-          }
-        },
-        "required": [
-          "attribute",
-          "op",
-          "value",
-          "negate"
-        ]
-      },
-      "RuleDto": {
-        "type": "object",
-        "properties": {
-          "conditionLogic": {
-            "type": "string",
-            "enum": [
-              "and"
-            ],
-            "description": "The logic to combine conditions"
-          },
-          "conditions": {
-            "description": "The conditions to evaluate",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConditionDto"
-            }
-          },
-          "treatment": {
-            "type": "string",
-            "description": "The treatment value (template key) if conditions match"
-          }
-        },
-        "required": [
-          "conditionLogic",
-          "conditions",
-          "treatment"
-        ]
-      },
       "UpdateJwtTemplateTargetingRequestDto": {
         "type": "object",
         "properties": {
           "rules": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RuleDto"
+              "$ref": "#/components/schemas/IdentityRuleDto"
             },
             "description": ""
           }
@@ -19864,6 +20050,74 @@
       "GetUserTenantsResponseDto": {
         "type": "object",
         "properties": {}
+      },
+      "IdentityConditionDto": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "enum": [
+              "userId",
+              "applicationId",
+              "tenantId",
+              "roleIds",
+              "tokenType",
+              "userEmail"
+            ],
+            "type": "string",
+            "description": "The attribute to evaluate"
+          },
+          "op": {
+            "enum": [
+              "in_list",
+              "contains",
+              "ends_with"
+            ],
+            "type": "string",
+            "description": "The operation to apply"
+          },
+          "value": {
+            "type": "object",
+            "description": "The value to compare against"
+          },
+          "negate": {
+            "type": "boolean",
+            "description": "The negate flag"
+          }
+        },
+        "required": [
+          "attribute",
+          "op",
+          "value",
+          "negate"
+        ]
+      },
+      "IdentityRuleDto": {
+        "type": "object",
+        "properties": {
+          "conditionLogic": {
+            "type": "string",
+            "enum": [
+              "and"
+            ],
+            "description": "The logic to combine conditions"
+          },
+          "conditions": {
+            "description": "The conditions to evaluate",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentityConditionDto"
+            }
+          },
+          "treatment": {
+            "type": "string",
+            "description": "The treatment value (template key) if conditions match"
+          }
+        },
+        "required": [
+          "conditionLogic",
+          "conditions",
+          "treatment"
+        ]
       }
     }
   },
