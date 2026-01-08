@@ -329,7 +329,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ApplicationsTenantAssignmentResponse"
+                    "$ref": "#/components/schemas/ApplicationsTenantAssignmentResponseV1"
                   }
                 }
               }
@@ -363,7 +363,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationTenantsResponse"
+                  "$ref": "#/components/schemas/ApplicationTenantsResponseV1"
                 }
               }
             }
@@ -393,7 +393,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateApplicationTenantRequest"
+                "$ref": "#/components/schemas/CreateApplicationTenantRequestV1"
               }
             }
           }
@@ -404,7 +404,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApplicationsTenantAssignmentResponse"
+                  "$ref": "#/components/schemas/ApplicationsTenantAssignmentResponseV1"
                 }
               }
             }
