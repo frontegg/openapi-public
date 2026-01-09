@@ -3916,6 +3916,7 @@
     {
       "name": "Management",
       "tags": [
+        "ReBAC",
         "Features",
         "Plans",
         "Entitlements",
