@@ -4008,116 +4008,6 @@
         ]
       }
     },
-    "/resources/entity-types/v1/{key}": {
-      "servers": [
-        {
-          "url": "https://api.frontegg.com/entitlements",
-          "description": "EU Region"
-        },
-        {
-          "url": "https://api.us.frontegg.com/entitlements",
-          "description": "US Region"
-        },
-        {
-          "url": "https://api.ca.frontegg.com/entitlements",
-          "description": "CA Region"
-        },
-        {
-          "url": "https://api.au.frontegg.com/entitlements",
-          "description": "AU Region"
-        },
-        {
-          "url": "https://{domain}.frontegg.com/entitlements",
-          "description": "Frontegg sub-domain for use with user tokens",
-          "variables": {
-            "domain": {
-              "default": "app-xxx"
-            }
-          }
-        }
-      ],
-      "get": {
-        "operationId": "EntityTypesV1Controller_getEntityType",
-        "summary": "Get Entity Type",
-        "parameters": [
-          {
-            "name": "key",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityTypeOneResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "ReBAC"
-        ],
-        "description": "",
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "patch": {
-        "operationId": "EntityTypesV1Controller_updateEntityType",
-        "summary": "Update Entity Type",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityTypeResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "ReBAC"
-        ],
-        "description": "",
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "EntityTypesV1Controller_deleteEntityType",
-        "summary": "Delete Entity Type",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "ReBAC"
-        ],
-        "description": "",
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/resources/entity-types/v1": {
       "servers": [
         {
@@ -4149,6 +4039,7 @@
       "get": {
         "operationId": "EntityTypesV1Controller_getEntityTypes",
         "summary": "Get Entity Types",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -4165,7 +4056,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4175,6 +4065,7 @@
       "post": {
         "operationId": "EntityTypesV1Controller_createEntityType",
         "summary": "Create Entity Type",
+        "description": "",
         "parameters": [],
         "responses": {
           "201": {
@@ -4191,7 +4082,116 @@
         "tags": [
           "ReBAC"
         ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/resources/entity-types/v1/{key}": {
+      "servers": [
+        {
+          "url": "https://api.frontegg.com/entitlements",
+          "description": "EU Region"
+        },
+        {
+          "url": "https://api.us.frontegg.com/entitlements",
+          "description": "US Region"
+        },
+        {
+          "url": "https://api.ca.frontegg.com/entitlements",
+          "description": "CA Region"
+        },
+        {
+          "url": "https://api.au.frontegg.com/entitlements",
+          "description": "AU Region"
+        },
+        {
+          "url": "https://{domain}.frontegg.com/entitlements",
+          "description": "Frontegg sub-domain for use with user tokens",
+          "variables": {
+            "domain": {
+              "default": "app-xxx"
+            }
+          }
+        }
+      ],
+      "get": {
+        "operationId": "EntityTypesV1Controller_getEntityType",
+        "summary": "Get Entity Type",
         "description": "",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeOneResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "EntityTypesV1Controller_updateEntityType",
+        "summary": "Update Entity Type",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityTypeResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "EntityTypesV1Controller_deleteEntityType",
+        "summary": "Delete Entity Type",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ReBAC"
+        ],
         "security": [
           {
             "bearer": []
@@ -4230,6 +4230,7 @@
       "post": {
         "operationId": "EntityTypesActionsV1Controller_createEntityTypeActions",
         "summary": "Create Entity Type Actions",
+        "description": "",
         "parameters": [],
         "responses": {
           "201": {
@@ -4249,7 +4250,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4288,6 +4288,7 @@
       "patch": {
         "operationId": "EntityTypesActionsV1Controller_updateEntityTypeAction",
         "summary": "Update Entity Type Action",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -4304,7 +4305,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4314,6 +4314,7 @@
       "delete": {
         "operationId": "EntityTypesActionsV1Controller_deleteEntityTypeAction",
         "summary": "Delete Entity Type Action",
+        "description": "",
         "parameters": [],
         "responses": {
           "204": {
@@ -4323,7 +4324,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4362,6 +4362,7 @@
       "post": {
         "operationId": "EntityTypesRelationsV1Controller_createEntityTypeRelations",
         "summary": "Create Entity Type Relations",
+        "description": "",
         "parameters": [],
         "responses": {
           "201": {
@@ -4381,7 +4382,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4420,6 +4420,7 @@
       "patch": {
         "operationId": "EntityTypesRelationsV1Controller_updateEntityTypeRelation",
         "summary": "Update Entity Type Relation",
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -4436,7 +4437,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4446,6 +4446,7 @@
       "delete": {
         "operationId": "EntityTypesRelationsV1Controller_deleteEntityTypeRelation",
         "summary": "Delete Entity Type Relation",
+        "description": "",
         "parameters": [],
         "responses": {
           "204": {
@@ -4455,7 +4456,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4494,6 +4494,7 @@
       "get": {
         "operationId": "RelationsV1Controller_getRelationAssignments",
         "summary": "Get Relation Assignments",
+        "description": "",
         "parameters": [
           {
             "name": "offset",
@@ -4533,7 +4534,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4572,6 +4572,7 @@
       "post": {
         "operationId": "RelationsV1Controller_createRelationAssignments",
         "summary": "Create Relation Assignments",
+        "description": "",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4601,7 +4602,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -4640,6 +4640,7 @@
       "post": {
         "operationId": "RelationsV1Controller_deleteRelationAssignments",
         "summary": "Delete Relation Assignments",
+        "description": "",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4659,7 +4660,6 @@
         "tags": [
           "ReBAC"
         ],
-        "description": "",
         "security": [
           {
             "bearer": []
@@ -28906,53 +28906,6 @@
           }
         }
       },
-      "EntityTypeOneResponse": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string",
-            "readOnly": true,
-            "example": "document",
-            "description": ""
-          },
-          "description": {
-            "type": "string",
-            "readOnly": true,
-            "example": "Representation of a Word document file",
-            "description": ""
-          },
-          "createdAt": {
-            "type": "string",
-            "readOnly": true,
-            "example": "2021-06-02T14:00:00.000Z",
-            "format": "date-time",
-            "description": ""
-          },
-          "relations": {
-            "readOnly": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          },
-          "actions": {
-            "readOnly": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": ""
-          }
-        },
-        "required": [
-          "key",
-          "description",
-          "createdAt",
-          "relations",
-          "actions"
-        ]
-      },
       "EntityTypeResponse": {
         "type": "object",
         "properties": {
@@ -29003,6 +28956,53 @@
         "required": [
           "hasNext",
           "items"
+        ]
+      },
+      "EntityTypeOneResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "readOnly": true,
+            "example": "document",
+            "description": ""
+          },
+          "description": {
+            "type": "string",
+            "readOnly": true,
+            "example": "Representation of a Word document file",
+            "description": ""
+          },
+          "createdAt": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2021-06-02T14:00:00.000Z",
+            "format": "date-time",
+            "description": ""
+          },
+          "relations": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "actions": {
+            "readOnly": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "required": [
+          "key",
+          "description",
+          "createdAt",
+          "relations",
+          "actions"
         ]
       },
       "EntityTypeActionsResponse": {
