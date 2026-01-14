@@ -147,8 +147,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -180,8 +179,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -261,8 +259,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -306,8 +303,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -351,8 +347,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "domainId",
@@ -360,8 +355,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -395,8 +389,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "domainId",
@@ -404,8 +397,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -439,8 +431,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "domainId",
@@ -448,8 +439,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -483,8 +473,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -526,8 +515,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -561,8 +549,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -604,8 +591,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -639,8 +625,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "groupId",
@@ -648,8 +633,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -691,8 +675,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "groupId",
@@ -700,8 +683,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -766,8 +748,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -792,8 +773,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -947,7 +927,7 @@
   "info": {
     "title": "Single Sign-On Overview",
     "description": "Frontegg’s Single Sign-On (SSO) enables users to sign in using their existing credentials, removing the need to create new usernames and passwords specifically for your application.\n\nOur SSO solution supports two popular protocols: SAML and OpenID Connect (OIDC). These protocols facilitate user authentication across multiple applications and can be configured via Frontegg’s Management Portal or the Self-Service menu within your application.\n\nThis section lists all relevant API endpoints, organized into Management and Self-Service categories:\n\n**Management Endpoints**: Require environment-level authorization and provide comprehensive control over SSO (SAML and OIDC) resources.\n<br>\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), allowing users with appropriate permissions to create, update, and delete SSO connections on their accounts.",
-    "version": ""
+    "version": "1.0"
   },
   "servers": [
     {
@@ -993,52 +973,40 @@
         "type": "object",
         "properties": {
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "ssoEndpoint": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "publicCertificate": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "signRequest": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "acsUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "spEntityId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "oidcClientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "oidcSecret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "configMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "overrideActiveTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "subAccountAccessLimit": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "idpClientId": {
             "type": "string",
@@ -1070,8 +1038,7 @@
         "type": "object",
         "properties": {
           "metadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -1089,8 +1056,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -1101,15 +1067,13 @@
         "type": "object",
         "properties": {
           "group": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -1121,15 +1085,13 @@
         "type": "object",
         "properties": {
           "group": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -1141,8 +1103,7 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -1157,16 +1118,13 @@
         "type": "object",
         "properties": {
           "unspecifiedTenantStrategy": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "useActiveTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -1179,16 +1137,13 @@
         "type": "object",
         "properties": {
           "allowVerifiedUsersToAddDomains": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "skipDomainVerification": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "bypassDomainCrossValidation": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -1205,8 +1160,7 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "redirectUri": {
             "type": "string",

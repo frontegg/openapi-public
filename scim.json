@@ -13,8 +13,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "source",
@@ -22,8 +21,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "connectionName",
@@ -31,8 +29,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "id",
@@ -40,8 +37,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -117,8 +113,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -157,8 +152,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -200,8 +194,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -227,7 +220,7 @@
   "info": {
     "title": "SCIM Provisioning Overview",
     "description": "The SCIM Provisioning endpoints enable seamless management of user identities and groups in compliance with the [SCIM (System for Cross-domain Identity Management) standard](https://datatracker.ietf.org/doc/html/rfc7644). This service supports automatic provisioning and deprovisioning of user accounts, ensuring data synchronization across multiple identity providers and applications.\n\nFully compliant with SCIM 2.0, the SCIM Provisioning Service guarantees compatibility and interoperability across various identity platforms.\n\nThis section lists all relevant API endpoints, organized into Management and Self-Service categories:\n\n**Management Endpoints**: Require environment-level authorization and offer comprehensive control over SCIM resources.\n<br>\n\n**Self-Service Endpoints**: Accessible with a user token (JWT) and allow users with the necessary permissions to create, update, and delete a SCIM connection on their account.",
-    "version": ""
+    "version": "1.0"
   },
   "servers": [
     {
@@ -269,35 +262,28 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "connectionName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "source": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "syncToUserManagement": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "lastSync": {
             "format": "date-time",
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -320,16 +306,13 @@
               "okta",
               "azure-ad",
               "other"
-            ],
-            "description": ""
+            ]
           },
           "connectionName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "syncToUserManagement": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -340,16 +323,13 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "connectionName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -362,8 +342,7 @@
         "type": "object",
         "properties": {
           "syncToUserManagement": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
