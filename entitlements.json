@@ -14,8 +14,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "offset",
@@ -323,8 +322,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -355,8 +353,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -397,8 +394,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -424,8 +420,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "offset",
@@ -594,8 +589,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -631,8 +625,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -727,8 +720,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -759,8 +751,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -784,8 +775,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -845,8 +835,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1141,8 +1130,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1176,8 +1164,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1237,8 +1224,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1556,8 +1542,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1588,8 +1573,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1630,8 +1614,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1787,8 +1770,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1819,8 +1801,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1861,8 +1842,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1879,7 +1859,7 @@
       "get": {
         "operationId": "EntityTypesV1Controller_getEntityTypes",
         "summary": "Get Entity Types",
-        "description": "",
+        "description": "List all entity types in your schema.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1900,7 +1880,7 @@
       "post": {
         "operationId": "EntityTypesV1Controller_createEntityType",
         "summary": "Create Entity Type",
-        "description": "",
+        "description": "Create a new entity type (e.g. document, folder, project).",
         "parameters": [],
         "responses": {
           "201": {
@@ -1923,7 +1903,7 @@
       "get": {
         "operationId": "EntityTypesV1Controller_getEntityType",
         "summary": "Get Entity Type",
-        "description": "",
+        "description": "Retrieve an entity type along with its relations and actions.",
         "parameters": [
           {
             "name": "key",
@@ -1931,8 +1911,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1954,7 +1933,7 @@
       "patch": {
         "operationId": "EntityTypesV1Controller_updateEntityType",
         "summary": "Update Entity Type",
-        "description": "",
+        "description": "Update an existing entity type.",
         "parameters": [],
         "responses": {
           "200": {
@@ -1975,7 +1954,7 @@
       "delete": {
         "operationId": "EntityTypesV1Controller_deleteEntityType",
         "summary": "Delete Entity Type",
-        "description": "",
+        "description": "Deletes an entity type and all its schema definitions.",
         "parameters": [],
         "responses": {
           "204": {
@@ -1991,7 +1970,7 @@
       "post": {
         "operationId": "EntityTypesActionsV1Controller_createEntityTypeActions",
         "summary": "Create Entity Type Actions",
-        "description": "",
+        "description": "Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships.",
         "parameters": [],
         "responses": {
           "201": {
@@ -2017,7 +1996,7 @@
       "patch": {
         "operationId": "EntityTypesActionsV1Controller_updateEntityTypeAction",
         "summary": "Update Entity Type Action",
-        "description": "",
+        "description": "Update an existing action's relation mappings.",
         "parameters": [],
         "responses": {
           "200": {
@@ -2038,7 +2017,7 @@
       "delete": {
         "operationId": "EntityTypesActionsV1Controller_deleteEntityTypeAction",
         "summary": "Delete Entity Type Action",
-        "description": "",
+        "description": "Remove an action from an entity type.",
         "parameters": [],
         "responses": {
           "204": {
@@ -2054,7 +2033,7 @@
       "post": {
         "operationId": "EntityTypesRelationsV1Controller_createEntityTypeRelations",
         "summary": "Create Entity Type Relations",
-        "description": "",
+        "description": "Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects.",
         "parameters": [],
         "responses": {
           "201": {
@@ -2080,7 +2059,7 @@
       "patch": {
         "operationId": "EntityTypesRelationsV1Controller_updateEntityTypeRelation",
         "summary": "Update Entity Type Relation",
-        "description": "",
+        "description": "Modify a relation's allowed subject entity types.",
         "parameters": [],
         "responses": {
           "200": {
@@ -2101,7 +2080,7 @@
       "delete": {
         "operationId": "EntityTypesRelationsV1Controller_deleteEntityTypeRelation",
         "summary": "Delete Entity Type Relation",
-        "description": "",
+        "description": "Remove a relation definition from an entity type.",
         "parameters": [],
         "responses": {
           "204": {
@@ -2117,7 +2096,7 @@
       "get": {
         "operationId": "RelationsV1Controller_getRelationAssignments",
         "summary": "Get Relation Assignments",
-        "description": "",
+        "description": "List all instance-level relationship assignments.",
         "parameters": [
           {
             "name": "offset",
@@ -2127,8 +2106,7 @@
             "schema": {
               "default": 0,
               "type": "integer"
-            },
-            "description": ""
+            }
           },
           {
             "name": "limit",
@@ -2138,8 +2116,7 @@
             "schema": {
               "default": 10,
               "type": "integer"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2163,7 +2140,7 @@
       "post": {
         "operationId": "RelationsV1Controller_createRelationAssignments",
         "summary": "Create Relation Assignments",
-        "description": "",
+        "description": "Create relation assignments (instance-level relationships). E.g., \"User A is a reader of Document 1\".",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2199,7 +2176,7 @@
       "post": {
         "operationId": "RelationsV1Controller_deleteRelationAssignments",
         "summary": "Delete Relation Assignments",
-        "description": "",
+        "description": "Remove instance-level relationship assignments.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2225,7 +2202,7 @@
   "info": {
     "title": "Entitlements Overview",
     "description": "The Entitlements Engine is powered by the `isEntitledTo` query and is designed to manage and control user access within your application. It enables you to grant users specific roles, permissions, feature access, and more, providing a flexible framework for access management.\n\nBelow is an overview of API endpoints relevant to managing features, plans, feature flags, and API access control within your application. All endpoints are classified as **Management Endpoints**, requiring environment-level authorization and offering comprehensive control over entitlement resources.",
-    "version": ""
+    "version": "1.0"
   },
   "servers": [
     {
@@ -2751,14 +2728,12 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "routeId": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "type": {
             "type": "string",
@@ -2767,14 +2742,12 @@
             "enum": [
               "feature",
               "permission"
-            ],
-            "description": ""
+            ]
           },
           "value": {
             "type": "string",
             "readOnly": true,
-            "example": "my-feature-key",
-            "description": ""
+            "example": "my-feature-key"
           }
         },
         "required": [
@@ -2790,8 +2763,7 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "method": {
             "type": "string",
@@ -2804,26 +2776,22 @@
               "PATCH",
               "DELETE",
               "*"
-            ],
-            "description": ""
+            ]
           },
           "path": {
             "type": "string",
             "readOnly": true,
-            "example": "/users",
-            "description": ""
+            "example": "/users"
           },
           "priority": {
             "type": "number",
             "readOnly": true,
-            "example": 100,
-            "description": ""
+            "example": 100
           },
           "description": {
             "type": "string",
             "readOnly": true,
-            "example": "This is an example route",
-            "description": ""
+            "example": "This is an example route"
           },
           "policyType": {
             "type": "string",
@@ -2833,16 +2801,14 @@
               "allow",
               "deny",
               "ruleBased"
-            ],
-            "description": ""
+            ]
           },
           "rules": {
             "readOnly": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RouteRuleDto"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -2987,14 +2953,12 @@
           "id": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "vendorId": {
             "type": "string",
             "readOnly": true,
-            "example": "b796239c-6641-4cf3-9ff3-658ad4049131",
-            "description": ""
+            "example": "b796239c-6641-4cf3-9ff3-658ad4049131"
           },
           "accessControlMode": {
             "type": "string",
@@ -3003,8 +2967,7 @@
             "enum": [
               "guard",
               "monitor"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -3632,21 +3595,18 @@
           "key": {
             "type": "string",
             "readOnly": true,
-            "example": "document",
-            "description": ""
+            "example": "document"
           },
           "description": {
             "type": "string",
             "readOnly": true,
-            "example": "Representation of a Word document file",
-            "description": ""
+            "example": "Representation of a Word document file"
           },
           "createdAt": {
             "type": "string",
             "readOnly": true,
             "example": "2021-06-02T14:00:00.000Z",
-            "format": "date-time",
-            "description": ""
+            "format": "date-time"
           }
         },
         "required": [
@@ -3661,16 +3621,14 @@
           "hasNext": {
             "type": "boolean",
             "readOnly": true,
-            "example": true,
-            "description": ""
+            "example": true
           },
           "items": {
             "readOnly": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EntityTypeResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -3684,37 +3642,32 @@
           "key": {
             "type": "string",
             "readOnly": true,
-            "example": "document",
-            "description": ""
+            "example": "document"
           },
           "description": {
             "type": "string",
             "readOnly": true,
-            "example": "Representation of a Word document file",
-            "description": ""
+            "example": "Representation of a Word document file"
           },
           "createdAt": {
             "type": "string",
             "readOnly": true,
             "example": "2021-06-02T14:00:00.000Z",
-            "format": "date-time",
-            "description": ""
+            "format": "date-time"
           },
           "relations": {
             "readOnly": true,
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "actions": {
             "readOnly": true,
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -3731,20 +3684,17 @@
           "vendorId": {
             "type": "string",
             "readOnly": true,
-            "example": "123e4567-e89b-12d3-a456-426614174000",
-            "description": ""
+            "example": "123e4567-e89b-12d3-a456-426614174000"
           },
           "entityTypeKey": {
             "type": "string",
             "readOnly": true,
-            "example": "book",
-            "description": ""
+            "example": "book"
           },
           "key": {
             "type": "string",
             "readOnly": true,
-            "example": "read",
-            "description": ""
+            "example": "read"
           },
           "relationKeys": {
             "readOnly": true,
@@ -3759,8 +3709,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -3776,20 +3725,17 @@
           "vendorId": {
             "type": "string",
             "readOnly": true,
-            "example": "123e4567-e89b-12d3-a456-426614174000",
-            "description": ""
+            "example": "123e4567-e89b-12d3-a456-426614174000"
           },
           "targetEntityTypeKey": {
             "type": "string",
             "readOnly": true,
-            "example": "book",
-            "description": ""
+            "example": "book"
           },
           "key": {
             "type": "string",
             "readOnly": true,
-            "example": "reader",
-            "description": ""
+            "example": "reader"
           },
           "subjectEntityTypeKeys": {
             "readOnly": true,
@@ -3800,8 +3746,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -3817,44 +3762,37 @@
           "subjectEntityTypeKey": {
             "type": "string",
             "readOnly": true,
-            "example": "user",
-            "description": ""
+            "example": "user"
           },
           "subjectKey": {
             "type": "string",
             "readOnly": true,
-            "example": "anthony@email-of.his",
-            "description": ""
+            "example": "anthony@email-of.his"
           },
           "relationKey": {
             "type": "string",
             "readOnly": true,
-            "example": "reader",
-            "description": ""
+            "example": "reader"
           },
           "targetEntityTypeKey": {
             "type": "string",
             "readOnly": true,
-            "example": "document",
-            "description": ""
+            "example": "document"
           },
           "targetKey": {
             "type": "string",
             "readOnly": true,
-            "example": "document-1.doc",
-            "description": ""
+            "example": "document-1.doc"
           },
           "activeFrom": {
             "type": "string",
             "readOnly": true,
-            "example": "2024-01-01T00:00:00Z",
-            "description": ""
+            "example": "2024-01-01T00:00:00Z"
           },
           "activeUntil": {
             "type": "string",
             "readOnly": true,
-            "example": "2024-12-31T23:59:59Z",
-            "description": ""
+            "example": "2024-12-31T23:59:59Z"
           }
         },
         "required": [
@@ -3875,14 +3813,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RelationAssignmentDto"
-            },
-            "description": ""
+            }
           },
           "hasNext": {
             "type": "boolean",
             "readOnly": true,
-            "example": false,
-            "description": ""
+            "example": false
           }
         },
         "required": [
@@ -3897,8 +3833,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RelationAssignmentDto"
-            },
-            "description": ""
+            }
           }
         },
         "required": [

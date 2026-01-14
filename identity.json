@@ -161,8 +161,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -266,8 +265,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -299,8 +297,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -739,8 +736,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -772,8 +768,7 @@
         },
         "tags": [
           "Account invitations settings"
-        ],
-        "description": ""
+        ]
       },
       "post": {
         "operationId": "ActivationStrategyControllerV1_createOrUpdateActivationStrategy",
@@ -796,8 +791,7 @@
         },
         "tags": [
           "Account invitations settings"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/configurations/v1/invitation/strategies": {
@@ -819,8 +813,7 @@
         },
         "tags": [
           "Account invitations settings"
-        ],
-        "description": ""
+        ]
       },
       "post": {
         "operationId": "InvitationStrategyControllerV1_createOrUpdateInvitationStrategy",
@@ -843,8 +836,7 @@
         },
         "tags": [
           "Account invitations settings"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/roles/v2": {
@@ -862,8 +854,7 @@
               "maximum": 2000,
               "default": 50,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_sortBy",
@@ -884,8 +875,7 @@
                 "groups"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_levels",
@@ -896,8 +886,7 @@
               "items": {
                 "type": "number"
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "_tenantIds",
@@ -908,8 +897,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -932,8 +920,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_filter",
@@ -941,8 +928,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -1113,8 +1099,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       },
       "get": {
         "operationId": "ApprovalFlowsController_getApprovalFlows",
@@ -1134,8 +1119,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/approval-flows/v1/{id}": {
@@ -1149,8 +1133,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1167,8 +1150,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       },
       "patch": {
         "operationId": "ApprovalFlowsController_updateApprovalFlow",
@@ -1180,8 +1162,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1208,8 +1189,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       },
       "delete": {
         "operationId": "ApprovalFlowsController_deleteApprovalFlow",
@@ -1221,8 +1201,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1235,8 +1214,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/approval-flows/v1/approver-action": {
@@ -1261,8 +1239,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/approval-flows/v1/execution-data": {
@@ -1276,8 +1253,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "approverId",
@@ -1285,8 +1261,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "approvalFlowStepId",
@@ -1294,8 +1269,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1312,8 +1286,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/approval-flows/v1/{id}/execute": {
@@ -1327,8 +1300,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -1366,8 +1338,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/approval-flows/v1/step-up/execute": {
@@ -1411,8 +1382,7 @@
         },
         "tags": [
           "Approval Flows"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/configurations/v1": {
@@ -1644,8 +1614,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1678,8 +1647,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1851,8 +1819,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -1882,8 +1849,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -1923,8 +1889,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2013,8 +1978,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -2047,8 +2011,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2165,8 +2128,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2408,8 +2370,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2634,8 +2595,7 @@
                 "ApprovalFlowApprove"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2670,8 +2630,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2803,8 +2762,7 @@
             "in": "header",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -2846,8 +2804,7 @@
             "in": "header",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -2872,8 +2829,7 @@
             "in": "header",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-application-id",
@@ -2927,8 +2883,7 @@
             "in": "header",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-application-id",
@@ -3043,8 +2998,7 @@
             "schema": {
               "minimum": 1,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -3062,8 +3016,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -3210,8 +3163,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -3413,8 +3365,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -3455,8 +3406,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -3552,8 +3502,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-user-id",
@@ -3596,8 +3545,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-user-id",
@@ -3657,8 +3605,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-user-id",
@@ -3862,8 +3809,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -3970,8 +3916,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -4013,8 +3958,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -4122,8 +4066,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -4165,8 +4108,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -5032,8 +4974,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -5496,8 +5437,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -5520,8 +5460,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -5563,8 +5502,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -5696,8 +5634,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -5730,8 +5667,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -5865,8 +5801,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6005,8 +5940,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6114,8 +6048,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -6147,8 +6080,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -6199,8 +6131,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -6251,8 +6182,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -6296,8 +6226,7 @@
             "schema": {
               "minimum": 1,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -6319,8 +6248,7 @@
                 "phoneNumber"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -6332,8 +6260,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_phoneNumber",
@@ -6341,8 +6268,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6484,8 +6410,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6517,8 +6442,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -6600,8 +6524,7 @@
               "minimum": 1,
               "maximum": 250,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -6623,8 +6546,7 @@
                 "phoneNumber"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -6636,8 +6558,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_phoneNumber",
@@ -6645,8 +6566,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "userIds",
@@ -6657,8 +6577,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6810,8 +6729,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6841,8 +6759,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6865,8 +6782,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -6918,8 +6834,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -6959,8 +6874,7 @@
         },
         "tags": [
           "SMS templates"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/configurations/sessions/v1/vendor": {
@@ -7103,8 +7017,7 @@
                 "rolesAndUsers"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7191,8 +7104,7 @@
                 "rolesAndUsers"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7243,8 +7155,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7293,8 +7204,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7326,8 +7236,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_groupsRelations",
@@ -7340,8 +7249,7 @@
                 "rolesAndUsers"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7429,8 +7337,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7472,8 +7379,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7517,8 +7423,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7560,8 +7465,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7610,8 +7514,7 @@
                 "rolesAndUsers"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_limit",
@@ -7620,8 +7523,7 @@
             "schema": {
               "minimum": 1,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -7645,8 +7547,7 @@
                 "updatedAt"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -7658,8 +7559,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7720,8 +7620,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7761,8 +7660,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -7802,8 +7700,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -7843,8 +7740,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -7924,8 +7820,7 @@
             "schema": {
               "minimum": 1,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -7947,8 +7842,7 @@
                 "email"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -7960,8 +7854,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_email",
@@ -7969,8 +7862,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "userIds",
@@ -7978,8 +7870,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -8127,8 +8018,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -8171,8 +8061,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -8224,8 +8113,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "emailId",
@@ -8233,8 +8121,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -8259,8 +8146,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -8376,8 +8262,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -8571,8 +8456,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_tenantId",
@@ -8580,8 +8464,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "ids",
@@ -8589,8 +8472,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_sortBy",
@@ -8608,8 +8490,7 @@
                 "tenantId"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -8621,8 +8502,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_externalIds",
@@ -8630,8 +8510,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -8695,8 +8574,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -8740,8 +8618,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -8999,8 +8876,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -9032,8 +8908,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -9075,8 +8950,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -9125,8 +8999,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -9336,8 +9209,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_tenantId",
@@ -9345,8 +9217,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "ids",
@@ -9354,8 +9225,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_sortBy",
@@ -9373,8 +9243,7 @@
                 "tenantId"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -9386,8 +9255,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_externalIds",
@@ -9395,8 +9263,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -9458,8 +9325,7 @@
             "schema": {
               "minimum": 1,
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_offset",
@@ -9481,8 +9347,7 @@
                 "username"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_order",
@@ -9494,8 +9359,7 @@
                 "DESC"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_usernamePrefix",
@@ -9503,8 +9367,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "userIds",
@@ -9515,8 +9378,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "usernames",
@@ -9527,8 +9389,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -9597,8 +9458,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -9649,8 +9509,7 @@
         },
         "tags": [
           "User management"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/users/v1/email/me": {
@@ -9737,8 +9596,7 @@
             "in": "header",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -9780,8 +9638,7 @@
             "in": "header",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -9823,8 +9680,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "token",
@@ -9832,8 +9688,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10074,8 +9929,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10105,8 +9959,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10296,8 +10149,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -10332,8 +10184,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -10368,8 +10219,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -10404,8 +10254,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -10440,8 +10289,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -10528,8 +10376,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10643,8 +10490,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-user-id",
@@ -10678,8 +10524,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10711,8 +10556,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10857,8 +10701,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -10893,8 +10736,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "userId",
@@ -10902,8 +10744,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10971,8 +10812,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -10996,8 +10836,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -11024,8 +10863,7 @@
         },
         "tags": [
           "Users"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/vendor-only/users/v1/bulk-roles/status/{taskId}": {
@@ -11039,8 +10877,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11057,8 +10894,7 @@
         },
         "tags": [
           "Users"
-        ],
-        "description": ""
+        ]
       }
     },
     "/resources/users/v1/email": {
@@ -11073,8 +10909,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11106,8 +10941,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -11148,8 +10982,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11174,8 +11007,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -11217,8 +11049,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -11260,8 +11091,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -11301,8 +11131,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -11344,8 +11173,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -11387,8 +11215,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11420,8 +11247,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11453,8 +11279,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11479,8 +11304,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11531,8 +11355,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11567,8 +11390,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -11722,7 +11544,7 @@
   "info": {
     "title": "Authentication and Identity Management",
     "description": "Frontegg offers a comprehensive suite of authentication, user management, and security features to streamline identity management and enhance application security. This section provides an overview of all relevant API endpoints, organized into Authentication, Management, and Self-Service categories.\n\n**Authentication Endpoints**: Enable secure user login, multi-factor authentication (MFA), passwordless options, and social login integrations, allowing for a flexible and robust sign-in experience.\n\n**Management Endpoints**: Require environment-level authorization and provide full control over SSO (SAML and OpenID Connect) resources, user roles, permissions, and configurations. These endpoints are designed for administrative use, allowing for centralized identity and access management.\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), these endpoints empower users to manage their SSO connections and other account settings. Users with the necessary permissions can create, update, or delete SSO configurations directly, ensuring they have the tools to manage their access securely and independently.\n\nEach category in this section helps you configure and extend Frontegg’s capabilities, providing the flexibility to manage user identities, authentication protocols, and access controls as per your application’s needs.",
-    "version": ""
+    "version": "1.0"
   },
   "servers": [
     {
@@ -11764,45 +11586,36 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "categoryId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "fePermission": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -11821,20 +11634,16 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "categoryId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "assignmentType": {
             "type": "string",
@@ -11842,8 +11651,7 @@
               "NEVER",
               "ALWAYS",
               "ASSIGNABLE"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -11855,20 +11663,16 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "categoryId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -11894,8 +11698,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "type": {
             "type": "string",
@@ -11903,8 +11706,7 @@
               "NEVER",
               "ALWAYS",
               "ASSIGNABLE"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -11916,26 +11718,21 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "feCategory": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -11950,16 +11747,13 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -11970,12 +11764,10 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -11983,8 +11775,7 @@
         "type": "object",
         "properties": {
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expiresInMinutes": {
             "type": "number",
@@ -11997,26 +11788,21 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12031,8 +11817,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserAccessTokenResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -12043,8 +11828,7 @@
         "type": "object",
         "properties": {
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expiresInMinutes": {
             "type": "number",
@@ -12064,26 +11848,21 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "description": "Array of role Ids",
@@ -12094,8 +11873,7 @@
           },
           "createdByUserId": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           }
         },
         "required": [
@@ -12112,8 +11890,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TenantAccessTokenResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -12124,35 +11901,29 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "permissions": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "roles": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12167,31 +11938,26 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "permissions": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "roles": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12209,12 +11975,10 @@
         "type": "object",
         "properties": {
           "recoveryCode": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12226,13 +11990,11 @@
         "type": "object",
         "properties": {
           "defaultTokenExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "defaultRefreshTokenExpiration": {
             "type": "number",
-            "maximum": 15552000,
-            "description": ""
+            "maximum": 15552000
           },
           "cookieSameSite": {
             "enum": [
@@ -12240,56 +12002,45 @@
               "LAX",
               "NONE"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "machineToMachineAuthStrategy": {
             "enum": [
               "ClientCredentials",
               "AccessToken"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowSignups": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "apiTokensEnabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowOverridePasswordComplexity": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowOverridePasswordExpiration": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowOverrideEnforcePasswordHistory": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "jwtAlgorithm": {
             "enum": [
               "HS256",
               "RS256"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowNotVerifiedUsersLogin": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "forcePermissions": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "addSamlAttributesToJwt": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "authStrategy": {
             "enum": [
@@ -12299,40 +12050,31 @@
               "NoLocalAuthentication",
               "SmsCode"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "defaultPasswordlessTokenExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "forceSameDeviceOnAuth": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowTenantInvitations": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "rotateRefreshTokens": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "skipTenantValidation": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "addRolesToJwt": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "addPermissionsToJwt": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowCustomLoginTenantSwitch": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         }
       },
@@ -12340,20 +12082,16 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "defaultTokenExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "defaultRefreshTokenExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "publicKey": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "cookieSameSite": {
             "enum": [
@@ -12361,48 +12099,38 @@
               "LAX",
               "NONE"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowSignups": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "apiTokensEnabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowOverridePasswordComplexity": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowOverridePasswordExpiration": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowOverrideEnforcePasswordHistory": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "jwtAlgorithm": {
             "enum": [
               "RS256",
               "HS256"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "jwtSecret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowNotVerifiedUsersLogin": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "forcePermissions": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "authStrategy": {
             "enum": [
@@ -12416,52 +12144,41 @@
               "UsernameAndCode",
               "UsernameAndSms"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "defaultPasswordlessTokenExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "forceSameDeviceOnAuth": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowTenantInvitations": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "rotateRefreshTokens": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "machineToMachineAuthStrategy": {
             "enum": [
               "ClientCredentials",
               "AccessToken"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "addRolesToJwt": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "addPermissionsToJwt": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "refreshTokensRotationLimit": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "addSamlAttributesToJwt": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "allowCustomLoginTenantSwitch": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -12496,12 +12213,10 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "serviceName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12513,13 +12228,11 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tokenLifetimeSeconds": {
             "type": "number",
-            "minimum": 300,
-            "description": ""
+            "minimum": 300
           }
         },
         "required": [
@@ -12531,17 +12244,14 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tokenLifetimeSeconds": {
             "type": "number",
-            "minimum": 300,
-            "description": ""
+            "minimum": 300
           },
           "sender": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12554,16 +12264,13 @@
         "type": "object",
         "properties": {
           "authenticationApp": {
-            "$ref": "#/components/schemas/MfaAuthAppConfig",
-            "description": ""
+            "$ref": "#/components/schemas/MfaAuthAppConfig"
           },
           "sms": {
-            "$ref": "#/components/schemas/MfaSmsConfig",
-            "description": ""
+            "$ref": "#/components/schemas/MfaSmsConfig"
           },
           "email": {
-            "$ref": "#/components/schemas/MfaEmailConfig",
-            "description": ""
+            "$ref": "#/components/schemas/MfaEmailConfig"
           }
         }
       },
@@ -12571,12 +12278,10 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "serviceName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12588,12 +12293,10 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tokenLifetimeSeconds": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -12605,16 +12308,13 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tokenLifetimeSeconds": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "sender": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12627,16 +12327,13 @@
         "type": "object",
         "properties": {
           "authenticationApp": {
-            "$ref": "#/components/schemas/AuthenticationAppConfiguration",
-            "description": ""
+            "$ref": "#/components/schemas/AuthenticationAppConfiguration"
           },
           "sms": {
-            "$ref": "#/components/schemas/SmsConfiguration",
-            "description": ""
+            "$ref": "#/components/schemas/SmsConfiguration"
           },
           "email": {
-            "$ref": "#/components/schemas/EmailConfiguration",
-            "description": ""
+            "$ref": "#/components/schemas/EmailConfiguration"
           }
         },
         "required": [
@@ -12679,36 +12376,28 @@
         "type": "object",
         "properties": {
           "allowPassphrases": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "maxLength": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "minLength": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "minPhraseLength": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "minOptionalTestsToPass": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "blockPwnedPasswords": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "optionalTests": {
-            "$ref": "#/components/schemas/OptionalTestsConfig",
-            "description": ""
+            "$ref": "#/components/schemas/OptionalTestsConfig"
           },
           "requiredTests": {
-            "$ref": "#/components/schemas/RequiredTestsConfig",
-            "description": ""
+            "$ref": "#/components/schemas/RequiredTestsConfig"
           }
         }
       },
@@ -12716,36 +12405,28 @@
         "type": "object",
         "properties": {
           "allowPassphrases": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "maxLength": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "minLength": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "minPhraseLength": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "minOptionalTestsToPass": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "blockPwnedPasswords": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "optionalTests": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "requiredTests": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           }
         },
         "required": [
@@ -12781,30 +12462,24 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "enforceMFAType": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowRememberMyDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaDeviceExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12837,26 +12512,21 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "maxAttempts": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12892,26 +12562,21 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "historySize": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -12926,20 +12591,16 @@
         "type": "object",
         "properties": {
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "siteKey": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secretKey": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "minScore": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "ignoredEmails": {
             "description": "Captcha validation will be skipped for those emails.",
@@ -12960,41 +12621,33 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "siteKey": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secretKey": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "minScore": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "ignoredEmails": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13043,20 +12696,19 @@
               "VerifyNewEmail",
               "EmailAddressChanged",
               "ApprovalFlowApprove"
-            ],
-            "description": ""
+            ]
           },
           "senderEmail": {
             "type": "string",
-            "description": ""
+            "description": "Email of the sender cannot exceed 512 characters"
           },
           "subject": {
             "type": "string",
-            "description": ""
+            "description": "Subject of the email cannot exceed 512 characters"
           },
           "fromName": {
             "type": "string",
-            "description": ""
+            "description": "Name of the sender cannot exceed 512 characters"
           },
           "redirectURL": {
             "type": "string",
@@ -13064,16 +12716,13 @@
           },
           "htmlTemplate": {
             "type": "string",
-            "maxLength": 1000000,
-            "description": ""
+            "maxLength": 1000000
           },
           "successRedirectUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -13084,44 +12733,34 @@
         "type": "object",
         "properties": {
           "htmlTemplate": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "senderEmail": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "redirectURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "successRedirectUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "subject": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "fromName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "type": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "redirectURLPattern": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "successRedirectUrlPattern": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13139,8 +12778,7 @@
         "type": "object",
         "properties": {
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13151,25 +12789,21 @@
         "type": "object",
         "properties": {
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "extension": {
             "type": "array",
             "items": {
               "type": "object"
-            },
-            "description": ""
+            }
           },
           "provider": {
             "type": "string",
@@ -13178,8 +12812,7 @@
               "mailgun",
               "ses",
               "ses-role"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -13197,12 +12830,10 @@
             "type": "string",
             "enum": [
               "sendgrid"
-            ],
-            "description": ""
+            ]
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13217,20 +12848,16 @@
             "type": "string",
             "enum": [
               "ses"
-            ],
-            "description": ""
+            ]
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "region": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13247,16 +12874,13 @@
             "type": "string",
             "enum": [
               "mailgun"
-            ],
-            "description": ""
+            ]
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "domain": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "region": {
             "default": "us",
@@ -13266,8 +12890,7 @@
                 "EU": "eu"
               }
             ],
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -13284,16 +12907,13 @@
             "type": "string",
             "enum": [
               "ses-role"
-            ],
-            "description": ""
+            ]
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "region": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13310,8 +12930,7 @@
             "description": "Extra data that will be encoded as part of the JWT"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "description": "Array of role Ids. Either this or permissionIds must be provided, but not both.",
@@ -13338,26 +12957,21 @@
         "type": "object",
         "properties": {
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdByUserId": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "metadata": {
             "type": "object",
@@ -13365,8 +12979,7 @@
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "permissionIds": {
             "description": "Array of permission Ids",
@@ -13384,8 +12997,7 @@
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13402,22 +13014,18 @@
         "type": "object",
         "properties": {
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdByUserId": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "metadata": {
             "type": "object",
@@ -13425,8 +13033,7 @@
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "permissionIds": {
             "description": "Array of permission Ids. Either this or roleIds will be present, but not both.",
@@ -13444,8 +13051,7 @@
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13468,8 +13074,7 @@
             "description": "Extra data that will be encoded as part of the JWT"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "description": "Array of role Ids",
@@ -13491,22 +13096,18 @@
         "type": "object",
         "properties": {
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdByUserId": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           },
           "metadata": {
             "type": "object",
@@ -13514,8 +13115,7 @@
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "permissionIds": {
             "description": "Array of permission Ids",
@@ -13533,8 +13133,7 @@
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13554,8 +13153,7 @@
             "description": "Extra data that will be encoded as part of the JWT"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expiresInMinutes": {
             "type": "number",
@@ -13569,12 +13167,10 @@
         "type": "object",
         "properties": {
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
             "type": "object",
@@ -13582,17 +13178,14 @@
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13607,12 +13200,10 @@
         "type": "object",
         "properties": {
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
             "type": "object",
@@ -13620,13 +13211,11 @@
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13640,57 +13229,45 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "firstUserRole": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "level": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "permissions": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -13712,24 +13289,20 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleResponse"
-            },
-            "description": ""
+            }
           },
           "temporaryExpirationDate": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDisabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -13741,125 +13314,99 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "sub": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaEnrolled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaBypass": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleResponse"
-            },
-            "description": ""
+            }
           },
           "permissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PermissionResponse"
-            },
-            "description": ""
+            }
           },
           "provider": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "activatedForTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "isLocked": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tenants": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserTenantDto"
-            },
-            "description": ""
+            }
           },
           "invisible": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "superUser": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "metadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorMetadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "externalId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastLogin": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "groups": {
             "type": "array",
             "items": {
               "type": "object"
-            },
-            "description": ""
+            }
           },
           "subAccountAccessAllowed": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "managedBy": {
             "enum": [
@@ -13867,8 +13414,7 @@
               "scim2",
               "external"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13896,12 +13442,10 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -13918,7 +13462,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": ""
+            "description": "The email of the user. If not provided, the username is required"
           },
           "username": {
             "type": "string",
@@ -13926,16 +13470,13 @@
             "maxLength": 255
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
             "type": "string",
@@ -13953,8 +13494,7 @@
             }
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expirationInSeconds": {
             "type": "number",
@@ -13977,20 +13517,16 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expiresInMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "shouldSendEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "roleIds": {
             "description": "Array of role IDs to assign to invited users",
@@ -14008,44 +13544,35 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expires": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "shouldSendEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -14061,12 +13588,10 @@
         "type": "object",
         "properties": {
           "expiresInMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "shouldSendEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -14078,12 +13603,10 @@
         "type": "object",
         "properties": {
           "expiresInMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "shouldSendEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         }
       },
@@ -14091,8 +13614,7 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -14103,12 +13625,10 @@
         "type": "object",
         "properties": {
           "tenantInvitationsAllowed": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "emailsEnabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -14120,12 +13640,10 @@
         "type": "object",
         "properties": {
           "expiresInMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "shouldSendEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "roleIds": {
             "description": "Array of role IDs to assign to invited users",
@@ -14149,14 +13667,12 @@
         "type": "object",
         "properties": {
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "timeout": {
             "type": "number",
             "minimum": 60,
-            "maximum": 2073600,
-            "description": ""
+            "maximum": 2073600
           }
         },
         "required": [
@@ -14168,13 +13684,11 @@
         "type": "object",
         "properties": {
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "timeout": {
             "type": "number",
-            "minimum": 60,
-            "description": ""
+            "minimum": 60
           }
         },
         "required": [
@@ -14186,13 +13700,11 @@
         "type": "object",
         "properties": {
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "maxSessions": {
             "type": "number",
-            "minimum": 1,
-            "description": ""
+            "minimum": 1
           }
         },
         "required": [
@@ -14204,16 +13716,13 @@
         "type": "object",
         "properties": {
           "sessionIdleTimeoutConfiguration": {
-            "$ref": "#/components/schemas/SessionIdleTimeoutConfigurationDto",
-            "description": ""
+            "$ref": "#/components/schemas/SessionIdleTimeoutConfigurationDto"
           },
           "sessionTimeoutConfiguration": {
-            "$ref": "#/components/schemas/SessionTimeoutConfigurationDto",
-            "description": ""
+            "$ref": "#/components/schemas/SessionTimeoutConfigurationDto"
           },
           "sessionConcurrentConfiguration": {
-            "$ref": "#/components/schemas/SessionConcurrentConfigurationDto",
-            "description": ""
+            "$ref": "#/components/schemas/SessionConcurrentConfigurationDto"
           }
         }
       },
@@ -14228,12 +13737,10 @@
               "SMS",
               "EmailCode"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -14248,8 +13755,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MFAStrategyResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -14260,8 +13766,7 @@
         "type": "object",
         "properties": {
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "strategy": {
             "type": "string",
@@ -14271,8 +13776,7 @@
               "WebAuthnCrossPlatform",
               "SMS",
               "EmailCode"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -14284,50 +13788,39 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "firstUserRole": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "level": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -14348,29 +13841,23 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "activatedForTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -14386,56 +13873,46 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "color": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleDto"
-            },
-            "description": ""
+            }
           },
           "users": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GroupUserDto"
-            },
-            "description": ""
+            }
           },
           "managedBy": {
             "enum": [
               "frontegg",
               "scim2"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -14458,8 +13935,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GroupResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -14532,12 +14008,10 @@
         "type": "object",
         "properties": {
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "rolesEnabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -14606,20 +14080,16 @@
         "type": "object",
         "properties": {
           "next": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "prev": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "first": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "last": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -14633,12 +14103,10 @@
         "type": "object",
         "properties": {
           "totalItems": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "totalPages": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -14650,8 +14118,7 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "status": {
             "type": "string",
@@ -14660,8 +14127,7 @@
               "PendingLogin",
               "Activated",
               "NotActivated"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -14673,8 +14139,7 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantsStatuses": {
             "description": "Tenants Statuses",
@@ -14693,16 +14158,13 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
             "type": "boolean",
@@ -14751,16 +14213,13 @@
             "description": "Role level for roles elevation, lower level means stronger role."
           },
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -14784,8 +14243,7 @@
         "properties": {
           "tenantId": {
             "type": "string",
-            "nullable": true,
-            "description": ""
+            "nullable": true
           }
         },
         "required": [
@@ -14796,16 +14254,13 @@
         "type": "object",
         "properties": {
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
             "type": "boolean",
@@ -14819,8 +14274,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -14834,39 +14288,31 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "permissions": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -14885,8 +14331,7 @@
         "properties": {
           "expirationInSeconds": {
             "type": "number",
-            "minimum": 300,
-            "description": ""
+            "minimum": 300
           }
         },
         "required": [
@@ -14897,8 +14342,7 @@
         "type": "object",
         "properties": {
           "enabled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -14909,30 +14353,24 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15002,34 +14440,27 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "isPrimary": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15105,7 +14536,7 @@
           "email": {
             "type": "string",
             "format": "email",
-            "description": ""
+            "description": "The email of the user. If not provided, the username is required"
           },
           "username": {
             "type": "string",
@@ -15114,21 +14545,17 @@
             "description": "The username of the user. If not provided, the email is required. Maximum length is 255 characters."
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
             "type": "string",
-            "maxLength": 4095,
-            "description": ""
+            "maxLength": 4095
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "provider": {
             "type": "string",
@@ -15143,8 +14570,7 @@
               "scim2",
               "slack",
               "apple"
-            ],
-            "description": ""
+            ]
           },
           "metadata": {
             "type": "string",
@@ -15152,19 +14578,16 @@
             "example": "{}"
           },
           "skipInviteEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "expirationInSeconds": {
             "type": "number",
@@ -15172,8 +14595,7 @@
             "description": "Temporary user expiration in seconds"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         }
       },
@@ -15184,8 +14606,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserBulkInviteRequestDto"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -15378,16 +14799,13 @@
         "type": "object",
         "properties": {
           "domain": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantIdFieldName": {
             "type": "string",
@@ -15445,8 +14863,7 @@
             "description": "The password hash. For SCrypt should include the salt and key seperated by the salt separator"
           },
           "passwordHashType": {
-            "$ref": "#/components/schemas/PasswordHashingType",
-            "description": ""
+            "$ref": "#/components/schemas/PasswordHashingType"
           },
           "passwordHashConfig": {
             "type": "string",
@@ -15462,8 +14879,7 @@
             "description": "phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: \"+16037184056\" The number must be unique"
           },
           "phoneNumberType": {
-            "$ref": "#/components/schemas/PhoneNumberType",
-            "description": ""
+            "$ref": "#/components/schemas/PhoneNumberType"
           },
           "provider": {
             "type": "string",
@@ -15478,8 +14894,7 @@
               "slack",
               "apple"
             ],
-            "default": "local",
-            "description": ""
+            "default": "local"
           },
           "metadata": {
             "type": "string",
@@ -15528,8 +14943,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MigrateUserRequestV1"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -15540,8 +14954,7 @@
         "type": "object",
         "properties": {
           "migrationId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15596,8 +15009,7 @@
             "description": "The password hash. For SCrypt should include the salt and key seperated by the salt separator"
           },
           "passwordHashType": {
-            "$ref": "#/components/schemas/PasswordHashingType",
-            "description": ""
+            "$ref": "#/components/schemas/PasswordHashingType"
           },
           "passwordHashConfig": {
             "type": "string",
@@ -15613,8 +15025,7 @@
             "description": "phoneNumber can be used both for login with SMS and for MFA This auto-enrolls the user in MFA, prompting them at first login (regardless of tenant/vendor MFA settings). The required format is an area code + number, no spaces. For example: \"+16037184056\" The number must be unique"
           },
           "phoneNumberType": {
-            "$ref": "#/components/schemas/PhoneNumberType",
-            "description": ""
+            "$ref": "#/components/schemas/PhoneNumberType"
           },
           "provider": {
             "type": "string",
@@ -15629,8 +15040,7 @@
               "slack",
               "apple"
             ],
-            "default": "local",
-            "description": ""
+            "default": "local"
           },
           "metadata": {
             "type": "string",
@@ -15676,8 +15086,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MigrateUserRequestV2"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -15688,8 +15097,7 @@
         "type": "object",
         "properties": {
           "allowAccess": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -15701,12 +15109,10 @@
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "description": ""
+            "format": "email"
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           }
         },
         "required": [
@@ -15717,16 +15123,13 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15739,12 +15142,10 @@
         "type": "object",
         "properties": {
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "newPassword": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15769,8 +15170,7 @@
             "description": "Type of the identifier"
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           }
         },
         "required": [
@@ -15782,8 +15182,7 @@
         "type": "object",
         "properties": {
           "sessionId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15794,12 +15193,10 @@
         "type": "object",
         "properties": {
           "otcToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "sessionId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15811,12 +15208,10 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -15829,12 +15224,10 @@
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "description": ""
+            "format": "email"
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           }
         },
         "required": [
@@ -15846,48 +15239,37 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "redirectUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "authorizationUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tokenUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userInfoUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "scopes": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "ssoLogoUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "displayName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -15908,48 +15290,37 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "redirectUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "authorizationUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tokenUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userInfoUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "scopes": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "ssoLogoUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "displayName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         }
       },
@@ -15957,19 +15328,16 @@
         "type": "object",
         "properties": {
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -15982,17 +15350,14 @@
         "type": "object",
         "properties": {
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16005,19 +15370,16 @@
         "type": "object",
         "properties": {
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -16030,12 +15392,10 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "applicationId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16050,8 +15410,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserApplicationActiveTenantResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -16117,8 +15476,7 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -16134,12 +15492,10 @@
         "type": "object",
         "properties": {
           "otcToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16151,8 +15507,7 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16163,104 +15518,81 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "sub": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaEnrolled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaBypass": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "provider": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "activatedForTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "isLocked": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tenants": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserTenantDto"
-            },
-            "description": ""
+            }
           },
           "invisible": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "superUser": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "metadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorMetadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "externalId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastLogin": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "subAccountAccessAllowed": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "managedBy": {
             "enum": [
@@ -16268,8 +15600,7 @@
               "scim2",
               "external"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16303,8 +15634,7 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16317,7 +15647,7 @@
           "email": {
             "type": "string",
             "format": "email",
-            "description": ""
+            "description": "The email of the user. If not provided, the username is required"
           },
           "username": {
             "type": "string",
@@ -16326,21 +15656,17 @@
             "description": "The username of the user. If not provided, the email is required. Maximum length is 255 characters."
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
             "type": "string",
-            "maxLength": 4095,
-            "description": ""
+            "maxLength": 4095
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "provider": {
             "type": "string",
@@ -16355,8 +15681,7 @@
               "scim2",
               "slack",
               "apple"
-            ],
-            "description": ""
+            ]
           },
           "metadata": {
             "type": "string",
@@ -16364,19 +15689,16 @@
             "example": "{}"
           },
           "skipInviteEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "expirationInSeconds": {
             "type": "number",
@@ -16389,61 +15711,49 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roles": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "permissions": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "metadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastLogin": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "activatedForTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "temporaryExpirationDate": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -16452,14 +15762,12 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "pattern": "^\\+[1-9]{1}(\\-?)(([0-9])(\\-?)){5,13}(([0-9]$){1})",
-            "description": ""
+            "pattern": "^\\+[1-9]{1}(\\-?)(([0-9])(\\-?)){5,13}(([0-9]$){1})"
           },
           "profilePictureUrl": {
             "type": "string",
             "nullable": true,
-            "maxLength": 4095,
-            "description": ""
+            "maxLength": 4095
           },
           "metadata": {
             "type": "string",
@@ -16467,8 +15775,7 @@
             "example": "{}"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -16476,104 +15783,81 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "sub": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "verified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaEnrolled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaBypass": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "provider": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "activatedForTenant": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "isLocked": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tenants": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserTenantDto"
-            },
-            "description": ""
+            }
           },
           "invisible": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "superUser": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "metadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorMetadata": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "externalId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastLogin": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "subAccountAccessAllowed": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "managedBy": {
             "type": "string",
@@ -16581,8 +15865,7 @@
               "frontegg",
               "scim2",
               "external"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -16611,8 +15894,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -16623,33 +15905,26 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "level": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16666,19 +15941,16 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IRole"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -16694,8 +15966,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -16706,19 +15977,16 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "roles": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IRole"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -16743,8 +16011,7 @@
         "type": "object",
         "properties": {
           "invisible": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -16755,8 +16022,7 @@
         "type": "object",
         "properties": {
           "superUser": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -16768,14 +16034,12 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "pattern": "^\\+[1-9]{1}(\\-?)(([0-9])(\\-?)){5,13}(([0-9]$){1})",
-            "description": ""
+            "pattern": "^\\+[1-9]{1}(\\-?)(([0-9])(\\-?)){5,13}(([0-9]$){1})"
           },
           "profilePictureUrl": {
             "type": "string",
             "nullable": true,
-            "maxLength": 4095,
-            "description": ""
+            "maxLength": 4095
           },
           "metadata": {
             "type": "string",
@@ -16795,8 +16059,7 @@
             "description": "The external id of the user"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -16808,8 +16071,7 @@
             "description": "Desired tenant to set as active tenant for user"
           },
           "validateTenantExist": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -16820,16 +16082,13 @@
         "type": "object",
         "properties": {
           "validateTenantExist": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "skipInviteEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -16841,8 +16100,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "description": ""
+            "format": "email"
           }
         },
         "required": [
@@ -16853,16 +16111,13 @@
         "type": "object",
         "properties": {
           "link": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16875,16 +16130,13 @@
         "type": "object",
         "properties": {
           "link": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16897,12 +16149,10 @@
         "type": "object",
         "properties": {
           "srcTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "targetTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -16914,39 +16164,31 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "index": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "configuration": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "usersCount": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -16964,35 +16206,28 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "index": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "configuration": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           }
         },
         "required": [
@@ -17016,8 +16251,7 @@
             "type": "string",
             "enum": [
               "dynamic"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17032,8 +16266,7 @@
             "type": "string",
             "enum": [
               "new"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17051,8 +16284,7 @@
             "type": "string",
             "enum": [
               "static"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17067,8 +16299,7 @@
             "type": "string",
             "enum": [
               "from-source"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17109,8 +16340,7 @@
               {
                 "$ref": "#/components/schemas/UserSourceNewTenantConfig"
               }
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17163,31 +16393,25 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "index": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -17245,8 +16469,7 @@
               {
                 "$ref": "#/components/schemas/UserSourceNewTenantConfig"
               }
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17301,48 +16524,37 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "project_id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "private_key_id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "private_key": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "client_email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "client_id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "auth_uri": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token_uri": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "auth_provider_x509_cert_url": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "client_x509_cert_url": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "universe_domain": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -17375,8 +16587,7 @@
             "description": "The firebase Web API Key"
           },
           "serviceAccount": {
-            "$ref": "#/components/schemas/FirebaseServiceAccountConfig",
-            "description": ""
+            "$ref": "#/components/schemas/FirebaseServiceAccountConfig"
           },
           "tenantConfig": {
             "oneOf": [
@@ -17386,8 +16597,7 @@
               {
                 "$ref": "#/components/schemas/UserSourceNewTenantConfig"
               }
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17447,12 +16657,10 @@
             "description": "Whether to migrate the users"
           },
           "codePayload": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "getUserCodePayload": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantConfig": {
             "oneOf": [
@@ -17462,8 +16670,7 @@
               {
                 "$ref": "#/components/schemas/UserSourceFromSourceTenantConfig"
               }
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17592,8 +16799,7 @@
               {
                 "$ref": "#/components/schemas/UserSourceNewTenantConfig"
               }
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17809,13 +17015,11 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastLogin": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -17831,12 +17035,10 @@
             "enum": [
               "code",
               "link"
-            ],
-            "description": ""
+            ]
           },
           "codeExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -17849,16 +17051,14 @@
         "properties": {
           "codeExpiration": {
             "type": "number",
-            "minimum": 60,
-            "description": ""
+            "minimum": 60
           },
           "strategy": {
             "type": "string",
             "enum": [
               "code",
               "link"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -17873,12 +17073,10 @@
             "enum": [
               "code",
               "link"
-            ],
-            "description": ""
+            ]
           },
           "codeExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -17890,8 +17088,7 @@
         "type": "object",
         "properties": {
           "codeExpiration": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         }
       },
@@ -17900,29 +17097,23 @@
         "properties": {
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "rotationPeriod": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "notificationPeriod": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18046,12 +17237,10 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "sms": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -18064,27 +17253,22 @@
         "properties": {
           "autoApproveInMinutes": {
             "type": "number",
-            "minimum": 1,
-            "description": ""
+            "minimum": 1
           },
           "reminderIntervalMinutes": {
             "type": "number",
-            "minimum": 60,
-            "description": ""
+            "minimum": 60
           },
           "notifyOnDecisions": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "timeoutMinutes": {
             "type": "number",
             "minimum": 5,
-            "maximum": 10080,
-            "description": ""
+            "maximum": 10080
           },
           "webhookUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -18095,22 +17279,19 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "emails": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         }
       },
@@ -18119,8 +17300,7 @@
         "properties": {
           "minApprovals": {
             "type": "number",
-            "minimum": 1,
-            "description": ""
+            "minimum": 1
           }
         },
         "required": [
@@ -18131,17 +17311,14 @@
         "type": "object",
         "properties": {
           "approverSelectors": {
-            "$ref": "#/components/schemas/ApproverSelectorDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApproverSelectorDto"
           },
           "configuration": {
-            "$ref": "#/components/schemas/StepConfigurationDto",
-            "description": ""
+            "$ref": "#/components/schemas/StepConfigurationDto"
           },
           "stepOrder": {
             "type": "number",
-            "minimum": 1,
-            "description": ""
+            "minimum": 1
           }
         },
         "required": [
@@ -18154,31 +17331,25 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannelDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApprovalFlowChannelDto"
           },
           "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto"
           },
           "steps": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateApprovalFlowStepDto"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -18196,28 +17367,22 @@
         "type": "object",
         "properties": {
           "autoApproveInMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "reminderIntervalMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "notifyOnDecisions": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "logging": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "timeoutMinutes": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "webhookUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -18228,22 +17393,19 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "emails": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "phoneNumbers": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -18256,8 +17418,7 @@
         "type": "object",
         "properties": {
           "minApprovals": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         }
       },
@@ -18265,30 +17426,24 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "stepOrder": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "approverSelectors": {
-            "$ref": "#/components/schemas/ApproverSelectorResponseDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApproverSelectorResponseDto"
           },
           "configuration": {
-            "$ref": "#/components/schemas/StepConfigurationResponseDto",
-            "description": ""
+            "$ref": "#/components/schemas/StepConfigurationResponseDto"
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18304,53 +17459,42 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannel",
-            "description": ""
+            "$ref": "#/components/schemas/ApprovalFlowChannel"
           },
           "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationResponseDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApprovalFlowConfigurationResponseDto"
           },
           "steps": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ApprovalFlowStepResponseDto"
-            },
-            "description": ""
+            }
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18372,12 +17516,10 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-            },
-            "description": ""
+            }
           },
           "total": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           }
         },
         "required": [
@@ -18389,31 +17531,25 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannelDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApprovalFlowChannelDto"
           },
           "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto",
-            "description": ""
+            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto"
           },
           "steps": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateApprovalFlowStepDto"
-            },
-            "description": ""
+            }
           }
         }
       },
@@ -18421,20 +17557,16 @@
         "type": "object",
         "properties": {
           "approved": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "approvalFlowExecutionId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "approverId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "approvalFlowStepId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18448,25 +17580,20 @@
         "type": "object",
         "properties": {
           "approvalFlowName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "approvalFlowDescription": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "requester": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "approvalFlowRequestDate": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "executionData": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           }
         },
         "required": [
@@ -18479,12 +17606,10 @@
         "type": "object",
         "properties": {
           "executionData": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "webhookUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -18524,8 +17649,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/IdentityRuleDto"
-            },
-            "description": ""
+            }
           }
         }
       },
@@ -18713,12 +17837,10 @@
               "ALLOW",
               "BLOCK"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         }
       },
@@ -18734,20 +17856,17 @@
             "description": "IP or CIDR (v4 and v6 are supported)"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "strategy": {
             "type": "string",
             "enum": [
               "ALLOW",
               "BLOCK"
-            ],
-            "description": ""
+            ]
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -18760,16 +17879,14 @@
         "properties": {
           "domain": {
             "type": "string",
-            "pattern": "domainRegex",
-            "description": ""
+            "pattern": "domainRegex"
           },
           "type": {
             "type": "string",
             "enum": [
               "ALLOW",
               "BLOCK"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -18781,20 +17898,17 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "domain": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "type": {
             "enum": [
               "ALLOW",
               "BLOCK"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18807,20 +17921,17 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "listType": {
             "enum": [
               "ALLOW",
               "BLOCK"
             ],
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "blockPublicDomains": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -18833,20 +17944,17 @@
         "type": "object",
         "properties": {
           "active": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "blockPublicDomains": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "type": {
             "type": "string",
             "enum": [
               "ALLOW",
               "BLOCK"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -18861,16 +17969,14 @@
             "enum": [
               "ALLOW",
               "BLOCK"
-            ],
-            "description": ""
+            ]
           },
           "domains": {
             "type": "array",
             "items": {
               "type": "string",
               "pattern": "domainRegexString"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -18923,16 +18029,14 @@
         "type": "object",
         "properties": {
           "forcePermissions": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "machineToMachineAuthStrategy": {
             "type": "string",
             "enum": [
               "ClientCredentials",
               "AccessToken"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -18944,24 +18048,19 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastTermsCheck": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18973,20 +18072,17 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "deviceType": {
             "type": "string",
             "enum": [
               "Platform",
               "CrossPlatform"
-            ],
-            "description": ""
+            ]
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -18999,12 +18095,10 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19016,8 +18110,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19028,8 +18121,7 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19043,29 +18135,25 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserMFAWebAuthnDeviceResponse"
-            },
-            "description": ""
+            }
           },
           "phones": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserMFAPhoneDeviceResponse"
-            },
-            "description": ""
+            }
           },
           "authenticators": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserMFAAuthenticatorAppResponse"
-            },
-            "description": ""
+            }
           },
           "emails": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserMFAEmailCodeResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -19080,84 +18168,64 @@
         "properties": {
           "tokenType": {
             "type": "string",
-            "default": "bearer",
-            "description": ""
+            "default": "bearer"
           },
           "otcToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "mfaRequired": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "resetPasswordToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "passwordExpiresIn": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "notificationPeriod": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "mfaEnrolled": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "mfaDevices": {
-            "$ref": "#/components/schemas/UserMFADevicesResponse",
-            "description": ""
+            "$ref": "#/components/schemas/UserMFADevicesResponse"
           },
           "mfaStrategies": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "qrCode": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "recoveryCode": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "accessToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "refreshToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expiresIn": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "expires": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userEmail": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "emailVerified": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "isBreachedPassword": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19172,28 +18240,22 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "lastTermsCheck": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19206,8 +18268,7 @@
         "type": "object",
         "properties": {
           "shouldSetPassword": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19219,23 +18280,20 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": ""
+            "description": "User email. Either email or username must be provided."
           },
           "username": {
             "type": "string",
             "description": "Username. Either email or username must be provided."
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19250,12 +18308,10 @@
         "type": "object",
         "properties": {
           "clientId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "secret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19267,20 +18323,16 @@
         "type": "object",
         "properties": {
           "access_token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "refresh_token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "expires_in": {
-            "type": "number",
-            "description": ""
+            "type": "number"
           },
           "expires": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19294,8 +18346,7 @@
         "type": "object",
         "properties": {
           "refreshToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19306,28 +18357,22 @@
         "type": "object",
         "properties": {
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "username": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19341,12 +18386,10 @@
         "type": "object",
         "properties": {
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "resetPhoneNumberToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -19358,12 +18401,10 @@
             "description": "One time code to login with - get it from the email sent after prelogin request"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19374,24 +18415,19 @@
         "type": "object",
         "properties": {
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "username": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19404,16 +18440,13 @@
         "type": "object",
         "properties": {
           "value": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "rememberDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19425,8 +18458,7 @@
         "type": "object",
         "properties": {
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19441,20 +18473,16 @@
         "type": "object",
         "properties": {
           "otcToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "rememberDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19467,8 +18495,7 @@
         "type": "object",
         "properties": {
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19491,16 +18518,13 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "rememberDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19513,8 +18537,7 @@
         "properties": {
           "phoneNumber": {
             "type": "string",
-            "pattern": "phoneNumberRegexp",
-            "description": ""
+            "pattern": "phoneNumberRegexp"
           }
         },
         "required": [
@@ -19529,12 +18552,10 @@
         "type": "object",
         "properties": {
           "otcToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19550,20 +18571,16 @@
         "type": "object",
         "properties": {
           "otcToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "rememberDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19580,8 +18597,7 @@
         "type": "object",
         "properties": {
           "options": {
-            "$ref": "#/components/schemas/WebAuthnCredentialCreationOptions",
-            "description": ""
+            "$ref": "#/components/schemas/WebAuthnCredentialCreationOptions"
           }
         },
         "required": [
@@ -19592,12 +18608,10 @@
         "type": "object",
         "properties": {
           "clientDataJSON": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "attestationObject": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19609,20 +18623,17 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "response": {
-            "$ref": "#/components/schemas/WebAuthNClientResponse",
-            "description": ""
+            "$ref": "#/components/schemas/WebAuthNClientResponse"
           },
           "deviceType": {
             "type": "string",
             "enum": [
               "Platform",
               "CrossPlatform"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -19638,24 +18649,19 @@
             "enum": [
               "Platform",
               "CrossPlatform"
-            ],
-            "description": ""
+            ]
           },
           "webauthnToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "options": {
-            "$ref": "#/components/schemas/VerifyNewWebAuthnDeviceRequest",
-            "description": ""
+            "$ref": "#/components/schemas/VerifyNewWebAuthnDeviceRequest"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "rememberDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19673,20 +18679,16 @@
         "type": "object",
         "properties": {
           "clientDataJSON": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "authenticatorData": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "signature": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "userHandle": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19700,20 +18702,16 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "response": {
-            "$ref": "#/components/schemas/WebAuthNResponse",
-            "description": ""
+            "$ref": "#/components/schemas/WebAuthNResponse"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19725,20 +18723,16 @@
         "type": "object",
         "properties": {
           "webauthnToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "options": {
-            "$ref": "#/components/schemas/AuthenticateUserWebAuthNDto",
-            "description": ""
+            "$ref": "#/components/schemas/AuthenticateUserWebAuthNDto"
           },
           "mfaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "rememberDevice": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -19755,8 +18749,7 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19767,8 +18760,7 @@
         "type": "object",
         "properties": {
           "recoveryCode": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19779,12 +18771,10 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19796,16 +18786,13 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "token": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "code": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19829,64 +18816,51 @@
               "scim2",
               "slack",
               "apple"
-            ],
-            "description": ""
+            ]
           },
           "metadata": {
             "type": "string",
             "description": "Stringified JSON object. Use the JSON.stringify() method."
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "username": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
             "type": "string",
-            "maxLength": 4095,
-            "description": ""
+            "maxLength": 4095
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "skipInviteEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "companyName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -19899,24 +18873,19 @@
         "type": "object",
         "properties": {
           "shouldActivate": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "userId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "authResponse": {
-            "$ref": "#/components/schemas/AuthenticationResponseDto",
-            "description": ""
+            "$ref": "#/components/schemas/AuthenticationResponseDto"
           },
           "activationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -19935,8 +18904,7 @@
               "scim2",
               "slack",
               "apple"
-            ],
-            "description": ""
+            ]
           },
           "metadata": {
             "type": "string",
@@ -19945,56 +18913,44 @@
           "username": {
             "type": "string",
             "maxLength": 255,
-            "pattern": "/^[a-zA-Z0-9._-]+$/",
-            "description": ""
+            "pattern": "/^[a-zA-Z0-9._-]+$/"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "profilePictureUrl": {
             "type": "string",
-            "maxLength": 4095,
-            "description": ""
+            "maxLength": 4095
           },
           "password": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "skipInviteEmail": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "roleIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "emailMetadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "companyName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "recaptchaToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "invitationToken": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "email": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "phoneNumber": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -20007,12 +18963,10 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -20031,15 +18985,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/RoleResponse"
-            },
-            "description": ""
+            }
           },
           "permissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PermissionResponse"
-            },
-            "description": ""
+            }
           }
         },
         "required": [

@@ -39,8 +39,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -76,8 +75,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -142,8 +140,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -181,8 +178,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "key",
@@ -190,8 +186,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -225,8 +220,7 @@
             "in": "query",
             "schema": {
               "type": "number"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_filter",
@@ -290,8 +284,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -313,8 +306,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -337,8 +329,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -399,8 +390,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -435,8 +425,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -471,8 +460,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -620,8 +608,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -768,7 +755,7 @@
   "info": {
     "title": "Account Management Overview",
     "description": "\nFrontegg is built with multi-tenancy in mind, allowing the creation and management of multiple accounts (tenants) within an environment. This section provides an overview of relevant API endpoints, organized into Management and Self-Service categories, supporting the creation of accounts, hierarchies, and sub-accounts.\n\n**Management Endpoints**: Require environment-level authorization and offer full control over resources, including SSO (SAML and OIDC) configurations, account hierarchies, and sub-accounts.\n\n**Self-Service Endpoints**: Accessible with a user token (JWT), enabling users with the appropriate permissions to create, update, and delete sub-accounts from ah hierarchy.",
-    "version": ""
+    "version": "1.0"
   },
   "servers": [
     {
@@ -814,56 +801,45 @@
             "description": "Send your own unique tenantId or Frontegg will auto-generate a UUID"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "status": {
             "type": "string",
             "description": "This field can be used for custom logic, it is not enforced in Frontegg flows"
           },
           "website": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "applicationUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "logo": {
             "type": "string",
             "description": "Base64-encoded image to use as logo."
           },
           "logoUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "address": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "timezone": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "currency": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "creatorName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "creatorEmail": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isReseller": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "parentTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },
@@ -882,8 +858,7 @@
                   "maximumUsers": 50
                 }
               }
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -898,16 +873,13 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "parentTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "status": {
             "type": "string",
@@ -918,20 +890,16 @@
             "description": "Base64-encoded image to use as logo."
           },
           "logoUrl": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "creatorName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "creatorEmail": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isReseller": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -959,8 +927,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -971,12 +938,10 @@
         "type": "object",
         "properties": {
           "parentTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "childTenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         }
       },

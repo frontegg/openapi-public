@@ -17,8 +17,7 @@
                 "MANAGED_ACCESS"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_isDefault",
@@ -26,8 +25,7 @@
             "in": "query",
             "schema": {
               "type": "boolean"
-            },
-            "description": ""
+            }
           },
           {
             "name": "_isActive",
@@ -35,8 +33,7 @@
             "in": "query",
             "schema": {
               "type": "boolean"
-            },
-            "description": ""
+            }
           },
           {
             "name": "ids",
@@ -44,8 +41,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "type",
@@ -63,8 +59,7 @@
                   "other"
                 ]
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontendStack",
@@ -87,8 +82,7 @@
                   "swift"
                 ]
               }
-            },
-            "description": ""
+            }
           },
           {
             "name": "name",
@@ -105,8 +99,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -195,8 +188,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -226,8 +218,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -260,8 +251,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -286,8 +276,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "tenantIds",
@@ -295,8 +284,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "accessType",
@@ -308,8 +296,7 @@
                 "MANAGED_ACCESS"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -353,8 +340,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -384,8 +370,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -427,8 +412,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "tenantId",
@@ -436,8 +420,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -470,8 +453,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "tenantId",
@@ -479,8 +461,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -505,8 +486,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "tenantIds",
@@ -514,8 +494,7 @@
             "in": "query",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "accessType",
@@ -527,8 +506,7 @@
                 "MANAGED_ACCESS"
               ],
               "type": "string"
-            },
-            "description": ""
+            }
           },
           {
             "name": "frontegg-tenant-id",
@@ -572,8 +550,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -674,8 +651,7 @@
         },
         "tags": [
           "Applications settings"
-        ],
-        "description": ""
+        ]
       }
     },
     "/application-clients/app/{appId}": {
@@ -689,8 +665,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -710,8 +685,7 @@
         },
         "tags": [
           "Applications settings"
-        ],
-        "description": ""
+        ]
       }
     },
     "/application-clients/{id}": {
@@ -725,8 +699,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -743,8 +716,7 @@
         },
         "tags": [
           "Applications settings"
-        ],
-        "description": ""
+        ]
       },
       "patch": {
         "operationId": "updateApplicationClient",
@@ -756,8 +728,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "requestBody": {
@@ -784,8 +755,7 @@
         },
         "tags": [
           "Applications settings"
-        ],
-        "description": ""
+        ]
       },
       "delete": {
         "operationId": "deleteApplicationClient",
@@ -797,8 +767,7 @@
             "in": "path",
             "schema": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         ],
         "responses": {
@@ -808,15 +777,14 @@
         },
         "tags": [
           "Applications settings"
-        ],
-        "description": ""
+        ]
       }
     }
   },
   "info": {
     "title": "Multi-Apps Overview",
     "description": "Frontegg’s Multi-Apps feature simplifies and streamlines application management, delivering a seamless user experience. This section includes all necessary endpoints for managing applications and copying application settings across environments. All endpoints are categorized as **Management Endpoints**, requiring environment-level authorization and providing full control over entitlement resources.",
-    "version": "",
+    "version": "1.0",
     "x-metadata": {
       "note": "Trigger publish artifacts job, remove this x-metadata after publishing"
     }
@@ -861,80 +829,62 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "vendorId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "accessType": {
             "type": "string",
             "enum": [
               "FREE_ACCESS",
               "MANAGED_ACCESS"
-            ],
-            "description": ""
+            ]
           },
           "appURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "loginURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "isDefault": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "isActive": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           },
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "logoURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "createdAt": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "type": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "frontendStack": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "integrationFinishedAt": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "appHost": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowDcr": {
-            "type": "boolean",
-            "description": ""
+            "type": "boolean"
           }
         },
         "required": [
@@ -960,38 +910,31 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "loginURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "logoURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "accessType": {
             "type": "string",
             "enum": [
               "FREE_ACCESS",
               "MANAGED_ACCESS"
-            ],
-            "description": ""
+            ]
           },
           "isDefault": {
             "type": "boolean",
-            "default": false,
-            "description": ""
+            "default": false
           },
           "isActive": {
             "type": "boolean",
-            "default": true,
-            "description": ""
+            "default": true
           },
           "type": {
             "type": "string",
@@ -1002,8 +945,7 @@
               "mobile-android",
               "agent",
               "other"
-            ],
-            "description": ""
+            ]
           },
           "frontendStack": {
             "type": "string",
@@ -1019,21 +961,17 @@
               "react-native",
               "kotlin",
               "swift"
-            ],
-            "description": ""
+            ]
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "allowDcr": {
             "type": "boolean",
-            "default": false,
-            "description": ""
+            "default": false
           }
         },
         "required": [
@@ -1046,65 +984,52 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "loginURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "logoURL": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "accessType": {
             "type": "string",
             "enum": [
               "FREE_ACCESS",
               "MANAGED_ACCESS"
-            ],
-            "description": ""
+            ]
           },
           "isDefault": {
             "type": "boolean",
-            "default": false,
-            "description": ""
+            "default": false
           },
           "isActive": {
             "type": "boolean",
-            "default": true,
-            "description": ""
+            "default": true
           },
           "type": {
             "type": "string",
-            "default": "web",
-            "description": ""
+            "default": "web"
           },
           "frontendStack": {
             "type": "string",
-            "default": "react",
-            "description": ""
+            "default": "react"
           },
           "description": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "metadata": {
-            "type": "object",
-            "description": ""
+            "type": "object"
           },
           "appHost": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "allowDcr": {
             "type": "boolean",
-            "default": false,
-            "description": ""
+            "default": false
           }
         }
       },
@@ -1112,15 +1037,13 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "appIds": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -1135,8 +1058,7 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -1147,16 +1069,14 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "accessType": {
             "type": "string",
             "enum": [
               "FREE_ACCESS",
               "MANAGED_ACCESS"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -1171,8 +1091,7 @@
             "enum": [
               "FREE_ACCESS",
               "MANAGED_ACCESS"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -1183,16 +1102,14 @@
         "type": "object",
         "properties": {
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "accessType": {
             "type": "string",
             "enum": [
               "FREE_ACCESS",
               "MANAGED_ACCESS"
-            ],
-            "description": ""
+            ]
           }
         },
         "required": [
@@ -1204,15 +1121,13 @@
         "type": "object",
         "properties": {
           "tenantId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "assignments": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ApplicationTenantAssignmentAccessType"
-            },
-            "description": ""
+            }
           }
         },
         "required": [
@@ -1224,12 +1139,10 @@
         "type": "object",
         "properties": {
           "clientSecret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "sharedSecret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -1241,8 +1154,7 @@
         "type": "object",
         "properties": {
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -1253,22 +1165,19 @@
         "type": "object",
         "properties": {
           "clientName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientType": {
             "type": "string",
             "enum": [
               "Agent"
-            ],
-            "description": ""
+            ]
           },
           "redirectURLs": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "externalMetadata": {
             "type": "object",
@@ -1288,30 +1197,25 @@
             "description": "Client ID (UUID)"
           },
           "appId": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientSecret": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "clientType": {
             "type": "string",
             "enum": [
               "Agent"
-            ],
-            "description": ""
+            ]
           },
           "redirectURLs": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "externalMetadata": {
             "type": "object",
@@ -1320,13 +1224,11 @@
           },
           "createdAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "updatedAt": {
             "format": "date-time",
-            "type": "string",
-            "description": ""
+            "type": "string"
           }
         },
         "required": [
@@ -1344,15 +1246,13 @@
         "type": "object",
         "properties": {
           "clientName": {
-            "type": "string",
-            "description": ""
+            "type": "string"
           },
           "redirectURLs": {
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "description": ""
+            }
           },
           "externalMetadata": {
             "type": "object",
