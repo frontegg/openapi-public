@@ -1882,6 +1882,16 @@
         "summary": "Create Entity Type",
         "description": "Create a new entity type (e.g. document, folder, project).",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityTypeRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "",
@@ -1935,6 +1945,16 @@
         "summary": "Update Entity Type",
         "description": "Update an existing entity type.",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityTypeRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -1972,6 +1992,16 @@
         "summary": "Create Entity Type Actions",
         "description": "Creates an action on an entity type and defines, via relationKeys, how permission is granted directly or through hierarchical relationships.",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityTypeActionsRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "",
@@ -1998,6 +2028,16 @@
         "summary": "Update Entity Type Action",
         "description": "Update an existing action's relation mappings.",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityTypeActionUpdateRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -2035,6 +2075,16 @@
         "summary": "Create Entity Type Relations",
         "description": "Define schema-level relation types (e.g. reader, owner, parent) and which entity types can be subjects.",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityTypeRelationsRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "",
@@ -2061,6 +2111,16 @@
         "summary": "Update Entity Type Relation",
         "description": "Modify a relation's allowed subject entity types.",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityTypeRelationUpdateRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -3678,6 +3738,64 @@
           "actions"
         ]
       },
+      "EntityTypeRequest": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "document"
+          },
+          "description": {
+            "type": "string",
+            "example": "Representation of a Word document file"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "EntityTypeActionRequest": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "read"
+          },
+          "relationKeys": {
+            "example": [
+              "reader",
+              "writer",
+              {
+                "fromRelation": "parent",
+                "toAction": "read"
+              }
+            ],
+            "description": "Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "relationKeys"
+        ]
+      },
+      "EntityTypeActionsRequest": {
+        "type": "object",
+        "properties": {
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityTypeActionRequest"
+            }
+          }
+        },
+        "required": [
+          "actions"
+        ]
+      },
       "EntityTypeActionsResponse": {
         "type": "object",
         "properties": {
@@ -3719,6 +3837,71 @@
           "relationKeys"
         ]
       },
+      "EntityTypeActionUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "read"
+          },
+          "relationKeys": {
+            "example": [
+              "reader",
+              "writer",
+              {
+                "fromRelation": "parent",
+                "toAction": "read"
+              }
+            ],
+            "description": "Array of relation keys (strings) or arrow syntax objects ({ fromRelation, toAction })",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "relationKeys"
+        ]
+      },
+      "EntityTypeRelationRequest": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "reader"
+          },
+          "subjectEntityKeys": {
+            "example": [
+              "copywriter",
+              "customer"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "subjectEntityKeys"
+        ]
+      },
+      "EntityTypeRelationsRequest": {
+        "type": "object",
+        "properties": {
+          "relations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityTypeRelationRequest"
+            }
+          }
+        },
+        "required": [
+          "relations"
+        ]
+      },
       "EntityTypeRelationResponse": {
         "type": "object",
         "properties": {
@@ -3754,6 +3937,29 @@
           "targetEntityTypeKey",
           "key",
           "subjectEntityTypeKeys"
+        ]
+      },
+      "EntityTypeRelationUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "reader"
+          },
+          "subjectEntityKeys": {
+            "example": [
+              "copywriter",
+              "customer"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "subjectEntityKeys"
         ]
       },
       "RelationAssignmentDto": {
