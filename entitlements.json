@@ -4028,13 +4028,53 @@
           "hasNext"
         ]
       },
+      "RelationAssignmentRequestDto": {
+        "type": "object",
+        "properties": {
+          "subjectEntityTypeKey": {
+            "type": "string",
+            "example": "user"
+          },
+          "subjectKey": {
+            "type": "string",
+            "example": "anthony@email-of.his"
+          },
+          "relationKey": {
+            "type": "string",
+            "example": "reader"
+          },
+          "targetEntityTypeKey": {
+            "type": "string",
+            "example": "document"
+          },
+          "targetKey": {
+            "type": "string",
+            "example": "document-1.doc"
+          },
+          "activeFrom": {
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "activeUntil": {
+            "type": "string",
+            "example": "2024-12-31T23:59:59Z"
+          }
+        },
+        "required": [
+          "subjectEntityTypeKey",
+          "subjectKey",
+          "relationKey",
+          "targetEntityTypeKey",
+          "targetKey"
+        ]
+      },
       "RelationAssignmentsRequest": {
         "type": "object",
         "properties": {
           "assignments": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RelationAssignmentDto"
+              "$ref": "#/components/schemas/RelationAssignmentRequestDto"
             }
           }
         },
