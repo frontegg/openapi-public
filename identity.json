@@ -1060,331 +1060,6 @@
         ]
       }
     },
-    "/resources/approval-flows/v1": {
-      "post": {
-        "operationId": "ApprovalFlowsController_createApprovalFlow",
-        "summary": "Create approval flow",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          },
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      },
-      "get": {
-        "operationId": "ApprovalFlowsController_getApprovalFlows",
-        "summary": "Get approval flows",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowsListResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      }
-    },
-    "/resources/approval-flows/v1/{id}": {
-      "get": {
-        "operationId": "ApprovalFlowsController_getApprovalFlowById",
-        "summary": "Get approval flow by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      },
-      "patch": {
-        "operationId": "ApprovalFlowsController_updateApprovalFlow",
-        "summary": "Update approval flow",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      },
-      "delete": {
-        "operationId": "ApprovalFlowsController_deleteApprovalFlow",
-        "summary": "Delete approval flow",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      }
-    },
-    "/resources/approval-flows/v1/approver-action": {
-      "post": {
-        "operationId": "ApprovalFlowsController_approverAction",
-        "summary": "Approver action",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApproverActionDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      }
-    },
-    "/resources/approval-flows/v1/execution-data": {
-      "get": {
-        "operationId": "ApprovalFlowsController_getExecutionData",
-        "summary": "Get approval flow execution data",
-        "parameters": [
-          {
-            "name": "approvalFlowExecutionId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "approverId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "approvalFlowStepId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExecutionDataResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      }
-    },
-    "/resources/approval-flows/v1/{id}/execute": {
-      "post": {
-        "operationId": "ApprovalFlowsController_executeApprovalFlow",
-        "summary": "Execute approval flow",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExecuteApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      }
-    },
-    "/resources/approval-flows/v1/step-up/execute": {
-      "post": {
-        "operationId": "ApprovalFlowsController_executeStepUpApprovalFlow",
-        "summary": "Execute step up approval flow",
-        "parameters": [
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExecuteApprovalFlowDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Approval Flows"
-        ]
-      }
-    },
     "/resources/configurations/v1": {
       "post": {
         "operationId": "VendorConfigController_addOrUpdateConfig",
@@ -2121,6 +1796,37 @@
         "operationId": "UsersControllerV1_checkBulkMigrationStatus",
         "summary": "Check status of bulk migration",
         "description": "Retrieve the status of a pending or completed migration.\n\nThe response includes the migration's `state`, the number of migrated users, and any errors that occurred during the migration. The response payload is limited to 1,000 users.",
+        "parameters": [
+          {
+            "name": "migrationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MigrationObject"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Data migration"
+        ]
+      }
+    },
+    "/resources/migrations/v1/local/bulk/status/{migrationId}/retrigger": {
+      "post": {
+        "operationId": "UsersControllerV1_retriggerBulkMigration",
+        "summary": "Re-trigger a stuck bulk migration",
         "parameters": [
           {
             "name": "migrationId",
@@ -7688,6 +7394,38 @@
         ]
       }
     },
+    "/resources/tenants/users/stats/v1": {
+      "get": {
+        "operationId": "TenantUserStatsControllerV1_getTenantUserStats",
+        "summary": "Get tenant user stats",
+        "parameters": [
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantUserStatsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User management"
+        ]
+      }
+    },
     "/resources/users/temporary/v1/{userId}": {
       "put": {
         "operationId": "TemporaryUsersV1Controller_editTimeLimit",
@@ -10137,6 +9875,39 @@
         ]
       }
     },
+    "/resources/user-sources/v1/saml-federation": {
+      "post": {
+        "operationId": "UserSourcesControllerV1_createSamlFederationUserSource",
+        "summary": "Create SAML Federation user source",
+        "description": "This route creates a SAML federation user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSamlFederationUserSourceRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserSourceResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User pools"
+        ]
+      }
+    },
     "/resources/user-sources/v1/external/auth0/{id}": {
       "put": {
         "operationId": "UserSourcesControllerV1_updateAuth0ExternalUserSource",
@@ -10312,6 +10083,41 @@
         ]
       }
     },
+    "/resources/user-sources/v1/saml-federation/{id}": {
+      "put": {
+        "operationId": "UserSourcesControllerV1_updateSamlFederationUserSource",
+        "summary": "Update SAML Federation user source",
+        "description": "This route updates a SAML federation user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSamlFederationUserSourceRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User pools"
+        ]
+      }
+    },
     "/resources/user-sources/v1/assign": {
       "post": {
         "operationId": "UserSourcesControllerV1_assignUserSource",
@@ -10416,42 +10222,6 @@
         ]
       }
     },
-    "/resources/users/sessions/v1/me": {
-      "get": {
-        "operationId": "UserSessionsControllerV1_getActiveSessions",
-        "summary": "Get user's active sessions",
-        "description": "Retrieve all active sessions for a user.",
-        "parameters": [
-          {
-            "name": "frontegg-user-id",
-            "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GetActiveSessionsResponse"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "User sessions"
-        ]
-      }
-    },
     "/resources/users/sessions/v1/me/all": {
       "delete": {
         "operationId": "UserSessionsControllerV1_deleteAllUserActiveSessions",
@@ -10505,6 +10275,42 @@
         "responses": {
           "200": {
             "description": ""
+          }
+        },
+        "tags": [
+          "User sessions"
+        ]
+      }
+    },
+    "/resources/users/sessions/v1/me": {
+      "get": {
+        "operationId": "UserSessionsControllerV1_getActiveSessions",
+        "summary": "Get user's active sessions",
+        "description": "Retrieve all active sessions for a user.",
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetActiveSessionsResponse"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -11967,10 +11773,6 @@
           "roles"
         ]
       },
-      "GetActiveSessionsResponse": {
-        "type": "object",
-        "properties": {}
-      },
       "RecoverMfaDto": {
         "type": "object",
         "properties": {
@@ -11990,7 +11792,8 @@
         "type": "object",
         "properties": {
           "defaultTokenExpiration": {
-            "type": "number"
+            "type": "number",
+            "minimum": 10
           },
           "defaultRefreshTokenExpiration": {
             "type": "number",
@@ -14152,6 +13955,25 @@
         "required": [
           "userId",
           "tenantsStatuses"
+        ]
+      },
+      "TenantUserStatsResponseDto": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number"
+          },
+          "disabled": {
+            "type": "number"
+          },
+          "locked": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "total",
+          "disabled",
+          "locked"
         ]
       },
       "AddRoleRequest": {
@@ -16423,6 +16245,73 @@
           "index"
         ]
       },
+      "ExternalCognitoAttributeMapEntryConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The Cognito attribute used as the unique user identifier"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ExternalCognitoUsernameAttributeEnum": {
+        "type": "string",
+        "description": "Defines which Cognito field is used for attributeMap.username",
+        "enum": [
+          "preferred_username",
+          "username"
+        ]
+      },
+      "ExternalCognitoUsernameAttributeMapEntryConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "example": "preferred_username",
+            "$ref": "#/components/schemas/ExternalCognitoUsernameAttributeEnum"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ExternalCognitoPhoneNumberAttributeMapEntryConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The Cognito attribute used as the unique user identifier"
+          },
+          "verifiedMigrationPolicy": {
+            "type": "string",
+            "enum": [
+              "AlwaysVerified",
+              "AlwaysUnverified",
+              "FromSource"
+            ],
+            "description": "Defines how the phone number verification status is resolved during migration. Defaults to FromSource (uses Cognito phone_number_verified)."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ExternalCognitoAttributeMapConfig": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/ExternalCognitoAttributeMapEntryConfig"
+          },
+          "username": {
+            "$ref": "#/components/schemas/ExternalCognitoUsernameAttributeMapEntryConfig"
+          },
+          "phoneNumber": {
+            "$ref": "#/components/schemas/ExternalCognitoPhoneNumberAttributeMapEntryConfig"
+          }
+        }
+      },
       "ExternalCognitoUserSourceConfig": {
         "type": "object",
         "properties": {
@@ -16468,6 +16357,14 @@
               },
               {
                 "$ref": "#/components/schemas/UserSourceNewTenantConfig"
+              }
+            ]
+          },
+          "attributeMap": {
+            "description": "Maps Frontegg identifier fields to Cognito attribute names",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalCognitoAttributeMapConfig"
               }
             ]
           }
@@ -16753,6 +16650,16 @@
             "items": {
               "type": "string"
             }
+          },
+          "codeChallengeMethods": {
+            "description": "The PKCE code challenge methods",
+            "example": [
+              "S256"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -16782,11 +16689,15 @@
           },
           "clientId": {
             "type": "string",
-            "description": "The client id from the service provider"
+            "description": "The client id from the identity provider"
           },
           "secret": {
             "type": "string",
-            "description": "The secret from the service provider"
+            "description": "The secret from the identity provider, required if not using PKCE"
+          },
+          "usePkce": {
+            "type": "boolean",
+            "description": "Whether to use PKCE"
           },
           "tenantConfig": {
             "oneOf": [
@@ -16805,7 +16716,6 @@
         "required": [
           "syncOnLogin",
           "clientId",
-          "secret",
           "tenantConfig"
         ]
       },
@@ -16826,6 +16736,133 @@
           },
           "appIds": {
             "description": "The application Ids to assign to this user source",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "index": {
+            "type": "number",
+            "description": "The user source index"
+          },
+          "description": {
+            "type": "string",
+            "description": "The user source description"
+          }
+        },
+        "required": [
+          "name",
+          "configuration",
+          "index"
+        ]
+      },
+      "SamlFederationAttributeMapping": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "SAML attribute name for email",
+            "example": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+          },
+          "name": {
+            "type": "string",
+            "description": "SAML attribute name for name",
+            "example": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+          }
+        }
+      },
+      "SamlFederationUserSourceConfig": {
+        "type": "object",
+        "properties": {
+          "syncOnLogin": {
+            "type": "boolean",
+            "description": "Whether to sync user profile attributes on each login"
+          },
+          "idpEntityId": {
+            "type": "string",
+            "description": "Entity ID of the external SAML IdP"
+          },
+          "idpSsoUrl": {
+            "type": "string",
+            "description": "SSO URL for HTTP-Redirect binding"
+          },
+          "idpCertificate": {
+            "type": "string",
+            "description": "IdP signing certificate in PEM format"
+          },
+          "spEntityId": {
+            "type": "string",
+            "description": "SP Entity ID. Defaults to https://{vendorHost}/oauth/saml-federation/metadata"
+          },
+          "spSigningCertificate": {
+            "type": "string",
+            "description": "SP signing certificate for signed AuthnRequests"
+          },
+          "spSigningPrivateKey": {
+            "type": "string",
+            "description": "SP signing private key (encrypted) for signed AuthnRequests"
+          },
+          "signAuthnRequest": {
+            "type": "boolean",
+            "description": "Whether to sign AuthnRequests",
+            "default": false
+          },
+          "attributeMapping": {
+            "description": "Mapping of SAML attributes to user properties",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SamlFederationAttributeMapping"
+              }
+            ]
+          },
+          "wantAssertionsSigned": {
+            "type": "boolean",
+            "description": "Require signed assertions",
+            "default": true
+          },
+          "wantResponseSigned": {
+            "type": "boolean",
+            "description": "Require signed response"
+          },
+          "tenantConfig": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UserSourceDynamicTenantConfig"
+              },
+              {
+                "$ref": "#/components/schemas/UserSourceStaticTenantConfig"
+              },
+              {
+                "$ref": "#/components/schemas/UserSourceNewTenantConfig"
+              }
+            ]
+          }
+        },
+        "required": [
+          "syncOnLogin",
+          "idpEntityId",
+          "idpSsoUrl",
+          "idpCertificate",
+          "tenantConfig"
+        ]
+      },
+      "CreateSamlFederationUserSourceRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The user source name"
+          },
+          "configuration": {
+            "description": "User source configuration",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SamlFederationUserSourceConfig"
+              }
+            ]
+          },
+          "appIds": {
+            "description": "The application ids to assign to this user source",
             "type": "array",
             "items": {
               "type": "string"
@@ -16971,6 +17008,31 @@
           }
         }
       },
+      "UpdateSamlFederationUserSourceRequestDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The user source name"
+          },
+          "configuration": {
+            "description": "User source configuration",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SamlFederationUserSourceConfig"
+              }
+            ]
+          },
+          "index": {
+            "type": "number",
+            "description": "The user source index"
+          },
+          "description": {
+            "type": "string",
+            "description": "The user source description"
+          }
+        }
+      },
       "AssignApplicationsToUserSourceRequestDTO": {
         "type": "object",
         "properties": {
@@ -17015,7 +17077,16 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
           },
           "lastLogin": {
             "format": "date-time",
@@ -17023,7 +17094,6 @@
           }
         },
         "required": [
-          "email",
           "lastLogin"
         ]
       },
@@ -17232,386 +17302,6 @@
           "code",
           "email"
         ]
-      },
-      "ApprovalFlowChannelDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "boolean"
-          },
-          "sms": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "email",
-          "sms"
-        ]
-      },
-      "ApprovalFlowConfigurationDto": {
-        "type": "object",
-        "properties": {
-          "autoApproveInMinutes": {
-            "type": "number",
-            "minimum": 1
-          },
-          "reminderIntervalMinutes": {
-            "type": "number",
-            "minimum": 60
-          },
-          "notifyOnDecisions": {
-            "type": "boolean"
-          },
-          "timeoutMinutes": {
-            "type": "number",
-            "minimum": 5,
-            "maximum": 10080
-          },
-          "webhookUrl": {
-            "type": "string"
-          }
-        }
-      },
-      "ApproverSelectorDto": {
-        "type": "object",
-        "properties": {
-          "roleKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "emails": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "phoneNumbers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "StepConfigurationDto": {
-        "type": "object",
-        "properties": {
-          "minApprovals": {
-            "type": "number",
-            "minimum": 1
-          }
-        },
-        "required": [
-          "minApprovals"
-        ]
-      },
-      "CreateApprovalFlowStepDto": {
-        "type": "object",
-        "properties": {
-          "approverSelectors": {
-            "$ref": "#/components/schemas/ApproverSelectorDto"
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/StepConfigurationDto"
-          },
-          "stepOrder": {
-            "type": "number",
-            "minimum": 1
-          }
-        },
-        "required": [
-          "approverSelectors",
-          "configuration",
-          "stepOrder"
-        ]
-      },
-      "CreateApprovalFlowDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannelDto"
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto"
-          },
-          "steps": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateApprovalFlowStepDto"
-            }
-          }
-        },
-        "required": [
-          "name",
-          "channels",
-          "configuration",
-          "steps"
-        ]
-      },
-      "ApprovalFlowChannel": {
-        "type": "object",
-        "properties": {}
-      },
-      "ApprovalFlowConfigurationResponseDto": {
-        "type": "object",
-        "properties": {
-          "autoApproveInMinutes": {
-            "type": "number"
-          },
-          "reminderIntervalMinutes": {
-            "type": "number"
-          },
-          "notifyOnDecisions": {
-            "type": "boolean"
-          },
-          "logging": {
-            "type": "boolean"
-          },
-          "timeoutMinutes": {
-            "type": "number"
-          },
-          "webhookUrl": {
-            "type": "string"
-          }
-        }
-      },
-      "ApproverSelectorResponseDto": {
-        "type": "object",
-        "properties": {
-          "roleKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "emails": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "phoneNumbers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "required": [
-          "roleKeys",
-          "emails",
-          "phoneNumbers"
-        ]
-      },
-      "StepConfigurationResponseDto": {
-        "type": "object",
-        "properties": {
-          "minApprovals": {
-            "type": "number"
-          }
-        }
-      },
-      "ApprovalFlowStepResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "stepOrder": {
-            "type": "number"
-          },
-          "approverSelectors": {
-            "$ref": "#/components/schemas/ApproverSelectorResponseDto"
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/StepConfigurationResponseDto"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "stepOrder",
-          "approverSelectors",
-          "configuration",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "ApprovalFlowResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "vendorId": {
-            "type": "string"
-          },
-          "tenantId": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannel"
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationResponseDto"
-          },
-          "steps": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApprovalFlowStepResponseDto"
-            }
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "vendorId",
-          "name",
-          "isActive",
-          "channels",
-          "configuration",
-          "steps",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "ApprovalFlowsListResponseDto": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApprovalFlowResponseDto"
-            }
-          },
-          "total": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "items",
-          "total"
-        ]
-      },
-      "UpdateApprovalFlowDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "channels": {
-            "$ref": "#/components/schemas/ApprovalFlowChannelDto"
-          },
-          "configuration": {
-            "$ref": "#/components/schemas/ApprovalFlowConfigurationDto"
-          },
-          "steps": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateApprovalFlowStepDto"
-            }
-          }
-        }
-      },
-      "ApproverActionDto": {
-        "type": "object",
-        "properties": {
-          "approved": {
-            "type": "boolean"
-          },
-          "approvalFlowExecutionId": {
-            "type": "string"
-          },
-          "approverId": {
-            "type": "string"
-          },
-          "approvalFlowStepId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "approved",
-          "approvalFlowExecutionId",
-          "approverId",
-          "approvalFlowStepId"
-        ]
-      },
-      "ExecutionDataResponseDto": {
-        "type": "object",
-        "properties": {
-          "approvalFlowName": {
-            "type": "string"
-          },
-          "approvalFlowDescription": {
-            "type": "string"
-          },
-          "requester": {
-            "type": "string"
-          },
-          "approvalFlowRequestDate": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "executionData": {
-            "type": "object"
-          }
-        },
-        "required": [
-          "approvalFlowName",
-          "requester",
-          "approvalFlowRequestDate"
-        ]
-      },
-      "ExecuteApprovalFlowDto": {
-        "type": "object",
-        "properties": {
-          "executionData": {
-            "type": "object"
-          },
-          "webhookUrl": {
-            "type": "string"
-          }
-        }
       },
       "JwtTemplateTargetingResponseDto": {
         "type": "object",
@@ -18740,6 +18430,10 @@
           "options",
           "mfaToken"
         ]
+      },
+      "GetActiveSessionsResponse": {
+        "type": "object",
+        "properties": {}
       },
       "CheckAllowRememberResponse": {
         "type": "object",
