@@ -885,6 +885,14 @@
           },
           "allowDcr": {
             "type": "boolean"
+          },
+          "dpopEnforcementType": {
+            "type": "string",
+            "enum": [
+              "disabled",
+              "supported",
+              "enforced"
+            ]
           }
         },
         "required": [
@@ -903,7 +911,8 @@
           "frontendStack",
           "description",
           "integrationFinishedAt",
-          "allowDcr"
+          "allowDcr",
+          "dpopEnforcementType"
         ]
       },
       "CreateApplicationRequest": {
@@ -972,6 +981,15 @@
           "allowDcr": {
             "type": "boolean",
             "default": false
+          },
+          "dpopEnforcementType": {
+            "type": "string",
+            "default": "disabled",
+            "enum": [
+              "disabled",
+              "supported",
+              "enforced"
+            ]
           }
         },
         "required": [
@@ -1030,6 +1048,15 @@
           "allowDcr": {
             "type": "boolean",
             "default": false
+          },
+          "dpopEnforcementType": {
+            "type": "string",
+            "default": "disabled",
+            "enum": [
+              "disabled",
+              "supported",
+              "enforced"
+            ]
           }
         }
       },

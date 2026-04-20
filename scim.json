@@ -206,6 +206,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Scim2DeleteConnectionConfigRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": ""
@@ -284,6 +294,9 @@
           "createdAt": {
             "format": "date-time",
             "type": "string"
+          },
+          "metadata": {
+            "type": "object"
           }
         },
         "required": [
@@ -313,6 +326,9 @@
           },
           "syncToUserManagement": {
             "type": "boolean"
+          },
+          "metadata": {
+            "type": "object"
           }
         },
         "required": [
@@ -343,11 +359,24 @@
         "properties": {
           "syncToUserManagement": {
             "type": "boolean"
+          },
+          "metadata": {
+            "type": "object"
           }
         },
         "required": [
           "syncToUserManagement"
         ]
+      },
+      "Scim2DeleteConnectionConfigRequest": {
+        "type": "object",
+        "properties": {
+          "deleteAll": {
+            "type": "boolean",
+            "description": "Whether to delete associated users and groups from Frontegg User Management",
+            "default": false
+          }
+        }
       }
     }
   },
