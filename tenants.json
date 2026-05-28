@@ -128,6 +128,58 @@
         ]
       }
     },
+    "/resources/tenants/v1/lock": {
+      "post": {
+        "operationId": "TenantControllerV1_lockTenants",
+        "summary": "Lock tenants (batch)",
+        "description": "Lock one or more tenants. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LockTenantsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
+    "/resources/tenants/v1/unlock": {
+      "post": {
+        "operationId": "TenantControllerV1_unlockTenants",
+        "summary": "Unlock tenants (batch)",
+        "description": "Unlock one or more tenants. A vendor token is required for this route, it can be obtained from the vendor authentication route.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnlockTenantsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
     "/resources/tenants/v1/{tenantId}/metadata": {
       "post": {
         "operationId": "TenantControllerV1_addTenantMetadata",
@@ -846,6 +898,38 @@
       "UpdateTenantRequest": {
         "type": "object",
         "properties": {}
+      },
+      "LockTenantsRequest": {
+        "type": "object",
+        "properties": {
+          "tenantIds": {
+            "description": "Tenant IDs to lock. Maximum 100 per request.",
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "tenantIds"
+        ]
+      },
+      "UnlockTenantsRequest": {
+        "type": "object",
+        "properties": {
+          "tenantIds": {
+            "description": "Tenant IDs to unlock. Maximum 100 per request.",
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "tenantIds"
+        ]
       },
       "AddTenantMetadataRequest": {
         "type": "object",
