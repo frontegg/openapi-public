@@ -75,8 +75,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -116,8 +116,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -147,18 +147,18 @@
         "summary": "Delete account (tenant) access token",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "name": "id",
             "required": true,
+            "in": "path",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "id",
-            "required": true,
-            "in": "path",
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -185,8 +185,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -226,8 +226,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -270,8 +270,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -302,8 +302,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -336,6 +336,270 @@
         ]
       }
     },
+    "/resources/tenants/api-tokens/v1/{apiTokenId}/public-keys": {
+      "post": {
+        "operationId": "TenantApiTokenPublicKeysV1Controller_createPublicKey",
+        "summary": "Upload a public key for private_key_jwt authentication",
+        "description": "Creates a new public key entry for the specified tenant API token. The key is used to verify client_assertion JWTs (RFC 7523) during private_key_jwt authentication at the OAuth token endpoint.",
+        "parameters": [
+          {
+            "name": "apiTokenId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantApiTokenPublicKeyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantApiTokenPublicKeyResponseDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantApiTokenPublicKeyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API tokens"
+        ]
+      },
+      "get": {
+        "operationId": "TenantApiTokenPublicKeysV1Controller_listPublicKeys",
+        "summary": "List public keys for an API token",
+        "description": "Returns the public keys for the specified tenant API token (active by default; pass includeInactive=true to include revoked keys). PEM is omitted from list items — use GET /:keyId for the full PEM.",
+        "parameters": [
+          {
+            "name": "apiTokenId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeInactive",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantApiTokenPublicKeyListItemResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API tokens",
+          "API tokens"
+        ]
+      }
+    },
+    "/resources/tenants/api-tokens/v1/{apiTokenId}/public-keys/{keyId}": {
+      "get": {
+        "operationId": "TenantApiTokenPublicKeysV1Controller_getPublicKey",
+        "summary": "Get a single public key",
+        "description": "Returns a single public key by ID, including the PEM-encoded SubjectPublicKeyInfo.",
+        "parameters": [
+          {
+            "name": "apiTokenId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantApiTokenPublicKeyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API tokens",
+          "API tokens"
+        ]
+      },
+      "patch": {
+        "operationId": "TenantApiTokenPublicKeysV1Controller_updatePublicKey",
+        "summary": "Update a public key",
+        "description": "Updates name, isActive, or expiresAt. PEM / algorithm / kid changes require delete + re-create. Unknown fields are silently stripped.",
+        "parameters": [
+          {
+            "name": "apiTokenId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantApiTokenPublicKeyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantApiTokenPublicKeyResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API tokens",
+          "API tokens"
+        ]
+      },
+      "delete": {
+        "operationId": "TenantApiTokenPublicKeysV1Controller_deletePublicKey",
+        "summary": "Delete a public key",
+        "description": "Permanently deletes the public key. Returns 404 if not found.",
+        "parameters": [
+          {
+            "name": "apiTokenId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keyId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "API tokens",
+          "API tokens"
+        ]
+      }
+    },
     "/resources/tenants/api-tokens/v2": {
       "post": {
         "operationId": "TenantApiTokensV2Controller_createTenantApiToken",
@@ -345,8 +609,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -386,18 +650,18 @@
         "description": "Retrieve an invitation for a specific user to join an account (tenant).",
         "parameters": [
           {
-            "name": "frontegg-user-id",
+            "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-user-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -426,18 +690,18 @@
         "description": "Create an invitation for a specific user to join an account (tenant).\n\nTo create a general invitation, use the general invitation route.",
         "parameters": [
           {
-            "name": "frontegg-user-id",
+            "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-user-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -476,18 +740,18 @@
         "description": "Delete an invitation for a specific user to join an account (tenant).\n\nTo delete a general invitation, use the general invitation route.",
         "parameters": [
           {
-            "name": "frontegg-user-id",
+            "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-user-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -509,18 +773,18 @@
         "description": "Update an invitation for a specific user to join an account (tenant).\n\nTo set a specific expiration time, use the `expiresInMinutes` parameter to define when the invitation will be invalidated. Use the `shouldSendEmail` Boolean parameter to control whether an invitation email is sent.\n\nA valid environment token is required to call this endpoint. You can obtain it from the environment authentication route.",
         "parameters": [
           {
-            "name": "frontegg-user-id",
+            "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "frontegg-tenant-id",
+            "name": "frontegg-user-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -2298,7 +2562,8 @@
                 "InviteToTenantWithCode",
                 "VerifyNewEmail",
                 "EmailAddressChanged",
-                "ApprovalFlowApprove"
+                "ApprovalFlowApprove",
+                "CountryRestriction"
               ],
               "type": "string"
             }
@@ -2390,7 +2655,8 @@
                 "InviteToTenantWithCode",
                 "VerifyNewEmail",
                 "EmailAddressChanged",
-                "ApprovalFlowApprove"
+                "ApprovalFlowApprove",
+                "CountryRestriction"
               ],
               "type": "string"
             }
@@ -3023,8 +3289,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant ID",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -3057,18 +3323,18 @@
         "summary": "Get user access token data",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "name": "id",
             "required": true,
+            "in": "path",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "id",
-            "required": true,
-            "in": "path",
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -3098,18 +3364,18 @@
         "summary": "Get account (tenant) access token data",
         "parameters": [
           {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "name": "id",
             "required": true,
+            "in": "path",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "id",
-            "required": true,
-            "in": "path",
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant ID",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -3169,7 +3435,7 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -3213,7 +3479,7 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -3256,32 +3522,13 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "frontegg-tenant-id",
-            "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RequestDisableMFARequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "",
@@ -3316,7 +3563,7 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -3897,8 +4144,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -3930,8 +4177,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -3964,8 +4211,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -4007,8 +4254,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -4049,8 +4296,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -4068,7 +4315,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestEnrollMFASMSResponse"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4085,8 +4339,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -4104,7 +4358,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerifyEnrollMFAResponse"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4391,7 +4652,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4432,7 +4693,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4641,8 +4902,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5390,12 +5651,13 @@
       "post": {
         "operationId": "UserAccessTokensV1Controller_createUserAccessToken",
         "summary": "Create user access token",
+        "description": "Create an access token for a specific user.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5403,8 +5665,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5434,8 +5696,7 @@
         },
         "tags": [
           "Personal tokens"
-        ],
-        "description": "Create an access token for a specific user."
+        ]
       },
       "get": {
         "operationId": "UserAccessTokensV1Controller_getUserAccessTokens",
@@ -5444,8 +5705,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5453,8 +5714,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5482,12 +5743,21 @@
       "delete": {
         "operationId": "UserAccessTokensV1Controller_deleteUserAccessToken",
         "summary": "Delete user access token by token ID",
+        "description": "Delete a user access token.",
         "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5495,16 +5765,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5517,21 +5779,20 @@
         },
         "tags": [
           "Personal tokens"
-        ],
-        "description": "Delete a user access token."
+        ]
       }
     },
     "/resources/users/api-tokens/v1": {
       "post": {
-        "operationId": "UserApiTokensV1Controller_createTenantApiToken",
+        "operationId": "UserApiTokensV1Controller_createApiToken",
         "summary": "Create user client credentials token",
         "description": "Create a user-specific API token.",
         "parameters": [
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5539,8 +5800,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5580,8 +5841,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5589,8 +5850,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5623,10 +5884,18 @@
         "description": "Delete a user-specific API token.",
         "parameters": [
           {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5634,16 +5903,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -6017,7 +6278,17 @@
         "operationId": "UserPhoneNumbersControllerV1_createUserPhoneNumber",
         "summary": "Set phone number for a user",
         "description": "Assign a new phone number to a user and optionally trigger a verification code.\n\nBy default, the system sends an SMS verification code to the provided phone number. To skip verification (e.g., for internal setup), set the `verify` field to `false`.\n\nRequest body must include:\n- `phoneNumber`: The new phone number to assign to the user. Must follow international format.\n- `verify` (optional): Whether to send an SMS verification code. Defaults to `true` if not provided.\n\nUse this endpoint to set or update a user's phone number, with optional control over verification.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -6050,7 +6321,17 @@
         "operationId": "UserPhoneNumbersControllerV1_preVerifyUserPhoneNumber",
         "summary": "Pre-verify user's phone number",
         "description": "Send a one-time code (OTC) to the specified phone number to initiate verification.\n\nThis endpoint is used to pre-verify a phone number before associating it with a user account. It sends an SMS-based one-time code to the provided number.\n\nRequest body must include:\n- `phoneNumber`: The phone number to verify, in international format.\n\nUse this endpoint to validate ownership of a phone number by sending a one-time code for user input during onboarding or account setup.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "User id to pre-verify phone number for. If not provided, the user Id will be extracted from the phone number.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -6117,6 +6398,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6146,6 +6436,15 @@
             "name": "id",
             "required": true,
             "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -6188,8 +6487,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user id",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -6587,16 +6886,23 @@
       "get": {
         "operationId": "SessionConfigurationControllerV1_getVendorSessionConfiguration",
         "summary": "Get environment session configuration",
+        "description": "Retrieve the session configuration for your environment.",
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSessionConfigurationResponse"
+                }
+              }
+            }
           }
         },
         "tags": [
           "Sessions configuration"
-        ],
-        "description": "Retrieve the session configuration for your environment."
+        ]
       }
     },
     "/resources/configurations/sessions/v1": {
@@ -6608,7 +6914,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
             "required": false,
             "schema": {
               "type": "string"
@@ -6617,7 +6923,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSessionConfigurationResponse"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -6632,7 +6945,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
             "required": false,
             "schema": {
               "type": "string"
@@ -7439,6 +7752,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -7452,7 +7774,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "",
             "content": {
               "application/json": {
@@ -7476,6 +7798,15 @@
             "name": "userId",
             "required": true,
             "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -7990,7 +8321,7 @@
     },
     "/resources/sub-tenants/users/v1/{userId}/access": {
       "put": {
-        "operationId": "UsersControllerV1_setUserRolesFromSubTenants",
+        "operationId": "UsersControllerV1_setUserSubAccountAccess",
         "summary": "Set sub-account access for a user",
         "description": "Set sub-account access for a user.\n\nUse this endpoint to enable or disable sub-account access by setting the value to `true` or `false`.",
         "parameters": [
@@ -7998,6 +8329,15 @@
             "name": "userId",
             "required": true,
             "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-tenant-id",
+            "in": "header",
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -8058,8 +8398,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -8094,8 +8434,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -8420,7 +8760,16 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "frontegg-application-id",
+            "in": "header",
+            "description": "The application ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -8459,7 +8808,17 @@
         "operationId": "UsersControllerV2_updateUserProfile",
         "summary": "Update user profile",
         "description": "Update the profile of a logged-in user.\n\nProvide the updated values in the request body.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -8490,7 +8849,17 @@
         "operationId": "UsersControllerV2_getUserProfile",
         "summary": "Get user profile",
         "description": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -9506,7 +9875,17 @@
         "operationId": "UsersControllerV3_getUserProfile",
         "summary": "Get user profile",
         "description": "Retrieve the profile of a logged-in user.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -9533,8 +9912,8 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user ID identifier",
-            "required": true,
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -9565,7 +9944,17 @@
         "operationId": "UsersControllerV2_getUserTenantsHierarchy",
         "summary": "Get user accounts (tenants) hierarchy",
         "description": "Retrieve the list of accounts (tenants) with hierarchy metadata that a logged-in user belongs to.\n\nIf the user is a member of multiple accounts (tenants) in a hierarchy, some entries may be reduced based on the hierarchy structure.\n\nNo parameters are required.\n\nUse your Frontegg subdomain or custom domain as the host. A user token is required for this route and can be obtained after user authentication.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "frontegg-user-id",
+            "in": "header",
+            "description": "The user identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -10443,7 +10832,7 @@
     },
     "/resources/tenants/users/v1/statuses": {
       "get": {
-        "operationId": "get",
+        "operationId": "UsersTenantsControllerV1_getUserTenantsStatuses",
         "summary": "Get users account (tenant) statuses",
         "description": "Retrieve the account (tenant) statuses of vendor users.\n\nProvide an array of `userIds` (maximum 200) and optionally an array of `userTenantStatuses` as query parameters. There is a limit of 2000 account (tenant) statuses per user.",
         "parameters": [
@@ -10484,7 +10873,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserTenantStatusesResponse"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserTenantStatusesResponse"
+                  }
                 }
               }
             }
@@ -10572,8 +10964,8 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
-            "required": true,
+            "description": "The tenant identifier. Required for requests to api.frontegg.com (or your region) when using a management token. Parsed from the token when using user or API tokens",
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -10610,7 +11002,7 @@
       "get": {
         "operationId": "UsersBulkControllerV1_getBulkInviteStatus",
         "summary": "Get status of bulk invite task",
-        "description": "Invite users to an account (tenant) in bulk.\n\nProvide an array of `users` in the request body. Each entry must include a user's `email`.",
+        "description": "This route returns the status of a pending or completed bulk user invite. The payload includes status of the bulk invite task, number of total requested users, invited users and errors along with failed user emails. Payload is limited to 1,000 users.",
         "parameters": [
           {
             "name": "id",
@@ -10623,7 +11015,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersBulkInviteTaskStatusDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -12498,7 +12897,8 @@
               "InviteToTenantWithCode",
               "VerifyNewEmail",
               "EmailAddressChanged",
-              "ApprovalFlowApprove"
+              "ApprovalFlowApprove",
+              "CountryRestriction"
             ]
           },
           "senderEmail": {
@@ -12947,6 +13347,188 @@
           "metadata",
           "createdAt"
         ]
+      },
+      "CreateTenantApiTokenPublicKeyDto": {
+        "type": "object",
+        "properties": {
+          "publicKeyPem": {
+            "type": "string",
+            "description": "PEM-encoded public key (SubjectPublicKeyInfo)"
+          },
+          "kid": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Key identifier (kid) used in JWT header"
+          },
+          "algorithm": {
+            "type": "string",
+            "enum": [
+              "RS256",
+              "RS384",
+              "RS512",
+              "ES256",
+              "ES384",
+              "ES512"
+            ],
+            "description": "Signing algorithm this key is used for"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Human-readable label for this key"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "ISO 8601 expiry date; max 2 years from now"
+          }
+        },
+        "required": [
+          "publicKeyPem",
+          "kid",
+          "algorithm"
+        ]
+      },
+      "TenantApiTokenPublicKeyResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "apiTokenId": {
+            "type": "string"
+          },
+          "kid": {
+            "type": "string"
+          },
+          "algorithm": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicKeyFingerprint": {
+            "type": "string",
+            "description": "SHA-256 hex fingerprint of the SubjectPublicKeyInfo DER"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true
+          },
+          "createdByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "publicKeyPem": {
+            "type": "string",
+            "description": "PEM-encoded public key (SubjectPublicKeyInfo)"
+          }
+        },
+        "required": [
+          "id",
+          "apiTokenId",
+          "kid",
+          "algorithm",
+          "name",
+          "publicKeyFingerprint",
+          "isActive",
+          "expiresAt",
+          "createdByUserId",
+          "createdAt",
+          "updatedAt",
+          "publicKeyPem"
+        ]
+      },
+      "TenantApiTokenPublicKeyListItemResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "apiTokenId": {
+            "type": "string"
+          },
+          "kid": {
+            "type": "string"
+          },
+          "algorithm": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "publicKeyFingerprint": {
+            "type": "string",
+            "description": "SHA-256 hex fingerprint of the SubjectPublicKeyInfo DER"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true
+          },
+          "createdByUserId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "apiTokenId",
+          "kid",
+          "algorithm",
+          "name",
+          "publicKeyFingerprint",
+          "isActive",
+          "expiresAt",
+          "createdByUserId",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "UpdateTenantApiTokenPublicKeyDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Human-readable label for this key"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether this key is active. Omit to leave unchanged; new keys default to true on creation."
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true,
+            "description": "ISO 8601 expiry date; null removes the expiry"
+          }
+        }
       },
       "CreateUserApiTokenDto": {
         "type": "object",
@@ -13513,6 +14095,40 @@
         "required": [
           "isActive",
           "maxSessions"
+        ]
+      },
+      "GetSessionConfigurationResponse": {
+        "type": "object",
+        "properties": {
+          "sessionIdleTimeoutConfiguration": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionIdleTimeoutConfigurationDto"
+              }
+            ]
+          },
+          "sessionTimeoutConfiguration": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionTimeoutConfigurationDto"
+              }
+            ]
+          },
+          "sessionConcurrentConfiguration": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionConcurrentConfigurationDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "sessionIdleTimeoutConfiguration",
+          "sessionTimeoutConfiguration",
+          "sessionConcurrentConfiguration"
         ]
       },
       "CreateSessionConfigurationRequest": {
@@ -14439,6 +15055,81 @@
         "type": "object",
         "properties": {}
       },
+      "UsersBulkInvitePayload": {
+        "type": "object",
+        "properties": {
+          "userEmails": {
+            "description": "User emails affected by the error",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "userEmails"
+        ]
+      },
+      "UsersBulkInviteTaskError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "payload": {
+            "description": "Payload with context for the error",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UsersBulkInvitePayload"
+              }
+            ]
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "UsersBulkInviteTaskStatusDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Task ID"
+          },
+          "totalItems": {
+            "type": "number",
+            "description": "Total number of items"
+          },
+          "completedItems": {
+            "type": "number",
+            "description": "Number of completed items"
+          },
+          "errors": {
+            "description": "Errors encountered during processing",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UsersBulkInviteTaskError"
+            }
+          },
+          "status": {
+            "enum": [
+              "NotStarted",
+              "InProgress",
+              "Completed",
+              "CompletedWithErrors"
+            ],
+            "type": "string",
+            "description": "Current task status"
+          }
+        },
+        "required": [
+          "id",
+          "totalItems",
+          "completedItems",
+          "status"
+        ]
+      },
       "BulkUpdateUserRolesRequestDto": {
         "type": "object",
         "properties": {
@@ -15301,10 +15992,6 @@
             "type": "string"
           }
         }
-      },
-      "RequestDisableMFARequest": {
-        "type": "object",
-        "properties": {}
       },
       "RequestDisableMFASMSResponse": {
         "type": "object",
@@ -16689,11 +17376,11 @@
           },
           "clientId": {
             "type": "string",
-            "description": "The client id from the identity provider"
+            "description": "The client id from the service provider"
           },
           "secret": {
             "type": "string",
-            "description": "The secret from the identity provider, required if not using PKCE"
+            "description": "The secret from the service provider"
           },
           "usePkce": {
             "type": "boolean",
@@ -17713,7 +18400,15 @@
       },
       "CreateSmsTemplateRequest": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "templateText": {
+            "type": "string",
+            "description": "SMS template text"
+          }
+        },
+        "required": [
+          "templateText"
+        ]
       },
       "VendorConfigBasicResponse": {
         "type": "object",
@@ -18236,7 +18931,20 @@
       },
       "RequestEnrollMFASMSResponse": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "otcToken": {
+            "type": "string",
+            "description": "One-time code token for verification step"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number used for SMS MFA"
+          }
+        },
+        "required": [
+          "otcToken",
+          "phoneNumber"
+        ]
       },
       "VerifyEnrollMFASMSRequest": {
         "type": "object",
@@ -18255,7 +18963,20 @@
       },
       "RequestVerifyMFASMSResponse": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number used for SMS MFA"
+          },
+          "otcToken": {
+            "type": "string",
+            "description": "One-time code token for verification step"
+          }
+        },
+        "required": [
+          "phoneNumber",
+          "otcToken"
+        ]
       },
       "VerifyMFASMSRequest": {
         "type": "object",
@@ -18661,6 +19382,9 @@
           },
           "name": {
             "type": "string"
+          },
+          "isLocked": {
+            "type": "boolean"
           }
         },
         "required": [

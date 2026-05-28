@@ -886,6 +886,9 @@
           "allowDcr": {
             "type": "boolean"
           },
+          "allowCimd": {
+            "type": "boolean"
+          },
           "dpopEnforcementType": {
             "type": "string",
             "enum": [
@@ -912,6 +915,7 @@
           "description",
           "integrationFinishedAt",
           "allowDcr",
+          "allowCimd",
           "dpopEnforcementType"
         ]
       },
@@ -982,6 +986,10 @@
             "type": "boolean",
             "default": false
           },
+          "allowCimd": {
+            "type": "boolean",
+            "default": false
+          },
           "dpopEnforcementType": {
             "type": "string",
             "default": "disabled",
@@ -1046,6 +1054,10 @@
             "type": "string"
           },
           "allowDcr": {
+            "type": "boolean",
+            "default": false
+          },
+          "allowCimd": {
             "type": "boolean",
             "default": false
           },
