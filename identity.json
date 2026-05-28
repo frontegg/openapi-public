@@ -17373,11 +17373,11 @@
           },
           "clientId": {
             "type": "string",
-            "description": "The client id from the identity provider"
+            "description": "The client id from the service provider"
           },
           "secret": {
             "type": "string",
-            "description": "The secret from the identity provider, required if not using PKCE"
+            "description": "The secret from the service provider"
           },
           "usePkce": {
             "type": "boolean",
