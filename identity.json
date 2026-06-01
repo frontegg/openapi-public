@@ -3166,7 +3166,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3210,7 +3210,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -3254,7 +3254,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4101,7 +4101,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4437,7 +4437,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4481,7 +4481,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4528,7 +4528,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4569,7 +4569,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4726,7 +4726,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4770,7 +4770,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -4814,7 +4814,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -8593,7 +8593,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -8657,7 +8657,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -8701,7 +8701,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -8887,7 +8887,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -8928,7 +8928,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9062,7 +9062,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9111,7 +9111,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9154,7 +9154,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": true,
             "schema": {
               "type": "string"
@@ -9375,7 +9375,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": false,
             "schema": {
               "type": "string"
@@ -9595,7 +9595,7 @@
           {
             "name": "frontegg-user-id",
             "in": "header",
-            "description": "The user id",
+            "description": "The user ID",
             "required": true,
             "schema": {
               "type": "string"
@@ -10268,7 +10268,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createSamlFederationUserSource",
         "summary": "Create SAML Federation user source",
-        "description": "This route creates a SAML federation user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "Create a SAML federation user source.\n\nA valid environment token is required to call this endpoint. You can obtain it from the [environment authentication route](/ciam/api/vendor-service).",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10476,7 +10476,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateSamlFederationUserSource",
         "summary": "Update SAML Federation user source",
-        "description": "This route updates a SAML federation user source. A [vendor token](/reference/authenticate_vendor) is required for this route.",
+        "description": "Update a SAML federation user source.\n\nA valid environment token is required to call this endpoint. You can obtain it from the [environment authentication route](/ciam/api/vendor-service).",
         "parameters": [
           {
             "name": "id",
@@ -11151,7 +11151,7 @@
           {
             "name": "frontegg-tenant-id",
             "in": "header",
-            "description": "The account (tenant) ID identifier",
+            "description": "The tenant ID identifier",
             "required": true,
             "schema": {
               "type": "string"
