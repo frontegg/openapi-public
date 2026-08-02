@@ -6786,7 +6786,7 @@
       "post": {
         "operationId": "VendorConfigController_addOrUpdateConfig",
         "summary": "Update identity management configuration",
-        "description": "Update the identity management configuration for your environment.\n\nUse this endpoint to add or update identity management parameters by sending the desired values in the request body.\n\nRefer to the parameter documentation for the list of supported values.",
+        "description": "Update the identity management configuration for your environment.\n\nUse this endpoint to add or update identity management parameters by sending the desired values in the request body.\n\nRefer to the parameter documentation for the list of supported values.\n\n**Security warning:** Setting `addPermissionsToJwt` to `false` removes permission claims from the issued JWT. If your API routes rely on those claims for permission-based authorization, they may no longer be protected, and a user with no permissions could gain admin-equivalent read and write access. Only disable it if you enforce authorization by another means.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -21498,7 +21498,7 @@
       "post": {
         "operationId": "UserSourcesControllerV1_createSamlFederationUserSource",
         "summary": "Create SAML Federation user source",
-        "description": "Create a SAML federation user source.\n\nA valid environment token is required to call this endpoint. You can obtain it from the [environment authentication route](/ciam/api/vendor-service).",
+        "description": "Create a SAML federation user source.\n\nA valid environment token is required to call this endpoint. You can obtain it from the [environment authentication route](/ciam/api/vendor-service/other/authenticate_vendor).",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -21898,7 +21898,7 @@
       "put": {
         "operationId": "UserSourcesControllerV1_updateSamlFederationUserSource",
         "summary": "Update SAML Federation user source",
-        "description": "Update a SAML federation user source.\n\nA valid environment token is required to call this endpoint. You can obtain it from the [environment authentication route](/ciam/api/vendor-service).",
+        "description": "Update a SAML federation user source.\n\nA valid environment token is required to call this endpoint. You can obtain it from the [environment authentication route](/ciam/api/vendor-service/other/authenticate_vendor).",
         "parameters": [
           {
             "name": "id",
@@ -29943,7 +29943,8 @@
             "type": "boolean"
           },
           "addPermissionsToJwt": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Controls whether permission claims are included in the issued JWT. When `true`, the user's permissions are added to the token.\n\n**Security warning:** Setting this to `false` removes the permission claims from the issued JWT. If your API routes rely on those claims for permission-based authorization, they may no longer be protected, and a user with no permissions could gain admin-equivalent read and write access. Only disable this if you enforce authorization by another means."
           },
           "allowCustomLoginTenantSwitch": {
             "type": "boolean"
