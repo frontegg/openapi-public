@@ -4845,7 +4845,7 @@
       "post": {
         "operationId": "UsersPasswordControllerV1_resetPassword",
         "summary": "Reset password",
-        "description": "Send a reset password email to a user.\n\nProvide the user's email in the request body. If your email template uses metadata, include the email metadata in the request body as well.",
+        "description": "Send a reset password email to a user.\n\nProvide the user's email in the request body. If your email template uses metadata, include the email metadata in the request body as well. Key-value pairs passed in the `emailMetadata` object are available in the Reset password email template as `{{metadata.<key>}}`.",
         "parameters": [],
         "requestBody": {
           "required": true,
