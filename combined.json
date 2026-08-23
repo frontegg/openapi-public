@@ -5337,7 +5337,7 @@
       "get": {
         "operationId": "TenantApiTokenPublicKeysV1Controller_listPublicKeys",
         "summary": "List public keys for an API token",
-        "description": "Returns the public keys for the specified tenant API token (active by default; pass includeInactive=true to include revoked keys). PEM is omitted from list items — use GET /:keyId for the full PEM.",
+        "description": "Returns the public keys for the specified tenant API token (active by default; pass includeInactive=true to include revoked keys). PEM is omitted from list items — use GET /resources/tenants/api-tokens/v1/{apiTokenId}/public-keys/{keyId} for the full PEM.",
         "parameters": [
           {
             "name": "apiTokenId",
