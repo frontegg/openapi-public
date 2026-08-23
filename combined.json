@@ -5381,7 +5381,6 @@
           }
         },
         "tags": [
-          "API tokens",
           "API tokens"
         ],
         "security": [
@@ -5463,7 +5462,6 @@
           }
         },
         "tags": [
-          "API tokens",
           "API tokens"
         ],
         "security": [
@@ -5526,7 +5524,6 @@
           }
         },
         "tags": [
-          "API tokens",
           "API tokens"
         ],
         "security": [
@@ -5575,7 +5572,6 @@
           }
         },
         "tags": [
-          "API tokens",
           "API tokens"
         ],
         "security": [
