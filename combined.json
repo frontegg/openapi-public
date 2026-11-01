@@ -11120,7 +11120,7 @@
         "tags": [
           "MFA"
         ],
-        "description": "Verify multi-factor authentication (MFA) using an SMS-based device.\n\nThis endpoint confirms the SMS MFA challenge as part of the authentication or step-up verification process for a specific registered device.\n\nPath parameters:\n- `deviceId`: The unique identifier of the SMS MFA device being verified.\n\nRequest body must include:\n- `mfaToken`: Token provided during the authentication or challenge flow.\n\nUse this endpoint to complete SMS-based MFA verification for the specified device.",
+        "description": "Verify multi-factor authentication (MFA) using an SMS-based device.\n\nThis endpoint confirms the SMS MFA challenge as part of the authentication or step-up verification process for a specific registered device.\n\nPath parameters:\n- `deviceId`: The unique identifier of the SMS MFA device being verified.\n\nRequest body must include:\n- `mfaToken`: Token provided during the authentication or challenge flow.\n\nRequest body may include:\n- `channel` (optional): The channel used to deliver the verification code. Either `sms` or `whatsapp`. Defaults to `sms`.\n\nUse this endpoint to complete SMS-based MFA verification for the specified device.",
         "security": [
           {
             "bearer": []
