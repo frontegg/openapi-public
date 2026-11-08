@@ -6,10 +6,16 @@ on:
       - master
 env:
   CI: true
+# Runs are state-based (current master vs. latest tag), so a newer run supersedes an older queued one.
+# Never cancel a run in progress: it may be mid-way through creating a release tag.
+concurrency:
+  group: openapi-public-release
+  cancel-in-progress: false
 jobs:
   release:
     name: Create Release 
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout codes
         uses: actions/checkout@v3
