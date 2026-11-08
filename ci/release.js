@@ -1,4 +1,4 @@
-const {execSync} = require('child_process');
+const {execSync, execFileSync} = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const semver = require('semver');
@@ -15,6 +15,11 @@ const githubApi = new Octokit({auth: GH_TOKEN});
 const tempDirectory = path.join(__dirname, '../', 'temp');
 const latestTagDirectory = path.join(tempDirectory, repoName);
 const openapisFolder = path.join('/');
+
+// Pinned so a new upstream `latest` cannot change the diff behaviour unnoticed.
+const OPENAPI_DIFF_IMAGE = 'openapitools/openapi-diff:2.1.6';
+const OPENAPI_DIFF_RUN_TIMEOUT_MS = 5 * 60 * 1000;
+const DIFF_FILE_WAIT_TIMEOUT_MS = 30 * 1000;
 
 async function release() {
   console.log('Create latest-tag directory');
@@ -132,21 +137,26 @@ function generateReleaseDescription(newEndpoints, missingEndpoints, deprecatedEn
   return Handlebars.compile(releaseTemplate)({newEndpoints, missingEndpoints, deprecatedEndpoints});
 }
 
-async function waitForDiffFileToGenerate(path) {
-  const promise = new Promise((resolve) => {
-    const interval = setInterval(() => {
-      const exist = fs.existsSync(path);
-      if (exist) {
-        try {
-          readJsonFile(path);
-          resolve();
-          clearInterval(interval);
-        } catch (e) {}
-      }
-    }, 100);
-  });
+async function waitForDiffFileToGenerate(path, timeoutMs = DIFF_FILE_WAIT_TIMEOUT_MS) {
+  const deadline = Date.now() + timeoutMs;
+  let lastError = 'file does not exist';
 
-  await promise;
+  while (Date.now() < deadline) {
+    if (fs.existsSync(path)) {
+      try {
+        readJsonFile(path);
+        return;
+      } catch (e) {
+        if (e.message !== lastError) {
+          console.error(`Diff file ${path} is not valid JSON yet: ${e.message}`);
+        }
+        lastError = e.message;
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  throw new Error(`Timed out after ${timeoutMs}ms waiting for diff file ${path} (last state: ${lastError})`);
 }
 
 function readJsonFile(path) {
@@ -161,13 +171,26 @@ function runOpenApiDiffDocker(openapi) {
   const lastTagOpenApiPath = path.join('/specs', 'temp', repoName, openapisFolder);
   const currentOpenApiPath = path.join('/specs', openapisFolder);
   const diffsPath = path.join('/specs/temp/diffs');
-  const execCommand = `docker run -d \
-    -v ${path.join(__dirname, '../')}:/specs \
-    openapitools/openapi-diff:latest ${path.join(lastTagOpenApiPath, openapi)}  ${path.join(
-    currentOpenApiPath,
-    openapi,
-  )} --json ${path.join(diffsPath, openapi)}`;
-  execSync(execCommand);
+
+  // Synchronous (no `-d`): a failing container throws here instead of silently leaving no output file.
+  execFileSync(
+    'docker',
+    [
+      'run',
+      '--rm',
+      '-v',
+      `${path.join(__dirname, '../')}:/specs`,
+      OPENAPI_DIFF_IMAGE,
+      path.join(lastTagOpenApiPath, openapi),
+      path.join(currentOpenApiPath, openapi),
+      '--json',
+      path.join(diffsPath, openapi),
+    ],
+    {stdio: 'inherit', timeout: OPENAPI_DIFF_RUN_TIMEOUT_MS},
+  );
 }
 
-release();
+release().catch((error) => {
+  console.error('Release failed:', error);
+  process.exit(1);
+});
